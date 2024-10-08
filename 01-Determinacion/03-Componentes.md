@@ -189,9 +189,7 @@ En el contexto del aprendizaje automático, la distinción entre **modelos linea
 
 Un **modelo lineal** asume que la relación entre las variables de entrada (o características) y la salida es una combinación lineal de las entradas. Matemáticamente, se expresa como:
 
-$$
-y = w_0 + w_1 x_1 + w_2 x_2 + \dots + w_n x_n
-$$
+$$y = w_0 + w_1 x_1 + w_2 x_2 + \dots + w_n x_n$$
 
 donde:
 
@@ -248,9 +246,8 @@ Este tipo de modelos puede incluir términos polinómicos, funciones trigonomét
 
 
 > **Ejemplo:** Supongamos que queremos predecir el **precio de una vivienda** en función de una característica simple, como el **tamaño** de la casa ($x$). Un **modelo lineal** podría asumir que el precio ($y$) depende linealmente del tamaño de la vivienda, es decir:
-> $$
-> y = w_0 + w_1 x
-> $$
+>
+> $$y = w_0 + w_1 x$$
 >
 > En este caso, el modelo asume que el precio aumenta proporcionalmente con el tamaño. Esto refleja una **relación lineal** entre el tamaño de la casa ($x$) y el precio ($y$), donde $w_0$ es el término independiente y $w_1$ es la pendiente de la recta.
 >
@@ -313,16 +310,14 @@ $$
 
 Donde:
 
-- $ y_i $ es el valor real,
-- $ \hat{y}_i $ es el valor predicho por el modelo,
-- $ n $ es el número de observaciones.
+- $y_i$ es el valor real,
+- $\hat{y}_i$ es el valor predicho por el modelo,
+- $n$ es el número de observaciones.
 
 El MSE penaliza fuertemente los **errores grandes** debido al uso del cuadrado de las diferencias. Esto significa que es más sensible a valores atípicos, ya que los errores grandes tendrán un impacto mayor en la métrica final. El resultado está en unidades cuadradas del valor objetivo, lo que puede hacer que sea menos interpretable que otras métricas.
 
 Por otro lado, el **MAE**, mide el promedio de los errores absolutos entre las predicciones y los valores reales. Su fórmula sería la siguiente:
-$$
-MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
-$$
+$$MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
 
 A diferencia del MSE, **el MAE no utiliza el cuadrado de las diferencias, sino el valor absoluto**. Esto significa que penaliza **todos los errores por igual**, sin importar si son grandes o pequeños. Es menos sensible a los valores atípicos que el MSE y su resultado se interpreta directamente en las mismas unidades que el valor objetivo, lo que a veces lo hace más intuitivo.
 
@@ -463,25 +458,22 @@ El más simple de todos los algoritmos de optimización es sin duda el **algorit
 
 En una **regresión lineal simple**, el modelo que se ajusta es de la forma:
 
-$$
-y = \theta_0 + \theta_1 x
-$$
+$$y = \theta_0 + \theta_1 x$$
+
 Donde:
 - $y$ es el valor que queremos predecir.
 - $x$ es la característica independiente.
 - $\theta_0$ es el término independiente.
-- $\theta_1$ es la pendiente o coeficiente de $ x $.
+- $\theta_1$ es la pendiente o coeficiente de $y$.
 
-El objetivo de OLS es encontrar los valores óptimos de $ \theta_0 $ y $ \theta_1 $ que minimicen la **suma de los errores cuadráticos** (SSE), donde el error es la diferencia entre los valores observados $ y_i $ y las predicciones $ \hat{y}_i $.
+El objetivo de OLS es encontrar los valores óptimos de $ \theta_0 $y$ \theta_1 $ que minimicen la **suma de los errores cuadráticos** (SSE), donde el error es la diferencia entre los valores observados $ y_i $ y las predicciones $\hat{y}_i$.
 
-$$
-SSE = \sum_{i=1}^{m} (y_i - \hat{y}_i)^2
-$$
+$$SSE = \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$$
+
 El SSE es la suma de los cuadrados de los errores y se minimiza resolviendo el sistema de ecuaciones lineales que surge de las derivadas parciales con respecto a $\theta_0$ y $\theta_1$. Para minimizar la suma de errores, calculamos las derivadas parciales de la función de coste respecto a los parámetros $\theta_0$ y $\theta_1$ y las igualamos a cero. Esto da lugar a las **ecuaciones normales**:
 
-$$
-\theta = (X^T X)^{-1} X^T y
-$$
+$$\theta = (X^T X)^{-1} X^T y$$
+
 Donde:
 - $\theta$ es el vector de parámetros que incluye $\theta_0$ y $\theta_1$.
 - $X$ es la matriz de las características (con una columna de 1's para el término independiente).
@@ -492,8 +484,7 @@ Donde:
 En términos geométricos, OLS **ajusta la línea que pasa más cerca de todos los puntos en el espacio de características**, reduciendo al mínimo las distancias verticales al cuadrado desde cada punto a la línea.
 
 > **Ejemplo**: Supongamos que estamos estudiando la relación entre el **tamaño de una casa (en metros cuadrados)** y su **precio (en miles de euros)**. Los datos de entrenamiento podrían ser los siguientes:
-> $$
-> \begin{array}{|c|c|}
+> $$\begin{array}{|c|c|}
 > \hline
 > \text{Tamaño (m²)} & \text{Precio (€)} \\
 > \hline
@@ -501,12 +492,10 @@ En términos geométricos, OLS **ajusta la línea que pasa más cerca de todos l
 > 60 & 250 \\
 > 70 & 300 \\
 > \hline
-> \end{array}
-> $$
-> Aplicando el algoritmo de OLS, primero formamos la matriz $ X $ (incluyendo un término de 1 para el término independiente) y el vector $ y $:
+> \end{array}$$
+> Aplicando el algoritmo de OLS, primero formamos la matriz $X$ (incluyendo un término de 1 para el término independiente) y el vector $y$:
 >
-> $$
-> X = \begin{bmatrix}
+> $$X = \begin{bmatrix}
 > 1 & 50 \\
 > 1 & 60 \\
 > 1 & 70
@@ -515,9 +504,8 @@ En términos geométricos, OLS **ajusta la línea que pasa más cerca de todos l
 > 200 \\
 > 250 \\
 > 300
-> \end{bmatrix}
-> $$
-> A continuación, resolvemos las ecuaciones normales para obtener los valores óptimos de $ \theta_0 $ (término independiente) y $ \theta_1 $ (pendiente). Al hacerlo, podemos generar la ecuación de la recta que mejor se ajusta a los datos, permitiendo hacer predicciones sobre los precios de las casas basados en su tamaño.
+> \end{bmatrix}$$
+> A continuación, resolvemos las ecuaciones normales para obtener los valores óptimos de $\theta_0$ (término independiente) y $\theta_1$ (pendiente). Al hacerlo, podemos generar la ecuación de la recta que mejor se ajusta a los datos, permitiendo hacer predicciones sobre los precios de las casas basados en su tamaño.
 
 ##### El gradiente descendente
 
