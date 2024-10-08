@@ -49,7 +49,7 @@ La **limpieza de datos** se refiere a la identificación y corrección o elimina
 
 La **normalización** o **escalado de datos** es fundamental cuando los datos contienen variables con diferentes rangos o escalas. Por ejemplo, si una variable mide ingresos anuales en miles de dólares y otra mide edad en años, sus magnitudes pueden ser tan diferentes que afecten el rendimiento de ciertos algoritmos, como la regresión logística o las redes neuronales, que son sensibles a estas diferencias.
 
-Existen diferentes técnicas de normalización, como el **min-max scaling** (ajustar los valores entre 0 y 1) o el **escalado por estandarización** (ajustar los valores para que tengan media 0 y desviación estándar 1).
+Existen diferentes técnicas de normalización, dos técnicas habituales son el **min-max scaling** (ajustar los valores entre 0 y 1) o el **escalado por estandarización** (ajustar los valores para que tengan media 0 y desviación estándar 1).
 
 > **Ejemplo**: En un modelo que predice precios de viviendas, las variables como el tamaño en metros cuadrados y el número de habitaciones deben estar en escalas comparables para evitar que una domine sobre la otra.
 
@@ -62,12 +62,15 @@ En muchos casos, los datos contienen **variables categóricas** (por ejemplo, �
 ##### Para Reflexionar...
 
 > **¿Qué problemas pueden surgir si no se realiza una adecuada normalización de los datos?**
+>
 > **Clave**: Sin normalización, los modelos sensibles a las magnitudes de las variables, como las redes neuronales, podrían dar más peso a variables con mayores escalas, distorsionando los resultados.
 
 > **¿Cuándo es preferible eliminar datos faltantes en lugar de imputarlos?**
+>
 > **Clave**: Considera la proporción de valores faltantes y si eliminarlos afectaría la representatividad del conjunto de datos o introduciría sesgos.
 
 > **¿Qué diferencias existen entre las técnicas de codificación one-hot y ordinal, y cuándo es recomendable usar cada una?**
+>
 > **Clave**: Reflexiona sobre cómo las relaciones entre categorías influyen en la elección de la técnica adecuada, ya que la codificación ordinal asume un orden jerárquico, mientras que la one-hot trata cada categoría como independiente.
 
 #### Entrenamiento, test y validación
@@ -96,33 +99,85 @@ Una vez que el modelo ha sido ajustado utilizando el conjunto de validación, se
 
 > [!important]
 >
-> ##### El flujo de los datos en un proyecto ML
+> ##### El flujo de los datos en un proyecto ML...
 >
 > 1. **Entrenamiento**: Ajusta los parámetros del modelo.
 > 2. **Validación**: Ayuda a ajustar hiperparámetros y monitorizar el sobreajuste.
 > 3. **Test**: Proporciona una evaluación final del rendimiento.
 
+#### Cómo dividir el conjunto de datos de modo adecuado
+
+Seleccionar adecuadamente los conjuntos de **entrenamiento**, **validación** y **test** es crucial para desarrollar modelos de machine learning robustos que generalicen correctamente a nuevos datos. Una cuestión que se nos planteará siempre a la hora de abordar un proyecto de machine learning es cómo dividir el conjunto de datos entre los datasets de entrenamiento, test y validación. Veamos algunas consideraciones generales.
+
+##### Conjunto de entrenamiento
+Este conjunto debería contener la mayoría de los datos (habitualmente entre el 60% y el 80%) ya que se utiliza para ajustar los parámetros del modelo. Es fundamental que los datos de entrenamiento reflejen la diversidad de casos posibles que el modelo encontrará en producción. Un conjunto de entrenamiento mal balanceado o poco representativo puede provocar que el modelo aprenda patrones incorrectos o sesgados.
+
+##### Conjunto de validación
+El conjunto de validación se integrará usualmente por un volumen de entre el 10% y el 20% de los datos originales. Este conjunto se utilizará para ajustar hiperparámetros y evaluar el rendimiento del modelo durante el proceso de desarrollo. También permite detectar problemas de **sobreajuste** (cuando el modelo se ajusta demasiado a los datos de entrenamiento y falla en generalizar). La **validación cruzada** es una técnica habitual donde **el conjunto de validación se rota**, utilizando diferentes porciones de los datos como validación en cada iteración, asegurando una evaluación más robusta.
+
+##### Conjunto de test
+Este conjunto, generalmente de entre el 10% y el 20% restante de los datos originales, evalúa el rendimiento final del modelo una vez completado su entrenamiento y ajuste. Los datos de test **no deben haber sido utilizados en ninguna parte del proceso de entrenamiento o validación**, ya que su objetivo es medir la capacidad de **generalización** del modelo a datos completamente nuevos. Un modelo que funcione bien en el conjunto de test es más probable que generalice bien en producción.
+
+> [!important]
+>
+> Es esencial que los tres conjuntos sean representativos de los datos reales, contengan diversidad suficiente y no compartan instancias duplicadas o solapadas que puedan llevar a resultados de rendimiento “inflados”. 
+
+> **Ejemplo**: En un proyecto de clasificación de imágenes, el 70% de las imágenes se pueden usar para entrenamiento, el 15% para validación y el 15% para test, asegurando que todas las clases estén equilibradas en cada conjunto.
+
 ##### Para Reflexionar...
 
 > **¿Qué problemas podrían surgir si no se utiliza un conjunto de validación?**
+>
 > **Clave**: Sin un conjunto de validación, el modelo podría sobreajustarse a los datos de entrenamiento y tener un mal rendimiento en datos nuevos.
 
 > **¿Cómo asegurar que el conjunto de test refleja adecuadamente el entorno de producción?**
+>
 > **Clave**: Se deben elegir cuidadosamente los datos de test para que representen correctamente los casos de uso que el modelo encontrará en producción.
+
+> **¿Qué riesgos podrían surgir al seleccionar conjuntos de entrenamiento, validación y test que no sean representativos?**
+>
+> **Clave**: Pueden generarse modelos sesgados o que no generalicen bien debido a una muestra no representativa de la población.
 
 ### Modelo
 
 En general, un **modelo** es una representación simplificada de un sistema, proceso o fenómeno del mundo real. Los modelos se utilizan para comprender, predecir o controlar el comportamiento de sistemas complejos, y pueden ser expresados en diferentes formas, como matemáticas, diagramas, simulaciones o estructuras conceptuales.
 
-Un modelo captura los aspectos esenciales de la realidad **mientras omite detalles innecesarios para un propósito específico**. Dependiendo del contexto, los modelos pueden ser descriptivos, prescriptivos o predictivos. Por ejemplo, en física, un modelo puede describir la relación entre variables mediante ecuaciones matemáticas, mientras que en economía, un modelo puede predecir el comportamiento de mercados bajo ciertos supuestos.
+Un modelo captura los aspectos esenciales de la realidad **mientras omite detalles innecesarios para un propósito específico**. Dependiendo del contexto, los modelos pueden ser descriptivos, prescriptivos o predictivos.
+
+> **Ejemplo:** En física, un modelo puede describir la relación entre variables mediante ecuaciones matemáticas, mientras que en economía, un modelo puede predecir el comportamiento de mercados bajo ciertos supuestos.
 
 **En machine learning**, un modelo es una representación matemática de un sistema que se utiliza para hacer predicciones o tomar decisiones basadas en datos. Intuitivamente, se puede imaginar como una "receta" que se aprende a partir de datos de entrenamiento. A través del aprendizaje de ejemplos previos, el modelo identifica patrones y reglas en los datos que luego le permiten predecir resultados para nuevos datos que no ha visto antes.
 
-Por ejemplo, en un modelo para predecir el precio de una vivienda, el modelo aprende a relacionar características como el tamaño, la ubicación y el número de habitaciones con el precio. Luego, cuando recibe nuevos datos (una casa diferente con características similares), utiliza estas reglas aprendidas para estimar su precio. 
+> **Ejemplo:** En un modelo para predecir el precio de una vivienda, el modelo aprende a relacionar características como el tamaño, la ubicación y el número de habitaciones con el precio. Luego, cuando recibe nuevos datos (una casa diferente con características similares), utiliza estas reglas aprendidas para estimar su precio. 
 
 Todo modelo de machine learning toma **entradas** (datos de entrada) y produce **salidas** (predicciones o clasificaciones), con el objetivo de realizar inferencias sobre datos no observados. Este proceso implica encontrar la **función matemática** que mejor describe la relación entre las entradas y salidas, ajustando los parámetros del modelo para minimizar el **error de predicción**.
 
 El **entrenamiento** del modelo consiste en iterar sobre un conjunto de datos etiquetados, ajustando los **parámetros** del modelo mediante un proceso de **optimización**, generalmente minimizando una **función de coste**. Esto asegura que el modelo sea capaz de generalizar, es decir, que no solo funcione bien con los datos de entrenamiento, sino que también sea preciso en los datos nuevos.
+
+#### Tipos de modelos en ML
+
+En **machine learning**, los modelos se pueden clasificar en varias tipologías según el tipo de problema que abordan. Dos de las categorías más importantes son los **modelos de predicción** y los **modelos de clasificación**. Estos dos tipos de modelos se utilizan en diferentes situaciones según la naturaleza de las variables que estamos intentando predecir o clasificar.
+
+##### Modelos de Predicción
+
+Los **modelos de predicción**, también conocidos como modelos de **regresión**, se utilizan cuando el objetivo es predecir un valor **continuo**. Estos modelos tratan de estimar una salida numérica a partir de los datos de entrada. Un ejemplo clásico es la **regresión lineal**, donde, para hacer predicciones, se modela la relación entre una variable dependiente y una o más variables independientes.
+
+> **Ejemplo**: Un modelo de regresión lineal puede predecir el precio de una casa en función de características como el tamaño, el número de habitaciones o la ubicación.
+
+##### Modelos de Clasificación
+
+Por otro lado, los **modelos de clasificación** se emplean cuando la salida es un valor **discreto** o una categoría. Estos modelos asignan una etiqueta o clase a las instancias de datos. Un ejemplo típico es el **clasificador de spam**, que clasifica los correos electrónicos en dos categorías: spam o no spam.
+
+> **Ejemplo**: Un modelo de clasificación puede determinar si una imagen contiene un perro o un gato, asignando etiquetas "perro" o "gato".
+
+La evaluación de estos modelos se realiza con métricas como la **precisión**, **recall**, **F1-Score** o la **matriz de confusión**, ya que estas métricas evalúan el desempeño en la asignación correcta de etiquetas.
+
+> [!important]
+>
+> - Los **modelos de predicción** generan resultados continuos, como un valor numérico.
+> - Los **modelos de clasificación** generan resultados discretos o categóricos.
+
+Cada tipo de modelo tiene aplicaciones específicas y se utiliza en problemas diferentes, dependiendo del formato de la salida que se desea obtener.
 
 #### Complejidad de los modelos de ML
 
@@ -216,10 +271,12 @@ Este tipo de modelos puede incluir términos polinómicos, funciones trigonomét
 >
 > **Clave**: Reflexiona sobre cómo la simplicidad del modelo afecta la capacidad de generalización y el riesgo de sobreajuste.
 
-> **¿En qué casos podría un modelo lineal ser insuficiente para capturar la relación entre las variables de entrada y salida?**  
+> **¿En qué casos podría un modelo lineal ser insuficiente para capturar la relación entre las variables de entrada y salida?** 
+>
 > **Clave**: Reflexiona sobre situaciones en las que las entradas tienen efectos no aditivos o proporcionales en la salida, como en datos con interacciones complejas.
 
-> **¿Cómo afecta la capacidad de generalización al comparar modelos lineales y no lineales?**  
+> **¿Cómo afecta la capacidad de generalización al comparar modelos lineales y no lineales?**
+>
 > **Clave**: Considera cómo un modelo lineal tiende a generalizar bien en conjuntos de datos pequeños, mientras que un modelo no lineal podría requerir más datos y ser propenso al sobreajuste.
 
 #### Entrenamiento y generalización
@@ -244,9 +301,38 @@ La **evaluación de modelos** es una etapa crítica en cualquier proyecto de **m
 
 Una **métrica** es una función que mide algún aspecto del rendimiento del modelo. Según el tipo de problema (clasificación, regresión, etc.), diferentes métricas se utilizan para proporcionar información sobre la calidad de las predicciones.
 
-##### Principales métricas de evaluación
+##### Métricas en modelos de predicción
 
-Es importante primeramente introducir el concepto de **matriz de confusión** para entender el resto de métricas. La **matriz de confusión** es una herramienta fundamental en la evaluación de modelos de clasificación. Permite visualizar el rendimiento del modelo al mostrar las predicciones realizadas frente a los valores reales. Se organiza en una matriz de 2x2 (en el caso más simple de problemas binarios), con las siguientes categorías:
+Las métricas **Error Cuadrático Medio (MSE)** y **Error Absoluto Medio (MAE)** son dos de las más comunes utilizadas para evaluar el rendimiento de los **modelos de regresión** en machine learning. Ambas miden cuán cerca están las predicciones realizadas por un modelo de los valores reales, pero lo hacen de maneras diferentes, lo que las hace útiles en distintos contextos.
+
+El **MSE** calcula el promedio de los errores al cuadrado entre las predicciones del modelo y los valores reales. La fórmula de cálculo sería la siguiente:
+
+$$
+MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+Donde:
+
+- $ y_i $ es el valor real,
+- $ \hat{y}_i $ es el valor predicho por el modelo,
+- $ n $ es el número de observaciones.
+
+El MSE penaliza fuertemente los **errores grandes** debido al uso del cuadrado de las diferencias. Esto significa que es más sensible a valores atípicos, ya que los errores grandes tendrán un impacto mayor en la métrica final. El resultado está en unidades cuadradas del valor objetivo, lo que puede hacer que sea menos interpretable que otras métricas.
+
+Por otro lado, el **MAE**, mide el promedio de los errores absolutos entre las predicciones y los valores reales. Su fórmula sería la siguiente:
+$$
+MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+$$
+
+A diferencia del MSE, **el MAE no utiliza el cuadrado de las diferencias, sino el valor absoluto**. Esto significa que penaliza **todos los errores por igual**, sin importar si son grandes o pequeños. Es menos sensible a los valores atípicos que el MSE y su resultado se interpreta directamente en las mismas unidades que el valor objetivo, lo que a veces lo hace más intuitivo.
+
+Ambas métricas miden el **error promedio** entre las predicciones y los valores reales y son,  como se ha comentado, utilizadas en **modelos de regresión** para evaluar la precisión de las predicciones.
+
+Sin embargo, El **MSE** penaliza los errores grandes más que el **MAE** debido al cuadrado de las diferencias, lo que lo hace **más sensible a valores atípicos**. También El **MAE** es **más interpretable**, ya que se mide en las mismas unidades que el valor objetivo, mientras que el MSE se mide en unidades cuadradas. Por último insistir en que El **MSE** penaliza más los errores grandes que los pequeños, mientras que el **MAE** penaliza los errores de manera uniforme.
+
+##### Métricas en modelos de clasificación: Matriz de confusión
+
+La **matriz de confusión** es una herramienta fundamental en la evaluación de modelos de clasificación. Permite visualizar el rendimiento del modelo al mostrar las predicciones realizadas frente a los valores reales. Se organiza en una matriz de 2x2 (en el caso más simple de problemas binarios), con las siguientes categorías:
 
 |                   | Predicción Positiva       | Predicción Negativa       |
 | ----------------- | ------------------------- | ------------------------- |
@@ -258,20 +344,11 @@ Es importante primeramente introducir el concepto de **matriz de confusión** pa
 - **True Negative (TN)**: Predicciones correctas de la clase negativa (predicho negativo y es realmente negativo).
 - **False Negative (FN)**: Predicciones incorrectas de la clase negativa (predicho negativo pero es realmente positivo).
 
-A partir de esta matriz, se derivan varias métricas clave:
-
-- **Precisión**: $\frac{TP}{TP + FP}$ mide la proporción de predicciones positivas correctas.
-- **Recall (sensibilidad)**: $\frac{TP}{TP + FN}$ mide la capacidad del modelo para identificar correctamente los casos positivos.
-- **F1-Score**: La media armónica de precisión y recall, útil en casos desbalanceados.
-- **Exactitud**: $\frac{TP + TN}{TP + TN + FP + FN}$ que mide la proporción de predicciones correctas. 
-
-Esta matriz es una herramienta poderosa para evaluar y mejorar el rendimiento de los modelos en problemas de clasificación.
-
 ###### Exactitud
 
 Indica el porcentaje de predicciones correctas en relación con el total de predicciones realizadas. Es útil cuando el coste de las predicciones incorrectas es similar para todas las clases, pero puede ser engañosa en problemas con clases desbalanceadas.
 
-$$\text{Precisión} = \frac{TP + TN}{TP + TN + FP + FN}$$
+$$\text{Exactitud} = \frac{TP + TN}{TP + TN + FP + FN}$$
 
 > **Ejemplo:** Un modelo de reconocimiento facial identifica correctamente 98 de 100 rostros, logrando una exactitud del 98%.
 
@@ -283,7 +360,7 @@ $$\text{Precisión} = \frac{TP}{TP + FP}$$
 
 > **Ejemplo**: En un clasificador de detección de fraudes, una alta precisión significa que la mayoría de las transacciones etiquetadas como fraudulentas son efectivamente fraudes.
 
-###### **Recall** (o sensibilidad)
+###### Recall (o sensibilidad)
 
 Mide la capacidad del modelo para detectar correctamente las verdaderas instancias positivas. Es especialmente útil cuando es crítico identificar todos los positivos, como en la detección de enfermedades.
 
@@ -291,7 +368,7 @@ $$ \text{Recall} = \frac{TP}{TP + FN} $$
 
 > **Ejemplo**: En la detección de cáncer, es vital que el modelo detecte todos los casos de cáncer (recall alto), aunque ocasionalmente marque falsos positivos.
 
-###### **F1-Score**
+###### F1-Score
 
 Es la media armónica entre precisión y recall. Es útil en situaciones con datos desbalanceados, donde es importante equilibrar ambas métricas.
 
@@ -299,29 +376,21 @@ $$ \text{F1} = 2 \times \frac{\text{Precisión} \times \text{Recall}}{\text{Prec
 
 > **Ejemplo**: En un sistema de clasificación de spam, donde es importante tanto detectar correctamente los correos no deseados como minimizar el número de correos válidos etiquetados como spam, el F1-Score sería una métrica clave.
 
-###### **Área bajo la curva ROC (AUC-ROC)**
-
-Mide el rendimiento de un modelo de clasificación para todas las posibles configuraciones de umbrales de decisión. Es particularmente útil para comparar diferentes modelos de clasificación y obtener una visión más holística de su rendimiento.
-
-> **Ejemplo**: Para un clasificador binario, el AUC-ROC puede ayudar a medir cómo de bien separa el modelo las dos clases bajo distintos umbrales de probabilidad.
-
-##### ¿Cómo elegir la métrica adecuada?
-
 Visto lo anterior surge la cuestión de cómo elegir la **métrica adecuada** en un problema de **machine learning**. Ello va a depender del contexto del problema y del objetivo del modelo. A continuación se detallan algunos factores clave a considerar.
 
 ###### Desbalance de clases
 
 Si las clases están desbalanceadas, es decir, una clase tiene muchos más ejemplos que la otra (por ejemplo, en la detección de fraudes, donde los casos fraudulentos son mucho menos frecuentes), métricas como la **exactitud** pueden ser engañosas. En este caso, es mejor utilizar métricas que se centren en los casos positivos, como la **sensibilidad** o la **precisión**.
 
-###### **Tipo de error crítico**
+###### Tipo de error crítico
 
 Depende de si los **falsos positivos** o los **falsos negativos** son más críticos para el problema. La **sensibilidad** es crítica cuando los **falsos negativos** tienen un costo elevado, como en el diagnóstico de enfermedades (es preferible detectar todos los casos). Sin embargo la **precisión** es más importante cuando los **falsos positivos** son costosos, como en la detección de fraudes (marcar transacciones legítimas como fraudulentas puede dañar la confianza del cliente).
 
-###### **Equilibrio entre precisión y sensibilidad**
+###### Equilibrio entre precisión y sensibilidad
 
 Si ambos tipos de errores son importantes, es útil utilizar una métrica que equilibre precisión y sensibilidad. Para ello se dispone del **F1-Score**, que como hemos comentado es la media armónica entre precisión y sensibilidad y útil cuando se busca un balance entre ambas.
 
-###### **Exactitud en problemas balanceados**
+###### Exactitud en problemas balanceados
 
 Cuando las clases están bien representadas en los datos y los errores tienen un costo similar, la **exactitud** puede ser una métrica adecuada, ya que proporciona una visión global del rendimiento del modelo.
 
@@ -336,12 +405,11 @@ Cuando las clases están bien representadas en los datos y los errores tienen un
 ##### Para reflexionar...
 
 > **¿Cuándo es más relevante el uso del F1-Score frente a otras métricas como la precisión?**
+>
 > **Clave**: Reflexiona sobre la importancia del equilibrio entre precisión y recall, especialmente en problemas con clases desbalanceadas.
 
-> **¿Por qué la AUC-ROC es una métrica relevante en problemas de clasificación?**
-> **Clave**: Considera cómo esta métrica permite evaluar el rendimiento de un clasificador en distintos umbrales, proporcionando una visión completa de su desempeño.
-
 > **¿Qué riesgos puede haber al usar solo la precisión como métrica en problemas desbalanceados?**
+>
 > **Clave**: Piensa en cómo un alto valor de precisión puede ocultar un rendimiento pobre en la identificación de la clase minoritaria.
 
 ##### A debate...
@@ -371,6 +439,7 @@ Por su parte, las derivadas también están presentes en el campo de las redes n
 
 ##### Para reflexionar...
 > **¿Cómo afecta el cálculo incorrecto del gradiente a la convergencia de un algoritmo de optimización?**
+>
 > **Clave**: Un gradiente mal calculado podría dirigir el modelo en la dirección incorrecta, empeorando el rendimiento.
 
 #### Parámetros vs. datos disponibles
