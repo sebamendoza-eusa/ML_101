@@ -466,7 +466,7 @@ Donde:
 - $\theta_0$ es el término independiente.
 - $\theta_1$ es la pendiente o coeficiente de $y$.
 
-El objetivo de OLS es encontrar los valores óptimos de $ \theta_0 $y$ \theta_1 $ que minimicen la **suma de los errores cuadráticos** (SSE), donde el error es la diferencia entre los valores observados $ y_i $ y las predicciones $\hat{y}_i$.
+El objetivo de OLS es encontrar los valores óptimos de $\theta_0$ y $\theta_1$ que minimicen la **suma de los errores cuadráticos** (SSE), donde el error es la diferencia entre los valores observados $y_i$ y las predicciones $\hat{y}_i$.
 
 $$SSE = \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$$
 
@@ -483,29 +483,36 @@ Donde:
 
 En términos geométricos, OLS **ajusta la línea que pasa más cerca de todos los puntos en el espacio de características**, reduciendo al mínimo las distancias verticales al cuadrado desde cada punto a la línea.
 
-> **Ejemplo**: Supongamos que estamos estudiando la relación entre el **tamaño de una casa (en metros cuadrados)** y su **precio (en miles de euros)**. Los datos de entrenamiento podrían ser los siguientes:
-> $$\begin{array}{|c|c|}
-> \hline
-> \text{Tamaño (m²)} & \text{Precio (€)} \\
-> \hline
-> 50 & 200 \\
-> 60 & 250 \\
-> 70 & 300 \\
-> \hline
-> \end{array}$$
-> Aplicando el algoritmo de OLS, primero formamos la matriz $X$ (incluyendo un término de 1 para el término independiente) y el vector $y$:
->
-> $$X = \begin{bmatrix}
-> 1 & 50 \\
-> 1 & 60 \\
-> 1 & 70
-> \end{bmatrix}
-> , \quad y = \begin{bmatrix}
-> 200 \\
-> 250 \\
-> 300
-> \end{bmatrix}$$
-> A continuación, resolvemos las ecuaciones normales para obtener los valores óptimos de $\theta_0$ (término independiente) y $\theta_1$ (pendiente). Al hacerlo, podemos generar la ecuación de la recta que mejor se ajusta a los datos, permitiendo hacer predicciones sobre los precios de las casas basados en su tamaño.
+---
+
+**Ejemplo**: Supongamos que estamos estudiando la relación entre el **tamaño de una casa (en metros cuadrados)** y su **precio (en miles de euros)**. Los datos de entrenamiento podrían ser los siguientes:
+
+$$\begin{array}{|c|c|}
+\hline
+\text{Tamaño (m²)} & \text{Precio (€)} \\
+\hline
+50 & 200 \\
+60 & 250 \\
+70 & 300 \\
+\hline
+\end{array}$$
+
+Aplicando el algoritmo de OLS, primero formamos la matriz $X$ (incluyendo un término de 1 para el término independiente) y el vector $y$:
+
+$$X = \begin{bmatrix}
+1 & 50 \\
+1 & 60 \\
+1 & 70
+\end{bmatrix}
+, \quad y = \begin{bmatrix}
+200 \\
+250 \\
+300
+\end{bmatrix}$$
+
+A continuación, resolvemos las ecuaciones normales para obtener los valores óptimos de $\theta_0$ (término independiente) y $\theta_1$ (pendiente). Al hacerlo, podemos generar la ecuación de la recta que mejor se ajusta a los datos, permitiendo hacer predicciones sobre los precios de las casas basados en su tamaño.
+
+---
 
 ##### El gradiente descendente
 
