@@ -348,7 +348,7 @@ La **matriz de confusión** es una herramienta fundamental en la evaluación de 
 
 Indica el porcentaje de predicciones correctas en relación con el total de predicciones realizadas. Es útil cuando el coste de las predicciones incorrectas es similar para todas las clases, pero puede ser engañosa en problemas con clases desbalanceadas.
 
-$$\text{Exactitud} = \frac{TP + TN}{TP + TN + FP + FN}$$
+$$\text{Exactitud} = \dfrac{TP + TN}{TP + TN + FP + FN}$$
 
 > **Ejemplo:** Un modelo de reconocimiento facial identifica correctamente 98 de 100 rostros, logrando una exactitud del 98%.
 
@@ -356,7 +356,7 @@ $$\text{Exactitud} = \frac{TP + TN}{TP + TN + FP + FN}$$
 
 La **precisión** mide el porcentaje de casos **predichos como positivos** que **realmente son positivos**. Es útil cuando nos importa conocer la proporción de verdaderos positivos entre todos los elementos que el modelo ha clasificado como positivos. Su fórmula es:
 
-$$\text{Precisión} = \frac{TP}{TP + FP}$$
+$$\text{Precisión} = \dfrac{TP}{TP + FP}$$
 
 > **Ejemplo**: En un clasificador de detección de fraudes, una alta precisión significa que la mayoría de las transacciones etiquetadas como fraudulentas son efectivamente fraudes.
 
@@ -364,7 +364,7 @@ $$\text{Precisión} = \frac{TP}{TP + FP}$$
 
 Mide la capacidad del modelo para detectar correctamente las verdaderas instancias positivas. Es especialmente útil cuando es crítico identificar todos los positivos, como en la detección de enfermedades.
 
-$$ \text{Recall} = \frac{TP}{TP + FN} $$
+$$\text{Recall} = \dfrac{TP}{TP + FN}$$
 
 > **Ejemplo**: En la detección de cáncer, es vital que el modelo detecte todos los casos de cáncer (recall alto), aunque ocasionalmente marque falsos positivos.
 
@@ -372,7 +372,7 @@ $$ \text{Recall} = \frac{TP}{TP + FN} $$
 
 Es la media armónica entre precisión y recall. Es útil en situaciones con datos desbalanceados, donde es importante equilibrar ambas métricas.
 
-$$ \text{F1} = 2 \times \frac{\text{Precisión} \times \text{Recall}}{\text{Precisión} + \text{Recall}} $$
+$$\text{F1} = 2 \times \dfrac{\text{Precisión} \times \text{Recall}}{\text{Precisión} + \text{Recall}}$$
 
 > **Ejemplo**: En un sistema de clasificación de spam, donde es importante tanto detectar correctamente los correos no deseados como minimizar el número de correos válidos etiquetados como spam, el F1-Score sería una métrica clave.
 
@@ -467,27 +467,27 @@ $$
 y = \theta_0 + \theta_1 x
 $$
 Donde:
-- $ y $ es el valor que queremos predecir.
-- $ x $ es la característica independiente.
-- $ \theta_0 $ es el término independiente.
-- $ \theta_1 $ es la pendiente o coeficiente de $ x $.
+- $y$ es el valor que queremos predecir.
+- $x$ es la característica independiente.
+- $\theta_0$ es el término independiente.
+- $\theta_1$ es la pendiente o coeficiente de $ x $.
 
 El objetivo de OLS es encontrar los valores óptimos de $ \theta_0 $ y $ \theta_1 $ que minimicen la **suma de los errores cuadráticos** (SSE), donde el error es la diferencia entre los valores observados $ y_i $ y las predicciones $ \hat{y}_i $.
 
 $$
 SSE = \sum_{i=1}^{m} (y_i - \hat{y}_i)^2
 $$
-El SSE es la suma de los cuadrados de los errores y se minimiza resolviendo el sistema de ecuaciones lineales que surge de las derivadas parciales con respecto a $ \theta_0 $ y $ \theta_1 $. Para minimizar la suma de errores, calculamos las derivadas parciales de la función de coste respecto a los parámetros $ \theta_0 $ y $ \theta_1 $ y las igualamos a cero. Esto da lugar a las **ecuaciones normales**:
+El SSE es la suma de los cuadrados de los errores y se minimiza resolviendo el sistema de ecuaciones lineales que surge de las derivadas parciales con respecto a $\theta_0$ y $\theta_1$. Para minimizar la suma de errores, calculamos las derivadas parciales de la función de coste respecto a los parámetros $\theta_0$ y $\theta_1$ y las igualamos a cero. Esto da lugar a las **ecuaciones normales**:
 
 $$
 \theta = (X^T X)^{-1} X^T y
 $$
 Donde:
-- $ \theta $ es el vector de parámetros que incluye $ \theta_0 $ y $ \theta_1 $.
-- $ X $ es la matriz de las características (con una columna de 1's para el término independiente).
-- $ y $ es el vector de los valores observados.
-- $ X^T $ es la traspuesta de la matriz $ X $.
-- $ (X^T X)^{-1} $ es la inversa de $ X^T X $, siempre que exista.
+- $\theta$ es el vector de parámetros que incluye $\theta_0$ y $\theta_1$.
+- $X$ es la matriz de las características (con una columna de 1's para el término independiente).
+- $y$ es el vector de los valores observados.
+- $X^T$ es la traspuesta de la matriz $X$.
+- $(X^T X)^{-1}$ es la inversa de $X^T X$, siempre que exista.
 
 En términos geométricos, OLS **ajusta la línea que pasa más cerca de todos los puntos en el espacio de características**, reduciendo al mínimo las distancias verticales al cuadrado desde cada punto a la línea.
 
