@@ -383,6 +383,17 @@ $$\text{F1} = 2 \times \dfrac{\text{Precisión} \times \text{Recall}}{\text{Prec
 
 > **Ejemplo**: En un sistema de clasificación de spam, donde es importante tanto detectar correctamente los correos no deseados como minimizar el número de correos válidos etiquetados como spam, el F1-Score sería una métrica clave.
 
+> [!tip]
+>
+> Si tenemos en cuenta los conceptos de precisión y *recall* podemos encontrar cuatro escenarios posibles que es necesario manejar adecuadamente
+>
+> - **Alta precisión y alto recall**: El modelo maneja perfectamente esa clase
+> - **Alta precisión y bajo recall**: El modelo no detecta la clase muy bien, pero cuando lo hace es altamente confiable.
+> - **Baja precisión y alto recall**: La clase detecta bien la clase pero también incluye muestras de otras clases.
+> - **Baja precisión y bajo recall:** El modelo no logra clasificar la clase correctamente.
+>
+> Cuando tenemos un dataset con clases no balanceadas, suele ocurrir que obtenemos un **alto valor de precisión en la clase mayoritaria y un bajo recall en la clase minoritaria**
+
 Visto lo anterior surge la cuestión de cómo elegir la **métrica adecuada** en un problema de **machine learning**. Ello va a depender del contexto del problema y del objetivo del modelo. A continuación se detallan algunos factores clave a considerar.
 
 ###### Clases no balanceadas
