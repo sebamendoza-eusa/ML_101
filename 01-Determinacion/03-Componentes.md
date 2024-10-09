@@ -425,7 +425,10 @@ Cuando las clases están bien representadas en los datos y los errores tienen un
 >
 > **Clave**: Reflexiona sobre los casos donde un modelo altamente preciso en los datos de entrenamiento puede fallar con nuevos datos, indicando un problema de **sobreajuste**.
 
-Puedes ver este vídeo que creo que explica bastante bien estos conceptos: https://www.youtube.com/watch?v=haEWWO0b42Y&t=274s
+Puedes ver estos vídeos. Explican bastante bien los conceptos vistos anteriormente:
+
+- https://www.youtube.com/watch?v=haEWWO0b42Y - Concepto de matriz de confusión
+- https://www.youtube.com/watch?v=H8FSfqxRWmA - Métricas asociadas a la matriz de confusión
 
 ### Algoritmos
 
