@@ -158,19 +158,25 @@ El **entrenamiento** del modelo consiste en iterar sobre un conjunto de datos et
 
 En **machine learning**, los modelos se pueden clasificar en varias tipologías según el tipo de problema que abordan. Dos de las categorías más importantes son los **modelos de predicción** y los **modelos de clasificación**. Estos dos tipos de modelos se utilizan en diferentes situaciones según la naturaleza de las variables que estamos intentando predecir o clasificar.
 
-##### Modelos de Predicción
+##### Modelos de predicción
 
 Los **modelos de predicción**, también conocidos como modelos de **regresión**, se utilizan cuando el objetivo es predecir un valor **continuo**. Estos modelos tratan de estimar una salida numérica a partir de los datos de entrada. Un ejemplo clásico es la **regresión lineal**, donde, para hacer predicciones, se modela la relación entre una variable dependiente y una o más variables independientes.
 
 > **Ejemplo**: Un modelo de regresión lineal puede predecir el precio de una casa en función de características como el tamaño, el número de habitaciones o la ubicación.
 
-##### Modelos de Clasificación
+##### Modelos de clasificación
 
 Por otro lado, los **modelos de clasificación** se emplean cuando la salida es un valor **discreto** o una categoría. Estos modelos asignan una etiqueta o clase a las instancias de datos. Un ejemplo típico es el **clasificador de spam**, que clasifica los correos electrónicos en dos categorías: spam o no spam.
 
 > **Ejemplo**: Un modelo de clasificación puede determinar si una imagen contiene un perro o un gato, asignando etiquetas "perro" o "gato".
 
-La evaluación de estos modelos se realiza con métricas como la **precisión**, **recall**, **F1-Score** o la **matriz de confusión**, ya que estas métricas evalúan el desempeño en la asignación correcta de etiquetas.
+##### Modelos de agrupación
+
+Los **modelos de agrupación**, (o **clustering)**, se utilizan cuando el objetivo es **agrupar instancias sin etiquetas previas** en subconjuntos o **clusters** basados en su similitud. A diferencia de los modelos de predicción o clasificación, el clustering no busca predecir una etiqueta o valor, sino identificar patrones o estructuras ocultas dentro de los datos. Un ejemplo clásico es el **K-means**, donde el algoritmo divide los datos en $k$ grupos según la proximidad entre puntos. El objetivo es que los puntos dentro de un mismo grupo sean más similares entre sí que a los de otros grupos.
+
+> **Ejemplo**: Un modelo de clustering puede agrupar a los clientes de una tienda en línea en diferentes segmentos según su comportamiento de compra, como la frecuencia de compras, el tipo de productos adquiridos y el monto gastado, permitiendo a la empresa personalizar campañas de marketing para cada grupo.
+
+La evaluación de estos modelos se realiza con métricas como la **precisión**, **recall**, **F1-Score**, la **matriz de confusión**, la **distancia** o la **cohesión** ya que estas métricas evalúan el desempeño en la asignación correcta de etiquetas o de similitud
 
 > [!important]
 >
@@ -317,13 +323,20 @@ Donde:
 El MSE penaliza fuertemente los **errores grandes** debido al uso del cuadrado de las diferencias. Esto significa que es más sensible a valores atípicos, ya que los errores grandes tendrán un impacto mayor en la métrica final. El resultado está en unidades cuadradas del valor objetivo, lo que puede hacer que sea menos interpretable que otras métricas.
 
 Por otro lado, el **MAE**, mide el promedio de los errores absolutos entre las predicciones y los valores reales. Su fórmula sería la siguiente:
-$$MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
-
+$$
+MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+$$
 A diferencia del MSE, **el MAE no utiliza el cuadrado de las diferencias, sino el valor absoluto**. Esto significa que penaliza **todos los errores por igual**, sin importar si son grandes o pequeños. Es menos sensible a los valores atípicos que el MSE y su resultado se interpreta directamente en las mismas unidades que el valor objetivo, lo que a veces lo hace más intuitivo.
 
 Ambas métricas miden el **error promedio** entre las predicciones y los valores reales y son,  como se ha comentado, utilizadas en **modelos de regresión** para evaluar la precisión de las predicciones.
 
-Sin embargo, El **MSE** penaliza los errores grandes más que el **MAE** debido al cuadrado de las diferencias, lo que lo hace **más sensible a valores atípicos**. También El **MAE** es **más interpretable**, ya que se mide en las mismas unidades que el valor objetivo, mientras que el MSE se mide en unidades cuadradas. Por último insistir en que El **MSE** penaliza más los errores grandes que los pequeños, mientras que el **MAE** penaliza los errores de manera uniforme.
+Sin embargo, El **MSE** penaliza los errores grandes más que el **MAE** debido al cuadrado de las diferencias, lo que lo hace **más sensible a valores atípicos**, mientras que el **MAE** penaliza los errores de manera uniforme.  También El **MAE** es **más interpretable**, ya que se mide en las mismas unidades que el valor objetivo, mientras que el MSE se mide en unidades cuadradas.
+
+> [!important]
+>
+> El **Mean Squared Error (MSE)** es más adecuado cuando se desean penalizar errores grandes, ya que eleva al cuadrado las diferencias entre las predicciones y los valores reales, lo que amplifica los errores más grandes. Es útil en situaciones críticas donde los grandes errores son costosos y se busca minimizar su impacto. Por otro lado, el **Mean Absolute Error (MAE)** es preferible cuando se busca una métrica más robusta ante los valores atípicos, ya que trata todos los errores por igual sin amplificar los grandes. El MAE también es más fácil de interpretar al reflejar el promedio de los errores en sus unidades originales.
+
+> **Ejemplo:** En un modelo de predicción de precios de acciones, donde los grandes errores podrían tener un impacto financiero significativo, podría preferirse usar el **MSE** para penalizar esos errores grandes. Sin embargo, en un modelo de predicción de la demanda de energía eléctrica diaria, el **MAE** se utiliza para interpretar fácilmente los errores y ser más resistente a valores atípicos ocasionales.
 
 ##### Métricas en modelos de clasificación: Matriz de confusión
 
@@ -334,12 +347,14 @@ La **matriz de confusión** es una herramienta fundamental en la evaluación de 
 | **Real Positivo** | Verdaderos Positivos (TP) | Falsos Negativos (FN)     |
 | **Real Negativo** | Falsos Positivos (FP)     | Verdaderos Negativos (TN) |
 
-- **True Positive (TP)**: Predicciones correctas de la clase positiva (predicho positivo y es realmente positivo).
-- **False Positive (FP)**: Predicciones incorrectas de la clase positiva (predicho positivo pero es realmente negativo).
-- **True Negative (TN)**: Predicciones correctas de la clase negativa (predicho negativo y es realmente negativo).
-- **False Negative (FN)**: Predicciones incorrectas de la clase negativa (predicho negativo pero es realmente positivo).
+- **Verdadero Positivo (TP)**: Predicciones correctas de la clase positiva (predicho positivo y es realmente positivo).
+- **Falso Positivo (FP)**: Predicciones incorrectas de la clase positiva (predicho positivo pero es realmente negativo).
+- **Verdadero Negativo (TN)**: Predicciones correctas de la clase negativa (predicho negativo y es realmente negativo).
+- **Falso Negativo (FN)**: Predicciones incorrectas de la clase negativa (predicho negativo pero es realmente positivo).
 
-###### Exactitud
+Algunas de las métricas más habituales asociadas a la matriz de confusión son:
+
+###### Exactitud (Accuracy)
 
 Indica el porcentaje de predicciones correctas en relación con el total de predicciones realizadas. Es útil cuando el coste de las predicciones incorrectas es similar para todas las clases, pero puede ser engañosa en problemas con clases desbalanceadas.
 
@@ -347,7 +362,7 @@ $$\text{Exactitud} = \dfrac{TP + TN}{TP + TN + FP + FN}$$
 
 > **Ejemplo:** Un modelo de reconocimiento facial identifica correctamente 98 de 100 rostros, logrando una exactitud del 98%.
 
-###### Precisión
+###### Precisión (Precision)
 
 La **precisión** mide el porcentaje de casos **predichos como positivos** que **realmente son positivos**. Es útil cuando nos importa conocer la proporción de verdaderos positivos entre todos los elementos que el modelo ha clasificado como positivos. Su fórmula es:
 
@@ -355,7 +370,7 @@ $$\text{Precisión} = \dfrac{TP}{TP + FP}$$
 
 > **Ejemplo**: En un clasificador de detección de fraudes, una alta precisión significa que la mayoría de las transacciones etiquetadas como fraudulentas son efectivamente fraudes.
 
-###### Recall (o sensibilidad)
+###### Sensibilidad (Sensivity o Recall)
 
 Mide la capacidad del modelo para detectar correctamente las verdaderas instancias positivas. Es especialmente útil cuando es crítico identificar todos los positivos, como en la detección de enfermedades.
 
@@ -373,7 +388,7 @@ $$\text{F1} = 2 \times \dfrac{\text{Precisión} \times \text{Recall}}{\text{Prec
 
 Visto lo anterior surge la cuestión de cómo elegir la **métrica adecuada** en un problema de **machine learning**. Ello va a depender del contexto del problema y del objetivo del modelo. A continuación se detallan algunos factores clave a considerar.
 
-###### Desbalance de clases
+###### Clases no balanceadas
 
 Si las clases están desbalanceadas, es decir, una clase tiene muchos más ejemplos que la otra (por ejemplo, en la detección de fraudes, donde los casos fraudulentos son mucho menos frecuentes), métricas como la **exactitud** pueden ser engañosas. En este caso, es mejor utilizar métricas que se centren en los casos positivos, como la **sensibilidad** o la **precisión**.
 
