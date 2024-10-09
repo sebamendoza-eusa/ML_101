@@ -21,13 +21,10 @@ Como se ha dicho, el éxito de un proyecto de aprendizaje automático va a depen
 >
 > ##### Datos-Algoritmo-Modelo: Cómo interaccionan
 >
-> **El algoritmo necesita los datos** para entrenar un modelo. Sin datos, no puede aprender ni ajustarse.
->
-> **Los datos pasan por el algoritmo**, que utiliza técnicas matemáticas para identificar patrones ocultos.
->
-> **El modelo entrenado** es el resultado del proceso de aprendizaje que el algoritmo ha realizado con los datos.
->
-> **Retroalimentación**: En muchos casos, el modelo generado se evalúa y ajusta con nuevos datos, permitiendo mejoras continuas.
+> 1. **El algoritmo necesita los datos** para entrenar un modelo. Sin datos, no puede aprender ni ajustarse.
+>2. **Los datos pasan por el algoritmo**, que utiliza técnicas matemáticas para identificar patrones ocultos.
+> 3. **El modelo entrenado** es el resultado del proceso de aprendizaje que el algoritmo ha realizado con los datos.
+>4. **Retroalimentación**: En muchos casos, el modelo generado se evalúa y ajusta con nuevos datos, permitiendo mejoras continuas.
 
 ### Datos
 
@@ -81,13 +78,13 @@ En un proyecto de *machine learning* (ML), es crucial separar los datos en **con
 
 El **conjunto de entrenamiento** es el que se utiliza para ajustar los parámetros del modelo. Aquí, el modelo de ML aprende los patrones subyacentes en los datos. Durante el entrenamiento, el algoritmo ajusta sus parámetros internos (por ejemplo, los pesos en una red neuronal) con el fin de minimizar un error o maximizar un rendimiento, como la precisión o el rendimiento general en la tarea deseada.
 
-Por ejemplo, en un problema de clasificación de imágenes, el conjunto de entrenamiento incluiría imágenes etiquetadas (como “gato” o “perro”), y el modelo ajustaría sus parámetros para reconocer estas clases.
+> **Ejemplo:** En un problema de clasificación de imágenes con aprendizaje supervisado, el conjunto de entrenamiento incluiría imágenes etiquetadas (como “gato” o “perro”), y el modelo ajustaría sus parámetros para reconocer estas clases.
 
 ##### **Conjunto de validación**
 
 El **conjunto de validación** se utiliza durante el entrenamiento para monitorizar el rendimiento del modelo y ajustar hiperparámetros (como la tasa de aprendizaje, el número de capas en una red neuronal, etc.). No se usa para entrenar el modelo directamente, sino para verificar su comportamiento en datos que no ha visto antes, pero que siguen siendo parte del proceso de optimización.
 
-El conjunto de validación es fundamental para **evitar el sobreajuste** (overfitting), un problema común cuando el modelo aprende demasiado bien los detalles del conjunto de entrenamiento, y pierde capacidad de generalización en datos nuevos. Durante el proceso de entrenamiento, si el rendimiento en el conjunto de entrenamiento es alto pero bajo en el de validación, es probable que el modelo esté sobreajustado.
+El conjunto de validación es fundamental para **evitar el sobreajuste** (overfitting), un problema común cuando el modelo aprende demasiado bien los detalles del conjunto de entrenamiento, y pierde capacidad de generalización en datos nuevos. Durante el proceso de entrenamiento, **si el rendimiento en el conjunto de entrenamiento es alto pero bajo en el de validación, es probable que el modelo esté sobreajustado.**
 
 > **Ejemplo**: Durante el desarrollo de un modelo de predicción de ventas, el conjunto de validación se utilizaría para verificar si el modelo predice correctamente en diferentes meses o estaciones, ayudando a ajustar el modelo para mejorar su rendimiento en diferentes contextos temporales.
 
@@ -284,7 +281,7 @@ Este tipo de modelos puede incluir términos polinómicos, funciones trigonomét
 
 #### Entrenamiento y generalización
 
-Durante el entrenamiento, el modelo ajusta sus parámetros para **minimizar el error** en las predicciones, utilizando algún algoritmo de optimización como por ejemplo el denominado de ***gradiente descendente***. El objetivo es lograr que el modelo no solo memorice los datos de entrenamiento, sino que sea capaz de **generalizar** a datos nuevos y no vistos previamente. Si el modelo es demasiado simple, puede sufrir de **subajuste** (no capturar adecuadamente los patrones), y si es demasiado complejo, puede **sobreajustar** (memorizar los datos sin generalizar).
+Durante el entrenamiento, el modelo ajusta sus parámetros para **minimizar el error** en las predicciones, utilizando algún algoritmo de optimización. El objetivo es lograr que el modelo no solo memorice los datos de entrenamiento, sino que sea capaz de **generalizar** a datos nuevos y no vistos previamente. Si el modelo es demasiado simple, puede sufrir de **subajuste** (no capturar adecuadamente los patrones), y si es demasiado complejo, puede **sobreajustar** (memorizar los datos sin generalizar).
 
 Así pues, el ajuste de la complejidad del modelo en **machine learning** es esencial. Dos de las técnicas más comunes para gestionar este equilibrio son la **regularización** y la **validación cruzada**. Aunque ya se ampliaran estos conceptos en capítulos próximos, de momento podemos entender la  **regularización** como una técnica que introduce penalizaciones en el cálculo de los parámetros del modelo para evitar que se ajusten demasiado a los datos de entrenamiento, lo que mejora la capacidad de generalización. Por su parte, la **validación cruzada** es otra técnica que trata de dividir los datos en subconjuntos para entrenar y evaluar el modelo de manera repetida, asegurando que el rendimiento se mida de manera consistente en diferentes partes de los datos.
 
@@ -427,6 +424,8 @@ Cuando las clases están bien representadas en los datos y los errores tienen un
 > **¿Debe primar la precisión de un modelo o su capacidad de generalización?**
 >
 > **Clave**: Reflexiona sobre los casos donde un modelo altamente preciso en los datos de entrenamiento puede fallar con nuevos datos, indicando un problema de **sobreajuste**.
+
+Puedes ver este vídeo que creo que explica bastante bien estos conceptos: https://www.youtube.com/watch?v=haEWWO0b42Y&t=274s
 
 ### Algoritmos
 
