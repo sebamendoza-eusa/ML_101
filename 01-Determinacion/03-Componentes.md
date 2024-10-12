@@ -540,6 +540,23 @@ $$X = \begin{bmatrix}
 
 A continuación, resolvemos las ecuaciones normales para obtener los valores óptimos de $\theta_0$ (término independiente) y $\theta_1$ (pendiente). Al hacerlo, podemos generar la ecuación de la recta que mejor se ajusta a los datos, permitiendo hacer predicciones sobre los precios de las casas basados en su tamaño.
 
+> [!tip]
+>
+> En el contexto de los **mínimos cuadrados ordinarios (OLS)**, las ecuaciones de normalización son una forma algebraica de calcular los parámetros óptimos $\theta$ que minimizan el error cuadrático medio entre las predicciones del modelo y los valores reales. En lugar de usar un algoritmo iterativo como el **gradiente descendente**, estas ecuaciones permiten calcular $\theta$ directamente en un solo paso.
+>
+> Dada una matriz de características $X$ y un vector de valores objetivo $y$, la ecuación de normalización para resolver $\theta$ es:
+>
+> $$
+> \theta = (X^T X)^{-1} X^T y
+> $$
+>
+> Aquí:
+> - $X$ es la matriz de características que incluye un término de sesgo (intercepto).
+> - $y$ es el vector de valores objetivo.
+> - $\theta$ son los parámetros del modelo que queremos ajustar.
+>
+> Esta ecuación funciona cuando $X^T X$ es invertible.
+
 ---
 
 ##### El gradiente descendente
