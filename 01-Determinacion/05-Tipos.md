@@ -160,15 +160,15 @@ Estos enfoques permiten a los agentes de aprendizaje por refuerzo adaptarse a di
 
 ### Redes neuronales
 
-Las **redes neuronales artificiales** (ANN, por sus siglas en inglés) son modelos computacionales inspirados en la estructura y funcionamiento del cerebro humano. Se componen de **neuronas artificiales** (nodos) organizadas en capas: Una **capa de entrada**, una o más **capas ocultas**, y una **capa de salida**. Cada capa está conectada a la siguiente mediante unos parámetros denominados pesos, que representan la fuerza de las conexiones entre neuronas. Estos modelos son fundamentales en el campo del **aprendizaje profundo (deep learning)**, una subcategoría del aprendizaje automático diseñada para trabajar con grandes volúmenes de datos, tanto estructurados como no estructurados, y para resolver problemas altamente complejos.
+Las **redes neuronales** son modelos inspirados en las neuronas del cerebro humano, formadas por nodos que procesan señales a través de capas. Su origen se puede hallar en el **perceptrón**, desarrollado por Frank Rosenblatt en 1957, un modelo computacional simple que intentaba emular una neurona biológica. El perceptrón realizaba una combinación lineal de las entradas y aplicaba una función de activación para tomar decisiones. A su vez, este modelo tenía una relación directa con la **regresión lineal**, donde las predicciones se basan en una combinación lineal de variables de entrada, si bien es cierto que el perceptrón añade la capacidad de clasificar mediante activaciones no lineales.
+
+Así pues, las **redes neuronales artificiales** (ANN, por sus siglas en inglés) son modelos computacionales que se organizan en nodos y en capas. Cada capa está compuesta de nodos que se conectan con uno o más nodos de la siguiente capa. Una neurona artificial consta de una **capa de entrada**, una o más **capas ocultas**, y una **capa de salida**. Cada conexión entre nodos de distintas capas está caracterizada por un parámetro  denominado *peso*, que representa la fuerza de la conexión entre nodos.
+
+En general, estos modelos son fundamentales en el campo del **aprendizaje profundo (deep learning)**, una subcategoría del aprendizaje automático diseñada para trabajar con grandes volúmenes de datos, tanto estructurados como no estructurados, y para resolver problemas altamente complejos.
 
 #### Estructura de las redes neuronales
 
-Las redes neuronales suelen estar formadas por tres tipos de capas:
-
-- **Capa de entrada**: Recibe los datos iniciales y los transmite a las capas ocultas. Cada nodo en esta capa corresponde a una característica del conjunto de datos.
-- **Capas ocultas**: Estas capas transforman las entradas utilizando funciones de activación y producen características más abstractas o complejas. La **profundidad** de una red (es decir, el número de capas ocultas) es lo que define un modelo como **red profunda** (deep neural network).
-- **Capa de salida**: Genera la predicción final o la clasificación, dependiendo de si se trata de un problema de regresión o de clasificación. La salida puede ser un valor numérico, una categoría, o un conjunto de probabilidades.
+Las redes neuronales suelen estar estructuradas en tres tipos de capas. En primer lugar una **capa de entrada**, que recibe los datos iniciales y los transmite a la siguiente capa. Cada nodo en esta capa **corresponde a una característica del conjunto de datos**.  En segundo lugar, las denominadas **capas ocultas**. Estas capas transforman las entradas utilizando funciones de activación y producen características más abstractas o complejas. La **profundidad** de una red (es decir, el número de capas ocultas) es lo que define un modelo como **red profunda** (deep neural network). Por último, la **capa de salida**, genera la predicción final o la clasificación, dependiendo de la naturaleza del problema. La salida puede ser un valor numérico, una categoría, o un conjunto de probabilidades.
 
 Las redes neuronales tienen la capacidad de **aprender representaciones jerárquicas** de los datos. Esto significa que, a medida que la información avanza a través de las capas ocultas, el modelo extrae características cada vez más abstractas y complejas. Este proceso es crucial en tareas como el **reconocimiento de imágenes**, donde las primeras capas pueden detectar bordes y contornos simples, mientras que las últimas capas identifican formas y objetos más complejos.
 
@@ -176,29 +176,19 @@ Las redes neuronales tienen la capacidad de **aprender representaciones jerárqu
 
 Cada nodo en una red neuronal realiza una operación matemática: toma una serie de entradas, las multiplica por los pesos correspondientes y les aplica una función de activación para producir una salida. Este proceso se repite en todas las capas hasta que se llega a la capa de salida.
 
-Para ajustar los pesos y hacer que el modelo aprenda, se utiliza un proceso llamado **entrenamiento**. Durante esta fase, el modelo recibe datos etiquetados (en el caso del aprendizaje supervisado) y realiza predicciones. A continuación, compara las predicciones con los valores reales para calcular un **error** (o pérdida), que se utiliza para ajustar los pesos de la red. Este ajuste se lleva a cabo mediante una técnica llamada **retropropagación del error**.
+Para hacer que el modelo aprenda, es necesario **entrenar** la red y optimizar los pesos de cada conexión. Durante esta fase, el modelo recibe datos etiquetados (en el caso del aprendizaje supervisado) y realiza predicciones. A continuación, compara las predicciones con los valores reales para calcular el **error** (o pérdida), que se utiliza para ajustar los pesos de la red. Este ajuste se lleva a cabo mediante una técnica llamada **retropropagación del error**.
 
 #### Retropropagación del error
 
-La **retropropagación** es uno de los mecanismos clave en el entrenamiento de redes neuronales. Funciona ajustando los pesos de las conexiones neuronales en función del error cometido en la predicción. Este proceso se lleva a cabo en varias etapas:
-
-1. **Cálculo del error**: Se compara la salida generada por la red con el valor real mediante una **función de pérdida** como el error cuadrático medio o la entropía cruzada, dependiendo del tipo de problema (regresión o clasificación).
-2. **Propagación hacia atrás**: El error calculado se propaga desde la capa de salida hacia las capas anteriores, ajustando los pesos de cada conexión. Cuanto mayor sea el error en una capa, mayor será el ajuste de los pesos en esa capa.
-3. **Actualización de los pesos**: Se aplican algoritmos de optimización como el **gradiente descendente** para minimizar la función de pérdida y actualizar los pesos de manera iterativa.
-
-Este proceso de ajuste continuo de los pesos durante múltiples iteraciones, o **épocas**, permite a la red neuronal mejorar su capacidad para hacer predicciones precisas a partir de los datos.
+La **retropropagación** es uno de los mecanismos clave en el entrenamiento de redes neuronales. Funciona ajustando los pesos de las conexiones neuronales en función del error cometido en la predicción. Este proceso se lleva a cabo en varias etapas. Primero, realizando un**cálculo del error**. Se compara la salida generada por la red con el valor real mediante una **función de pérdida** que depende del tipo de problema (regresión o clasificación). En segundo lugar, el error calculado se propaga desde la capa de salida hacia las capas anteriores, ajustando los pesos de cada conexión. Cuanto mayor sea el error en una capa, mayor será el ajuste de los pesos en esa capa. Por último se **actualizan los pesos**. Para se aplican algoritmos de optimización como el **gradiente descendente** para minimizar la función de pérdida y actualizar los pesos de manera iterativa. Este proceso de ajuste continuo de los pesos durante múltiples iteraciones, o **épocas**, permite a la red neuronal mejorar su capacidad para hacer predicciones precisas a partir de los datos.
 
 #### Funciones de activación
 
-Las funciones de activación son otro componente esencial de las redes neuronales. Estas funciones definen la salida de una neurona, dado un conjunto de entradas ponderadas. Existen diferentes tipos de funciones de activación, cada una con sus propias características y aplicaciones:
-
-- **Función sigmoide**: Comprime los valores de salida entre 0 y 1, lo que la hace útil en problemas de clasificación binaria.
-- **ReLU (Rectified Linear Unit)**: Es la función de activación más utilizada en redes profundas. Introduce no linealidad al modelo y evita el problema del **desvanecimiento del gradiente**, lo que facilita el entrenamiento de redes profundas.
-- **Tanh**: Similar a la sigmoide, pero comprime los valores entre -1 y 1. A menudo se usa en las capas ocultas de una red.
+Las funciones de activación son otro componente esencial de las redes neuronales. Estas funciones definen la salida de una neurona, dado un conjunto de entradas ponderadas. Existen diferentes tipos de funciones de activación, cada una con sus propias características y aplicaciones. La más simple es la **función sigmoide**, la cual comprime los valores de salida entre 0 y 1 y la hace útil en problemas de clasificación binaria. Una variante de esta función es la función *tangente hiperbólica* (**Tanh**), que es similar a la sigmoide, pero comprimiendo los valores entre -1 y 1. Es habitual usarla en las capas ocultas de una red. Por último, podemos citar la función **ReLU (Rectified Linear Unit)**. Es la función de activación más utilizada en redes profundas. Introduce no linealidad al modelo y evita el problema del **desvanecimiento del gradiente**, lo que facilita el entrenamiento en este tipo de redes.
 
 > [!tip]
 >
-> El **desvanecimiento del gradiente** es un problema que ocurre durante el entrenamiento de redes neuronales profundas, cuando los gradientes (derivadas parciales de la función de pérdida con respecto a los pesos) se vuelven extremadamente pequeños al propagarse hacia atrás a través de las capas de la red. Esto hace que las actualizaciones de los pesos sean insignificantes en las primeras capas, ralentizando el aprendizaje o impidiendo que ocurra. Este problema es especialmente común con funciones de activación como la **sigmoide** o **tanh**. Por su cantidad de capas ocultas, las **redes neuronales profundas** sufren más este fenómeno, que se puede mitigar utilizando funciones de activación como **ReLU** o variantes.
+> El **desvanecimiento del gradiente** es un problema que ocurre durante el entrenamiento de redes neuronales profundas, cuando los gradientes (derivadas parciales de la función de pérdida con respecto a los pesos) se vuelven extremadamente pequeños al propagarse hacia atrás a través de las capas de la red. Esto hace que las actualizaciones de los pesos sean insignificantes en las primeras capas, ralentizando el aprendizaje o impidiendo que ocurra. Este problema es especialmente común en las **redes neuronales profundas**  cuando se usan funciones de activación como la **sigmoide** o **tanh**. Es posible mitigar este efecto utilizando funciones de activación como **ReLU** o variantes.
 
 #### Desafíos de las redes neuronales
 
@@ -210,7 +200,7 @@ Las redes neuronales han demostrado ser herramientas muy potentes en una amplia 
 
 > **Ejemplo:** En la detección de fraudes en transacciones financieras, se pueden usar redes neuronales para aprender patrones complejos en las transacciones. Estos modelos pueden detectar comportamientos anómalos que sugieren posibles fraudes, ofreciendo una precisión superior a otros enfoques.
 
-> **Ejemplo:** En el procesamiento del lenguaje natural, las redes neuronales se usan para tareas como la traducción automática o la generación de texto. Las redes neuronales recurrentes (RNN) y las arquitecturas más avanzadas como **Transformers** permiten analizar y generar secuencias de palabras, mejorando la comprensión y generación de lenguaje.
+> **Ejemplo:** En el procesamiento del lenguaje natural, las redes neuronales se usan para tareas como la traducción automática o la generación de texto. Las redes neuronales recurrentes (RNN) y las arquitecturas más avanzadas como **transformers** permiten analizar y generar secuencias de palabras, mejorando la comprensión y generación de lenguaje.
 
 > **Ejemplo:** En el diagnóstico médico, las redes neuronales pueden analizar imágenes médicas para detectar enfermedades como el cáncer. Modelos entrenados con grandes cantidades de datos de imágenes pueden aprender a identificar tumores en etapas tempranas con una precisión comparable a la de los radiólogos.
 
