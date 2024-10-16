@@ -22,19 +22,21 @@ El resumen de todas la fases del ciclo de vida proyecto ML típico sería el sig
 >
 > 2. **Recolección de datos**: Recopilar datos relevantes y suficientes para entrenar el modelo. Estos datos pueden ser estructurados o no estructurados.
 >
-> 3. **Preprocesamiento de datos**: Limpiar, normalizar y transformar los datos para prepararlos para el modelo. Incluye la gestión de valores faltantes y la codificación de variables.
+> 3. **Análisis exploratorio de datos (EDA):** Entender las características principales de un conjunto de datos mediante técnicas estadísticas y visualizaciones, con el objetivo de descubrir patrones, detectar anomalías, probar hipótesis y verificar supuestos.
 >
-> 4. **Selección del modelo**: Elegir el algoritmo adecuado en función del tipo de problema y los datos disponibles.
+> 4. **Preprocesamiento de datos**: Limpiar, normalizar y transformar los datos para prepararlos para el modelo. Incluye la gestión de valores faltantes y la codificación de variables.
 >
-> 5. **Entrenamiento del modelo**: Utilizar los datos de entrenamiento para ajustar los parámetros del modelo.
+> 5. **Selección del modelo**: Elegir el algoritmo adecuado en función del tipo de problema y los datos disponibles.
 >
-> 6. **Validación**: Evaluar el rendimiento del modelo en datos de validación para evitar sobreajuste y optimizar hiperparámetros.
+> 6. **Entrenamiento del modelo**: Utilizar los datos de entrenamiento para ajustar los parámetros del modelo.
 >
-> 7. **Evaluación**: Probar el modelo con datos de prueba para medir su capacidad de generalización.
+> 7. **Validación**: Evaluar el rendimiento del modelo en datos de validación para evitar sobreajuste y optimizar hiperparámetros.
 >
-> 8. **Despliegue**: Implementar el modelo en un entorno de producción para hacer predicciones o automatizar decisiones.
+> 8. **Evaluación**: Probar el modelo con datos de prueba para medir su capacidad de generalización.
 >
-> 9. **Monitoreo y mantenimiento**: Supervisar el rendimiento del modelo en el tiempo y actualizarlo si los datos o el entorno cambian.
+> 9. **Despliegue**: Implementar el modelo en un entorno de producción para hacer predicciones o automatizar decisiones.
+>
+> 10. **Monitoreo y mantenimiento**: Supervisar el rendimiento del modelo en el tiempo y actualizarlo si los datos o el entorno cambian.
 
 ### Definición del problema
 
@@ -80,13 +82,42 @@ Finalmente, se deben tomar en cuenta aspectos éticos y legales, como el **conse
 
 > **Ejemplo**: En un proyecto de **análisis de sentimientos** sobre productos en redes sociales, los datos pueden extraerse mediante **web scraping** de plataformas como Twitter o Instagram. En este caso, es fundamental tener en cuenta las políticas de uso de las plataformas y el manejo adecuado de datos personales.
 
-
-
 ##### Para reflexionar...
 
 > **¿Cuáles son los riesgos de utilizar datos de baja calidad o mal recolectados en un proyecto de machine learning?**
 >
 > **Clave**: Los datos de baja calidad pueden introducir sesgos, errores en las predicciones y afectar negativamente la capacidad del modelo para generalizar a nuevos datos, comprometiendo su utilidad en aplicaciones reales.
+
+### Análisis exploratorio de datos (EDA)
+
+El **análisis exploratorio de datos (EDA)** es la primera etapa en cualquier proyecto de machine learning, ya que permite comprender mejor las características y estructura de los datos antes de aplicar cualquier modelo. El principal objetivo del EDA es detectar patrones, relaciones entre variables, distribuciones y anomalías en los datos, proporcionando una base sólida para la toma de decisiones en las fases posteriores del proyecto.
+
+El EDA se realiza mediante dos enfoques principales: **análisis descriptivo** y **análisis gráfico**. El análisis descriptivo incluye el cálculo de estadísticas que resumen los datos numéricos, como la **media**, **mediana**, **moda**, **desviación estándar**, **percentiles** y **rango intercuartílico**. Estas herramientas permiten tener una visión inicial de cómo se distribuyen las variables y cómo varían entre sí. Este análisis también es útil para identificar variables que tienen valores extremos o una gran variabilidad, lo que puede afectar el rendimiento del modelo.
+
+Por otro lado, el análisis gráfico facilita la visualización de las relaciones y distribuciones. Entre las herramientas más utilizadas para el EDA gráfico se incluyen:
+- **Histogramas**, que muestran cómo se distribuyen los valores de una variable continua.
+- **Diagramas de caja (boxplots)**, útiles para detectar outliers y visualizar la dispersión de los datos.
+- **Gráficos de dispersión (scatter plots)**, que permiten observar correlaciones entre dos variables numéricas.
+- **Gráficos de barras**, empleados para mostrar frecuencias en variables categóricas.
+
+Estas herramientas no solo ayudan a detectar posibles problemas en los datos, sino que también ofrecen pistas sobre qué tipo de relaciones pueden existir entre las variables y cómo estas influencian el resultado que queremos predecir. Un análisis más detallado puede incluir **mapas de calor de correlación**, que muestran visualmente las correlaciones entre las diferentes variables numéricas del conjunto de datos. Estos gráficos permiten identificar rápidamente qué pares de variables tienen una relación fuerte, lo que puede ser útil para simplificar el modelo eliminando variables redundantes o poco relevantes.
+
+El análisis exploratorio también incluye la **detección de patrones**, como la **distribución normal** de los datos o la presencia de relaciones lineales o no lineales. Identificar estos patrones es fundamental para seleccionar las técnicas de modelado adecuadas. Si los datos no siguen una distribución normal, por ejemplo, se podrían considerar transformaciones adicionales para hacer que las variables se ajusten mejor a los requisitos del modelo que se utilizará.
+
+Otra técnica importante dentro del EDA es el **análisis de correlación**, que mide la relación entre dos variables numéricas. Esta herramienta es fundamental en problemas de regresión, donde la fuerza y dirección de las relaciones entre variables explicativas y la variable dependiente determinan el diseño y la complejidad del modelo. Una correlación fuerte y positiva indicaría que a medida que una variable aumenta, la otra también lo hace, mientras que una correlación negativa implicaría que una aumenta a medida que la otra disminuye.
+
+Finalmente, el EDA también nos ayuda a comprender si los datos están **equilibrados o desbalanceados**. Este análisis es especialmente importante en problemas de clasificación, donde es crucial que las clases estén equilibradas para evitar sesgos en el modelo. Si, por ejemplo, un conjunto de datos contiene un 95% de un tipo de clase y solo un 5% de otra, el modelo podría tener dificultades para aprender correctamente sobre la clase minoritaria.
+
+> **Ejemplo**: En un proyecto de análisis de datos de salud, un histograma de la variable "edad" puede mostrar cómo está distribuida esta variable entre los pacientes y detectar si hay un sesgo hacia ciertos grupos etarios que podría afectar la representatividad del modelo.
+
+> **Ejemplo**: En un estudio sobre el consumo energético de edificios, un gráfico de dispersión entre el área del edificio y su consumo total de energía podría revelar una correlación lineal, lo que sugiere que a medida que aumenta el tamaño del edificio, también lo hace su consumo energético.
+
+> **Ejemplo**: En una investigación sobre precios de viviendas, un mapa de calor de correlaciones podría mostrar una alta correlación entre el número de habitaciones y el precio de venta, lo que indicaría que esta variable debe ser tomada en cuenta en la construcción del modelo.
+
+##### Para reflexionar...
+
+> **¿Por qué es importante realizar tanto análisis descriptivos como gráficos en el EDA y cómo se complementan entre sí?**
+> **Pistas**: Reflexiona sobre cómo los análisis descriptivos permiten resumir numéricamente los datos mientras que los gráficos ofrecen una representación visual que facilita la detección de patrones y anomalías.
 
 ### Preprocesamiento de los datos
 
