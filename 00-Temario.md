@@ -3,19 +3,22 @@
 ## Tema 1. Determinación de sistemas de aprendizaje automático (Machine Learning) (16 horas)
 
 1. **Definición de aprendizaje automático** (2 horas): Explicación básica y concepto de ML.
-2. **Componentes del ML** (4 horas): Explicación detallada de los elementos clave como datos, algoritmos y evaluaciones.
-3. **Etapas en un proyecto ML** (6 horas): Exploración de las fases de un proyecto real, desde la recolección de datos hasta la validación.
-4. **Tipos de ML** (4 horas): Comparación y análisis de los tipos de aprendizaje (supervisado, no supervisado, por refuerzo).
+2. **Breve recorrido histórico**
+3. **Componentes del ML** (4 horas): Explicación detallada de los elementos clave como datos, algoritmos y evaluaciones.
+4. **Etapas en un proyecto ML** (6 horas): Exploración de las fases de un proyecto real, desde la recolección de datos hasta la validación.
+5. **Tipos de ML** (4 horas): Comparación y análisis de los tipos de aprendizaje (supervisado, no supervisado, por refuerzo).
+6. **Codificación de la información** 
 
 ## Tema 2. Aprendizaje automático supervisado (40 horas)
 
 1. **Introducción** (2 horas): Contextualización del aprendizaje supervisado.
-2. **Preprocesamiento de datos** (6 horas): Técnicas de limpieza y transformación de datos.
-3. **Regresión lineal** (6 horas): Modelos de regresión lineal, ajuste de modelos, métricas.
-4. **Regresión logística** (6 horas): Modelos de clasificación, probabilidad y métricas asociadas.
-5. **KNN (K-Nearest Neighbors)** (4 horas): Explicación de la técnica, hiperparámetros y ejemplos.
-6. **Árboles de decisión** (6 horas): Descripción, construcción y evaluación de árboles.
-7. **SVM (Máquinas de vectores soporte)** (10 horas): Teoría, ajuste de hiperparámetros, y ejemplos prácticos.
+2. **Análisis exploratorio de datos (EDA)**
+3. **Preprocesamiento de datos** (6 horas): Técnicas de limpieza y transformación de datos.
+4. **Regresión lineal** (6 horas): Modelos de regresión lineal, ajuste de modelos, métricas.
+5. **Regresión logística** (6 horas): Modelos de clasificación, probabilidad y métricas asociadas.
+6. **KNN (K-Nearest Neighbors)** (4 horas): Explicación de la técnica, hiperparámetros y ejemplos.
+7. **Árboles de decisión** (6 horas): Descripción, construcción y evaluación de árboles.
+8. **SVM (Máquinas de vectores soporte)** (10 horas): Teoría, ajuste de hiperparámetros, y ejemplos prácticos.
 
 ------
 

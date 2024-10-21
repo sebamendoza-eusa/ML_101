@@ -3,9 +3,11 @@
 ## Contenidos
 
 > 1. **Definición de aprendizaje automático**
-> 2. Componentes del ML
-> 3. Etapas en un proyecto ML
-> 4. Tipos de ML
+> 2. Breve recorrido histórico
+> 3. Componentes del ML
+> 4. Etapas en un proyecto ML
+> 5. Tipos de ML
+> 6. Codificación de la información
 >
 
 ---
@@ -90,5 +92,4 @@ Los algoritmos de ML son altamente **adaptables**, lo que significa que pueden a
 > **¿Es ético utilizar sistemas de aprendizaje automático en la predicción de comportamiento humano, como en sistemas judiciales o de vigilancia?**
 >
 > **Clave**: Piensa en el uso de datos para predecir delitos o comportamientos. ¿Es justo que las máquinas tomen decisiones basadas en probabilidades? ¿Qué riesgos éticos existen al depender de algoritmos para estos fines?
-
 

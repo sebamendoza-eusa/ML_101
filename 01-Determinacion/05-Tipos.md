@@ -3,14 +3,16 @@
 ## Contenidos
 
 > 1. Definición de aprendizaje automático
-> 2. Componentes del ML
-> 3. Etapas en un proyecto ML
-> 4. **Tipos de ML**
+> 2. Breve recorrido histórico
+> 3. Componentes del ML
+> 4. Etapas en un proyecto ML
+> 5. **Tipos de ML**
+> 6. Codificación de la información
 >
 
 ---
 
-## 4. Tipos de Machine Learning
+## 5. Tipos de Machine Learning
 
 ### Aprendizaje supervisado
 

@@ -3,14 +3,16 @@
 ## Contenidos
 
 > 1. Definición de aprendizaje automático
-> 2. Componentes del ML
-> 3. **Etapas en un proyecto ML**
-> 4. Tipos de ML
+> 2. Breve recorrido histórico
+> 3. Componentes del ML
+> 4. **Etapas en un proyecto ML**
+> 5. Tipos de ML
+> 6. Codificación de la información
 >
 
 ---
 
-## 3. Etapas en un proyecto ML
+## 4. Etapas en un proyecto ML
 
 El desarrollo de un proyecto de **aprendizaje automático (ML)** sigue una serie de fases cruciales, cada una contribuyendo al éxito del modelo y su implementación final. En esta ampliación, se introduce también la **puesta en producción** del modelo y su **mantenimiento** durante su ciclo de vida, aspectos fundamentales que garantizan la utilidad y longevidad de un proyecto ML.
 

@@ -7,6 +7,7 @@
 > 3. Componentes del ML
 > 4. Etapas en un proyecto ML
 > 5. Tipos de ML
+> 6. Codificación de la información
 >
 
 ---
