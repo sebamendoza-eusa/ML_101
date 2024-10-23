@@ -29,7 +29,7 @@ Así pues, podemos definir el **aprendizaje automático supervisado** como:
 >
 > Formalmente, se busca encontrar una función $f: X \rightarrow Y$ que minimice una medida de error o pérdida entre las predicciones del modelo y las etiquetas verdaderas.
 
-El proceso de entrenamiento consiste en ajustar los parámetros del modelo para minimizar una función de costo, como la **entropía cruzada** en clasificación o el **error cuadrático medio** (MSE) en regresión. Este ajuste de los parámetros se realiza utilizando un método de optimización, que puede variar según la naturaleza del problema
+El proceso de entrenamiento consiste en ajustar los parámetros del modelo para minimizar una función de coste, como podría ser la **entropía cruzada** en problemas de clasificación o el **error cuadrático medio** (MSE) en problemas de regresión. Este ajuste de los parámetros se realiza utilizando un método de optimización, que puede variar según la naturaleza del problema
 
 Para que el modelo generalice correctamente y no solo memorice los datos de entrenamiento, el proceso se lleva a cabo en diferentes fases e incorporando progresivamente distintos subconjuntos de datos:
 
@@ -85,7 +85,7 @@ Este proceso es especialmente **útil cuando se dispone de un conjunto de datos 
 
 El equilibrio entre **sesgo** y **varianza** es otro aspecto clave para conseguir una buena generalización. Idealmente, un modelo debe tener un bajo sesgo y una baja varianza para lograr un buen rendimiento en datos no vistos.
 
-###### El **sesgo** hace referencia a los errores que introduce el modelo debido a suposiciones simplificadas sobre los datos. Un modelo con alto sesgo es demasiado rígido y es probable que subajuste. Por su parte, la **varianza** refleja la sensibilidad del modelo a las pequeñas variaciones en los datos de entrenamiento. Un modelo con alta varianza es probable que sobreajuste, aprendiendo detalles y ruido específico de los datos de entrenamiento que no generalizan bien.
+El **sesgo** hace referencia a los errores que introduce el modelo debido a suposiciones simplificadas sobre los datos. Un modelo con alto sesgo es demasiado rígido y es probable que subajuste. Por su parte, la **varianza** refleja la sensibilidad del modelo a las pequeñas variaciones en los datos de entrenamiento. Un modelo con alta varianza es probable que sobreajuste, aprendiendo detalles y ruido específico de los datos de entrenamiento que no generalizan bien.
 
 Un buen modelo debe encontrar un equilibrio entre el sesgo y la varianza para lograr una generalización óptima. Las técnicas de regularización, como las mencionadas anteriormente, ayudan a reducir la varianza, mientras que modelos más simples pueden reducir el sesgo.
 

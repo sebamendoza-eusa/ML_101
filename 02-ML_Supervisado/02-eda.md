@@ -448,7 +448,9 @@ Existen diversas técnicas para reducir o eliminar los efectos de la multicoline
 
    - **Ridge** (o regularización L2) penaliza los coeficientes grandes sin eliminarlos por completo, lo que reduce su impacto en la predicción.
      
-- **Lasso** (o regularización L1) no solo penaliza los coeficientes grandes, sino que también tiende a eliminar algunos coeficientes, reduciendo el número de variables activas en el modelo.
+   
+   - **Lasso** (o regularización L1) no solo penaliza los coeficientes grandes, sino que también tiende a eliminar algunos coeficientes, reduciendo el número de variables activas en el modelo.
+   
 
 
 El uso de **regularización** es particularmente útil en modelos de regresión con muchas características correlacionadas, ya que ayuda a controlar el sobreajuste y mejora la estabilidad de los coeficientes.
