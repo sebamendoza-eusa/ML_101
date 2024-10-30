@@ -28,6 +28,8 @@ Si hemos de caracterizar rápidamente la fase de preprocesamiento de datos se po
 
 La fase de preprocesamiento no tiene un carácter uniforme y puede variar en función del tipo de datos y el modelo de machine learning a utilizar. Sin embargo, ciertos pasos son comunes y esenciales para casi todos los tipos de datos y algoritmos. En primer lugar, lo normal es abordar la **limpieza de datos**. La limpieza permite identificar y corregir inconsistencias como valores faltantes, atípicos o ruido, que pueden distorsionar los resultados del modelo. Los valores faltantes son particularmente problemáticos en el aprendizaje supervisado, ya que pueden llevar a un sesgo o a una pérdida de información significativa. Veremos como las técnicas para tratar estos valores incluyen la imputación mediante medias o medianas, la eliminación de observaciones o el uso de algoritmos avanzados de imputación.
 
+Además de lo anterior,  hay que destacar que el preprocesamiento de datos en machine learning no solo incluye la limpieza y transformación de datos, sino que también abarca el tratamiento de un desafío habitual en muchos problemas prácticos que es el de los **datos desbalanceados**. Cuando se tiene una disparidad significativa entre la representación de las clases en un conjunto de datos, los modelos supervisados tienden a favorecer la clase mayoritaria, disminuyendo así su capacidad para identificar patrones en la clase minoritaria. Esta fase de ajuste en el preprocesamiento permite implementar técnicas como el sobremuestreo, el submuestreo o la generación de datos sintéticos para equilibrar el conjunto de datos, asegurando que todas las clases estén adecuadamente representadas. Además, el uso de pesos de clase en algunos modelos permite que las clases menos frecuentes tengan un impacto justo en el entrenamiento, logrando modelos más precisos y capaces de generalizar correctamente en escenarios de clasificación desbalanceada.
+
 Una vez limpio, el siguiente paso habitual es realizar una **transformación adecuada de los datos** para que sean compatibles con los algoritmos de aprendizaje. La transformación abarca técnicas como el escalado, la normalización o la codificación de variables categóricas. El escalado y la normalización son necesarios en algoritmos que dependen de la magnitud de las variables, como aquellos basados en distancias. Por su parte, la codificación permite transformar variables categóricas en representaciones numéricas, facilitando su uso en modelos que solo operan con datos cuantitativos.
 
 Además de la limpieza y transformación, en muchos casos es necesario aplicar un proceso de **reducción de dimensionalidad** con el objeto de simplificar el conjunto de datos sin perder información significativa. Este paso es crítico cuando se trabaja con grandes cantidades de características, ya que ello no solo reduce el tiempo de cómputo, sino que también ayuda a mejorar la capacidad de generalización del modelo al eliminar variables redundantes o poco relevantes.
@@ -119,8 +121,7 @@ Existen diferentes métodos para identificar y tratar los valores atípicos, y l
 
 ###### **Método basado en desviación estándar**
 
-###### Este método asume que los datos siguen una distribución aproximadamente normal y considera que cualquier observación que se encuentre a una distancia superior a un número específico de desviaciones estándar respecto a la media es un valor atípico. Un umbral común es **tres desviaciones estándar**, aunque puede ajustarse según el contexto.
-
+Este método asume que los datos siguen una distribución aproximadamente normal y considera que cualquier observación que se encuentre a una distancia superior a un número específico de desviaciones estándar respecto a la media es un valor atípico. Un umbral común es **tres desviaciones estándar**, aunque puede ajustarse según el contexto.
 $$
 \text{Límite superior} = \mu + 3\sigma \quad \text{y} \quad \text{Límite inferior} = \mu - 3\sigma
 $$
@@ -404,7 +405,7 @@ $$
 > 1. **Para $\lambda_1 = 200$**: Resolvemos el sistema lineal $(\text{Matriz de Covarianza} - 200I)v = 0$ y obtenemos el vector propio asociado:
 > $$
 >    v_1 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}
->    $$
+> $$
 >    Este vector propio indica la dirección del primer componente principal, que representa una combinación lineal de **Altura** y **Peso**.
 >
 > 2. **Para $\lambda_2 = 0$**: Resolvemos el sistema para el segundo valor propio, obteniendo:
@@ -557,3 +558,138 @@ Es fundamental evaluar el balance entre eficiencia y pérdida de información al
 > **¿Cuándo es ventajoso reducir la dimensionalidad en un modelo supervisado?** 
 > **Clave**: Reflexiona sobre cómo una alta dimensionalidad puede introducir ruido y dificultar el aprendizaje, mientras que una reducción moderada ayuda a mejorar el rendimiento del modelo y la generalización. Considera cómo, en problemas específicos, el exceso de variables puede dificultar la interpretación y aumentar el riesgo de sobreajuste.
 
+### Tratamiento de datos desbalanceados
+
+En problemas de clasificación supervisada, un conjunto de datos desbalanceado se caracteriza porque una o varias clases están mucho más representadas que otras. Esta disparidad en la cantidad de observaciones de cada clase puede afectar el desempeño del modelo, ya que los algoritmos tienden a aprender mejor los patrones de la clase mayoritaria. Ello puede conducir a una disminución de la precisión y de la capacidad de generalización en las clases minoritarias. Este fenómeno es común en aplicaciones como la detección de fraudes, diagnóstico de enfermedades raras o análisis de datos de clientes, donde una clase de interés suele estar subrepresentada.
+
+El preprocesamiento de datos desbalanceados permite ajustar el conjunto de datos de modo que todas las clases tengan una representación adecuada. A continuación, revisamos las principales técnicas utilizadas para el tratamiento de datos desbalanceados, cada una con ventajas específicas dependiendo de la naturaleza del problema y del modelo.
+
+Pero para empezar veamos cual es el alcance del problema de las clases desbalanceadas analizando las métricas de un problema de clasificación con la matriz de confusión. Vamos a suponer que estamos ante el problema clásico de detección de fraudes. Es habitual que en este tipo de problemas los datasets de entrenamiento estén desbalanceados a favor de la clase mayoritaria (transacciones no-fraudulentas). Imaginemos pues un dataset con 1.000 transacciones, donde:
+
+- **950 transacciones** son normales (clase mayoritaria).
+- **50 transacciones** son fraudes (clase minoritaria).
+
+Supongamos que entrenamos un modelo de clasificación para detectar fraudes, pero no aplicamos ninguna técnica de balanceo de clases. El modelo entrenado podría generar la siguiente matriz de confusión:
+
+|                     | Predicción: No Fraude | Predicción: Fraude |
+| ------------------- | --------------------- | ------------------ |
+| **Real: No Fraude** | 930                   | 20                 |
+| **Real: Fraude**    | 45                    | 5                  |
+
+En este caso:
+- **930 verdaderos negativos**: transacciones normales que el modelo predijo correctamente como "No Fraude".
+- **20 falsos positivos**: transacciones normales clasificadas incorrectamente como "Fraude".
+- **45 falsos negativos**: fraudes clasificados incorrectamente como "No Fraude".
+- **5 verdaderos positivos**: fraudes correctamente clasificados como "Fraude".
+
+Ahora, calculamos las tres métricas comunes para este modelo:
+
+1. **Exactitud (Accuracy)**: la proporción de predicciones correctas en el total de predicciones.
+   $$
+   \text{Exactitud} = \frac{\text{Verdaderos Positivos} + \text{Verdaderos Negativos}}{\text{Total de Predicciones}} = \frac{930 + 5}{1000} = 0.935 \text{ (93.5%)}
+   $$
+
+2. **Precisión (Precision)** para la clase "Fraude": la proporción de predicciones correctas de "Fraude" entre todas las predicciones de "Fraude".
+   $$
+   \text{Precisión} = \frac{\text{Verdaderos Positivos}}{\text{Verdaderos Positivos} + \text{Falsos Positivos}} = \frac{5}{5 + 20} = 0.20 \text{ (20%)}
+   $$
+
+3. **Sensibilidad (Recall)** para la clase "Fraude": la proporción de fraudes correctamente identificados.
+   $$
+   \text{Sensibilidad} = \frac{\text{Verdaderos Positivos}}{\text{Verdaderos Positivos} + \text{Falsos Negativos}} = \frac{5}{5 + 45} = 0.10 \text{ (10%)}
+   $$
+
+A la luz de estos resultados podemos concluir que:
+
+- Aunque el modelo tiene una **alta exactitud (93.5%)**, esto es engañoso porque se debe principalmente a la gran cantidad de transacciones normales (950). La mayoría de las predicciones correctas corresponden a la clase mayoritaria.
+
+- La **precisión (20%)** y la **sensibilidad (10%)** en la clase "Fraude" son muy bajas, indicando que el modelo no está reconociendo correctamente los fraudes. De hecho podría haberse calculado el $F1-Score$ para incluir los efectos combinados de la precisión y la sensibilildad:
+  $$
+  F1 = 2 \times \frac{\text{Precisión} \times \text{Sensibilidad}}{\text{Precisión} + \text{Sensibilidad}} = 2 \times \frac{0.20 \times 0.10}{0.20 + 0.10} = 2 \times \frac{0.02}{0.30} = 2 \times 0.0667 = 0.1333 \text{ (13.3%)}
+  $$
+  Este valor confirma el problema en la detección de la clase "Fraude"
+
+- La matriz de confusión muestra que el modelo detecta solo 5 fraudes de los 50 existentes, mientras que clasifica erróneamente 45 fraudes como transacciones normales. Esto sugiere un problema de **sesgo hacia la clase mayoritaria** debido al desbalance.
+
+Este ejemplo muestra cómo los datos desbalanceados pueden inflar métricas generales como la exactitud, mientras ocultan el pobre rendimiento del modelo en la clase minoritaria. Un análisis detallado de la matriz de confusión revela estas deficiencias, y la baja precisión y sensibilidad en la clase "Fraude" demuestran que el modelo no está capturando patrones de interés en la clase de menor representación.
+
+#### Principales técnicas para tratar datos desbalanceados
+
+##### Submuestreo y sobremuestreo
+
+El **submuestreo** es una técnica de balanceo de clases en la que se reduce el número de observaciones de la clase mayoritaria para igualar, o aproximar, el tamaño de la clase minoritaria. Esta técnica es útil cuando el conjunto de datos está muy desbalanceado y el exceso de datos de la clase mayoritaria podría conducir a un modelo sesgado. Sin embargo, al eliminar datos, existe el riesgo de perder información importante, por lo que se recomienda usarlo cuando **el tamaño de la clase mayoritaria es suficientemente grande para no comprometer la representatividad**.
+
+> **Ejemplo 1. Detección de fraude en transacciones bancarias:** Imaginemos un dataset de 1.000 transacciones bancarias:
+>
+> - **950 transacciones** son normales.
+> - **50 transacciones** son fraudes.
+>
+> Dado este desbalance, si entrenamos un modelo directamente, tenderá a clasificar las transacciones como normales. Con el submuestreo, seleccionamos aleatoriamente un subconjunto de las transacciones normales (por ejemplo, 50) y lo combinamos con las transacciones de fraude. Así, el nuevo dataset tendrá **50 transacciones normales y 50 fraudes**, lo que permite que ambas clases tengan igual representatividad y el modelo aprenda patrones de ambas sin sesgo hacia la clase mayoritaria.
+>
+> **Proceso de implementación del submuestreo**
+>
+> Para aplicar esta técnica, se siguen los pasos siguientes:
+>
+> 1. **Separar las clases**: Primero, separamos las observaciones de la clase mayoritaria y de la clase minoritaria.
+> 2. **Seleccionar aleatoriamente** un número reducido de observaciones de la clase mayoritaria que iguale el tamaño de la clase minoritaria. Esto implica seleccionar una muestra de la clase mayoritaria sin reemplazo para no duplicar datos.
+> 3. **Combinar** estas observaciones para formar un nuevo dataset balanceado, donde ambas clases tengan el mismo número de observaciones.
+>
+> Este proceso da como resultado un conjunto de datos equilibrado y optimizado para modelos de clasificación en problemas con alta desproporción entre las clases.
+>
+
+> **Ejemplo 2: Submuestreo en detección de correos spam**: Supongamos que estamos desarrollando un modelo para clasificar correos electrónicos en "spam" y "no spam". En un dataset de 10.000 correos:
+>
+> - **9.500 correos** son "no spam".
+> - **500 correos** son "spam".
+>
+> Si entrenamos un modelo con estos datos sin balancear, tenderá a clasificar los correos como "no spam" debido a la alta proporción de esta clase. Para balancear el dataset, seleccionamos aleatoriamente 500 correos "no spam" y los combinamos con los 500 correos "spam". Esto resulta en un nuevo dataset con 1.000 observaciones (500 de cada clase), lo que permite al modelo aprender patrones en ambas clases de manera equitativa.
+>
+
+Visto lo anterior, se puede afirmar que el submuestreo presenta algunas ventajas, sobre todo la fundamental: evitar el sesgo hacia la clase mayoritaria y aumentar así su capacidad de generalización en situaciones de desbalanceo de clases. Pero también permite en determinados casos, al reducirse el tamaño del dataset, mejorar la velocidad de entrenamiento del modelo. Sin embargo, esta técnica también tiene limitaciones. Al eliminar observaciones, existe el riesgo de perder información importante si las muestras descartadas de la clase mayoritaria contienen patrones relevantes. Es por ello que, el submuestreo no es ideal cuando el tamaño total de datos es pequeño, ya que  se podría reducir la capacidad del modelo para generalizar y representar correctamente la variabilidad dentro de la clase mayoritaria.
+
+> [!important]
+>
+> El submuestreo es una técnica poderosa cuando se aplica en datasets grandes y desbalanceados, y es especialmente útil para asegurar que el modelo considere la clase minoritaria sin que el modelo tenga un sesgo inherente hacia la clase mayoritaria.
+
+---
+
+Al contrario del submuestreo, el **sobremuestreo** es una técnica que **incrementa la representación de la clase minoritaria en un conjunto de datos desbalanceado**. El sobremuestreo no elimina datos de la clase mayoritaria, sino que aumenta el tamaño de la clase minoritaria, ya sea duplicando ejemplos existentes o generando observaciones nuevas. Esta técnica es particularmente útil cuando se cuenta con pocos datos en la clase minoritaria y se desea evitar la pérdida de información. Sin embargo, el sobremuestreo **puede llevar a problemas de sobreajuste si no se aplica adecuadamente**.
+
+Existen varios métodos de sobremuestreo, cada uno con diferentes enfoques y beneficios. A continuación, se describen las técnicas más comunes.
+
+La **duplicación de observaciones** es el método de sobremuestreo más simple. Consiste en seleccionar y duplicar aleatoriamente instancias de la clase minoritaria hasta que ambas clases tengan un tamaño similar. Aunque esta técnica equilibra el dataset, también aumenta el riesgo de sobreajuste, ya que el modelo puede "memorizar" los ejemplos repetidos en lugar de generalizar.
+
+> **Ejemplo**: En un problema de detección de fraude en transacciones bancarias con 1.000 transacciones, de las cuales 950 son "no fraude" y 50 son "fraude", la duplicación consiste en seleccionar varias veces las 50 observaciones de "fraude" hasta llegar a 950, igualando el número de ambas clases. Este proceso permite al modelo tener una representación equilibrada de las clases, aunque aumenta el riesgo de sobreajuste.
+
+En lugar de duplicar observaciones exactas, **el sobremuestreo aleatorio** selecciona instancias de la clase minoritaria con **reemplazo**. Esto significa que cada instancia de la clase minoritaria tiene la misma probabilidad de ser elegida varias veces, sin necesidad de que todas las observaciones sean idénticamente replicadas. Aunque es más flexible que la duplicación directa, el sobremuestreo aleatorio también puede llevar al sobreajuste, especialmente en datasets pequeños.
+
+> **Ejemplo**: Supongamos un dataset de clasificación de correos electrónicos donde 9.500 correos son "no spam" y 500 son "spam". El sobremuestreo aleatorio selecciona aleatoriamente correos "spam" y los incorpora en el dataset hasta alcanzar 9.500 instancias de "spam". Al hacerlo, el modelo puede ver una variedad de ejemplos de la clase minoritaria sin duplicarlos exactamente.
+
+Por último, es interesante tener en cuenta las técnicas, **SMOTE (Synthetic Minority Over-sampling Technique)**. Se trata de un conjunto de técnicas avanzadas de sobremuestreo en las que el objetivo es crear nuevos ejemplos sintéticos de la clase minoritaria en lugar de duplicar o muestrear aleatoriamente observaciones existentes. SMOTE genera cada nuevo ejemplo interpolando entre un punto de la clase minoritaria y uno de sus vecinos más cercanos, lo cual introduce variabilidad y reduce el riesgo de sobreajuste. Al crear nuevos datos, SMOTE simula variaciones que podrían existir en la clase minoritaria.
+
+> **Ejemplo**: En un problema de diagnóstico médico en el que la clase "enfermedad rara" representa el 5% del total de observaciones, SMOTE crea nuevos ejemplos interpolando entre instancias de "enfermedad rara" cercanas en el espacio de características, de modo que el modelo recibe una muestra más variada de esta clase. Así, SMOTE ayuda al modelo a captar patrones útiles sin replicar instancias exactas, incrementando su capacidad de generalización.
+
+Existen variantes avanzadas de SMOTE adaptadas a escenarios específicos. Se podrían citar:
+
+- **Borderline-SMOTE**: Genera datos sintéticos cerca de las fronteras de decisión entre clases, lo cual es útil cuando el modelo tiene dificultad en distinguir las clases en esas áreas.
+- **ADASYN (Adaptive Synthetic Sampling)**: Prioriza la generación de datos en áreas donde la clase minoritaria es más difícil de distinguir de la mayoritaria. Esto adapta el número de observaciones sintéticas según la dificultad del modelo para clasificar correctamente.
+
+Estas variantes son útiles cuando el dataset presenta características particulares, como fronteras complejas entre las clases.
+
+El principal beneficio del sobremuestreo es que permite que la clase minoritaria esté mejor representada sin reducir el tamaño de la clase mayoritaria, lo que es especialmente valioso en datasets pequeños. Al incrementar la representación de la clase minoritaria, el modelo tiene más oportunidades de aprender patrones específicos de esta clase, mejorando su capacidad de generalización. Sin embargo, el sobremuestreo también presenta algunas limitaciones. En métodos de duplicación y sobremuestreo aleatorio, el modelo puede sobreajustarse si la información de la clase minoritaria es limitada, captando ruido en lugar de patrones generales. Por otro lado, aunque SMOTE y sus variantes reducen este riesgo, la generación de datos sintéticos puede incrementar la complejidad del modelo y, en algunos casos, introducir variabilidad que no representa con precisión la clase minoritaria.
+
+##### Para reflexionar...
+
+> **¿Cuándo es preferible usar SMOTE en lugar de duplicación directa de observaciones en el tratamiento de datos desbalanceados?**  
+> **Clave**: Reflexiona sobre el impacto del sobreajuste en datasets pequeños y sobre cómo SMOTE introduce variabilidad sin duplicar observaciones exactas, lo que puede hacer que el modelo generalice mejor en la clase minoritaria.
+
+##### Pesos de clase
+
+En algunos modelos de aprendizaje supervisado, como las máquinas de soporte vectorial o los modelos de redes neuronales, es posible asignar un **peso mayor a las clases minoritarias** en el proceso de entrenamiento. Esto permite que las clases subrepresentadas tengan un impacto proporcionalmente mayor en la función de pérdida, incentivando al modelo a considerarlas con la misma importancia que a la clase mayoritaria. La técnica es eficaz para conjuntos de datos donde la creación de datos sintéticos no es viable o donde el tamaño del dataset debe mantenerse fijo.
+
+> **Ejemplo**: En un problema de clasificación de correos electrónicos en donde la mayoría son legítimos y solo una pequeña porción son spam, podemos aplicar SMOTE para generar más ejemplos de correos clasificados como spam. Así, el modelo aprende a detectar patrones en los correos de spam en lugar de ser dominado por los ejemplos de correos legítimos, permitiéndole capturar mejor las características distintivas del spam.
+
+##### Para reflexionar...
+
+> **¿Qué técnica es más adecuada para un problema de detección de fraudes en el que la clase fraudulenta es extremadamente minoritaria?** 
+> **Clave**: Considera que, en problemas de fraude, es esencial evitar perder información relevante de los casos existentes, lo que hace que las técnicas de generación sintética o el uso de pesos de clase puedan ser más eficaces que el submuestreo.
