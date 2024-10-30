@@ -123,7 +123,7 @@ Existen diferentes métodos para identificar y tratar los valores atípicos, y l
 
 Este método asume que los datos siguen una distribución aproximadamente normal y considera que cualquier observación que se encuentre a una distancia superior a un número específico de desviaciones estándar respecto a la media es un valor atípico. Un umbral común es **tres desviaciones estándar**, aunque puede ajustarse según el contexto.
 $$
-\text{Límite superior} = \mu + 3\sigma \quad \text{y} \quad \text{Límite inferior} = \mu - 3\sigma
+\text{Lim superior} = \mu + 3\sigma \quad \text{y} \quad \text{Lim inferior} = \mu - 3\sigma
 $$
 
 > **Ejemplo**: En un conjunto de datos de altura de personas, donde la media es 1,70 m y la desviación estándar es 0,1 m, cualquier persona con una altura superior a 2,0 m o inferior a 1,4 m podría considerarse un valor atípico y, por tanto, candidato a ser tratado.
@@ -132,7 +132,7 @@ $$
 
 Este método es **no paramétrico** y, por tanto, es útil cuando los datos no siguen una distribución normal. Calcula los cuartiles primero ($Q1$ y $Q3$) y define los valores atípicos como aquellos que están fuera de un rango específico alrededor del IQR (es decir, el rango entre el primer y tercer cuartil).
 $$
-\text{Límite superior} = Q3 + 1.5 \times \text{IQR} \quad \text{y} \quad \text{Límite inferior} = Q1 - 1.5 \times \text{IQR}
+\text{Lim superior} = Q3 + 1.5 \times \text{IQR} \quad \text{y} \quad \text{Lim inferior} = Q1 - 1.5 \times \text{IQR}
 $$
 
 > **Ejemplo**: En un conjunto de datos de ingresos, donde el IQR es 20.000 y los cuartiles son $Q1 = 30.000$ y $Q3 = 70.000$, los valores fuera del rango $[-10.000, 110.000]$ serían considerados atípicos.
@@ -195,7 +195,7 @@ En lugar de eliminar o transformar valores atípicos, algunos modelos están dis
 
 ### Transformación de datos
 
-Otra fase que no puede pasarse por alto en cualquier pipeline de preprocesamiento de machine learning es la transformación de datos. En efecto, ajustar la escala y estructura de las variables permite mejorar la eficiencia y precisión de los modelos, especialmente en algoritmos que son sensibles a la magnitud de las variables. En esta fase, el **escalado**, la **normalización** y la **estandarización** juegan roles específicos para hacer los datos más manejables y comparables.
+Otra fase que no puede pasarse por alto en cualquier pipeline de preprocesamiento de machine learning es la transformación de datos. En efecto, ajustar la escala y estructura de las variables permite mejorar la eficiencia y precisión de los modelos, especialmente en algoritmos que son sensibles a la magnitud de las variables. En esta fase, el **escalado**, en forma de **normalización**  o **estandarización** juegan roles específicos para hacer los datos más manejables y comparables.
 
 #### Escalado de datos
 
