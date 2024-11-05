@@ -230,6 +230,7 @@ O lo que es lo mismo, **para cada observación ($i$)** tendremos que:
 $$
 y_i = \beta_0 + \sum_{j=1}^{p}{\beta_jx_{ij}} + \epsilon_i
 $$
+
 El objetivo es estimar los coeficientes $\beta_0, \beta_1, \dots, \beta_p$ de manera que la ecuación prediga $y$ de forma óptima en función de las variables independientes $x_1, x_2, \dots, x_p$.
 
 En esta ocasión, el problema de mínimos cuadrados se define como:
@@ -318,6 +319,7 @@ donde:
 > Imaginemos un modelo simple de regresión múltiple que predice el precio de una vivienda ($y$) en función de dos variables independientes: el tamaño de la vivienda ($x_1$) y el número de habitaciones ($x_2$). 
 >
 > Supongamos que los datos son los siguientes:
+> 
 > $$
 > \begin{array}{ccc}
 > \text{Tamaño (m}^2\text{)} & \text{Habitaciones} & \text{Precio (en miles)} \\
@@ -326,6 +328,7 @@ donde:
 > 100 & 3 & 200 \\
 > \end{array}
 > $$
+> 
 > En este caso:
 >
 > 1. Construimos la matriz de diseño $X$:
@@ -352,9 +355,9 @@ donde:
 >
 > 4. Faltaría sustituir y calcular para $\hat{\beta}$:
 >
->    $$
->    \hat{\beta} = (X^T X)^{-1} X^T y
->    $$
+$$
+\hat{\beta} = (X^T X)^{-1} X^T y
+$$
 >
 > El resultado de este cálculo proporciona los valores de los coeficientes estimados, que minimizan el error cuadrático entre los valores predichos y observados, permitiendo así que el modelo sea lo más preciso posible.
 >
