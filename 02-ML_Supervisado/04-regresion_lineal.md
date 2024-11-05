@@ -163,7 +163,7 @@ $$
 La función de pérdida para OLS es la **suma de los errores cuadráticos**, que se define como:
 
 $$
-L(\beta_0, \beta_1) = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n (y_i - (\beta_0 + \beta_1 x_i))^2
+   L(\beta_0, \beta_1) = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n (y_i - (\beta_0 + \beta_1 x_i))^2
 $$
 
 El objetivo es encontrar los valores de $\beta_0$ y $\beta_1$ que minimicen esta función de pérdida $L(\beta_0, \beta_1)$.
@@ -180,9 +180,9 @@ $$
 
 2. Derivada parcial con respecto a $\beta_1$:
 
-   $$
+$$
    \frac{\partial L}{\partial \beta_1} = -2 \sum_{i=1}^n x_i (y_i - \beta_0 - \beta_1 x_i)
-   $$
+$$
 
 Igualando estas derivadas a cero, obtenemos el **sistema de ecuaciones normales**:
 
@@ -200,17 +200,17 @@ Despejamos $\beta_0$ y $\beta_1$ a partir del sistema:
 
 1. Calculamos $\beta_1$:
 
-   $$
+$$
    \beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}
-   $$
+$$
 
    donde $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ y $\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i$ son las medias de $x$ e $y$, respectivamente.
 
 2. Calculamos $\beta_0$:
 
-   $$
+$$
    \beta_0 = \bar{y} - \beta_1 \bar{x}
-   $$
+$$
 
 - La **pendiente** $\beta_1$ mide el cambio en $y$ por cada cambio unitario en $x$.
 - El **intercepto** $\beta_0$ es el valor de $y$ cuando $x = 0$.
@@ -633,17 +633,17 @@ En el contexto de un modelo de regresión lineal, la variabilidad en la variable
 
 1. **Variabilidad Explicada (SSR)**: Es la parte de la variabilidad total que el modelo logra explicar a través de las variables independientes. Representa la capacidad del modelo para captar la tendencia o estructura de los datos.
 
-   $$
+$$
    \text{SSR} = \sum_{i=1}^n (\hat{y}_i - \bar{y})^2 
-   $$
+$$
 
    donde $\hat{y}_i$ es el valor predicho por el modelo para la observación $i$. La SSR mide cuánto se acercan las predicciones del modelo al promedio de los datos observados, representando la variabilidad que el modelo puede explicar en función de las variables independientes.
 
 2. **Variabilidad No Explicada (SSE)**: Es la variabilidad en los datos que el modelo no logra capturar, también llamada **Suma de los Errores al Cuadrado**. Representa la parte de la variabilidad que queda en los residuos o errores del modelo:
 
-   $$
+$$
    \text{SSE} = \sum_{i=1}^n (y_i - \hat{y}_i)^2 
-   $$
+$$
 
    Esta métrica mide la diferencia entre los valores observados y los valores predichos por el modelo, indicando cuánto se desvía el modelo de los datos reales. 
 
