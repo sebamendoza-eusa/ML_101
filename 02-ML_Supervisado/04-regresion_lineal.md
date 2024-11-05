@@ -333,9 +333,9 @@ donde:
 >
 > 1. Construimos la matriz de diseño $X$:
 >
->$$
->    X = \begin{bmatrix} 1 & 50 & 1 \\ 1 & 80 & 2 \\ 1 & 100 & 3 \end{bmatrix}
->$$
+>
+>$X = \begin{bmatrix} 1 & 50 & 1 \\ 1 & 80 & 2 \\ 1 & 100 & 3 \end{bmatrix}$
+>
 >
 > 2. Definimos el vector de la variable dependiente $y$:
 >
