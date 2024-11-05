@@ -320,34 +320,34 @@ donde:
 >
 > Supongamos que los datos son los siguientes:
 > 
-> $$
+>$$
 > \begin{array}{ccc}
 > \text{Tamaño (m}^2\text{)} & \text{Habitaciones} & \text{Precio (en miles)} \\
 > 50 & 1 & 100 \\
 > 80 & 2 & 150 \\
 > 100 & 3 & 200 \\
 > \end{array}
-> $$
+>$$
 > 
 > En este caso:
 >
 > 1. Construimos la matriz de diseño $X$:
 >
->    $$
+>$$
 >    X = \begin{bmatrix} 1 & 50 & 1 \\ 1 & 80 & 2 \\ 1 & 100 & 3 \end{bmatrix}
->    $$
+>$$
 >
 > 2. Definimos el vector de la variable dependiente $y$:
 >
->    $$
+>$$
 >    y = \begin{bmatrix} 100 \\ 150 \\ 200 \end{bmatrix}
->    $$
+>$$
 >
 > 3. Calculamos $X^T X$ y $X^T y$:
 >
->    $$
+>$$
 >    X^T X = \begin{bmatrix} 3 & 230 & 6 \\ 230 & 13300 & 310 \\ 6 & 310 & 14 \end{bmatrix}
->    $$
+>$$
 >    
 >$$
 >X^T y = \begin{bmatrix} 450 \\ 23300 \\ 510 \end{bmatrix}
@@ -409,22 +409,22 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 >
 > Vamos a utilizar un conjunto de datos simple con tres puntos que siguen aproximadamente la relación lineal $y = 2x + 1$.
 >
-> $$
+>$$
 > \begin{array}{cc}
 > x & y \\
 > 1 & 3 \\
 > 2 & 5 \\
 > 3 & 7 \\
 > \end{array}
-> $$
+>$$
 >
 > El objetivo es encontrar los valores óptimos de los coeficientes $\beta_0$ (intercepto) y $\beta_1$ (pendiente) para que el modelo $y = \beta_0 + \beta_1 x$ se ajuste lo mejor posible a los datos, minimizando el **Error Cuadrático Medio (MSE)**.
 >
 > **Paso inicial**: Establecemos valores iniciales de los coeficientes:
 > 
-> $$
+>$$
 > \beta_0 = 0, \quad \beta_1 = 0
-> $$
+>$$
 >
 > **Parámetros del modelo**:
 >
@@ -435,88 +435,88 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 >
 > 1. **Calcular las predicciones** usando los valores iniciales $\beta_0 = 0$ y $\beta_1 = 0$:
 > 
->    $$
+>$$
 >    \hat{y}_1 = 0 + 0 \cdot 1 = 0, \quad \hat{y}_2 = 0 + 0 \cdot 2 = 0, \quad \hat{y}_3 = 0 + 0 \cdot 3 = 0
->    $$
+>$$
 >
 > 2. **Calcular el error** para cada punto:
 > 
->    $$
+>$$
 >    e_1 = y_1 - \hat{y}_1 = 3 - 0 = 3, \quad e_2 = y_2 - \hat{y}_2 = 5 - 0 = 5, \quad e_3 = y_3 - \hat{y}_3 = 7 - 0 = 7
->    $$
+>$$
 >
 > 3. **Calcular el gradiente** de la función de pérdida con respecto a $\beta_0$ y $\beta_1$:
 >
 >    - Gradiente para $\beta_0$ (promedio de los errores) para el conjunto de observaciones ($i=1,2,3$):
 >    
->      $$
+>$$
 >      \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (3 + 5 + 7) = -\frac{2}{3} \cdot 15 = -10
->      $$
+>$$
 >
 >    - Gradiente para $\beta_1$ (promedio de los productos de error por $x$):
 >    
->      $$
+>$$
 >      \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot 3 + 2 \cdot 5 + 3 \cdot 7) = -\frac{2}{3} (3 + 10 + 21) = -\frac{2}{3} \cdot 34 = -22.67
->      $$
+>$$
 >
 > 4. **Actualizar los coeficientes** usando la tasa de aprendizaje $\alpha = 0.1$:
 > 
->    $$
+>$$
 >    \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 0 - 0.1 \cdot (-10) = 1
->    $$
+>$$
 >    
->    $$
+>$$
 >    \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 0 - 0.1 \cdot (-22.67) = 2.267
->    $$
+>$$
 >
 >    Después de la primera iteración:
 >    
->    $$
+>$$
 >    \beta_0 = 1, \quad \beta_1 = 2.267
->    $$
+>$$
 >
 > ###### Segunda Iteración
 >
 > 1. **Calcular las predicciones** usando los nuevos valores de $\beta_0$ y $\beta_1$:
 > 
->    $$
+>$$
 >    \hat{y}_1 = 1 + 2.267 \cdot 1 = 3.267, \quad \hat{y}_2 = 1 + 2.267 \cdot 2 = 5.534, \quad \hat{y}_3 = 1 + 2.267 \cdot 3 = 7.801
->    $$
+>$$
 >
 > 2. **Calcular el error** para cada punto con las nuevas predicciones:
 > 
->    $$
+>$$
 >    e_1 = y_1 - \hat{y}_1 = 3 - 3.267 = -0.267, \quad e_2 = y_2 - \hat{y}_2 = 5 - 5.534 = -0.534, \quad e_3 = y_3 - \hat{y}_3 = 7 - 7.801 = -0.801
->    $$
+>$$
 >
 > 3. **Calcular el gradiente** de la función de pérdida con los nuevos errores:
 >
 >    - Gradiente para $\beta_0$:
 >    
->      $$
+>$$
 >      \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (-0.267 - 0.534 - 0.801) = \frac{2}{3} \cdot 1.602 = 1.068
->      $$
+>$$
 >
 >    - Gradiente para $\beta_1$:
 >    
->      $$
+>$$
 >      \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot -0.267 + 2 \cdot -0.534 + 3 \cdot -0.801) = \frac{2}{3} \cdot 3.738 = 2.492
->      $$
+>$$
 >
 > 4. **Actualizar los coeficientes**:
 > 
->    $$
+>$$
 >    \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 1 - 0.1 \cdot 1.068 = 0.8932
->    $$
+>$$
 >    
->    $$
+>$$
 >    \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 2.267 - 0.1 \cdot 2.492 = 2.0178
->    $$
+>$$
 >
 >    Después de la segunda iteración:
->    $$
+>$$
 >    \beta_0 = 0.8932, \quad \beta_1 = 2.0178
->    $$
+>$$
 >
 > Después de dos iteraciones, el modelo ha ajustado sus coeficientes de $\beta_0$ y $\beta_1$ acercándose a los valores que mejor se ajustan a los datos. En cada iteración, el gradiente proporciona la dirección para ajustar los coeficientes, y con una tasa de aprendizaje controlada, el modelo se aproxima gradualmente a los valores óptimos de los parámetros.
 
