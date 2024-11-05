@@ -349,15 +349,15 @@ donde:
 >    X^T X = \begin{bmatrix} 3 & 230 & 6 \\ 230 & 13300 & 310 \\ 6 & 310 & 14 \end{bmatrix}
 >    $$
 >    
->    $$
->    X^T y = \begin{bmatrix} 450 \\ 23300 \\ 510 \end{bmatrix}
->    $$
+>$$
+>X^T y = \begin{bmatrix} 450 \\ 23300 \\ 510 \end{bmatrix}
+>$$
 >
 > 4. Faltaría sustituir y calcular para $\hat{\beta}$:
 >
-$$
-\hat{\beta} = (X^T X)^{-1} X^T y
-$$
+>$$
+>\hat{\beta} = (X^T X)^{-1} X^T y
+>$$
 >
 > El resultado de este cálculo proporciona los valores de los coeficientes estimados, que minimizan el error cuadrático entre los valores predichos y observados, permitiendo así que el modelo sea lo más preciso posible.
 >
