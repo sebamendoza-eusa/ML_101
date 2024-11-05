@@ -174,9 +174,9 @@ Para minimizar $L(\beta_0, \beta_1)$, tomamos las derivadas parciales de $L$ con
 
 1. Derivada parcial con respecto a $\beta_0$:
 
-   $$
+$$
    \frac{\partial L}{\partial \beta_0} = -2 \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)
-   $$
+$$
 
 2. Derivada parcial con respecto a $\beta_1$:
 
