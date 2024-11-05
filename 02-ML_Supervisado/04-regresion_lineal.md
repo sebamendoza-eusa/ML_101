@@ -250,7 +250,7 @@ Minimizar esta suma implica ajustar la línea o el plano de regresión que minim
 
 En la regresión lineal múltiple, el cálculo de los coeficientes se simplifica utilizando una representación matricial. Definimos:
 
-- $$y = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}$$ como el vector de la variable dependiente.
+- $y = \begin{bmatrix} y_1 \\ y_2 \\ ... \\ y_n \end{bmatrix}$ como el vector de la variable dependiente.
 - $X = \begin{bmatrix} 1 & x_{11} & x_{12} & \dots & x_{1p} \\ 1 & x_{21} & x_{22} & \dots & x_{2p} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & x_{n2} & \dots & x_{np} \end{bmatrix}$ como la matriz de diseño que incluye un vector de unos para el intercepto.
 - $\beta = \begin{bmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_p \end{bmatrix}$ como el vector de coeficientes.
 - $\epsilon = \begin{bmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{bmatrix}$ como el vector de errores.
