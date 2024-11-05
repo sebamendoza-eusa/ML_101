@@ -22,7 +22,7 @@ La popularidad de la regresión lineal en el ámbito de la Inteligencia Artifici
 
 #### Motivación y aplicaciones prácticas
 
-La regresión lineal es particularmente útil en aplicaciones de negocio, ciencia e ingeniería, en situaciones en las que se desea modelar tendencias, realizar proyecciones o identificar patrones subyacentes en los datos. Algunos ejemplos de uso incluyen la predicción de ventas en función de factores de mercado, el análisis de precios de viviendas según características físicas y geográficas, o la estimación de valores financieros como los ingresos de una empresa a partir de su desempeño anterior.
+La regresión lineal es particularmente útil en aplicaciones de negocio, ciencia e ingeniería, en situaciones en las que se desea **modelar tendencias, realizar proyecciones o identificar patrones subyacentes en los datos**. Algunos ejemplos de uso incluyen la predicción de ventas en función de factores de mercado, el análisis de precios de viviendas según características físicas y geográficas, o la estimación de valores financieros como los ingresos de una empresa a partir de su desempeño anterior.
 
 > **Ejemplo**: En el contexto de la predicción de precios de viviendas, se puede emplear un modelo de regresión lineal para predecir el precio de una casa ($Y$) en función de características como el tamaño ($X_1$), el número de habitaciones ($X_2$), o la edad del inmueble ($X_3$). El modelo permite no solo hacer estimaciones del precio en función de estos factores, sino también interpretar cómo cada característica afecta el valor, ayudando a los agentes inmobiliarios a tomar decisiones informadas.
 
@@ -65,7 +65,8 @@ donde:
 
 <img src="./assets/26-3.png" alt="What is Linear Regression?- Spiceworks - Spiceworks" style="zoom:67%;" />
 
-Pero en su caso más general, la regresión lineal se define como una técnica estadística que modela la relación entre una variable dependiente $y$ y una o más variables independientes $x_i$. La expresión más frecuente modela la relación para cada observación $y_i$ de la siguiente forma:
+Pero en su caso más general, la regresión lineal se define como una técnica estadística que modela la relación entre **una variable dependiente $y$ y una o más variables independientes $x_i$.** La expresión más frecuente modela la relación para cada observación $y_i$ de la siguiente forma:
+
 $$
 y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \dots + \beta_p x_{ip} + \epsilon_i
 $$
@@ -74,7 +75,7 @@ En esta ecuación, el término $\epsilon_i$ representa el error o residuo, que r
 
 Al igual que en el caso más simple se tiene que:
 
-- **Intercepto ($\beta_0$)**: Representa el valor promedio de la variable respuesta $y$ cuando todos los predictores son cero. Es el punto donde la línea de regresión cruza el eje $y$. En algunos casos, este valor puede no tener una interpretación práctica significativa si $x = 0$ está fuera del rango de datos observado. Sin embargo, es fundamental para definir la posición de la línea de regresión en el espacio de datos.
+- **Intercepto ($\beta_0$)**: Representa el valor promedio de la variable respuesta $y$ cuando todas las variables predictoras son cero. Es el punto donde la línea de regresión cruza el eje $y$. En algunos casos, este valor puede no tener una interpretación práctica significativa si $x = 0$ está fuera del rango de datos observado. Sin embargo, es fundamental para definir la posición de la línea de regresión en el espacio de datos.
 - **Coeficientes parciales de regresión ($\beta_j$)**: Cada coeficiente $\beta_j$ refleja el cambio promedio en $y$ asociado a un incremento de una unidad en la variable predictora correspondiente $x_j$, manteniéndose constantes el resto de variables. Si $\beta_j$ es positivo, significa que existe una relación directa entre $x_{ij}$ e $y_i$ (a medida que $x$ aumenta, $y$ también tiende a aumentar). Si es negativo, indica una relación inversa (a medida que $x$ aumenta, $y$ tiende a disminuir). Un valor de $\beta_1$ igual a cero implica que no existe una relación lineal entre entre $x_{ij}$ e $y_i$.
 - **Error o residuo ($\epsilon$)**: Es la diferencia entre el valor observado $y_i$ y el valor predicho por el modelo. Representa el efecto de variables no incluidas en el modelo y su influencia en $y$.
 
@@ -219,11 +220,13 @@ Estos valores de $\beta_0$ y $\beta_1$ son los que minimizan la suma de los erro
 #### Generalización a regresión lineal múltiple
 
 En la regresión lineal múltiple, se extiende el modelo a más variables independientes $x_1, x_2, \dots, x_p$, y el sistema de ecuaciones normales se resuelve **utilizando álgebra matricial** para encontrar los valores óptimos de todos los coeficientes $\beta_j$.
+
 $$
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p + \epsilon
 $$
 
 O lo que es lo mismo, **para cada observación ($i$)** tendremos que:
+
 $$
 y_i = \beta_0 + \sum_{j=1}^{p}{\beta_jx_{ij}} + \epsilon_i
 $$
@@ -384,6 +387,7 @@ donde:
 - $\frac{\partial L}{\partial \beta_j}$ es el gradiente de la función de pérdida respecto al coeficiente $\beta_j$.
 
 Es importante que en este caso la función de pérdida que estamos considerando es del tipo MSE y se define como: 
+
 $$
 L(\beta_0,\beta_1)=\frac{1}{n}\sum_{i=1}^{n}{(y_i−\hat{y}_i)^2}
 $$
@@ -414,6 +418,7 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > El objetivo es encontrar los valores óptimos de los coeficientes $\beta_0$ (intercepto) y $\beta_1$ (pendiente) para que el modelo $y = \beta_0 + \beta_1 x$ se ajuste lo mejor posible a los datos, minimizando el **Error Cuadrático Medio (MSE)**.
 >
 > **Paso inicial**: Establecemos valores iniciales de los coeficientes:
+> 
 > $$
 > \beta_0 = 0, \quad \beta_1 = 0
 > $$
@@ -426,11 +431,13 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > ###### Primera Iteración
 >
 > 1. **Calcular las predicciones** usando los valores iniciales $\beta_0 = 0$ y $\beta_1 = 0$:
+> 
 >    $$
 >    \hat{y}_1 = 0 + 0 \cdot 1 = 0, \quad \hat{y}_2 = 0 + 0 \cdot 2 = 0, \quad \hat{y}_3 = 0 + 0 \cdot 3 = 0
 >    $$
 >
 > 2. **Calcular el error** para cada punto:
+> 
 >    $$
 >    e_1 = y_1 - \hat{y}_1 = 3 - 0 = 3, \quad e_2 = y_2 - \hat{y}_2 = 5 - 0 = 5, \quad e_3 = y_3 - \hat{y}_3 = 7 - 0 = 7
 >    $$
@@ -438,24 +445,29 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > 3. **Calcular el gradiente** de la función de pérdida con respecto a $\beta_0$ y $\beta_1$:
 >
 >    - Gradiente para $\beta_0$ (promedio de los errores) para el conjunto de observaciones ($i=1,2,3$):
+>    
 >      $$
 >      \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (3 + 5 + 7) = -\frac{2}{3} \cdot 15 = -10
 >      $$
 >
 >    - Gradiente para $\beta_1$ (promedio de los productos de error por $x$):
+>    
 >      $$
 >      \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot 3 + 2 \cdot 5 + 3 \cdot 7) = -\frac{2}{3} (3 + 10 + 21) = -\frac{2}{3} \cdot 34 = -22.67
 >      $$
 >
 > 4. **Actualizar los coeficientes** usando la tasa de aprendizaje $\alpha = 0.1$:
+> 
 >    $$
 >    \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 0 - 0.1 \cdot (-10) = 1
 >    $$
+>    
 >    $$
 >    \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 0 - 0.1 \cdot (-22.67) = 2.267
 >    $$
 >
 >    Después de la primera iteración:
+>    
 >    $$
 >    \beta_0 = 1, \quad \beta_1 = 2.267
 >    $$
@@ -463,11 +475,13 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > ###### Segunda Iteración
 >
 > 1. **Calcular las predicciones** usando los nuevos valores de $\beta_0$ y $\beta_1$:
+> 
 >    $$
 >    \hat{y}_1 = 1 + 2.267 \cdot 1 = 3.267, \quad \hat{y}_2 = 1 + 2.267 \cdot 2 = 5.534, \quad \hat{y}_3 = 1 + 2.267 \cdot 3 = 7.801
 >    $$
 >
 > 2. **Calcular el error** para cada punto con las nuevas predicciones:
+> 
 >    $$
 >    e_1 = y_1 - \hat{y}_1 = 3 - 3.267 = -0.267, \quad e_2 = y_2 - \hat{y}_2 = 5 - 5.534 = -0.534, \quad e_3 = y_3 - \hat{y}_3 = 7 - 7.801 = -0.801
 >    $$
@@ -475,19 +489,23 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > 3. **Calcular el gradiente** de la función de pérdida con los nuevos errores:
 >
 >    - Gradiente para $\beta_0$:
+>    
 >      $$
 >      \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (-0.267 - 0.534 - 0.801) = \frac{2}{3} \cdot 1.602 = 1.068
 >      $$
 >
 >    - Gradiente para $\beta_1$:
+>    
 >      $$
 >      \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot -0.267 + 2 \cdot -0.534 + 3 \cdot -0.801) = \frac{2}{3} \cdot 3.738 = 2.492
 >      $$
 >
 > 4. **Actualizar los coeficientes**:
+> 
 >    $$
 >    \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 1 - 0.1 \cdot 1.068 = 0.8932
 >    $$
+>    
 >    $$
 >    \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 2.267 - 0.1 \cdot 2.492 = 2.0178
 >    $$
@@ -627,6 +645,7 @@ En el contexto de un modelo de regresión lineal, la variabilidad en la variable
    Esta métrica mide la diferencia entre los valores observados y los valores predichos por el modelo, indicando cuánto se desvía el modelo de los datos reales. 
 
 A partir de este punto ya podemos definir el **coeficiente de determinación $R^2$** como una medida de en qué proporción de la **variabilidad total (SST)** de la variable dependiente es explicada por el modelo (SSR) en comparación con la variabilidad no explicada (SSE). Es decir:
+
 $$
 R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}
 $$
