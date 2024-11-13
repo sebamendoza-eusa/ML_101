@@ -491,7 +491,9 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > 2. **Calcular el error** para cada punto:
 > 
 >```math
-> e_1 = y_1 - \hat{y}_1 = 3 - 0 = 3, \\ e_2 = y_2 - \hat{y}_2 = 5 - 0 = 5, \\ e_3 = y_3 - \hat{y}_3 = 7 - 0 = 7
+> e_1 = y_1 - \hat{y}_1 = 3 - 0 = 3
+> e_2 = y_2 - \hat{y}_2 = 5 - 0 = 5
+> e_3 = y_3 - \hat{y}_3 = 7 - 0 = 7
 >```
 >
 > 3. **Calcular el gradiente** de la función de pérdida (MSE, en este caso) con respecto a $\beta_0$ y $\beta_1$:
