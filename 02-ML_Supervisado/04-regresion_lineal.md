@@ -497,25 +497,25 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > 3. **Calcular el gradiente** de la función de pérdida (MSE, en este caso) con respecto a $\beta_0$ y $\beta_1$:
 >- Gradiente para $\beta_0$ (promedio de los errores) para el conjunto de observaciones ($i=1,2,3$):
 > 
->    $$
+>```math
 >     \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (3 + 5 + 7) = -\frac{2}{3} \cdot 15 = -10
->```math
+>```
 >  - Gradiente para $\beta_1$ (promedio de los productos de error por $x$):
->```
+>```math
 >     \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot 3 + 2 \cdot 5 + 3 \cdot 7) = -\frac{2}{3} (3 + 10 + 21) = -\frac{2}{3} \cdot 34 = -22.67
->```math
+>```
 > 4. **Actualizar los coeficientes** usando la tasa de aprendizaje $\alpha = 0.1$:
->```
+>```math
 >  \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 0 - 0.1 \cdot (-10) = 1
->```math
+>```
 > 
->```
->   \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 0 - 0.1 \cdot (-22.67) = 2.267
 >```math
->  Después de la primera iteración:
+>   \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 0 - 0.1 \cdot (-22.67) = 2.267
 >```
+>  Después de la primera iteración:
+>```math
 >   \beta_0 = 1, \quad \beta_1 = 2.267
->$$
+>```
 >###### Segunda Iteración
 > 
 > 1. **Calcular las predicciones** usando los nuevos valores de $\beta_0$ y $\beta_1$:
@@ -541,13 +541,13 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 >   \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 1 - 0.1 \cdot 1.068 = 0.8932
 >```
 > 
->$$
->   \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 2.267 - 0.1 \cdot 2.492 = 2.0178
 >```math
->  Después de la segunda iteración:
+>   \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 2.267 - 0.1 \cdot 2.492 = 2.0178
 >```
+>  Después de la segunda iteración:
+>```math
 >   \beta_0 = 0.8932, \quad \beta_1 = 2.0178
->$$
+>```
 > 
 > Después de dos iteraciones, el modelo ha ajustado sus coeficientes de $\beta_0$ y $\beta_1$ acercándose a los valores que mejor se ajustan a los datos. En cada iteración, el gradiente proporciona la dirección para ajustar los coeficientes, y con una tasa de aprendizaje controlada, el modelo se aproxima gradualmente a los valores óptimos de los parámetros.
 
