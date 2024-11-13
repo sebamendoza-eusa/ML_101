@@ -63,7 +63,7 @@ donde:
 - $\beta_1$ es la pendiente de la recta, que indica el cambio esperado en $y$ por cada incremento unitario en $x$. Un valor positivo implica que $y$ aumenta a medida que $x$ aumenta, y un valor negativo indica lo contrario.
 - $\epsilon$ representa el término de error o residuo, **que captura la variabilidad en $y$ que no puede explicarse por $x$.**
 
-<img src="./assets/26-3.png" alt="What is Linear Regression?- Spiceworks - Spiceworks" style="zoom:67%;" />
+<img src="./assets/26-3.png" alt="What is Linear Regression?- Spiceworks - Spiceworks" style="zoom:50%;" />
 
 Pero en su caso más general, la regresión lineal se define como una técnica estadística que modela la relación entre **una variable dependiente $y$ y una o más variables independientes $x_i$.** La expresión más frecuente modela la relación para cada observación $y_i$ de la siguiente forma:
 
@@ -87,11 +87,17 @@ Para que el modelo de regresión lineal sea efectivo y válido en la práctica, 
 
 2. **Independencia de los errores**: Los términos de error ($\epsilon$) son independientes entre sí. En particular, no deben existir correlaciones temporales ni espaciales en los errores, lo que significa que el error asociado a una observación no debe influir en los errores de otras observaciones.
 
-   > **Ejemplo:** En un modelo de predicción de temperatura diaria, los errores deben ser independientes. Si un error alto en un día aumenta la probabilidad de errores altos el día siguiente, habría autocorrelación en los errores, violando la independencia.
+   > **Ejemplo:** Supongamos que estamos modelando el número de accidentes de tráfico en una carretera en función de variables como el tráfico y las condiciones meteorológicas. Si los accidentes de tráfico tienen una dependencia temporal (por ejemplo, un accidente grande podría causar una congestión que aumenta la probabilidad de otro accidente poco tiempo después), los errores en las predicciones de nuestro modelo no serían independientes. Esto es porque el error asociado a un accidente en un momento dado influye en el error de la predicción del siguiente accidente, creando una correlación entre los errores de las observaciones consecutivas.
+   >
+   > Este problema es común en series temporales, donde los eventos pasados pueden influir en los futuros. Si nuestro modelo no tiene en cuenta esta dependencia, podría presentar errores correlacionados que violan el supuesto de independencia.
 
 3. **Homocedasticidad**: La varianza de los errores es constante para todos los valores de $x$. Esto se conoce como homocedasticidad. Si la varianza de los errores cambia con los valores de $x$ (es decir, si hay *heterocedasticidad*), el modelo puede ser ineficiente y producir estimaciones erróneas de la significancia de las variables.
 
-   > **Ejemplo:** En un modelo que predice gastos en gasolina según el ingreso familiar, la variabilidad del error debe ser similar para todos los niveles de ingreso. Si los errores son mayores para familias de bajos ingresos que para familias de altos ingresos, el modelo mostraría heterocedasticidad.
+   > **Ejemplo:** Supongamos que estamos estudiando el efecto del número de horas de estudio en el rendimiento académico de los estudiantes en un examen. Hemos ajustado un modelo de regresión lineal que predice la puntuación del examen en función del número de horas de estudio.
+   >
+   > Si el modelo muestra homocedasticidad, los residuos (las diferencias entre las puntuaciones observadas y las predichas por el modelo) deben tener una varianza constante a lo largo de todos los niveles de la variable independiente (número de horas de estudio).
+   >
+   > Esto significa que tanto para los estudiantes que estudiaron pocas horas como para los que estudiaron muchas horas, los residuos deberían dispersarse de manera similar alrededor de la línea de regresión. Un gráfico de residuos en este caso mostraría una nube de puntos aleatorios distribuidos uniformemente alrededor de la línea de cero, sin patrones visibles.
 
 4. **Normalidad de los errores**: Los errores ($\epsilon$) deben seguir una distribución normal con media cero. Este supuesto es importante para la inferencia estadística y las pruebas de hipótesis. Si los errores no son normales, el modelo aún puede ser válido, pero las pruebas de significancia pueden ser menos confiables.
 
@@ -109,6 +115,28 @@ Para que el modelo de regresión lineal sea efectivo y válido en la práctica, 
 
 
 
+> [!Note]
+>
+> Una **prueba de significancia** es una forma de comprobar si los resultados que ves en tus datos tienen sentido y no son solo una coincidencia. Es como si estuvieras tratando de decidir si una tendencia observada es real o si simplemente ocurrió por casualidad.
+>
+> Supongamos que tienes un dado y quieres saber si es justo (es decir, que todos los números tienen la misma probabilidad de salir). Tiras el dado muchas veces y notas que el número 6 sale mucho más de lo esperado. Ahora, te preguntas: **¿Es esto una prueba de que el dado está cargado, o podría ser solo una casualidad?**
+>
+> Aquí es donde entra una prueba de significancia:
+> - **Hipótesis nula ($H_0$)**: El dado es justo.
+> - **Hipótesis alternativa ($H_a$)**: El dado no es justo (hay un sesgo que favorece al 6).
+>
+> La prueba de significancia te ayuda a decidir si puedes confiar en tus resultados para rechazar la hipótesis nula y aceptar que el dado probablemente no es justo. Lo haces calculando un **valor p**, que te dice qué tan probable es obtener tus resultados por pura casualidad. Si este valor es muy pequeño (por ejemplo, menor al 5%, que es un umbral común), decides que el resultado es significativo y que el dado podría estar cargado.
+>
+> **Cuando construyes un modelo de regresión**, quieres saber si cada variable que has incluido realmente tiene un impacto en el resultado. Por ejemplo, si estás prediciendo el precio de una casa, podrías preguntarte si el número de baños realmente importa.
+>
+> - **Hipótesis nula ($H_0$)**: El número de baños no tiene un impacto significativo en el precio de la casa.
+> - **Hipótesis alternativa ($H_a$)**: El número de baños sí tiene un impacto significativo.
+>
+> Usas una prueba de significancia para cada variable. Si el valor p asociado con la variable "número de baños" es menor que el umbral que has establecido (digamos, 0.05), puedes decir con bastante confianza que el número de baños es importante para predecir el precio.
+>
+> El **valor p** es una forma de medir cuán raro es tu resultado si la hipótesis nula fuera cierta. Un valor p bajo (por ejemplo, 0.01) significa que hay solo un 1% de probabilidad de que tus resultados sean una coincidencia si la hipótesis nula fuera verdadera. Por eso, si el **valor p** es menor que tu nivel de significancia (como 0.05), tienes suficiente evidencia para rechazar la hipótesis nula y pensar que tu resultado es significativo.
+>
+
 **Para reflexionar…**
 
 > **¿Por qué es importante verificar los supuestos del modelo de regresión lineal antes de interpretarlo?**
@@ -122,7 +150,7 @@ Para que el modelo de regresión lineal sea efectivo y válido en la práctica, 
 
 ### Optimización mediante mínimos cuadrados (OLS)
 
-En regresión lineal, el objetivo principal es ajustar un modelo que minimice la diferencia entre los valores observados de la variable dependiente $y$ y los valores predichos por el modelo. Este proceso se conoce como **ajuste de mínimos cuadrados** y permite encontrar los valores óptimos de los coeficientes del modelo, tanto en la regresión lineal simple como en la regresión lineal múltiple.
+En regresión lineal, el objetivo principal es ajustar un modelo que minimice la diferencia entre los valores observados de la variable dependiente $y$ y los valores predichos por el modelo. Unos de los procesos más utilizados en regresión lineal para este menester se conoce con la denominación de **ajuste de mínimos cuadrados** y permite encontrar los valores óptimos de los coeficientes del modelo, tanto en la regresión lineal simple como en la regresión lineal múltiple.
 
 #### Introducción: Optimización en regresión lineal simple
 
@@ -163,7 +191,7 @@ $$
 La función de pérdida para OLS es la **suma de los errores cuadráticos**, que se define como:
 
 $$
-L(\beta_0, \beta_1) = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n (y_i - (\beta_0 + \beta_1 x_i))^2
+L(\beta_0, \beta_1) = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_i))^2
 $$
 
 El objetivo es encontrar los valores de $\beta_0$ y $\beta_1$ que minimicen esta función de pérdida $L(\beta_0, \beta_1)$.
@@ -334,7 +362,7 @@ donde:
 > 1. Construimos la matriz de diseño $X$:
 >
 >$$
->    $X = \begin{bmatrix} 1 & 50 & 1 \\ 1 & 80 & 2 \\ 1 & 100 & 3 \end{bmatrix}$
+> X = \begin{bmatrix} 1 & 50 & 1 \\ 1 & 80 & 2 \\ 1 & 100 & 3 \end{bmatrix}
 >$$
 >
 > 2. Definimos el vector de la variable dependiente $y$:
@@ -436,88 +464,70 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > 1. **Calcular las predicciones** usando los valores iniciales $\beta_0 = 0$ y $\beta_1 = 0$:
 > 
 >$$
->    \hat{y}_1 = 0 + 0 \cdot 1 = 0, \quad \hat{y}_2 = 0 + 0 \cdot 2 = 0, \quad \hat{y}_3 = 0 + 0 \cdot 3 = 0
+> \hat{y}_1 = 0 + 0 \cdot 1 = 0, \quad \hat{y}_2 = 0 + 0 \cdot 2 = 0, \quad \hat{y}_3 = 0 + 0 \cdot 3 = 0
 >$$
 >
 > 2. **Calcular el error** para cada punto:
 > 
 >$$
->    e_1 = y_1 - \hat{y}_1 = 3 - 0 = 3, \quad e_2 = y_2 - \hat{y}_2 = 5 - 0 = 5, \quad e_3 = y_3 - \hat{y}_3 = 7 - 0 = 7
+> e_1 = y_1 - \hat{y}_1 = 3 - 0 = 3, \\ e_2 = y_2 - \hat{y}_2 = 5 - 0 = 5, \\ e_3 = y_3 - \hat{y}_3 = 7 - 0 = 7
 >$$
 >
-> 3. **Calcular el gradiente** de la función de pérdida con respecto a $\beta_0$ y $\beta_1$:
->
->    - Gradiente para $\beta_0$ (promedio de los errores) para el conjunto de observaciones ($i=1,2,3$):
->    
->$$
->      \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (3 + 5 + 7) = -\frac{2}{3} \cdot 15 = -10
->$$
->
->    - Gradiente para $\beta_1$ (promedio de los productos de error por $x$):
->    
->$$
->      \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot 3 + 2 \cdot 5 + 3 \cdot 7) = -\frac{2}{3} (3 + 10 + 21) = -\frac{2}{3} \cdot 34 = -22.67
->$$
->
+> 3. **Calcular el gradiente** de la función de pérdida (MSE, en este caso) con respecto a $\beta_0$ y $\beta_1$:
+>- Gradiente para $\beta_0$ (promedio de los errores) para el conjunto de observaciones ($i=1,2,3$):
+> 
+>    $$
+>     \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (3 + 5 + 7) = -\frac{2}{3} \cdot 15 = -10
+> $$
+>  - Gradiente para $\beta_1$ (promedio de los productos de error por $x$):
+> $$
+>     \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot 3 + 2 \cdot 5 + 3 \cdot 7) = -\frac{2}{3} (3 + 10 + 21) = -\frac{2}{3} \cdot 34 = -22.67
+> $$
 > 4. **Actualizar los coeficientes** usando la tasa de aprendizaje $\alpha = 0.1$:
+> $$
+>  \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 0 - 0.1 \cdot (-10) = 1
+>$$
 > 
->$$
->    \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 0 - 0.1 \cdot (-10) = 1
->$$
->    
->$$
->    \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 0 - 0.1 \cdot (-22.67) = 2.267
->$$
->
->    Después de la primera iteración:
->    
->$$
->    \beta_0 = 1, \quad \beta_1 = 2.267
->$$
->
-> ###### Segunda Iteración
->
+> $$
+>   \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 0 - 0.1 \cdot (-22.67) = 2.267
+> $$
+>  Después de la primera iteración:
+> $$
+>   \beta_0 = 1, \quad \beta_1 = 2.267
+> $$
+>###### Segunda Iteración
+> 
 > 1. **Calcular las predicciones** usando los nuevos valores de $\beta_0$ y $\beta_1$:
-> 
+> $$
+>   \hat{y}_1 = 1 + 2.267 \cdot 1 = 3.267, \quad \hat{y}_2 = 1 + 2.267 \cdot 2 = 5.534, \quad \hat{y}_3 = 1 + 2.267 \cdot 3 = 7.801
+> $$
+>2. **Calcular el error** para cada punto con las nuevas predicciones:
 >$$
->    \hat{y}_1 = 1 + 2.267 \cdot 1 = 3.267, \quad \hat{y}_2 = 1 + 2.267 \cdot 2 = 5.534, \quad \hat{y}_3 = 1 + 2.267 \cdot 3 = 7.801
+> e_1 = y_1 - \hat{y}_1 = 3 - 3.267 = -0.267, \\ e_2 = y_2 - \hat{y}_2 = 5 - 5.534 = -0.534, \\ e_3 = y_3 - \hat{y}_3 = 7 - 7.801 = -0.801
 >$$
->
-> 2. **Calcular el error** para cada punto con las nuevas predicciones:
-> 
->$$
->    e_1 = y_1 - \hat{y}_1 = 3 - 3.267 = -0.267, \quad e_2 = y_2 - \hat{y}_2 = 5 - 5.534 = -0.534, \quad e_3 = y_3 - \hat{y}_3 = 7 - 7.801 = -0.801
->$$
->
 > 3. **Calcular el gradiente** de la función de pérdida con los nuevos errores:
->
->    - Gradiente para $\beta_0$:
->    
->$$
->      \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (-0.267 - 0.534 - 0.801) = \frac{2}{3} \cdot 1.602 = 1.068
->$$
->
->    - Gradiente para $\beta_1$:
->    
->$$
->      \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot -0.267 + 2 \cdot -0.534 + 3 \cdot -0.801) = \frac{2}{3} \cdot 3.738 = 2.492
->$$
->
-> 4. **Actualizar los coeficientes**:
 > 
+>   - Gradiente para $\beta_0$:
+> $$
+>    \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (-0.267 - 0.534 - 0.801) = \frac{2}{3} \cdot 1.602 = 1.068
 >$$
->    \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 1 - 0.1 \cdot 1.068 = 0.8932
+>   - Gradiente para $\beta_1$:
+> $$
+>    \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot -0.267 + 2 \cdot -0.534 + 3 \cdot -0.801) = \frac{2}{3} \cdot 3.738 = 2.492
+> $$
+>4. **Actualizar los coeficientes**:
 >$$
->    
->$$
->    \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 2.267 - 0.1 \cdot 2.492 = 2.0178
->$$
->
->    Después de la segunda iteración:
->$$
->    \beta_0 = 0.8932, \quad \beta_1 = 2.0178
->$$
->
+>   \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 1 - 0.1 \cdot 1.068 = 0.8932
+> $$
+> 
+> $$
+>   \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 2.267 - 0.1 \cdot 2.492 = 2.0178
+> $$
+>  Después de la segunda iteración:
+> $$
+>   \beta_0 = 0.8932, \quad \beta_1 = 2.0178
+> $$
+> 
 > Después de dos iteraciones, el modelo ha ajustado sus coeficientes de $\beta_0$ y $\beta_1$ acercándose a los valores que mejor se ajustan a los datos. En cada iteración, el gradiente proporciona la dirección para ajustar los coeficientes, y con una tasa de aprendizaje controlada, el modelo se aproxima gradualmente a los valores óptimos de los parámetros.
 
 #### ¿Cuándo tiene sentido aplicar descenso de gradiente en regresión lineal?
@@ -806,9 +816,7 @@ donde:
 
 Cuando el valor de $\lambda$ es alto, la penalización se incrementa, forzando a los coeficientes $\beta_j$ a acercarse a cero, lo que reduce la complejidad del modelo. Si $\lambda = 0$, Ridge Regression se convierte en una regresión lineal estándar sin regularización.
 
-##### Comparación entre
-
-#####  las dos técnicas
+##### Comparación entre las dos técnicas
 
 A diferencia de Ridge Regression, que reduce la magnitud de todos los coeficientes sin eliminarlos, Lasso tiene la capacidad de realizar **selección de características** al reducir algunos coeficientes exactamente a cero. Ridge es útil cuando el objetivo es estabilizar los coeficientes sin realizar selección de características. Sin embargo, si es fundamental simplificar el modelo y eliminar variables no relevantes, Lasso es preferible.
 
@@ -820,7 +828,7 @@ A diferencia de Ridge Regression, que reduce la magnitud de todos los coeficient
 
 En el análisis de modelos de regresión, los gráficos de diagnóstico proporcionan una visión profunda de la calidad del ajuste y permiten evaluar los supuestos fundamentales del modelo, como la homocedasticidad o la normalidad de los residuos. Por ejemplo, a través de gráficos como el **Residual Plot** o el **QQ Plot**, es posible identificar problemas en el modelo y mejorar su interpretación. Además, el análisis de valores atípicos o de observaciones influyentes permiten detectar puntos que pueden afectar significativamente el rendimiento del modelo.
 
-#### Gráficos de Residuos para Evaluación del Modelo
+#### Gráficos de residuos para evaluación del modelo
 
 Los residuos son las diferencias entre los valores observados y los valores predichos por el modelo, y su análisis es crucial para entender el ajuste y los posibles problemas de generalización. En un modelo bien ajustado, los residuos deben mostrar ciertas características, como homocedasticidad y normalidad, que pueden ser visualizadas a través de gráficos de diagnóstico.
 
@@ -836,7 +844,7 @@ El **QQ Plot** (Quantile-Quantile Plot) compara la distribución de los residuos
 
 > **Ejemplo**: En un QQ Plot de un modelo con residuos no normales, los puntos pueden mostrar una curva hacia arriba en las colas, lo que sugiere una distribución leptocúrtica (colas más gruesas) y la presencia de valores atípicos en los datos.
 
-#### Análisis de Valores Atípicos y Observaciones Influyentes
+#### Análisis de valores atípicos y observaciones influyentes
 
 Los valores atípicos y las observaciones influyentes son puntos de datos que, por su naturaleza o posición en el espacio de predictores, pueden afectar de manera significativa el ajuste y la interpretación del modelo de regresión.
 
@@ -844,7 +852,7 @@ Ya sabemos que los **valores atípicos** quedan representados por puntos que tie
 
 Las **observaciones influyentes** se representan por puntos que afectan significativamente los coeficientes del modelo. Esto ocurre cuando una observación tiene un alto **leverage** (es decir, una posición lejana del centro del espacio de predictores) y un gran residuo. Los puntos con alta influencia pueden sesgar los coeficientes y llevar a conclusiones erróneas si no se detectan y se manejan adecuadamente.
 
-##### Herramientas Visuales y Cuantitativas para Detectar Valores Atípicos e Influyentes
+##### Herramientas visuales y cuantitativas para detectar valores atípicos e influyentes
 
 La **Distancia de Cook** es una medida que permite evaluar el impacto de cada observación en los coeficientes del modelo. Cuando la distancia de Cook es alta, indica que una observación influye de forma significativa en los coeficientes, lo que puede llevar a distorsiones en el modelo. Un gráfico de la distancia de Cook permite visualizar cada observación, facilitando la identificación de aquellas con mayor influencia en el ajuste del modelo y que, por tanto, podrían ser influyentes.
 
