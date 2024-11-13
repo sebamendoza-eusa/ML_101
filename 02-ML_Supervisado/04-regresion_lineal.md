@@ -51,9 +51,9 @@ La regresión lineal se basa en la construcción de una relación matemática en
 
 Como se ha comentado, en la regresión lineal simple, la relación entre $y$ y $x$ se modela mediante la siguiente ecuación:
 
-$$
+```math
 y = \beta_0 + \beta_1 x + \epsilon
-$$
+```
 
 donde:
 
@@ -67,9 +67,9 @@ donde:
 
 Pero en su caso más general, la regresión lineal se define como una técnica estadística que modela la relación entre **una variable dependiente $y$ y una o más variables independientes $x_i$.** La expresión más frecuente modela la relación para cada observación $y_i$ de la siguiente forma:
 
-$$
+```math
 y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \dots + \beta_p x_{ip} + \epsilon_i
-$$
+```
 
 En esta ecuación, el término $\epsilon_i$ representa el error o residuo, que refleja la diferencia entre el valor observado y el valor estimado por el modelo. Este término recoge el efecto de todas las variables que influyen en $y$ pero no están incluidas en el modelo como predictores.
 
@@ -158,15 +158,15 @@ Para ilustrar el concepto, comenzamos con el caso de la **regresión lineal simp
 
 Para resolver el problema de mínimos cuadrados ordinarios (OLS, por sus siglas en inglés) en un modelo de **regresión lineal simple**, partimos de la ecuación:
 
-$$
+```math
 y = \beta_0 + \beta_1 x + \epsilon
-$$
+```
 
 El objetivo es encontrar los valores de $\beta_0$ y $\beta_1$ que minimicen la **suma de los errores cuadráticos** entre los valores observados $y_i$ y los valores predichos $\hat{y}_i$, calculados con el modelo:
 
-$$
+```math
 \text{Suma de errores cuadráticos} = \sum_{i=1}^n (y_i - \hat{y}_i)^2
-$$
+```
 
 donde $n$ es el número de observaciones.
 
@@ -176,15 +176,15 @@ donde $n$ es el número de observaciones.
 
 Para cada observación $i$, el valor predicho $\hat{y}_i$ se calcula mediante la ecuación del modelo:
 
-$$
+```math
 \hat{y}_i = \beta_0 + \beta_1 x_i
-$$
+```
 
 Por lo tanto, el error (o residuo) para cada observación $i$ es la diferencia entre el valor observado $y_i$ y el valor predicho $\hat{y}_i$:
 
-$$
+```math
 \epsilon_i = y_i - \hat{y}_i = y_i - (\beta_0 + \beta_1 x_i)
-$$
+```
 
 ###### Paso 2: Definición de la función de pérdida
 
@@ -202,25 +202,25 @@ Para minimizar $L(\beta_0, \beta_1)$, tomamos las derivadas parciales de $L$ con
 
 1. Derivada parcial con respecto a $\beta_0$:
 
-$$
+```math
    \frac{\partial L}{\partial \beta_0} = -2 \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)
-$$
+```
 
 2. Derivada parcial con respecto a $\beta_1$:
 
-$$
+```math
    \frac{\partial L}{\partial \beta_1} = -2 \sum_{i=1}^n x_i (y_i - \beta_0 - \beta_1 x_i)
-$$
+```
 
 Igualando estas derivadas a cero, obtenemos el **sistema de ecuaciones normales**:
 
-$$
+```math
 \sum_{i=1}^n y_i = n \beta_0 + \beta_1 \sum_{i=1}^n x_i
-$$
+```
 
-$$
+```math
 \sum_{i=1}^n x_i y_i = \beta_0 \sum_{i=1}^n x_i + \beta_1 \sum_{i=1}^n x_i^2
-$$
+```
 
 ###### Paso 4: Resolución del sistema de ecuaciones normales
 
@@ -228,17 +228,17 @@ Despejamos $\beta_0$ y $\beta_1$ a partir del sistema:
 
 1. Calculamos $\beta_1$:
 
-$$
+```math
    \beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}
-$$
+```
 
    donde $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$ y $\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i$ son las medias de $x$ e $y$, respectivamente.
 
 2. Calculamos $\beta_0$:
 
-$$
+```math
    \beta_0 = \bar{y} - \beta_1 \bar{x}
-$$
+```
 
 - La **pendiente** $\beta_1$ mide el cambio en $y$ por cada cambio unitario en $x$.
 - El **intercepto** $\beta_0$ es el valor de $y$ cuando $x = 0$.
@@ -249,23 +249,23 @@ Estos valores de $\beta_0$ y $\beta_1$ son los que minimizan la suma de los erro
 
 En la regresión lineal múltiple, se extiende el modelo a más variables independientes $x_1, x_2, \dots, x_p$, y el sistema de ecuaciones normales se resuelve **utilizando álgebra matricial** para encontrar los valores óptimos de todos los coeficientes $\beta_j$.
 
-$$
+```math
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p + \epsilon
-$$
+```
 
 O lo que es lo mismo, **para cada observación ($i$)** tendremos que:
 
-$$
+```math
 y_i = \beta_0 + \sum_{j=1}^{p}{\beta_jx_{ij}} + \epsilon_i
-$$
+```
 
 El objetivo es estimar los coeficientes $\beta_0, \beta_1, \dots, \beta_p$ de manera que la ecuación prediga $y$ de forma óptima en función de las variables independientes $x_1, x_2, \dots, x_p$.
 
 En esta ocasión, el problema de mínimos cuadrados se define como:
 
-$$
+```math
 L(\beta_j) = \sum_{i=1}^n (y_i - \hat{y}_i)^2
-$$
+```
 
 donde:
 - $y_i$ es el valor observado de $y$ para la observación $i$.
@@ -304,53 +304,53 @@ como el vector de errores.
 
 Entonces, la ecuación de regresión múltiple se puede escribir como:
 
-$$
+```math
 y = X \beta + \epsilon
-$$
+```
 
 Para deducir el valor óptimo de $\beta$ en el caso de la **regresión lineal múltiple**, partimos de la función de pérdida que representa la **suma de los errores cuadráticos** en notación matricial. El objetivo es minimizar esta función para obtener los coeficientes $\hat{\beta}$ que mejor se ajusten a los datos.
 
 En notación matricial, la función de pérdida $L(\beta)$ para mínimos cuadrados ordinarios se podría escribir como:
 
-$$
+```math
 L(\beta) = (y - X \beta)^T (y - X \beta)
-$$
+```
 
 Expandiendo esta expresión, obtenemos:
 
-$$
+```math
 L(\beta) = y^T y - 2 y^T X \beta + \beta^T X^T X \beta
-$$
+```
 
 Para encontrar el valor de $\beta$ que minimiza $L(\beta)$, tomamos la derivada parcial de $L(\beta)$ con respecto a $\beta$ y la igualamos a cero. Esto se expresa como:
 
-$$
+```math
 \frac{\partial L(\beta)}{\partial \beta} = -2 X^T y + 2 X^T X \beta
-$$
+```
 
 Igualando esta derivada a cero para encontrar el mínimo:
 
-$$
+```math
 -2 X^T y + 2 X^T X \beta = 0
-$$
+```
 
 Simplificamos nos quedaría que:
 
-$$
+```math
 X^T X \beta = X^T y
-$$
+```
 
 Esta es la **ecuación normal** de mínimos cuadrados. Para despejar $\beta$, multiplicamos ambos lados por la inversa de $X^T X$ (asumiendo que $X^T X$ es invertible):
 
-$$
+```math
 \beta = (X^T X)^{-1} X^T y
-$$
+```
 
 Este resultado nos da la estimación de $\beta$ que minimiza la suma de los errores cuadráticos:
 
-$$
+```math
 \hat{\beta} = (X^T X)^{-1} X^T y
-$$
+```
 
 donde:
 
@@ -417,7 +417,7 @@ donde:
 
 ### Comparación entre el método de mínimos cuadrados ordinarios (OLS) y el descenso de gradiente en regresión lineal
 
-En los modelos de **regresión lineal**, una de las principales tareas es ajustar los parámetros o coeficientes $\beta$ para minimizar el error de las predicciones. Existen distintos métodos para realizar este ajuste, siendo los dos más relevantes el **método de mínimos cuadrados ordinarios (OLS)** y el **descenso de gradiente**. En esta sección se exploran ambos métodos en profundidad, considerando sus ventajas y limitaciones en el contexto de modelos de regresión lineal.
+En los modelos de **regresión lineal**, una de las principales tareas es ajustar los parámetros o coeficientes $\beta$ para minimizar el error de las predicciones. Existen distintos métodos para realizar este ajuste, siendo los dos más relevantes el **método de mínimos cuadrados ordinarios (OLS)** y el **descenso de gradiente**. En esta sección se nos centraremos en el segundo, considerando sus ventajas y limitaciones en el contexto de modelos de regresión lineal y en comparación con OLS.
 
 Como ya hemos visto en la sección anteior, en regresión lineal, el **método de mínimos cuadrados ordinarios** permite obtener una **solución exacta** para los coeficientes del modelo mediante una fórmula directa. Este método se basa en minimizar el **Error Cuadrático Medio (MSE)**, que mide el promedio de los errores al cuadrado entre los valores predichos y los valores observados.
 
@@ -429,9 +429,9 @@ Sin embargo, OLS también tiene ciertas **limitaciones**. Su escalabilidad es un
 
 El **descenso de gradiente** es un **método iterativo** de optimización que ajusta los coeficientes en pequeños pasos, acercándose progresivamente a la solución óptima. En cada iteración, el descenso de gradiente ajusta los coeficientes en función del gradiente de la función de pérdida con respecto a cada coeficiente:
 
-$$
+```math
 \beta_j^i = \beta_j^{i-1} - \alpha \frac{\partial L}{\partial \beta_j^{i-1}}
-$$
+```
 
 donde:
 - $L$ es la función de pérdida (en este caso, el MSE).
@@ -440,9 +440,9 @@ donde:
 
 Es importante que en este caso la función de pérdida que estamos considerando es del tipo MSE y se define como: 
 
-$$
+```math
 L(\beta_0,\beta_1)=\frac{1}{n}\sum_{i=1}^{n}{(y_i−\hat{y}_i)^2}
-$$
+```
 
 > [!note]
 >
@@ -471,9 +471,9 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 >
 > **Paso inicial**: Establecemos valores iniciales de los coeficientes:
 > 
->$$
+>```math
 > \beta_0 = 0, \quad \beta_1 = 0
->$$
+>```
 >
 > **Parámetros del modelo**:
 >
@@ -484,70 +484,70 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 >
 > 1. **Calcular las predicciones** usando los valores iniciales $\beta_0 = 0$ y $\beta_1 = 0$:
 > 
->$$
+>```math
 > \hat{y}_1 = 0 + 0 \cdot 1 = 0, \quad \hat{y}_2 = 0 + 0 \cdot 2 = 0, \quad \hat{y}_3 = 0 + 0 \cdot 3 = 0
->$$
+>```
 >
 > 2. **Calcular el error** para cada punto:
 > 
->$$
+>```math
 > e_1 = y_1 - \hat{y}_1 = 3 - 0 = 3, \\ e_2 = y_2 - \hat{y}_2 = 5 - 0 = 5, \\ e_3 = y_3 - \hat{y}_3 = 7 - 0 = 7
->$$
+>```
 >
 > 3. **Calcular el gradiente** de la función de pérdida (MSE, en este caso) con respecto a $\beta_0$ y $\beta_1$:
 >- Gradiente para $\beta_0$ (promedio de los errores) para el conjunto de observaciones ($i=1,2,3$):
 > 
 >    $$
 >     \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (3 + 5 + 7) = -\frac{2}{3} \cdot 15 = -10
-> $$
+>```math
 >  - Gradiente para $\beta_1$ (promedio de los productos de error por $x$):
-> $$
+>```
 >     \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot 3 + 2 \cdot 5 + 3 \cdot 7) = -\frac{2}{3} (3 + 10 + 21) = -\frac{2}{3} \cdot 34 = -22.67
-> $$
+>```math
 > 4. **Actualizar los coeficientes** usando la tasa de aprendizaje $\alpha = 0.1$:
-> $$
+>```
 >  \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 0 - 0.1 \cdot (-10) = 1
->$$
+>```math
 > 
-> $$
+>```
 >   \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 0 - 0.1 \cdot (-22.67) = 2.267
-> $$
+>```math
 >  Después de la primera iteración:
-> $$
+>```
 >   \beta_0 = 1, \quad \beta_1 = 2.267
-> $$
+>$$
 >###### Segunda Iteración
 > 
 > 1. **Calcular las predicciones** usando los nuevos valores de $\beta_0$ y $\beta_1$:
-> $$
+>```math
 >   \hat{y}_1 = 1 + 2.267 \cdot 1 = 3.267, \quad \hat{y}_2 = 1 + 2.267 \cdot 2 = 5.534, \quad \hat{y}_3 = 1 + 2.267 \cdot 3 = 7.801
-> $$
+>```
 >2. **Calcular el error** para cada punto con las nuevas predicciones:
->$$
+>```math
 > e_1 = y_1 - \hat{y}_1 = 3 - 3.267 = -0.267, \\ e_2 = y_2 - \hat{y}_2 = 5 - 5.534 = -0.534, \\ e_3 = y_3 - \hat{y}_3 = 7 - 7.801 = -0.801
->$$
+>```
 > 3. **Calcular el gradiente** de la función de pérdida con los nuevos errores:
 > 
 >   - Gradiente para $\beta_0$:
-> $$
+>```math
 >    \frac{\partial L}{\partial \beta_0} = -\frac{2}{n} \sum_{i=1}^n e_i = -\frac{2}{3} (-0.267 - 0.534 - 0.801) = \frac{2}{3} \cdot 1.602 = 1.068
->$$
+>```
 >   - Gradiente para $\beta_1$:
-> $$
+>```math
 >    \frac{\partial L}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^n x_i e_i = -\frac{2}{3} (1 \cdot -0.267 + 2 \cdot -0.534 + 3 \cdot -0.801) = \frac{2}{3} \cdot 3.738 = 2.492
-> $$
+>```
 >4. **Actualizar los coeficientes**:
->$$
+>```math
 >   \beta_0 = \beta_0 - \alpha \cdot \frac{\partial L}{\partial \beta_0} = 1 - 0.1 \cdot 1.068 = 0.8932
-> $$
+>```
 > 
-> $$
+>$$
 >   \beta_1 = \beta_1 - \alpha \cdot \frac{\partial L}{\partial \beta_1} = 2.267 - 0.1 \cdot 2.492 = 2.0178
-> $$
+>```math
 >  Después de la segunda iteración:
-> $$
+>```
 >   \beta_0 = 0.8932, \quad \beta_1 = 2.0178
-> $$
+>$$
 > 
 > Después de dos iteraciones, el modelo ha ajustado sus coeficientes de $\beta_0$ y $\beta_1$ acercándose a los valores que mejor se ajustan a los datos. En cada iteración, el gradiente proporciona la dirección para ajustar los coeficientes, y con una tasa de aprendizaje controlada, el modelo se aproxima gradualmente a los valores óptimos de los parámetros.
 
@@ -577,9 +577,9 @@ Como ya sabemos, en regresión lineal la **función de pérdida** cuantifica el 
 
 Ya la hemos visto anteriormente. El **Error Cuadrático Medio (MSE)** es la función de pérdida más utilizada en regresión lineal. Esta función mide el promedio de los cuadrados de los errores (diferencias entre valores observados y predichos), penalizando los errores grandes más que los pequeños debido a la elevación al cuadrado:
 
-$$
+```math
 \text{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2
-$$
+```
 
 donde:
 - $y_i$ es el valor observado de la variable dependiente en la observación $i$.
@@ -592,9 +592,9 @@ Minimizar el MSE ayuda a obtener una línea de regresión que pase lo más cerca
 
 El **Error Absoluto Medio (MAE)** es otra función de pérdida común que mide el promedio de los valores absolutos de los errores:
 
-$$
+```math
 \text{MAE} = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i|
-$$
+```
 
 A diferencia del MSE, el MAE no eleva los errores al cuadrado, por lo que trata todos los errores de forma lineal y es menos sensible a valores atípicos. Minimizar el MAE produce una línea de regresión que reduce las desviaciones promedio de los valores observados, pero el resultado puede no ser tan suave como el obtenido al minimizar el MSE.
 
@@ -602,9 +602,9 @@ A diferencia del MSE, el MAE no eleva los errores al cuadrado, por lo que trata 
 
 La **Raíz del Error Cuadrático Medio (RMSE)** es la raíz cuadrada del MSE:
 
-$$
+```math
 \text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2}
-$$
+```
 
 El RMSE tiene las mismas unidades que la variable dependiente $y$, lo que facilita la interpretación del error en términos absolutos. Minimizar el RMSE da resultados similares a minimizar el MSE, ya que ambos penalizan los errores grandes. Sin embargo, el RMSE es más intuitivo cuando se necesita interpretar el error en la misma escala que los datos originales.
 
@@ -612,9 +612,9 @@ El RMSE tiene las mismas unidades que la variable dependiente $y$, lo que facili
 
 El **Error Cuadrático Medio Logarítmico (MSLE)** es una función de pérdida que mide el MSE después de aplicar un logaritmo a los valores observados y predichos:
 
-$$
+```math
 \text{MSLE} = \frac{1}{n} \sum_{i=1}^n \left( \log(1 + y_i) - \log(1 + \hat{y}_i) \right)^2
-$$
+```
 
 El MSLE es útil cuando se desea penalizar más las desviaciones relativas que las absolutas. Minimizar el MSLE es especialmente adecuado cuando se trabaja con datos en los que los errores relativos son más importantes que los absolutos, como en problemas de crecimiento exponencial.
 
@@ -649,9 +649,9 @@ Para entender este coeficiente hay que empezar por entender qué entendemos por 
 
 En la regresión lineal, esta variabilidad total se cuantifica mediante la **Suma Total de los Cuadrados (SST)**:
 
-$$
+```math
 \text{SST} = \sum_{i=1}^n (y_i - \bar{y})^2
-$$
+```
 
 donde:
 - $y_i$ es el valor observado de la variable dependiente para cada observación,
@@ -664,25 +664,25 @@ En el contexto de un modelo de regresión lineal, la variabilidad en la variable
 
 1. **Variabilidad Explicada (SSR)**: Es la parte de la variabilidad total que el modelo logra explicar a través de las variables independientes. Representa la capacidad del modelo para captar la tendencia o estructura de los datos.
 
-$$
+```math
    \text{SSR} = \sum_{i=1}^n (\hat{y}_i - \bar{y})^2 
-$$
+```
 
    donde $\hat{y}_i$ es el valor predicho por el modelo para la observación $i$. La SSR mide cuánto se acercan las predicciones del modelo al promedio de los datos observados, representando la variabilidad que el modelo puede explicar en función de las variables independientes.
 
 2. **Variabilidad No Explicada (SSE)**: Es la variabilidad en los datos que el modelo no logra capturar, también llamada **Suma de los Errores al Cuadrado**. Representa la parte de la variabilidad que queda en los residuos o errores del modelo:
 
-$$
+```math
    \text{SSE} = \sum_{i=1}^n (y_i - \hat{y}_i)^2 
-$$
+```
 
    Esta métrica mide la diferencia entre los valores observados y los valores predichos por el modelo, indicando cuánto se desvía el modelo de los datos reales. 
 
 A partir de este punto ya podemos definir el **coeficiente de determinación $R^2$** como una medida de en qué proporción de la **variabilidad total (SST)** de la variable dependiente es explicada por el modelo (SSR) en comparación con la variabilidad no explicada (SSE). Es decir:
 
-$$
+```math
 R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}
-$$
+```
 
 Un valor alto de $R^2$ significa que el modelo explica gran parte de la variabilidad en la variable dependiente, mientras que un valor bajo indica que el modelo no captura adecuadamente las tendencias de los datos. El valor de $R^2$ varía entre 0 y 1, de modo que un $R^2$ cercano a 1 indica que el modelo explica bien la variabilidad en los datos, mientras que un $R^2$ cercano a 0 sugiere que el modelo no captura adecuadamente la variabilidad de la variable dependiente.
 
@@ -806,9 +806,9 @@ La **Lasso Regression**, o **regresión Lasso** (Least Absolute Shrinkage and Se
 
 La función de pérdida en Lasso Regression combina el **Error Cuadrático Medio (MSE)** con un término de penalización basado en la suma de los valores absolutos de los coeficientes:
 
-$$
+```math
 L(\beta) = \text{MSE} + \lambda \sum_{j=1}^p |\beta_j|
-$$
+```
 
 donde:
 - $L(\beta)$ es la función de pérdida total del modelo,
@@ -824,9 +824,9 @@ También conocida como **regresión de cresta** o **regularización L2**, es una
 
 La función de pérdida en Ridge Regression combina el **Error Cuadrático Medio (MSE)** con un término de penalización que depende de la magnitud del cuadrado de los coeficientes:
 
-$$
+```math
 L(\beta) = \text{MSE} + \lambda \sum_{j=1}^p \beta_j^2
-$$
+```
 
 donde:
 
