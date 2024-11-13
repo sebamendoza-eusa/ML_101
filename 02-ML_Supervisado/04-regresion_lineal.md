@@ -889,7 +889,7 @@ En esta sección, se desarrollará un ejemplo práctico de regresión lineal uti
 
 #### Construcción y entrenamiento del modelo
 
-Para este ejemplo, usaremos el conjunto de datos de **California Housing**. Este conjunto de datos contiene información sobre características de viviendas en California, y la variable de salida es el valor medio de las casas en cada bloque, lo cual convierte el problema en una tarea de regresión.
+Para este ejemplo, usaremos Un conjunto de datos sobre **precios de inmuebles**. Este conjunto de datos contiene información sobre determinadas características de viviendas, y la variable de salida es el precio de las mismas, lo cual convierte el problema en una tarea de regresión.
 
 ```python
 # Importar bibliotecas necesarias
