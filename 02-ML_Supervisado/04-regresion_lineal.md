@@ -895,15 +895,16 @@ Para este ejemplo, usaremos el conjunto de datos de **California Housing**. Este
 # Importar bibliotecas necesarias
 import numpy as np
 import pandas as pd
-from sklearn.datasets import fetch_california_housing
+
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import matplotlib.pyplot as plt
 
 # Cargar el conjunto de datos California Housing
-data = fetch_california_housing()
-X, y = data.data, data.target
+#########
+# << Cargar desde una ubicación dada >>
+#########
 
 # Dividir los datos en conjunto de entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
