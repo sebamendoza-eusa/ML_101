@@ -485,7 +485,7 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > 1. **Calcular las predicciones** usando los valores iniciales $\beta_0 = 0$ y $\beta_1 = 0$:
 > 
 >```math
-> \hat{y}_1 = 0 + 0 \cdot 1 = 0, \quad \hat{y}_2 = 0 + 0 \cdot 2 = 0, \quad \hat{y}_3 = 0 + 0 \cdot 3 = 0
+> \displaylines{\hat{y}_1 = 0 + 0 \cdot 1 = 0 \\ \hat{y}_2 = 0 + 0 \cdot 2 = 0 \\ \hat{y}_3 = 0 + 0 \cdot 3 = 0}
 >```
 >
 > 2. **Calcular el error** para cada punto:
@@ -520,11 +520,11 @@ Sin embargo, **el método también presenta algunas limitaciones**. Al ser un pr
 > 
 > 1. **Calcular las predicciones** usando los nuevos valores de $\beta_0$ y $\beta_1$:
 >```math
->   \hat{y}_1 = 1 + 2.267 \cdot 1 = 3.267, \quad \hat{y}_2 = 1 + 2.267 \cdot 2 = 5.534, \quad \hat{y}_3 = 1 + 2.267 \cdot 3 = 7.801
+>   \displaylines{\hat{y}_1 = 1 + 2.267 \cdot 1 = 3.267 \\ \hat{y}_2 = 1 + 2.267 \cdot 2 = 5.534 \\ \hat{y}_3 = 1 + 2.267 \cdot 3 = 7.801}
 >```
 >2. **Calcular el error** para cada punto con las nuevas predicciones:
 >```math
-> e_1 = y_1 - \hat{y}_1 = 3 - 3.267 = -0.267, \\ e_2 = y_2 - \hat{y}_2 = 5 - 5.534 = -0.534, \\ e_3 = y_3 - \hat{y}_3 = 7 - 7.801 = -0.801
+> \displaylines{e_1 = y_1 - \hat{y}_1 = 3 - 3.267 = -0.267 \\ e_2 = y_2 - \hat{y}_2 = 5 - 5.534 = -0.534 \\ e_3 = y_3 - \hat{y}_3 = 7 - 7.801 = -0.801}
 >```
 > 3. **Calcular el gradiente** de la función de pérdida con los nuevos errores:
 > 
