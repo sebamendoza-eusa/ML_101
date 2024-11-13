@@ -190,9 +190,9 @@ $$
 
 La función de pérdida para OLS es la **suma de los errores cuadráticos**, que se define como:
 
-$$
-L(\beta_0, \beta_1) = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_i))^2
-$$
+$$L(\beta_0, \beta_1) = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_i))^2$$
+
+L(β₀, β₁) = Σ(i=1 to n) (yᵢ - (β₀ + β₁xᵢ))²
 
 El objetivo es encontrar los valores de $\beta_0$ y $\beta_1$ que minimicen esta función de pérdida $L(\beta_0, \beta_1)$.
 
