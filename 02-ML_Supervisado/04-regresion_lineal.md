@@ -278,10 +278,29 @@ Minimizar esta suma implica ajustar la línea o el plano de regresión que minim
 
 En la regresión lineal múltiple, el cálculo de los coeficientes se simplifica utilizando una representación matricial. Definimos:
 
-- $y = \begin{bmatrix} y_1 \\ y_2 \\ ... \\ y_n \end{bmatrix}$ como el vector de la variable dependiente.
-- $X = \begin{bmatrix} 1 & x_{11} & x_{12} & \dots & x_{1p} \\ 1 & x_{21} & x_{22} & \dots & x_{2p} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & x_{n2} & \dots & x_{np} \end{bmatrix}$ como la matriz de diseño que incluye un vector de unos para el intercepto.
-- $\beta = \begin{bmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_p \end{bmatrix}$ como el vector de coeficientes.
-- $\epsilon = \begin{bmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{bmatrix}$ como el vector de errores.
+```math
+y = \begin{bmatrix} y_1 \\ y_2 \\ ... \\ y_n \end{bmatrix}
+```
+
+como el vector de la variable dependiente.
+
+```math
+X = \begin{bmatrix} 1 & x_{11} & x_{12} & \dots & x_{1p} \\ 1 & x_{21} & x_{22} & \dots & x_{2p} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & x_{n2} & \dots & x_{np} \end{bmatrix}
+```
+
+como la matriz de diseño que incluye un vector de unos para el intercepto.
+
+```math
+\beta = \begin{bmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_p \end{bmatrix}
+```
+
+como el vector de coeficientes.
+
+```math
+\epsilon = \begin{bmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{bmatrix}
+```
+
+como el vector de errores.
 
 Entonces, la ecuación de regresión múltiple se puede escribir como:
 
@@ -347,45 +366,47 @@ donde:
 > Imaginemos un modelo simple de regresión múltiple que predice el precio de una vivienda ($y$) en función de dos variables independientes: el tamaño de la vivienda ($x_1$) y el número de habitaciones ($x_2$). 
 >
 > Supongamos que los datos son los siguientes:
-> 
->$$
+>
+> ```math
 > \begin{array}{ccc}
 > \text{Tamaño (m}^2\text{)} & \text{Habitaciones} & \text{Precio (en miles)} \\
 > 50 & 1 & 100 \\
 > 80 & 2 & 150 \\
 > 100 & 3 & 200 \\
 > \end{array}
->$$
-> 
+> ```
+>
 > En este caso:
 >
 > 1. Construimos la matriz de diseño $X$:
 >
->$$
+> ```math
 > X = \begin{bmatrix} 1 & 50 & 1 \\ 1 & 80 & 2 \\ 1 & 100 & 3 \end{bmatrix}
->$$
+> ```
+>
+> 
 >
 > 2. Definimos el vector de la variable dependiente $y$:
 >
->$$
+> ```math
 >    y = \begin{bmatrix} 100 \\ 150 \\ 200 \end{bmatrix}
->$$
+> ```
 >
 > 3. Calculamos $X^T X$ y $X^T y$:
 >
->$$
+> ```math
 >    X^T X = \begin{bmatrix} 3 & 230 & 6 \\ 230 & 13300 & 310 \\ 6 & 310 & 14 \end{bmatrix}
->$$
->    
->$$
->X^T y = \begin{bmatrix} 450 \\ 23300 \\ 510 \end{bmatrix}
->$$
+> ```
+>
+> ```math
+> X^T y = \begin{bmatrix} 450 \\ 23300 \\ 510 \end{bmatrix}
+> ```
 >
 > 4. Faltaría sustituir y calcular para $\hat{\beta}$:
 >
->$$
->\hat{\beta} = (X^T X)^{-1} X^T y
->$$
+> ```math
+> \hat{\beta} = (X^T X)^{-1} X^T y
+> ```
 >
 > El resultado de este cálculo proporciona los valores de los coeficientes estimados, que minimizan el error cuadrático entre los valores predichos y observados, permitiendo así que el modelo sea lo más preciso posible.
 >
