@@ -1,0 +1,5 @@
+title: "Apuntes de IA"
+description: "Apuntes avanzados de un curso de Inteligencia Artificial"
+markdown: kramdown
+kramdown:
+  input: GFM
