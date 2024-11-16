@@ -1,6 +1,20 @@
 title: "Apuntes de IA"
-description: "Apuntes de Sistemas de Aprendizaje Automático"
+description: "Apuntes avanzados del curso de Inteligencia Artificial"
 markdown: kramdown
+theme: minima # Puedes cambiar el tema si usas otro, o eliminarlo si usas un layout personalizado
+plugins:
+  - jekyll-feed
+
+# Configuración para MathJax (si usas fórmulas matemáticas)
 kramdown:
   input: GFM
-theme: minima
+  math_engine: mathjax
+  mathjax:
+    cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
+
+# Opcional: configuración de rutas si usas subcarpetas
+baseurl: "/ML_101" # Si tu repositorio es una página de usuario, déjalo vacío; de lo contrario, usa "/nombre-repositorio"
+url: "https://sebamendoza-eusa.github.io" # Reemplaza con tu URL real de GitHub Pages
+
+# Otros ajustes opcionales
+permalink: pretty
