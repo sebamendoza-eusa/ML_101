@@ -1,35 +1,45 @@
 ---
 layout: default
-title: "Öndice de Apuntes de IA"
+title: "Índice de Apuntes de IA"
 ---
 
-# Öndice de Apuntes de IA
+# Índice de Apuntes de IA
 
-Bienvenido a los apuntes del curso avanzado de Inteligencia Artificial. A continuaci¢n, encontrar s una lista de los cap¡tulos disponibles:
+Bienvenido a los apuntes del curso de Inteligencia Artificial. A continuación, encontrarás un índice detallado de los capítulos y secciones disponibles.
 
-## Cap¡tulos
+## 01. Determinación de Sistemas de Aprendizaje Automático
+1. [Definiciones](01-Determinacion/01-Definiciones.md)
+2. [Breve recorrido histórico](01-Determinacion/02-Historia.md)
+3. [Componentes del ML](01-Determinacion/03-Componentes.md)
+4. [Etapas en un proyecto ML](01-Determinacion/04-Etapas.md)
+5. [Tipos de ML](01-Determinacion/05-Tipos.md)
+6. [Codificación de la información](01-Determinacion/06-codificacion.md)
 
-1. [Introducci¢n a la IA](apuntes/tema1.md)
-2. [Modelos de IA](apuntes/tema2.md)
-3. [Procesamiento de im genes con IA](apuntes/tema3.md)
-4. [Fundamentos te¢ricos del aprendizaje profundo](apuntes/tema4.md)
-5. [Redes neuronales avanzadas](apuntes/tema5.md)
-6. [Sistemas expertos y razonamiento impreciso](apuntes/tema6.md)
-7. [Algoritmos de optimizaci¢n y b£squeda](apuntes/tema7.md)
-8. [Aplicaciones pr cticas de la IA](apuntes/tema8.md)
+## 02. Aprendizaje Supervisado
+1. [Introducción al aprendizaje supervisado](02-ML_Supervisado/01-Introduccion.md)
+2. [Análisis exploratorio de datos (EDA)](02-ML_Supervisado/02-eda.md)
+3. [Preprocesamiento de datos](02-ML_Supervisado/03-preprocesamiento.md)
+4. [Regresión lineal](02-ML_Supervisado/04-regresion_lineal.md)
+5. [Regresión logística](02-ML_Supervisado/05-regresion_logistica.md)
+6. [K-Nearest Neighbors (KNN)](02-ML_Supervisado/06-knn.md)
+7. [Árboles de decisión](02-ML_Supervisado/07-arboles.md)
+8. [Máquinas de soporte vectorial (SVM)](02-ML_Supervisado/08-svm.md)
 
-## C¢mo navegar
+## 03. Aprendizaje No Supervisado
+- [Contenido en desarrollo]
 
-Haz clic en el t¡tulo de cada cap¡tulo para acceder a su contenido. Utiliza la barra de navegaci¢n superior para regresar al ¡ndice o moverte entre cap¡tulos.
+## 04. Aprendizaje por Refuerzo
+- [Contenido en desarrollo]
 
-> **Nota**: Este curso incluye ejemplos pr cticos y gr ficos, as¡ como f¢rmulas matem ticas que pueden requerir un navegador compatible con la renderizaci¢n de **MathJax**.
+## 05. Redes Neuronales
+- [Contenido en desarrollo]
 
-## Recursos adicionales
-
-- [Documentaci¢n complementaria](recursos/documentacion.md)
-- [Referencias y bibliograf¡a](recursos/referencias.md)
+## 99. Prácticas y Ejercicios
+- [Prácticas iniciales](99-Practicas/practicas_iniciales.ipynb)
+- [Modelo de regresión en maratón](99-Practicas/modelo-regresion-marathon.ipynb)
+- [Supervivencia en el Titanic](99-Practicas/titanic-survival.ipynb)
+- [Práctica de fases en un proyecto de ML](99-Practicas/practica_fases_ML.md)
 
 ---
 
-
-
+Explora cada capítulo y sección para profundizar en el conocimiento de la Inteligencia Artificial y practicar con ejercicios prácticos.
