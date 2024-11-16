@@ -1,5 +1,6 @@
 title: "Apuntes de IA"
-description: "Apuntes avanzados de un curso de Inteligencia Artificial"
+description: "Apuntes de Sistemas de Aprendizaje Autom tico"
 markdown: kramdown
 kramdown:
   input: GFM
+theme: minima
