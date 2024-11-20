@@ -10,7 +10,7 @@
 6. Evaluación y métricas del modelo de regresión
 7. Generalización y regularización en modelos de regresión
 8. Diagnóstico y gráficos interpretativos
-9. Ejemplo práctico en Python
+9. Ejemplo práctico en Python. Protocolo de trabajo.
 
 ---
 
@@ -63,7 +63,7 @@ donde:
 - $\beta_1$ es la pendiente de la recta, que indica el cambio esperado en $y$ por cada incremento unitario en $x$. Un valor positivo implica que $y$ aumenta a medida que $x$ aumenta, y un valor negativo indica lo contrario.
 - $\epsilon$ representa el término de error o residuo, **que captura la variabilidad en $y$ que no puede explicarse por $x$.**
 
-<img src="./assets/26-3.png" alt="What is Linear Regression?- Spiceworks - Spiceworks" style="zoom:50%;" />
+![image-20241117085605759](C:\Users\seba\AppData\Roaming\Typora\typora-user-images\image-20241117085605759.png)
 
 Pero en su caso más general, la regresión lineal se define como una técnica estadística que modela la relación entre **una variable dependiente $y$ y una o más variables independientes $x_i$.** La expresión más frecuente modela la relación para cada observación $y_i$ de la siguiente forma:
 
@@ -883,94 +883,79 @@ Por otro lado, el **Leverage Plot** es una herramienta visual que ayuda a identi
 >
 > El uso de gráficos de diagnóstico, como el **Residual Plot** y el **QQ Plot**, permite evaluar visualmente los supuestos de homocedasticidad y normalidad, fundamentales para un buen ajuste de la regresión. Además, identificar valores atípicos y observaciones influyentes mediante herramientas como la distancia de Cook y el leverage ayuda a mejorar la robustez del modelo y a prevenir interpretaciones erróneas de los coeficientes.
 
-### Ejemplo práctico
+### Ejemplo práctico en Python. Protocolo de trabajo.
 
-En esta sección, se desarrollará un ejemplo práctico de regresión lineal utilizando `Scikit-Learn`, cubriendo los pasos de construcción, entrenamiento, evaluación e interpretación del modelo. También se explorarán algunas métricas de rendimiento y se ajustarán hiperparámetros básicos para optimizar el modelo. Finalmente, reflexionaremos sobre las limitaciones de la regresión lineal y consideraremos alternativas no lineales para situaciones en las que el modelo lineal no es suficiente.
+De nuevo vamos a recordar los pasos a seguir en cualquier implementación de un modelo predictivo en aprendizaje automático supervisado
 
-#### Construcción y entrenamiento del modelo
+#### **Definición del Problema y Objetivo**:
 
-Para este ejemplo, usaremos Un conjunto de datos sobre **precios de inmuebles**. Este conjunto de datos contiene información sobre determinadas características de viviendas, y la variable de salida es el precio de las mismas, lo cual convierte el problema en una tarea de regresión.
+- **Definir el objetivo de la predicción**: Identificar claramente la variable objetivo que se desea predecir.
+- **Contextualizar la importancia de las variables**: Entender cuáles variables podrían ser más relevantes para mejorar la interpretabilidad sin perder la capacidad de predicción.
 
-```python
-# Importar bibliotecas necesarias
-import numpy as np
-import pandas as pd
+#### **Recolección y Exploración de Datos**:
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-import matplotlib.pyplot as plt
+- **Importar y cargar los datos** desde las fuentes adecuadas.
+- **Realizar un análisis exploratorio de datos (EDA)**:
+  - **Resumen de datos básicos**: Revisar `info()` y `describe()` para ver tipos de datos, valores nulos y estadísticas básicas.
+  - **Visualización de distribuciones**: Histograma de  variable objetivo y de las variables numéricas para ver distribuciones.
+  - **Análisis de correlación**: Matriz de correlación y mapa de calor
+  - **Gráficos de dispersión**: Relación entre **MEDV** y las variables más correlacionadas para observar patrones.
+  - **Detección de valores atípicos**: Usar diagramas de caja (boxplots)
+  - **Distribución espacial de los datos**: Si fuese necesario, analizar variables con relación espacial
+  - **Comprobación de valores nulos y tratamiento**
 
-# Cargar el conjunto de datos California Housing
-#########
-# << Cargar desde una ubicación dada >>
-#########
+#### **Preparación de los Datos**:
 
-# Dividir los datos en conjunto de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+> Importante: La división de los datos entre entrenamiento y test hay que hacerla **antes de hacer cualquier imputación de datos faltantes o de outliers, cualquier selección de características, la codificación de variables o la estandarización y normalización**. Es decir **antes de aplicar cualquier transformación que deba ajustarse a los datos**,
 
-# Inicializar el modelo de regresión lineal
-model = LinearRegression()
+- **Limpieza básica de datos**
+- **División en conjunto de entrenamiento y test**: A partir de aquí ya podría hacerse
+  - **Imputación de datos faltantes y *outliers***
+  - **Transformaciones de datos**: Aplicar transformaciones de variables si es necesario para mejorar la linealidad y reducir la asimetría.
+  - **Realizar la codificación de variables categóricas**
+  - **Escalado y estandarización de datos**
 
-# Entrenar el modelo
-model.fit(X_train, y_train)
-```
+#### **Selección y Evaluación de Características**:
 
-#### Evaluación del modelo
+- Comienza ajustando un modelo inicial con `statsmodels` para obtener una visión general y evaluar la significancia de las variables.
 
-Después de entrenar el modelo, evaluaremos su rendimiento en el conjunto de prueba utilizando varias métricas de error: el **Error Cuadrático Medio (MSE)**, el **Error Absoluto Medio (MAE)** y el **Coeficiente de Determinación ($R^2$)**. Estas métricas permiten interpretar la precisión del modelo y su capacidad para explicar la variabilidad de los datos.
+> Importante: Del resultado del modelo inicial puede depender volver atrás para escoger otras variables que hemos eliminado porque de dicha eliminación dependían imputaciones
 
-```python
-# Realizar predicciones en el conjunto de prueba
-y_pred = model.predict(X_test)
+- Aplica VIF si necesitas manejar la multicolinealidad.
+- Usa RFE como una herramienta de selección automática de características si buscas optimizar el modelo y reducir manualmente el conjunto de características.
 
-# Calcular métricas de rendimiento
-mse = mean_squared_error(y_test, y_pred)
-mae = mean_absolute_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
+#### **Ajuste de un Modelo de Regresión Inicial**:
 
-# Imprimir los resultados
-print(f"Error Cuadrático Medio (MSE): {mse:.2f}")
-print(f"Error Absoluto Medio (MAE): {mae:.2f}")
-print(f"Coeficiente de Determinación (R2): {r2:.2f}")
-```
+- Ajustar un modelo básico de regresión con `statsmodels`:
+  - Utilizar `statsmodels` para entender la significancia estadística de las variables y analizar los coeficientes.
+  - Revisar los valores p y los intervalos de confianza para determinar qué variables tienen una relevancia estadística significativa.
 
-#### Interpretación de las métricas
+#### **Transición al Enfoque Predictivo**:
 
-El **Error Cuadrático Medio (MSE)** proporciona una medida general de la magnitud de los errores de predicción, penalizando especialmente aquellos más grandes. Un MSE bajo sugiere que el modelo ajusta bien los datos, mientras que un MSE alto indica posibles errores en las predicciones.
+- Refinar el modelo con `scikit-learn`:
+  - Implementar el modelo de regresión usando `LinearRegression` de `sklearn` con las variables seleccionadas y validadas estadísticamente.
+- Validación cruzada:
+  - Se puede utilizar validación cruzada para asegurar que el modelo tenga una buena capacidad de generalización.
 
-El **Error Absoluto Medio (MAE)** muestra el error promedio en términos absolutos, proporcionando una medida menos sensible a valores atípicos que el MSE. Es útil para obtener una idea de la magnitud típica de los errores de predicción del modelo.
+#### **Evaluación del Modelo Predictivo**:
 
-El **Coeficiente de Determinación ($R^2$)** mide la proporción de la variabilidad en la variable de salida que el modelo es capaz de explicar. Un valor de $R^2$ cercano a 1 indica un buen ajuste, mientras que valores bajos sugieren que el modelo no captura adecuadamente la relación entre las variables independientes y la dependiente.
+- Evaluar el rendimiento en el conjunto de prueba:
+  - Calcular métricas como el RMSE, MAE y R-cuadrado en el conjunto de prueba.
+  - Comparar R-cuadrado con el valor de la media del mismo indicador en validación cruzada. No deberían diferir más de un 5-10%
 
-#### Reflexión sobre las limitaciones y alternativas
+#### **Análisis de Residuos y Validación de Supuestos**:
 
-La regresión lineal tiene limitaciones importantes en ciertos tipos de problemas. Dado que este modelo asume una relación lineal entre las variables independientes y la variable dependiente, puede fallar en capturar patrones complejos en los datos que no sigan una estructura lineal. Además, en presencia de variables correlacionadas, el modelo puede ser inestable o sesgado, afectando la interpretación de los coeficientes.
+- **Comprobar la aleatoriedad de los residuos**: Verificar que los residuos se distribuyan de manera aleatoria en torno a cero.
+- **Revisar la normalidad de los residuos**: Usar gráficos Q-Q y pruebas estadísticas como Shapiro-Wilk.
+- **Detectar heterocedasticidad**: Verificar si la varianza de los residuos es constante usando gráficos de dispersión de residuos o la prueba de Breusch-Pagan.
 
-En situaciones donde la relación entre las variables es no lineal o hay una alta interdependencia entre las variables, pueden considerarse **modelos no lineales** o **modelos regularizados**. Entre las alternativas no lineales se encuentran los modelos de **regresión polinómica**, los **árboles de decisión** o los **modelos de bosques aleatorios**, que son más flexibles y pueden capturar relaciones más complejas en los datos. 
+#### **Ajustes Adicionales y Regularización**:
 
-Estos enfoques permiten manejar mejor la complejidad de los datos en casos donde la regresión lineal no es suficiente. Sin embargo, siempre es importante balancear la capacidad de ajuste del modelo con su capacidad de generalización para evitar el sobreajuste.
+- Implementar técnicas de regularización:
+  - Usar **Ridge** y **Lasso** para reducir el riesgo de sobreajuste y manejar la multicolinealidad.
 
-### Visualización de predicciones vs valores Reales
+#### **Documentación y Comunicación de Resultados**:
 
-Un gráfico de dispersión que muestre las predicciones frente a los valores reales puede ser útil para evaluar visualmente el rendimiento del modelo.
-
-```python
-# Gráficos de predicciones vs valores reales
-plt.figure(figsize=(8, 6))
-plt.scatter(y_test, y_pred, alpha=0.5)
-plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2)
-plt.xlabel("Valores Reales")
-plt.ylabel("Predicciones")
-plt.title("Predicciones vs Valores Reales")
-plt.show()
-```
-
-En este gráfico, una alineación cercana de los puntos con la línea diagonal indica que las predicciones del modelo están cerca de los valores reales. Si los puntos se desvían significativamente, esto sugiere que el modelo tiene errores considerables en ciertas predicciones, lo cual puede ser una señal para considerar alternativas más complejas o realizar ajustes adicionales.
-
-
-
-> [!important]
->
-> Este ejemplo práctico demuestra los pasos fundamentales para construir, entrenar y evaluar un modelo de regresión lineal en `Scikit-Learn`. El análisis de las métricas de rendimiento y la visualización de predicciones frente a valores reales permiten comprender la calidad del ajuste del modelo y detectar posibles limitaciones. En casos donde la regresión lineal muestra limitaciones significativas, modelos alternativos no lineales pueden ofrecer una mayor flexibilidad y mejor capacidad para capturar relaciones complejas en los datos.
-
+- **Generar un informe** que incluya tanto los resultados estadísticos del modelo inicial como las métricas de validación del modelo predictivo.
+- **Explicar las implicaciones** de los coeficientes significativos y cómo afectan la variable dependiente.
+- **Resumen de interpretabilidad y rendimiento**: Mostrar cómo se combinaron ambos enfoques para lograr un modelo robusto y confiable.
