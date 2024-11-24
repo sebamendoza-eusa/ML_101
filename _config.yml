@@ -1,11 +1,12 @@
 title: "Apuntes de IA"
 description: "Apuntes avanzados del curso de Inteligencia Artificial"
 remote_theme: "pages-themes/cayman"
+markdown: kramdown
 plugins:
   - jekyll-feed
 
 # Configuración para MathJax (si usas fórmulas matemáticas)
-# markdown: kramdown
+
 # kramdown:
 #   input: GFM
 #   math_engine: mathjax
