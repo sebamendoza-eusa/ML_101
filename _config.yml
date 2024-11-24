@@ -1,11 +1,14 @@
 title: "Apuntes de IA"
 description: "Apuntes avanzados del curso de Inteligencia Artificial"
-markdown: kramdown
-theme: minima # Puedes cambiar el tema si usas otro, o eliminarlo si usas un layout personalizado
+theme: "just-the-docs/just-the-docs" # Puedes cambiar el tema si usas otro, o eliminarlo si usas un layout personalizado
 plugins:
   - jekyll-feed
+just_the_docs:
+  scripts:
+    - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
 
 # Configuración para MathJax (si usas fórmulas matemáticas)
+markdown: kramdown
 kramdown:
   input: GFM
   math_engine: mathjax
