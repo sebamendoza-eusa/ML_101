@@ -1,21 +1,53 @@
+# Información básica del sitio
 title: "Apuntes de IA"
 description: "Apuntes avanzados del curso de Inteligencia Artificial"
-remote_theme: "pages-themes/cayman"
-markdown: kramdown
+author: 
+  name: "Sebastián Mendoza"
+  email: "sebastian@correo.com"
+baseurl: "/ML_101" # Cambia según tu repositorio; déjalo vacío si es una página de usuario
+url: "https://sebamendoza-eusa.github.io" # URL de tu sitio
+
+# Tema y configuración de plugins
+remote_theme: "mmistakes/minimal-mistakes" # Usar el tema Minimal Mistakes
 plugins:
-  - jekyll-feed
+  - jekyll-feed # Para feeds RSS
+  - jekyll-sitemap # Genera un sitemap
+  - jekyll-seo-tag # Mejora el SEO
 
-# Configuración para MathJax (si usas fórmulas matemáticas)
+# Configuración del Markdown y MathJax
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  mathjax:
+    cdn: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
 
-# kramdown:
-#   input: GFM
-#   math_engine: mathjax
-#   mathjax:
-#     cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
+# Navegación principal (opcional, para menús personalizados)
+# Cambia las rutas y títulos según tus necesidades
+nav:
+  - title: "Inicio"
+    url: "/"
+  - title: "Definiciones"
+    url: "/definiciones/"
+  - title: "Teoría"
+    url: "/teoria/"
+  - title: "Ejercicios"
+    url: "/ejercicios/"
 
-# Opcional: configuración de rutas si usas subcarpetas
-baseurl: "/ML_101" # Si tu repositorio es una página de usuario, déjalo vacío; de lo contrario, usa "/nombre-repositorio"
-url: "https://sebamendoza-eusa.github.io" # Reemplaza con tu URL real de GitHub Pages
+# Configuración del tema Minimal Mistakes
+minimal_mistakes_skin: "default" # Cambia el skin si lo deseas (ej. "dark", "solarized")
+header:
+  image: "/assets/images/header.jpg" # Imagen para el encabezado
+show_date: true # Mostrar fecha de publicación en las páginas
+read_time: true # Mostrar tiempo estimado de lectura
 
-# Otros ajustes opcionales
-permalink: pretty
+# Configuración para SEO y redes sociales
+seo:
+  social:
+    - name: github
+      url: "https://github.com/sebamendoza-eusa"
+    - name: twitter
+      url: "https://twitter.com/tuusuario"
+
+# Permalinks
+permalink: pretty # URL amigables
