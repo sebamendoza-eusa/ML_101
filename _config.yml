@@ -5,12 +5,12 @@ plugins:
   - jekyll-feed
 
 # Configuración para MathJax (si usas fórmulas matemáticas)
-markdown: kramdown
-kramdown:
-  input: GFM
-  math_engine: mathjax
-  mathjax:
-    cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
+# markdown: kramdown
+# kramdown:
+#   input: GFM
+#   math_engine: mathjax
+#   mathjax:
+#     cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
 
 # Opcional: configuración de rutas si usas subcarpetas
 baseurl: "/ML_101" # Si tu repositorio es una página de usuario, déjalo vacío; de lo contrario, usa "/nombre-repositorio"
