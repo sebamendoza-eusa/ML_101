@@ -1,11 +1,8 @@
 title: "Apuntes de IA"
 description: "Apuntes avanzados del curso de Inteligencia Artificial"
-remote_theme: "just-the-docs/just-the-docs"
+remote_theme: "pages-themes/cayman"
 plugins:
   - jekyll-feed
-just_the_docs:
-  scripts:
-    - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
 
 # Configuración para MathJax (si usas fórmulas matemáticas)
 markdown: kramdown
