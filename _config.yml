@@ -1,6 +1,6 @@
 title: "Apuntes de IA"
 description: "Apuntes avanzados del curso de Inteligencia Artificial"
-theme: "just-the-docs/just-the-docs" # Puedes cambiar el tema si usas otro, o eliminarlo si usas un layout personalizado
+remote_theme: "just-the-docs/just-the-docs"
 plugins:
   - jekyll-feed
 just_the_docs:
