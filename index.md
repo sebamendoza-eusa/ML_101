@@ -1,29 +1,29 @@
 ---
 layout: default
-title: "蚽dice de Apuntes de IA"
+title: "脥ndice de Apuntes de IA"
 ---
 
-# 蚽dice de Apuntes de IA
+# 脥ndice de Apuntes de IA
 
-Bienvenido a los apuntes del curso de Inteligencia Artificial. A continuaci髇, encontrar醩 un 韓dice detallado de los cap韙ulos y secciones disponibles.
+Bienvenido a los apuntes del curso de Inteligencia Artificial. A continuaci贸n, encontrar谩s un 铆ndice detallado de los cap铆tulos y secciones disponibles.
 
-## 01. Determinaci髇 de Sistemas de Aprendizaje Autom醫ico
+## 01. Determinaci贸n de Sistemas de Aprendizaje Autom谩tico
 1. [Definiciones](01-Determinacion/01-Definiciones.md)
-2. [Breve recorrido hist髍ico](01-Determinacion/02-Historia.md)
+2. [Breve recorrido hist贸rico](01-Determinacion/02-Historia.md)
 3. [Componentes del ML](01-Determinacion/03-Componentes.md)
 4. [Etapas en un proyecto ML](01-Determinacion/04-Etapas.md)
 5. [Tipos de ML](01-Determinacion/05-Tipos.md)
-6. [Codificaci髇 de la informaci髇](01-Determinacion/06-codificacion.md)
+6. [Codificaci贸n de la informaci贸n](01-Determinacion/06-codificacion.md)
 
 ## 02. Aprendizaje Supervisado
-1. [Introducci髇 al aprendizaje supervisado](02-ML_Supervisado/01-Introduccion.md)
-2. [An醠isis exploratorio de datos (EDA)](02-ML_Supervisado/02-eda.md)
+1. [Introducci贸n al aprendizaje supervisado](02-ML_Supervisado/01-Introduccion.md)
+2. [An谩lisis exploratorio de datos (EDA)](02-ML_Supervisado/02-eda.md)
 3. [Preprocesamiento de datos](02-ML_Supervisado/03-preprocesamiento.md)
-4. [Regresi髇 lineal](02-ML_Supervisado/04-regresion_lineal.md)
-5. [Regresi髇 log韘tica](02-ML_Supervisado/05-regresion_logistica.md)
+4. [Regresi贸n lineal](02-ML_Supervisado/04-regresion_lineal.md)
+5. [Regresi贸n log铆stica](02-ML_Supervisado/05-regresion_logistica.md)
 6. [K-Nearest Neighbors (KNN)](02-ML_Supervisado/06-knn.md)
-7. [羠boles de decisi髇](02-ML_Supervisado/07-arboles.md)
-8. [M醧uinas de soporte vectorial (SVM)](02-ML_Supervisado/08-svm.md)
+7. [脕rboles de decisi贸n](02-ML_Supervisado/07-arboles.md)
+8. [M谩quinas de soporte vectorial (SVM)](02-ML_Supervisado/08-svm.md)
 
 ## 03. Aprendizaje No Supervisado
 - [Contenido en desarrollo]
@@ -34,12 +34,8 @@ Bienvenido a los apuntes del curso de Inteligencia Artificial. A continuaci髇, e
 ## 05. Redes Neuronales
 - [Contenido en desarrollo]
 
-## 99. Pr醕ticas y Ejercicios
-- [Pr醕ticas iniciales](99-Practicas/practicas_iniciales.ipynb)
-- [Modelo de regresi髇 en marat髇](99-Practicas/modelo-regresion-marathon.ipynb)
+## 99. Pr谩cticas y Ejercicios
+- [Pr谩cticas iniciales](99-Practicas/practicas_iniciales.ipynb)
+- [Modelo de regresi贸n en marat贸n](99-Practicas/modelo-regresion-marathon.ipynb)
 - [Supervivencia en el Titanic](99-Practicas/titanic-survival.ipynb)
-- [Pr醕tica de fases en un proyecto de ML](99-Practicas/practica_fases_ML.md)
-
----
-
-Explora cada cap韙ulo y secci髇 para profundizar en el conocimiento de la Inteligencia Artificial y practicar con ejercicios pr醕ticos.
+- [Pr谩ctica de fases en un proyecto de ML](99-Practicas/practica_fases_ML.md)
