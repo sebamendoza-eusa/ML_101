@@ -348,9 +348,12 @@ Donde $\bar{y}$ es el promedio en el nodo padre y $\bar{y_j}$ es el promedio en 
 >
 > **División 1: Superficie ≤ 70 y Superficie > 70**
 >
-> <u>**Nodo 1 (Superficie ≤ 70):**</u> 
+> <u>**Nodo 1 (Superficie ≤ 70):**</u>
+> 
 > Datos: {50, 60, 70} 
+> 
 > Precios: {150, 180, 210} 
+> 
 > Promedio:
 > 
 > $$
@@ -368,8 +371,11 @@ Donde $\bar{y}$ es el promedio en el nodo padre y $\bar{y_j}$ es el promedio en 
 > $$
 >
 > <u>**Nodo 2 (Superficie > 70):**</u> 
+> 
 > Datos: {80, 90} 
+> 
 > Precios: {240, 270} 
+> 
 > Promedio:
 > 
 > $$
