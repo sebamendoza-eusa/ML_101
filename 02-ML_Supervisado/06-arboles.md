@@ -294,9 +294,11 @@ Al igual que la varianza, el objetivo es minimizar el MSE ponderado de los nodos
 ##### **Reducción de la suma de errores (RSS)** 
 
 La **RSS** mide cuánto se reduce la suma total de errores al realizar una división. Su cálculo implica evaluar la diferencia entre el error del nodo padre y la suma de los errores de los nodos hijos:
+
 $$
 \text{RSS} = \sum_{i \in S} (y_i - \bar{y})^2 - \sum_{j=1}^k \sum_{i \in S_j} (y_i - \bar{y_j})^2
 $$
+
 Donde $\bar{y}$ es el promedio en el nodo padre y $\bar{y_j}$ es el promedio en cada nodo hijo.
 
 > ##### Ejemplo práctico: Predicción del precio de viviendas
