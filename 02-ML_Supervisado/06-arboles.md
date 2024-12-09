@@ -48,16 +48,18 @@ Por último, en la rama **Lluvioso** podríamos dividir basándonos en **Tempera
 
 Podemos representar el árbol resultante de la siguiente manera:
 
-<img src="C:\Users\seba\AppData\Roaming\Typora\typora-user-images\image-20241207104218774.png" alt="image-20241207104218774" />
+<img src=".\assets\image-20241209195501292.png" alt="image-20241209195501292" />
 
 ##### ¿Cómo usar el árbol para predecir?
 
 Para realizar una predicción, seguimos las reglas del árbol según las características de una nueva observación. Por ejemplo:
 
-- Nueva observación: Tiempo = Soleado, Humedad = Alta. 
+- Nueva observación: Tiempo = Soleado, Humedad = Alta.
+  
   Seguimos la rama "Soleado" y luego "Humedad = Alta", lo que predice **Hacer deporte = No**.
-
+  
 - Nueva observación: Clima = Lluvioso, Temperatura = Frío. 
+  
   Seguimos la rama "Lluvioso" y luego "Temperatura = Frío", lo que predice **Hacer deporte = No**.
 
 ##### Algunas reflexiones
@@ -264,9 +266,11 @@ La ganancia de homogeneidad en árboles de regresión tiene  dos ventajas intere
 ##### **Varianza**  
 
 La **varianza** mide cuánto se dispersan los valores de la variable objetivo en un nodo respecto a su promedio. La fórmula para la varianza de un nodo $S$ es:
+
 $$
 \text{Varianza}(S) = \frac{1}{|S|} \sum_{i=1}^{|S|} (y_i - \bar{y})^2
 $$
+
 Donde:
 - $y_i$ son los valores individuales de la variable objetivo.
 - $\bar{y}$ es el promedio de los valores en el nodo.
@@ -276,9 +280,11 @@ Al realizar una división, el objetivo es **reducir la suma ponderada de las var
 ##### **Error cuadrático medio (MSE)**  
 
 El **MSE** es otra métrica común que evalúa la calidad de las divisiones considerando el error promedio entre los valores reales de la variable objetivo y el promedio de cada nodo hijo. Matemáticamente, el MSE se define como:
+
 $$
-\text{MSE} = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y})^2
+	\text{MSE} = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y})^2
 $$
+
 Donde:
 - $y_i$ son los valores reales de la variable objetivo.
 - $\hat{y}$ es el valor promedio en el nodo correspondiente.
@@ -319,16 +325,19 @@ Donde $\bar{y}$ es el promedio en el nodo padre y $\bar{y_j}$ es el promedio en 
 > - $N$ es el número de observaciones.
 >
 > El promedio de los precios es:
+> 
 > $$
 > \bar{y} = \frac{150 + 180 + 210 + 240 + 270}{5} = 210
 > $$
 >
 > La varianza inicial es:
+> 
 > $$
 > \text{Varianza} = \frac{1}{5} \left[(150 - 210)^2 + (180 - 210)^2 + (210 - 210)^2 + (240 - 210)^2 + (270 - 210)^2 \right]
 > $$
 >
 > Calculando:
+> 
 > $$
 > \text{Varianza} = \frac{1}{5} \left[3600 + 900 + 0 + 900 + 3600 \right] = \frac{9000}{5} = 1800
 > $$
@@ -342,15 +351,18 @@ Donde $\bar{y}$ es el promedio en el nodo padre y $\bar{y_j}$ es el promedio en 
 > <u>**Nodo 1 (Superficie ≤ 70):**</u> 
 > Datos: {50, 60, 70} 
 > Precios: {150, 180, 210} 
-> Promedio:  
+> Promedio:
+> 
 > $$
 > \bar{y}_{\text{Nodo 1}} = \frac{150 + 180 + 210}{3} = 180
 > $$
 >
-> Varianza:  
+> Varianza:
+> 
 > $$
 > \text{Varianza}_{\text{Nodo 1}} = \frac{1}{3} \left[(150 - 180)^2 + (180 - 180)^2 + (210 - 180)^2 \right]
 > $$
+> 
 > $$
 > = \frac{1}{3} \left[900 + 0 + 900 \right] = \frac{1800}{3} = 600
 > $$
@@ -358,15 +370,18 @@ Donde $\bar{y}$ es el promedio en el nodo padre y $\bar{y_j}$ es el promedio en 
 > <u>**Nodo 2 (Superficie > 70):**</u> 
 > Datos: {80, 90} 
 > Precios: {240, 270} 
-> Promedio:  
+> Promedio:
+> 
 > $$
 > \bar{y}_{\text{Nodo 2}} = \frac{240 + 270}{2} = 255
 > $$
 >
-> Varianza:  
+> Varianza:
+> 
 > $$
 > \text{Varianza}_{\text{Nodo 2}} = \frac{1}{2} \left[(240 - 255)^2 + (270 - 255)^2 \right]
 > $$
+> 
 > $$
 > = \frac{1}{2} \left[225 + 225 \right] = \frac{450}{2} = 225
 > $$
@@ -374,9 +389,11 @@ Donde $\bar{y}$ es el promedio en el nodo padre y $\bar{y_j}$ es el promedio en 
 > **Varianza ponderada después de la división**
 >
 > La varianza ponderada total tras la división es:
+> 
 > $$
 > \text{Varianza ponderada} = \frac{3}{5} \cdot 600 + \frac{2}{5} \cdot 225
 > $$
+> 
 > $$
 > = 360 + 90 = 450
 > $$
@@ -384,9 +401,11 @@ Donde $\bar{y}$ es el promedio en el nodo padre y $\bar{y_j}$ es el promedio en 
 > ###### Paso 3: Ganancia de homogeneidad
 >
 > La ganancia de homogeneidad (reducción de varianza) se calcula como:
+> 
 > $$
 > \text{Ganancia de homogeneidad} = \text{Varianza inicial} - \text{Varianza ponderada}
 > $$
+> 
 > $$
 > = 1800 - 450 = 1350
 > $$
@@ -416,17 +435,21 @@ En los árboles de clasificación, donde la variable objetivo es categórica, el
 La **entropía** es una métrica que mide el nivel de desorden o incertidumbre en un conjunto de datos. Un nodo es completamente puro (entropía = 0) si todas las observaciones pertenecen a una sola clase. En cambio, si las clases están distribuidas uniformemente, la entropía es máxima.
 
 La fórmula para la entropía es:
+
 $$
 H(S) = -\sum_{i=1}^C p_i \log_2(p_i)
 $$
+
 Donde:
 - $C$ es el número de clases.
 - $p_i$ es la proporción de observaciones pertenecientes a la clase $i$.
 
 Después de realizar una división, la **ganancia de información** mide cuánto se redujo la entropía. La fórmula es:
+
 $$
 \text{Ganancia de información} = H(S) - \sum_{j=1}^k \frac{|S_j|}{|S|} H(S_j)
 $$
+
 Donde:
 - $H(S)$ es la entropía del nodo original (padre).
 - $H(S_j)$ es la entropía de cada nodo hijo.
@@ -439,9 +462,11 @@ La ganancia de información selecciona divisiones que maximizan la reducción de
 El **índice de Gini** mide la probabilidad de clasificar incorrectamente una observación si se elige al azar del nodo. Al igual que la entropía, un valor de Gini cercano a 0 indica alta homogeneidad.
 
 La fórmula del índice de Gini es:
+
 $$
 Gini(S) = 1 - \sum_{i=1}^C p_i^2
 $$
+
 Donde:
 - $p_i$ es la proporción de observaciones en la clase $i$.
 
@@ -471,13 +496,15 @@ Supongamos que queremos construir un árbol para predecir si un cliente comprar�
 ###### Paso 1: Entropía inicial
 
 Primero calculamos la entropía del nodo raíz. La proporción de clases es:
-- "No" = $\frac{2}{5}$,
-- "Sí" = $\frac{3}{5}$.
+- "No" = $\frac{2}{5}$
+- "Sí" = $\frac{3}{5}$
 
 La entropía inicial es:
+
 $$
 H(S) = -\left(\frac{2}{5} \log_2 \frac{2}{5} + \frac{3}{5} \log_2 \frac{3}{5}\right)
 $$
+
 $$
 H(S) \approx -\left(0.4 \cdot -1.322 + 0.6 \cdot -0.737\right) = 0.971
 $$
@@ -487,10 +514,13 @@ $$
 Consideremos el umbral **Edad ≤ 30** para dividir los datos:
 
 **Nodo 1 (Edad ≤ 30):** {No, No}
+
 $$
 H(S_1) = -\left(\frac{2}{2} \cdot \log_2 \frac{2}{2}\right) = 0 \quad (\text{grupo homogéneo})
 $$
+
 **Nodo 2 (Edad > 30):** {Sí, Sí, Sí}
+
 $$
 H(S_2) = -\left(\frac{3}{3} \cdot \log_2 \frac{3}{3}\right) = 0 \quad (\text{grupo homogéneo})
 $$
@@ -498,9 +528,11 @@ $$
 ###### Paso 3: Ganancia de información
 
 La ganancia de información se calcula como:
+
 $$
 \text{Ganancia de información} = H(S) - \left(\frac{2}{5} \cdot H(S_1) + \frac{3}{5} \cdot H(S_2)\right)
 $$
+
 $$
 \text{Ganancia de información} = 0.971 - \left(\frac{2}{5} \cdot 0 + \frac{3}{5} \cdot 0\right) = 0.971
 $$
@@ -543,5 +575,4 @@ En problemas complejos, los árboles de decisión **tienden a ser superados por 
 
 > **¿Por qué los árboles de decisión son propensos al sobreajuste en datasets pequeños?**
 > **Clave**: Piensa en cómo un árbol con muchas divisiones puede memorizar patrones específicos del conjunto de entrenamiento, especialmente cuando los datos son escasos o contienen ruido. Reflexiona sobre la importancia de limitar la profundidad del árbol o el tamaño mínimo de los nodos para mejorar la capacidad de generalización.
-
 
