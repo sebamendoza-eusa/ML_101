@@ -605,7 +605,7 @@ donde $ P(y=K|\mathbf{x}) $ es la probabilidad de la clase de referencia.
 
 El modelo multinomial asume que **los logits son lineales respecto a las variables independientes** y estima los coeficientes correspondientes a cada clase en comparación con la referencia. La elección de la clase de referencia no afecta las predicciones finales, ya que **las probabilidades se calculan mediante la transformación softmax**:
 $$
-P(y=j|\mathbf{x}) = \frac{\exp(\beta_{j0} + \beta_{j1} x_1 + \dots + \beta_{jp} x_p)}{\sum_{k=1}^K \exp(\beta_{k0} + \beta_{k1} x_1 + \dots + \beta_{kp} x_p)}.
+P(y=j|\mathbf{x}) = \frac{\exp{\beta_{j0} + \beta_{j1} x_1 + \dots + \beta_{jp} x_p}}{\sum_{k=1}^K \exp{\beta_{k0} + \beta_{k1} x_1 + \dots + \beta_{kp} x_p}}.
 $$
 
 La regresión logística multinomial es adecuada para problemas como la clasificación de imágenes, donde las categorías pueden ser "gato", "perro" o "pájaro", y no existe una relación de orden entre ellas. Sin embargo, **este modelo puede ser computacionalmente costoso cuando $k$ es grande**, ya que requiere estimar un conjunto completo de coeficientes para cada clase. Además, como en la regresión logística binaria, la independencia de las observaciones y la ausencia de multicolinealidad entre las variables independientes son requisitos esenciales.
