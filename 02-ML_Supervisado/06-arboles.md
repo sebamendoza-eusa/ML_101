@@ -762,6 +762,7 @@ Mide el promedio de los errores elevados al cuadrado:
 $$
 \text{MSE} = \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i)^2
 $$
+
 Penaliza más los errores grandes debido a la elevación al cuadrado, lo que lo hace más sensible a valores atípicos.
 
 ###### **Raíz del Error Cuadrático Medio (RMSE)** 
@@ -983,9 +984,11 @@ Las observaciones que no fueron seleccionadas en una muestra de Bootstrap se uti
 La clave del éxito de los Random Forests es la **combinación de predicciones** de todos los árboles del bosque. Para los casos de regresión, las predicciones de todos los árboles se **promedian**. En el caso de problemas de clasificación la predicción final se determina por votación mayoritaria (la clase más predicha).
 
 **¿Por qué funciona esto?** Matemáticamente, el promedio de múltiples predicciones independientes reduce la varianza del modelo combinado en comparación con un modelo individual, como ya pronostica la **Ley de los Grandes Números**.  Para ilustrarlo, si asumimos que los errores individuales de los árboles son independientes y tienen la misma varianza ($\sigma^2$), la varianza del modelo combinado (es decir, del Random Forest) será
+
 $$
 \text{Varianza combinada} = \frac{\sigma^2}{n}
 $$
+
 Donde $n$ es el número de árboles en el bosque. Esto implica que, al aumentar el número de árboles, la varianza combinada disminuye, lo que mejora la estabilidad y la capacidad de generalización del modelo.
 
 > [!Note] 
