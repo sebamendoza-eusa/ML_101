@@ -46,13 +46,13 @@ Un árbol de decisión nos ayuda a automatizar este proceso y establecer reglas 
 
 De este modo, el árbol clasifica cada una de las 20 regiones en categorías según estas reglas de decisión. Además, estas reglas pueden representarse tanto de forma gráfica (con el árbol) como en forma de un conjunto de **reglas lógicas** (conjunciones e intersecciones), ofreciendo flexibilidad en su interpretación. El esquema gráfico sería el siguiente:
 
-![image-20241227124647697](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\02-ML_Supervisado\assets\image-20241227124647697.png)
+<img src=".\assets\image-20241227124647697.png" alt="image-20241227124647697" />
 
 ##### Variables categóricas y numéricas en árboles de decisión
 
 En el ejemplo anterior, todas las variables predictoras son categóricas, como "llano", "colina", "meseta", "alto" o "bajo". Esto facilita la interpretación del árbol, ya que cada nodo y rama corresponde a una categoría específica. Sin embargo, los árboles de decisión también pueden manejar **variables numéricas**. Por ejemplo, si el dataset incluyera el nivel exacto de lluvia en milímetros, el árbol podría establecer divisiones como "más de 50 mm" o "menos de 30 mm".
 
-Aunque los árboles pueden trabajar con variables numéricas, convertir estas variables en categorías puede ser beneficioso para mejorar la claridad y precisión del modelo. Por ejemplo, si trabajamos con ingresos, podríamos transformarlos en categorías como "bajos" (menos de 30,000 € al año), "medios" (entre 30,000 y 100,000 €) y "altos" (más de 100,000 €). Esto ayuda a generar reglas más intuitivas y reduce la complejidad de las divisiones.
+Aunque los árboles pueden trabajar con variables numéricas, convertir estas variables en categorías puede ser beneficioso para mejorar la claridad y precisión del modelo. Por ejemplo, si trabajamos con ingresos, podríamos transformarlos en categorías como "bajos" (menos de 30.000 € al año), "medios" (entre 30.000 y 100.000 €) y "altos" (más de 100.000 €). Esto ayuda a generar reglas más intuitivas y reduce la complejidad de las divisiones.
 
 ##### ¿Cómo usar el árbol para predecir?
 
@@ -472,6 +472,7 @@ A diferencia de la entropía, el índice de Gini penaliza menos las clases domin
 ###### **Error de clasificación**
 
 El error de clasificación mide la proporción de observaciones que no pertenecen a la clase mayoritaria dentro de un nodo. Aunque menos común que la entropía o Gini, es útil como criterio simple para evaluar la pureza de un nodo:
+
 $$
 \text{Error de clasificación} = 1 - \max(p_i)
 $$
@@ -604,9 +605,11 @@ El problema del sobreajuste y el subajuste puede analizarse a través del compro
 Para que un modelo sea eficaz, necesitamos encontrar un equilibrio entre sesgo y varianza. Los árboles de decisión presentan, en este sentido, un **sesgo bajo y varianza alta** cuando son muy profundos (sobreajuste), y un **sesgo alto y varianza baja** cuando son muy poco profundos (subajuste).
 
 Matemáticamente, el error total del modelo se puede descomponer como:
+
 $$
 \text{Error total} = \text{Sesgo}^2 + \text{Varianza} + \text{Error irreducible}
 $$
+
 Aquí, el error irreducible es el ruido inherente al dataset que no puede ser explicado por ningún modelo.
 
 El objetivo es minimizar tanto el sesgo como la varianza para obtener un modelo que generalice bien. Este equilibrio se logra a través de técnicas de **regularización**.
@@ -701,11 +704,13 @@ De esta matriz se derivan métricas adicionales:
 **Exactitud (*Accuracy*)**  
 
 La exactitud mide la proporción de observaciones correctamente clasificadas sobre el total de observaciones:
+
 $$
 \text{Precisión} = \frac{\text{N° de predicciones correctas}}{\text{Total de observaciones}}
 $$
 
 Por ejemplo, si un árbol clasifica correctamente 90 de 100 ejemplos, su precisión sería:
+
 $$
 \text{Precisión} = \frac{90}{100} = 0.9 \, (90\%)
 $$
@@ -715,10 +720,13 @@ $$
 Estas métricas son especialmente útiles en problemas desbalanceados (cuando una clase ocurre mucho más que otra):
 
 La **precisión (*precision*)**: Proporción de predicciones correctas para una clase positiva:
+
 $$
 \text{Precisión} = \frac{\text{VP}}{\text{VP + FP}}
 $$
+
 Mientras la sensibilidad (***Recall***): Proporción de observaciones positivas correctamente identificadas:
+
 $$
 \text{Sensibilidad} = \frac{\text{VP}}{\text{VP + FN}}
 $$
@@ -726,9 +734,11 @@ $$
 ###### F1-Score  
 
 El F1-Score es la media armónica entre la precisión y el recall, útil cuando se busca un balance entre ambos:
+
 $$
 \text{F1-Score} = 2 \cdot \frac{\text{Precisión} \cdot \text{Recall}}{\text{Precisión} + \text{Recall}}
 $$
+
 **AUC-ROC (Área bajo la curva ROC)** 
 Esta métrica evalúa el rendimiento del modelo al variar el umbral de clasificación, mostrando la capacidad del árbol para distinguir entre clases. Una curva ROC que se acerque al área total de 1 indica un buen rendimiento.
 
@@ -739,6 +749,7 @@ En problemas de regresión, donde la variable objetivo es continua, el rendimien
 ###### **Error Absoluto Medio (MAE)**  
 
 Mide el promedio de las diferencias absolutas entre las predicciones ($\hat{y}$) y los valores reales ($y$):
+
 $$
 \text{MAE} = \frac{1}{N} \sum_{i=1}^N |\hat{y}_i - y_i|
 $$
@@ -747,6 +758,7 @@ Este error refleja qué tan lejos, en promedio, están las predicciones del mode
 
 **Error Cuadrático Medio (MSE)** 
 Mide el promedio de los errores elevados al cuadrado:
+
 $$
 \text{MSE} = \frac{1}{N} \sum_{i=1}^N (\hat{y}_i - y_i)^2
 $$
@@ -755,6 +767,7 @@ Penaliza más los errores grandes debido a la elevación al cuadrado, lo que lo 
 ###### **Raíz del Error Cuadrático Medio (RMSE)** 
 
 Es la raíz cuadrada del MSE, lo que permite interpretar el error en las mismas unidades que la variable objetivo:
+
 $$
 \text{RMSE} = \sqrt{\text{MSE}}
 $$
@@ -762,9 +775,11 @@ $$
 ###### **Coeficiente de Determinación ($R^2$)**  
 
 Evalúa la proporción de la variación total explicada por el modelo:
+
 $$
 R^2 = 1 - \frac{\sum_{i=1}^N (\hat{y}_i - y_i)^2}{\sum_{i=1}^N (y_i - \bar{y})^2}
 $$
+
 Donde $\bar{y}$ es el promedio de los valores reales. Un $R^2$ cercano a 1 indica un buen ajuste, mientras que un $R^2$ cercano a 0 indica un modelo pobre.
 
 #### División del dataset de entrada y validación cruzada
@@ -827,12 +842,6 @@ En problemas complejos, los árboles de decisión **tienden a ser superados por 
 
 > **¿Por qué los árboles de decisión son propensos al sobreajuste en datasets pequeños?**
 > **Clave**: Piensa en cómo un árbol con muchas divisiones puede memorizar patrones específicos del conjunto de entrenamiento, especialmente cuando los datos son escasos o contienen ruido. Reflexiona sobre la importancia de limitar la profundidad del árbol o el tamaño mínimo de los nodos para mejorar la capacidad de generalización.
-
-
-
-
-
-
 
 ### Bosques aleatorios: Introducción
 
@@ -997,7 +1006,7 @@ El error OOB se calcula al promediar las predicciones hechas para las observacio
 
 > [!Tip]
 >
-> **¿Por qué se quedan fuera el 37% de las observaciones?*
+> **¿Por qué se quedan fuera el 37% de las observaciones?**
 >
 > El hecho de que aproximadamente el **37% de las observaciones** queden fuera de las muestras de entrenamiento en el muestreo **Out-of-Bag (OOB)** puede explicarse matemáticamente considerando cómo funciona el proceso de **muestreo con reemplazo** utilizado en los **Random Forests**. Como se ha visto, en los Random Forests, cada árbol se entrena en una muestra de Bootstrap generada a partir del conjunto de datos original. Esta muestra de Bootstrap se crea seleccionando aleatoriamente observaciones del dataset original, con reemplazo, hasta formar una nueva muestra con el mismo tamaño que el dataset original. Dado que el muestreo es **con reemplazo**, cada observación tiene la posibilidad de ser seleccionada múltiples veces o incluso no ser seleccionada en absoluto.
 >
@@ -1006,21 +1015,25 @@ El error OOB se calcula al promediar las predicciones hechas para las observacio
 > $$
 > P(\text{seleccionada}) = \frac{1}{n}
 > $$
+> 
 > Por lo tanto, la probabilidad de **no ser seleccionada** en un único muestreo es:
 >
 > $$
 > P(\text{no seleccionada}) = 1 - \frac{1}{n}
 > $$
+> 
 > En un muestreo de Bootstrap, seleccionamos $n$observaciones con reemplazo. Esto significa que hacemos $n$selecciones independientes. La probabilidad de que una observación no sea seleccionada en las $n$extracciones es el producto de $P(\text{no seleccionada})$ repetido $n$ veces, lo que da:
 >
 > $$
 > P(\text{no seleccionada en \( n \) extracciones}) = \left(1 - \frac{1}{n}\right)^n
 > $$
+> 
 > A medida que el tamaño del conjunto de datos ($n$) crece, la expresión $\left(1 - \frac{1}{n}\right)^n$se aproxima al valor de la constante matemática $e^{-1}$ (aproximadamente 0.3679). Esto ocurre porque:
 >
 > $$
 > \lim_{n \to \infty} \left(1 - \frac{1}{n}\right)^n = e^{-1}
 > $$
+> 
 > Por lo tanto, la probabilidad de que una observación quede **fuera de la muestra de Bootstrap** es aproximadamente **37%** cuando $n$ es grande.
 >
 
@@ -1042,7 +1055,7 @@ Cada árbol produce un valor numérico, y la predicción final es el promedio de
 Las métricas comunes en regresión incluyen:
 - **Error Absoluto Medio (MAE):** Evalúa la magnitud promedio de los errores.
 - **Error Cuadrático Medio (MSE):** Penaliza más los errores grandes.
-- **Coeficiente de Determinación ($R^2 \)):** Indica qué tan bien se ajusta el modelo a los datos.
+- **Coeficiente de Determinación ($R^2 $):** Indica qué tan bien se ajusta el modelo a los datos.
 
 #### Ventajas del enfoque de evaluación de Random Forest
 
