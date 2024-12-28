@@ -778,7 +778,7 @@ $$
 Evalúa la proporción de la variación total explicada por el modelo:
 
 $$
-R^2 = \frac{\sum_{i=1}^{N} (\hat{y}_i - y_i)^2}{\sum_{i=1}^{N} (y_i - \bar{y})^2}
+R^2 = 1 - \frac{ \sum (\hat{y}_i - y_i)^2}{ \sum (y_i - \bar{y})^2}
 $$
 
 Donde $\bar{y}$ es el promedio de los valores reales. Un $R^2$ cercano a 1 indica un buen ajuste, mientras que un $R^2$ cercano a 0 indica un modelo pobre.
