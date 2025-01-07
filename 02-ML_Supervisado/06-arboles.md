@@ -12,6 +12,26 @@
 
 ------
 
+### Referencias
+
+Documentación sciKit Learn general sobre la técnica - https://scikit-learn.org/stable/modules/tree.html
+
+Documentación sobre la API de árboles de decisión - https://scikit-learn.org/stable/api/sklearn.tree.html
+
+Info en wikipedia:
+
+- https://en.wikipedia.org/wiki/Decision_tree_learning
+- https://en.wikipedia.org/wiki/Predictive_analytics
+
+L. Breiman, J. Friedman, R. Olshen, and C. Stone. Classification and Regression Trees. Wadsworth, Belmont, CA, 1984.
+
+- https://en.wikipedia.org/wiki/Decision_tree_learning
+- https://en.wikipedia.org/wiki/Predictive_analytics
+- J.R. Quinlan. C4. 5: programs for machine learning. Morgan Kaufmann, 1993.
+- T. Hastie, R. Tibshirani and J. Friedman. Elements of Statistical Learning, Springer, 2009.
+
+---
+
 ### Árboles de decisión: Una introducción práctica
 
 Un **árbol de decisión** es una estructura de datos compleja basada en el establecimiento de un conjunto de reglas de decisión claras y organizadas. Su representación visual facilita la comprensión de cómo se toman las decisiones, ofreciendo una perspectiva jerárquica y lógica que es intuitiva incluso para quienes no tienen un trasfondo técnico profundo.
@@ -53,18 +73,6 @@ De este modo, el árbol clasifica cada una de las 20 regiones en categorías seg
 En el ejemplo anterior, todas las variables predictoras son categóricas, como "llano", "colina", "meseta", "alto" o "bajo". Esto facilita la interpretación del árbol, ya que cada nodo y rama corresponde a una categoría específica. Sin embargo, los árboles de decisión también pueden manejar **variables numéricas**. Por ejemplo, si el dataset incluyera el nivel exacto de lluvia en milímetros, el árbol podría establecer divisiones como "más de 50 mm" o "menos de 30 mm".
 
 Aunque los árboles pueden trabajar con variables numéricas, convertir estas variables en categorías puede ser beneficioso para mejorar la claridad y precisión del modelo. Por ejemplo, si trabajamos con ingresos, podríamos transformarlos en categorías como "bajos" (menos de 30.000 € al año), "medios" (entre 30.000 y 100.000 €) y "altos" (más de 100.000 €). Esto ayuda a generar reglas más intuitivas y reduce la complejidad de las divisiones.
-
-##### ¿Cómo usar el árbol para predecir?
-
-Para realizar una predicción, seguimos las reglas del árbol según las características de una nueva observación. Por ejemplo:
-
-- Nueva observación: Tiempo = Soleado, Humedad = Alta.
-
-  Seguimos la rama "Soleado" y luego "Humedad = Alta", lo que predice **Hacer deporte = No**.
-
-- Nueva observación: Clima = Lluvioso, Temperatura = Frío. 
-
-  Seguimos la rama "Lluvioso" y luego "Temperatura = Frío", lo que predice **Hacer deporte = No**.
 
 ##### Algunas reflexiones
 
@@ -844,6 +852,122 @@ En problemas complejos, los árboles de decisión **tienden a ser superados por 
 > **¿Por qué los árboles de decisión son propensos al sobreajuste en datasets pequeños?**
 > **Clave**: Piensa en cómo un árbol con muchas divisiones puede memorizar patrones específicos del conjunto de entrenamiento, especialmente cuando los datos son escasos o contienen ruido. Reflexiona sobre la importancia de limitar la profundidad del árbol o el tamaño mínimo de los nodos para mejorar la capacidad de generalización.
 
+### Algunas consideraciones prácticas al implementar arboles de decisión
+
+Al implementar **árboles de decisión**, hay varias consideraciones prácticas que puedes tener en cuenta para asegurarte de que el modelo sea efectivo, interpretable y generalice bien. A continuación, se enumera una lista de **consejos prácticos** divididos según las etapas del desarrollo del modelo.
+
+#### Preprocesamiento de los datos
+
+##### Revisar datos faltantes
+
+Los árboles de decisión no requieren un manejo extenso de datos faltantes, ya que pueden dividir basándose en las características disponibles. Sin embargo, es buena práctica manejar valores faltantes mediante imputación o exclusión si son excesivos.
+
+##### No es necesario escalar o normalizar
+
+Los árboles de decisión no son sensibles a la escala de los datos (a diferencia de otros modelos como regresión logística o SVM). Esto se debe a que dividen los datos según umbrales y no utilizan métricas de distancia.
+
+##### Manejar datos categóricos
+
+Los árboles de decisión pueden trabajar con variables categóricas directamente si la implementación lo permite (por ejemplo, `DecisionTreeClassifier` en Scikit-learn no lo hace automáticamente).
+
+Es bueno que se conviertan categorías en variables numéricas con **codificación ordinal** o **One-Hot Encoding**, dependiendo de la naturaleza de la variable.
+
+##### Datos desbalanceados
+
+Si estás trabajando con un conjunto de datos desbalanceado (por ejemplo, en clasificación), usa estrategias como el ajuste del parámetro `class_weight='balanced'` en Scikit-learn o haz sobremuestreo/submuestreo para equilibrar las clases.
+
+#### Selección de hiperparámetros
+
+Controlar los hiperparámetros es clave para evitar el **sobreajuste (overfitting)** o el **subajuste (underfitting)**
+
+##### Limitar la profundidad del árbol (`max_depth`)
+
+Establecer un valor máximo para la profundidad del árbol es una de las formas más efectivas de controlar el sobreajuste. Un árbol profundo puede memorizar los datos de entrenamiento, pero tendrá baja capacidad de generalización.
+
+##### Controlar el tamaño mínimo de nodos hoja (`min_samples_leaf`)
+
+Este hiperparámetro establece el número mínimo de muestras necesarias en una hoja. Incrementarlo puede reducir el sobreajuste.
+
+##### Establecer un mínimo para dividir nodos (`min_samples_split`)
+
+Define el número mínimo de muestras necesarias para dividir un nodo. Esto puede ayudar a prevenir divisiones irrelevantes en nodos pequeños.
+
+##### Número máximo de nodos hoja (`max_leaf_nodes`)
+
+Establece un límite superior en el número de hojas. Esto simplifica el modelo y reduce el riesgo de sobreajuste.
+
+##### Criterio de división (`criterion`)
+
+Puedes elegir entre "gini" o "entropy" (en clasificación). En general, ambos funcionan bien, pero "entropy" tiende a generar árboles un poco más profundos y costosos computacionalmente.
+
+#### Evaluación y validación del modelo
+
+##### Usar Cross Validation (K-Fold)
+
+Divide los datos en múltiples folds y evalúa el rendimiento promedio para obtener una medida robusta de generalización. Esto ayuda a evitar conclusiones optimistas basadas en una única partición de los datos.
+
+##### Métricas específicas para el problema
+
+Usa métricas apropiadas según el problema. Por ejemplo, en el caso de problemas de clasificación, usa las habituales precisión, F1-score, ROC-AUC, etc. En los problemas de regresión usa MSE, MAE, R², etc.
+
+##### Evitar evaluaciones en datos no representativos
+
+Asegúrate de que los datos de prueba representen bien el problema real. Si *hay* un desbalance de clases o algún sesgo, esto debe reflejarse en las evaluaciones.
+
+#### Interpretación y explicabilidad
+
+##### Visualización del árbol
+
+Visualiza el árbol para interpretar cómo se están tomando las decisiones. Esto puede ayudarte a detectar divisiones irrelevantes o patrones interesantes. Usa herramientas como `plot_tree` de Scikit-learn o bibliotecas como `Graphviz`.
+
+##### Importancia de las características
+
+Evalúa la importancia de las características utilizando los valores de `feature_importances_`. Esto puede ayudarte a entender cuáles variables son más influyentes y eliminar las menos importantes para simplificar el modelo.
+
+##### Evitar árboles extremadamente grandes
+
+Aunque un árbol grande puede parecer más poderoso, puede ser difícil de interpretar y más propenso al sobreajuste.
+
+#### Mejora del desempeño
+
+##### Hiperparámetros óptimos con Grid Search o Random Search
+
+Usa técnicas como `GridSearchCV` o `RandomizedSearchCV` para encontrar la mejor combinación de hiperparámetros de tu árbol de decisión.
+
+##### Considerar técnicas en conjunto (*ensemble*)
+
+Los árboles individuales pueden tener limitaciones en términos de rendimiento, especialmente en problemas complejos. Considera usar enfoques del tipo **Random Forest**, combinando múltiples árboles para reducir la varianza y aumentar la estabilidad, o efectuando una **poda del árbol** con el objeto de, siempre que la implementación lo permita, eliminar ramas irrelevantes y mejorar la generalización.
+
+#### Rendimiento computacional
+
+##### Cuidado con los datos grandes
+
+En conjuntos de datos grandes, los árboles de decisión pueden volverse costosos en términos de memoria y tiempo. Si el conjunto de datos es masivo usa submuestras o árboles optimizados como los de **Random Forest**, o considera técnicas de paralelización si trabajas con implementaciones adecuadas (XGBoost o LightGBM)
+
+##### Balance entre precisión y tiempo
+
+Si el rendimiento computacional es un problema, ajusta los hiperparámetros para reducir la complejidad del árbol, como limitar `max_depth` o `max_leaf_nodes`.
+
+#### Monitoreo del sesgo y varianza
+
+##### Detectar subajuste
+
+Si el modelo tiene bajo rendimiento tanto en los datos de entrenamiento como de prueba, intenta:
+
+- Incrementar `max_depth`.
+- Reducir `min_samples_leaf` o `min_samples_split`.
+
+##### Detectar sobreajuste
+
+Si el modelo tiene alto rendimiento en el conjunto de entrenamiento pero bajo en los datos de prueba:
+
+- Limita la profundidad del árbol (`max_depth`).
+- Aumenta `min_samples_leaf` o `min_samples_split`.
+
+#### Usar un Árbol como línea base
+
+Un árbol de decisión simple puede ser una excelente línea base para problemas complejos porque, primero, es fácil de interpretar, y, segundo, proporciona una idea de qué tan bien pueden separarse los datos. Aun así, puede que el rendimiento sea insuficiente. En esos casos considera modelos más avanzados como los Random Forest o el Gradient Boosting.
+
 ### Bosques aleatorios: Introducción
 
 Los **Random Forests** (o bosques aleatorios) son una técnica de aprendizaje automático basada en la combinación de múltiples modelos, en el caso que nos ocupa, **árboles de decisión**, para realizar tareas de clasificación y regresión. Este enfoque pertenece a la categoría de los **modelos de ensamblaje (*ensemble*)**, en los que varios modelos trabajan juntos para mejorar el rendimiento del proyecto en general.
@@ -1025,13 +1149,13 @@ El error OOB se calcula al promediar las predicciones hechas para las observacio
 > P(\text{no seleccionada}) = 1 - \frac{1}{n}
 > $$
 > 
-> En un muestreo de Bootstrap, seleccionamos $n$observaciones con reemplazo. Esto significa que hacemos $n$selecciones independientes. La probabilidad de que una observación no sea seleccionada en las $n$extracciones es el producto de $P(\text{no seleccionada})$ repetido $n$ veces, lo que da:
+> En un muestreo de Bootstrap, seleccionamos $n$ observaciones con reemplazo. Esto significa que hacemos $n$selecciones independientes. La probabilidad de que una observación no sea seleccionada en las $n$extracciones es el producto de $P(\text{no seleccionada})$ repetido $n$ veces, lo que da:
 >
 > $$
 > P(\text{no seleccionada en \( n \) extracciones}) = \left(1 - \frac{1}{n}\right)^n
 > $$
 > 
-> A medida que el tamaño del conjunto de datos ($n$) crece, la expresión $\left(1 - \frac{1}{n}\right)^n$se aproxima al valor de la constante matemática $e^{-1}$ (aproximadamente 0.3679). Esto ocurre porque:
+> A medida que el tamaño del conjunto de datos ($n$) crece, la expresión $\left(1 - \frac{1}{n}\right)^n$ se aproxima al valor de la constante matemática $e^{-1}$ (aproximadamente 0.3679). Esto ocurre porque:
 >
 > $$
 > \lim_{n \to \infty} \left(1 - \frac{1}{n}\right)^n = e^{-1}
@@ -1098,5 +1222,3 @@ Un aspecto práctico es que no requieren validación cruzada para evaluar su ren
 Sin embargo, los bosques aleatorios también presentan algunas limitaciones. Uno de los principales inconvenientes es su costo computacional. Entrenar y combinar múltiples árboles puede ser muy exigente en términos de recursos, especialmente cuando se trabaja con conjuntos de datos grandes o se decide construir un bosque con un número elevado de árboles. Este costo puede limitar su uso en escenarios donde la eficiencia es clave.
 
 Por otro lado, aunque los árboles individuales son intuitivos y fáciles de interpretar, un bosque aleatorio, al ser una combinación de muchos modelos, pierde esta ventaja. Comprender cómo interactúan cientos o miles de árboles en un bosque puede ser complicado, lo que reduce su interpretabilidad general. Finalmente, aunque los bosques aleatorios son modelos muy sólidos, en algunos problemas específicos pueden no ser la mejor opción. En escenarios donde las relaciones entre características son particularmente complejas, otros modelos de ensamble, como el Gradient Boosting, a menudo logran un rendimiento superior.
-
-En conclusión, los bosques aleatorios son una herramienta poderosa, flexible y robusta, ideal para una amplia gama de problemas. Sin embargo, deben ser utilizados considerando sus limitaciones, especialmente en términos de interpretabilidad y costo computacional.
