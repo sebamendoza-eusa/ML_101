@@ -42,14 +42,18 @@ El concepto detrás de las SVM puede parecer complejo al principio, pero la idea
 
 La noción de **margen** es central para comprender cómo operan las SVM. Este margen se refiere a la distancia más pequeña entre la frontera de decisión y los puntos más cercanos de cualquier clase, conocidos como **vectores de soporte**. Un margen más amplio implica un modelo más robusto, ya que una frontera que se encuentra lejos de los puntos más cercanos es menos susceptible al ruido o a pequeños cambios en los datos. La frontera óptima, entonces, no es cualquier línea de separación, sino aquella que **maximiza este margen**.
 
-Matemáticamente, si representamos la frontera de decisión como un hiperplano definido por la ecuación:  
+Matemáticamente, si representamos la frontera de decisión como un hiperplano definido por la ecuación:
+
 $$
 w^T x + b = 0
 $$
-donde $w$ es el vector que define la orientación del hiperplano, $x$ es un punto de datos y $b$ es el sesgo que ajusta la posición de este hiperplano, puede demostrarse que el margen se calcula como:  
+
+donde $w$ es el vector que define la orientación del hiperplano, $x$ es un punto de datos y $b$ es el sesgo que ajusta la posición de este hiperplano, puede demostrarse que el margen se calcula como:
+
 $$
 M = \frac{2}{\|w\|}
 $$
+
 Así, el problema de maximización del margen puede reconvertirse a un problema de minimización de la norma de $w$ (concretamente de la norma al cuadrado), lo que estaría directamente relacionado con la optimización de las SVM. Este problema de minimización es más manejable que el problema de maximización debido a que se convierte en un problema de **optimización convexo**. La convexidad asegura un único mínimo global, lo que permite una solución del problema eficiente y estable.
 $$
 \min_{w, b} \frac{1}{2} \|w\|^2
