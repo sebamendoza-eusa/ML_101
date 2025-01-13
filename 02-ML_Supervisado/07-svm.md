@@ -215,7 +215,7 @@ Para que una función sea válida como kernel en las SVM, debe cumplir ciertas p
 >
 > En este caso, no es posible trazar una línea que separe las dos clases en el plano. Sin embargo, al aplicar un kernel (como un kernel polinómico o un kernel RBF), los puntos se transforman automáticamente a un espacio donde se puede encontrar un hiperplano que divida las clases.
 >
-> Con un **kernel polinómico** de grado 2, por ejemplo, la transformación matemática podría mapear los puntos $(x_1, x_2) $a una nueva dimensión basada en sus interacciones cuadráticas, como $(x_1^2, x_2^2, x_1x_2) $. En este espacio, las clases serían linealmente separables
+> Con un **kernel polinómico** de grado 2, por ejemplo, la transformación matemática podría mapear los puntos $(x_1, x_2)$ a una nueva dimensión basada en sus interacciones cuadráticas, como $(x_1^2, x_2^2, x_1x_2)$. En este espacio, las clases serían linealmente separables
 
 #### Concepto de *kernel trick*
 
@@ -332,7 +332,7 @@ $$
 \min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N \xi_i
 $$
     
-    Donde $\xi_i$ son las variables de relajación que permiten errores de clasificación en los márgenes blandos.
+Donde $\xi_i$ son las variables de relajación que permiten errores de clasificación en los márgenes blandos.
 
 - **`kernel`**: Define la función kernel que se utilizará para transformar los datos (e.g., lineal, polinómico, RBF).  
   - El kernel más sencillo es el **lineal**, que busca una frontera en el espacio original de los datos:
@@ -405,7 +405,7 @@ Finalmente, visualizamos los resultados gráficamente. El gráfico resultante mu
 
 ##### Para reflexionar...
 
-> **¿Cómo afecta el valor de $C $ al resultado del modelo en los ejemplos anteriores?** 
+> **¿Cómo afecta el valor de $C$ al resultado del modelo en los ejemplos anteriores?** 
 > **Clave**: Reflexiona sobre cómo $C$ controla la regularización, es decir, el equilibrio entre maximizar el margen y reducir los errores de clasificación.
 
 > **¿Qué sucede si cambiamos el kernel lineal por un kernel RBF en el caso del dataset Iris?** 
@@ -504,7 +504,7 @@ Un valor alto de $C$ da prioridad a minimizar los errores en el conjunto de entr
 
 ##### El parámetro `gamma`
 
-El parámetro $ \gamma $ es relevante para kernels como el RBF (Radial Basis Function) y controla el **alcance de la influencia de un punto de datos individual**. En el caso del kernel RBF, el valor de $ \gamma $ aparece en la fórmula:
+El parámetro $\gamma$ es relevante para kernels como el RBF (Radial Basis Function) y controla el **alcance de la influencia de un punto de datos individual**. En el caso del kernel RBF, el valor de $\gamma$ aparece en la fórmula:
 
 $$
 K(x_i, x_j) = \exp\left(-\gamma \|x_i - x_j\|^2\right)
@@ -894,17 +894,17 @@ Si bien existen variaciones de las SVM, como las **Linear SVM** implementadas en
 >
 > **Constante** $O(1)$: El tiempo o espacio requerido por el algoritmo es **independiente** del tamaño de la entrada. Es la menor complejidad posible.  Por ejemplo, acceder al valor de un elemento en un array por su índice.
 >
-> **Logarítmica** ($O(\log N)$): El tiempo o espacio aumenta lentamente a medida que crece el tamaño de los datos. Por ejemplo, una búsqueda binaria en una lista ordenada.
+> **Logarítmica** $O(\log N)$: El tiempo o espacio aumenta lentamente a medida que crece el tamaño de los datos. Por ejemplo, una búsqueda binaria en una lista ordenada.
 >
-> **Lineal** ($O(N)$): El tiempo o espacio requerido crece de manera **proporcional** al tamaño del dataset. Por ejemplo, recorrer todos los elementos de una lista.
+> **Lineal** $O(N)$: El tiempo o espacio requerido crece de manera **proporcional** al tamaño del dataset. Por ejemplo, recorrer todos los elementos de una lista.
 >
-> **Cuadrática** ($O(N^2)$): El tiempo o espacio crece de manera proporcional al **cuadrado del tamaño de los datos**. Este tipo de complejidad puede ser ineficiente para datasets grandes. Un ejemplo típico es comparación de pares de elementos en un algoritmo de fuerza bruta.
+> **Cuadrática** $O(N^2)$: El tiempo o espacio crece de manera proporcional al **cuadrado del tamaño de los datos**. Este tipo de complejidad puede ser ineficiente para datasets grandes. Un ejemplo típico es comparación de pares de elementos en un algoritmo de fuerza bruta.
 >
-> **Exponencial** ($O(2^N)$): El tiempo o espacio crece exponencialmente con el tamaño de los datos, lo que hace que este tipo de algoritmos no sea **práctico** incluso para datasets moderadamente grandes.  Por ejemplo, los algoritmos de fuerza bruta para resolver problemas combinatorios como el "viajante de comercio" pertenecerían a este tipo.
+> **Exponencial** $O(2^N)$: El tiempo o espacio crece exponencialmente con el tamaño de los datos, lo que hace que este tipo de algoritmos no sea **práctico** incluso para datasets moderadamente grandes.  Por ejemplo, los algoritmos de fuerza bruta para resolver problemas combinatorios como el "viajante de comercio" pertenecerían a este tipo.
 >
 > Sin embargo, cuando hablamos de complejidad computacional, solemos referirnos principalmente a la **complejidad en tiempo**, es decir, cuánto tiempo le toma a un algoritmo ejecutarse. En este sentido, no puede obviarse que, en algunos casos, la **complejidad de espacio** (memoria necesaria para implementar el algoritmo) también es crítica, especialmente en problemas donde el algoritmo necesita manejar grandes cantidades de datos en memoria.
 >
-> Por ejemplo, el entrenamiento de una **SVM con kernels no lineales** tiene una complejidad de tiempo de aproximadamente $O(N^3)$, ya que implica cálculos iterativos sobre todos los pares de datos. Además, requiere almacenar una **matriz kernel** de tamaño $N \times N$, lo que genera una **complejidad de espacio cuadrática** ($O(N^2)$). Estas limitaciones hacen que el entrenamiento de SVM sea prohibitivo en datasets con millones de muestras.
+> Por ejemplo, el entrenamiento de una **SVM con kernels no lineales** tiene una complejidad de tiempo de aproximadamente $O(N^3)$, ya que implica cálculos iterativos sobre todos los pares de datos. Además, requiere almacenar una **matriz kernel** de tamaño $N \times N$, lo que genera una **complejidad de espacio cuadrática** $(O(N^2))$. Estas limitaciones hacen que el entrenamiento de SVM sea prohibitivo en datasets con millones de muestras.
 >
 > En conclusión: La **complejidad computacional** nos ayuda a entender las limitaciones y la eficiencia de un algoritmo, especialmente cuando los datos crecen en tamaño. Aunque ciertos algoritmos son ideales para datasets pequeños o medianos, su complejidad puede hacerlos ineficientes o incluso inutilizables en problemas a gran escala. Por eso, conocer la complejidad computacional es crucial para elegir el algoritmo adecuado para cada tarea y optimizar el uso de recursos como tiempo y memoria.
 
