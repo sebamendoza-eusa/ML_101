@@ -315,8 +315,6 @@ En resumen, los kernels son una herramienta extremadamente poderosa que amplía 
 > **¿Qué desventajas puede tener el kernel RBF en comparación con un kernel lineal?** 
 > **Clave**: Considera el costo computacional de trabajar en un espacio de dimensión infinita frente a un espacio más simple y directo como el de un kernel lineal.
 
-
-
 ### Implementación básica de SVM en Python con scikit-learn
 
 Las Máquinas de Vectores de Soporte (SVM) son uno de los algoritmos más utilizados en Machine Learning, tanto por su capacidad para manejar problemas de clasificación como por su robustez frente a datos ruidosos. En esta sección, exploraremos cómo implementar SVM utilizando la biblioteca **scikit-learn** de Python, centrándonos en la clase `SVC` (Support Vector Classifier) para problemas de clasificación. Además, incluiremos una visualización de márgenes y fronteras de decisión para comprender mejor cómo opera este algoritmo, finalizando con un ejemplo práctico utilizando el dataset **Iris**.
@@ -330,24 +328,24 @@ En scikit-learn, la clase `SVC` permite entrenar y evaluar modelos de SVM con gr
   - Un valor pequeño de $C$ prioriza un margen más amplio, mejorando la generalización. 
   - Matemáticamente, el término $C$ aparece en la función objetivo de las SVM:
 
-    $$
-    \min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N \xi_i
-    $$
+$$
+\min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N \xi_i
+$$
     
     Donde $\xi_i$ son las variables de relajación que permiten errores de clasificación en los márgenes blandos.
 
 - **`kernel`**: Define la función kernel que se utilizará para transformar los datos (e.g., lineal, polinómico, RBF).  
   - El kernel más sencillo es el **lineal**, que busca una frontera en el espacio original de los datos:
 
-    $$
-    K(x_i, x_j) = x_i^T x_j
-    $$
+$$
+K(x_i, x_j) = x_i^T x_j
+$$
     
   - En problemas no lineales, el **kernel RBF** es una opción popular, pues proyecta los datos a un espacio de dimensión infinita:
 
-    $$
-    K(x_i, x_j) = \exp\left(-\frac{\|x_i - x_j\|^2}{2\sigma^2}\right)
-    $$
+$$
+K(x_i, x_j) = \exp\left(-\frac{\|x_i - x_j\|^2}{2\sigma^2}\right)
+$$
 
 Con estos conceptos básicos en mente, veamos cómo implementar una SVM para un problema de clasificación en Python.
 
@@ -407,8 +405,8 @@ Finalmente, visualizamos los resultados gráficamente. El gráfico resultante mu
 
 ##### Para reflexionar...
 
-> **¿Cómo afecta el valor de $ C $ al resultado del modelo en los ejemplos anteriores?** 
-> **Clave**: Reflexiona sobre cómo $ C $ controla la regularización, es decir, el equilibrio entre maximizar el margen y reducir los errores de clasificación.
+> **¿Cómo afecta el valor de $C $ al resultado del modelo en los ejemplos anteriores?** 
+> **Clave**: Reflexiona sobre cómo $C$ controla la regularización, es decir, el equilibrio entre maximizar el margen y reducir los errores de clasificación.
 
 > **¿Qué sucede si cambiamos el kernel lineal por un kernel RBF en el caso del dataset Iris?** 
 > **Clave**: Considera cómo un kernel no lineal puede mejorar la separación en datos más complejos o con fronteras no lineales.
@@ -496,13 +494,13 @@ El ajuste de hiperparámetros es una etapa crucial para mejorar el desempeño de
 
 ##### El parámetro `C`
 
-El hiperparámetro $ C $ controla el **trade-off** entre el margen máximo y la penalización por errores de clasificación en los datos de entrenamiento. Matemáticamente, aparece en la función objetivo de las SVM como:
+El hiperparámetro $C$ controla el **trade-off** entre el margen máximo y la penalización por errores de clasificación en los datos de entrenamiento. Matemáticamente, aparece en la función objetivo de las SVM como:
 
 $$
 \min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N \xi_i
 $$
 
-Un valor alto de $ C $ da prioridad a minimizar los errores en el conjunto de entrenamiento, lo que obliga al modelo a clasificar correctamente tantos puntos como sea posible. Sin embargo, esto puede llevar a un **sobreajuste**, ya que el modelo podría ajustarse demasiado a las particularidades de los datos de entrenamiento. Por otro lado, un valor bajo de $ C $ permite más errores de clasificación, lo que resulta en márgenes más amplios y un modelo con mejor **capacidad de generalización**, especialmente si los datos son ruidosos.
+Un valor alto de $C$ da prioridad a minimizar los errores en el conjunto de entrenamiento, lo que obliga al modelo a clasificar correctamente tantos puntos como sea posible. Sin embargo, esto puede llevar a un **sobreajuste**, ya que el modelo podría ajustarse demasiado a las particularidades de los datos de entrenamiento. Por otro lado, un valor bajo de \$1\$ permite más errores de clasificación, lo que resulta en márgenes más amplios y un modelo con mejor **capacidad de generalización**, especialmente si los datos son ruidosos.
 
 ##### El parámetro `gamma`
 
@@ -568,7 +566,7 @@ print("\nReporte de clasificación:\n", classification_report(y_test, y_pred))
 
 En este ejemplo práctico, demostramos cómo ajustar los hiperparámetros de una SVM utilizando la herramienta `GridSearchCV` de scikit-learn. El proceso comienza con la generación de un conjunto de datos artificial mediante la función `make_classification`. Este dataset contiene 200 puntos con dos clases, distribuidos en un espacio bidimensional, donde las características son informativas para la clasificación. Posteriormente, dividimos los datos en conjuntos de entrenamiento y prueba utilizando `train_test_split`, reservando un 30% de los datos para evaluar el modelo final.
 
-En el siguiente paso configuramos el modelo de SVM utilizando la clase `SVC`. Sin embargo, en lugar de establecer manualmente los valores de los hiperparámetros como `C`, `gamma` o el tipo de kernel, definimos un rango de posibles valores para cada uno en un diccionario llamado `param_grid`. Este rango incluye valores típicos como $ C = [0.1, 1, 10] $, $ \gamma = [0.01, 0.1, 1] $, y los kernels `'linear'` y `'rbf'`. Este conjunto de combinaciones nos permitirá explorar diferentes configuraciones del modelo y encontrar la que maximice el desempeño.
+En el siguiente paso configuramos el modelo de SVM utilizando la clase `SVC`. Sin embargo, en lugar de establecer manualmente los valores de los hiperparámetros como `C`, `gamma` o el tipo de kernel, definimos un rango de posibles valores para cada uno en un diccionario llamado `param_grid`. Este rango incluye valores típicos como $C = [0.1, 1, 10]$, $\gamma = [0.01, 0.1, 1]$, y los kernels `'linear'` y `'rbf'`. Este conjunto de combinaciones nos permitirá explorar diferentes configuraciones del modelo y encontrar la que maximice el desempeño.
 
 Con la configuración de los hiperparámetros lista, implementamos `GridSearchCV`, una herramienta que realiza una búsqueda exhaustiva probando todas las combinaciones de parámetros en el diccionario. Además, utilizamos validación cruzada con 5 particiones (definida por el parámetro `cv=5`) para evaluar el rendimiento del modelo en diferentes subconjuntos del conjunto de entrenamiento. Esto asegura que la configuración óptima encontrada no dependa exclusivamente de una partición específica de los datos.
 
@@ -589,7 +587,7 @@ Un modelo bien ajustado encuentra el balance ideal entre **complejidad** y **gen
 ##### Para reflexionar...
 
 > **¿Cómo puedes determinar si un modelo SVM está sobreajustado o subajustado según los valores de los hiperparámetros?**  
-> **Clave**: Reflexiona sobre las métricas de desempeño en entrenamiento y validación cruzada, y cómo los valores de $ C $ y $ \gamma $ pueden influir en ambos.
+> **Clave**: Reflexiona sobre las métricas de desempeño en entrenamiento y validación cruzada, y cómo los valores de $C$ y $\gamma$ pueden influir en ambos.
 
 > **¿Por qué es importante usar validación cruzada durante el ajuste de hiperparámetros?**  
 > **Clave**: Considera cómo la validación cruzada permite evaluar el modelo en múltiples subconjuntos de datos, evitando que el modelo se ajuste solo a un conjunto específico de entrenamiento.
@@ -894,7 +892,7 @@ Si bien existen variaciones de las SVM, como las **Linear SVM** implementadas en
 >
 > La complejidad computacional suele expresarse utilizando la notación **Big-O** ($O$), que describe cómo escala el tiempo o el espacio necesario a medida que crece el tamaño de los datos ($N$). Enumeramos a continuación los tipos de problemas más habituales.
 >
-> **Constante** ($O(1)$): El tiempo o espacio requerido por el algoritmo es **independiente** del tamaño de la entrada. Es la menor complejidad posible.  Por ejemplo, acceder al valor de un elemento en un array por su índice.
+> **Constante** $O(1)$: El tiempo o espacio requerido por el algoritmo es **independiente** del tamaño de la entrada. Es la menor complejidad posible.  Por ejemplo, acceder al valor de un elemento en un array por su índice.
 >
 > **Logarítmica** ($O(\log N)$): El tiempo o espacio aumenta lentamente a medida que crece el tamaño de los datos. Por ejemplo, una búsqueda binaria en una lista ordenada.
 >
