@@ -55,6 +55,7 @@ M = \frac{2}{\|w\|}
 $$
 
 Así, el problema de maximización del margen puede reconvertirse a un problema de minimización de la norma de $w$ (concretamente de la norma al cuadrado), lo que estaría directamente relacionado con la optimización de las SVM. Este problema de minimización es más manejable que el problema de maximización debido a que se convierte en un problema de **optimización convexo**. La convexidad asegura un único mínimo global, lo que permite una solución del problema eficiente y estable.
+
 $$
 \min_{w, b} \frac{1}{2} \|w\|^2
 $$
@@ -66,16 +67,20 @@ Para comprender mejor cómo funcionan los márgenes y las fronteras de decisión
 
 Supongamos que tenemos dos clases de datos representadas por puntos en el plano: círculos azules ($+1$) y triángulos rojos ($-1$). Nuestro objetivo es encontrar una línea que separe ambos tipos de puntos con el **mayor margen posible**. Esa línea no puede ser cualquiera: debe estar estratégicamente ubicada para maximizar la distancia entre los puntos más cercanos de ambas clases. Esta distancia define el **margen**.
 
-En dos dimensiones, una recta puede representarse mediante la ecuación:  
+En dos dimensiones, una recta puede representarse mediante la ecuación: 
+
 $$
 w_1 x_1 + w_2 x_2 + b = 0
 $$
-donde:  
+
+donde: 
+
 - $x_1$ y $x_2$ son las coordenadas de un punto en el plano,  
 - $w_1$ y $w_2$ son los pesos que definen la orientación de la recta, y  
 - $b$ es el sesgo que ajusta su posición.
 
-Esta ecuación divide el plano en dos regiones:  
+Esta ecuación divide el plano en dos regiones: 
+
 - Los puntos donde $w_1 x_1 + w_2 x_2 + b > 0$ pertenecen a una clase ($+1$).  
 - Los puntos donde $w_1 x_1 + w_2 x_2 + b < 0$ pertenecen a la otra clase ($-1$).  
 
@@ -83,15 +88,18 @@ La recta misma, definida por la igualdad $w_1 x_1 + w_2 x_2 + b = 0$, actúa com
 
 El **margen** es la distancia perpendicular entre la frontera de decisión y los puntos más cercanos de ambas clases, que llamamos **vectores de soporte**. Para las SVM, el margen no es un concepto abstracto; es el objetivo principal: maximizarlo es lo que permite que el modelo sea más robusto frente a nuevos datos.
 
-En este caso bidimensional, la distancia de un punto $x = (x_1, x_2)$a la recta puede calcularse como:  
+En este caso bidimensional, la distancia de un punto $x = (x_1, x_2)$ a la recta puede calcularse como: 
+
 $$
 \text{Distancia} = \frac{|w_1 x_1 + w_2 x_2 + b|}{\sqrt{w_1^2 + w_2^2}}
 $$
 
-Para los puntos que definen los márgenes (vectores de soporte), esta distancia se fija en 1. Esto significa que las rectas paralelas al hiperplano óptimo, que se encuentran a una distancia $+1$ y $-1$, definen el margen. Matemáticamente, estas rectas se representan como:  
+Para los puntos que definen los márgenes (vectores de soporte), esta distancia se fija en 1. Esto significa que las rectas paralelas al hiperplano óptimo, que se encuentran a una distancia $+1$ y $-1$, definen el margen. Matemáticamente, estas rectas se representan como:
+
 $$
 w_1 x_1 + w_2 x_2 + b = 1 \quad \text{(margen positivo)}
 $$
+
 $$
 w_1 x_1 + w_2 x_2 + b = -1 \quad \text{(margen negativo)}
 $$
@@ -102,7 +110,7 @@ La distancia entre estas dos rectas es lo que la SVM maximiza. Representemos el 
 
 - Los círculos azules ($+1$) están en un lado del plano.  
 - Los triángulos rojos ($-1$) están en el otro lado.  
-- Entre ambas clases hay una recta, la frontera de decisión, que separa los círculos de los triángulos.  
+- Entre ambas clases hay una recta, la frontera de decisión, que separa los círculos de los triángulos. 
 
 Además, hay dos rectas adicionales paralelas a la frontera de decisión que marcan los márgenes. Los puntos de cada clase que tocan estas rectas paralelas son los vectores de soporte. Estos puntos son los más críticos para determinar la posición de la recta de separación. Los puntos más alejados no afectan en absoluto la posición del hiperplano.
 
@@ -122,22 +130,28 @@ Además, hay dos rectas adicionales paralelas a la frontera de decisión que mar
 
 #### Márgenes blandos (*soft-margins*) y regularización
 
-En cualquier caso, la construcción de una SVM implica formular un problema de optimización cuyo objetivo es encontrar el hiperplano que maximice el margen. Para que esto sea posible, los datos deben cumplir ciertas condiciones de separabilidad, formalizadas como:  
+En cualquier caso, la construcción de una SVM implica formular un problema de optimización cuyo objetivo es encontrar el hiperplano que maximice el margen. Para que esto sea posible, los datos deben cumplir ciertas condiciones de separabilidad, formalizadas como: 
+
 $$
 y_i (w^T x_i + b) \geq 1 \quad \forall i
 $$
+
 donde $y_i$ representa la etiqueta de la clase ($+1$ o $-1$) y $x_i$ es el punto de datos correspondiente. Esta desigualdad asegura que cada punto esté correctamente clasificado y se encuentre al menos a una distancia de 1 del hiperplano. Sin embargo, en problemas del mundo real, los datos no siempre son perfectamente separables, lo que da lugar al concepto de márgenes blandos.
 
-En la práctica, es común encontrarse con conjuntos de datos donde las clases no pueden separarse perfectamente con una línea o un plano. Para manejar este escenario, las SVM introducen el concepto de **márgenes blandos**, que permiten ciertos errores de clasificación al incorporar un término de relajación $\xi_i$. Este término ajusta la cantidad de puntos que pueden violar las restricciones de clasificación:  
+En la práctica, es común encontrarse con conjuntos de datos donde las clases no pueden separarse perfectamente con una línea o un plano. Para manejar este escenario, las SVM introducen el concepto de **márgenes blandos**, que permiten ciertos errores de clasificación al incorporar un término de relajación $\xi_i$. Este término ajusta la cantidad de puntos que pueden violar las restricciones de clasificación: 
+
 $$
 y_i (w^T x_i + b) \geq 1 - \xi_i \quad \text{con } \xi_i \geq 0
 $$
+
 El modelo resultante equilibra dos objetivos: maximizar el margen y minimizar los errores de clasificación. Esto se logra mediante un parámetro de regularización, $C$, que controla el equilibrio entre ambos objetivos. Un valor alto de $C$ da prioridad a minimizar los errores, lo que puede llevar al sobreajuste, mientras que un valor bajo favorece márgenes más amplios y una mejor generalización.
 
-La función objetivo para este escenario queda formulada como:  
+La función objetivo para este escenario queda formulada como: 
+
 $$
 \min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N \xi_i
 $$
+
 Aquí, la primera parte $\frac{1}{2} \|w\|^2$ busca maximizar el margen, mientras que **la segunda parte penaliza los errores de clasificación.**
 
 #### Intuición geométrica de los vectores de soporte
@@ -146,20 +160,14 @@ Los vectores de soporte son aquellas observaciones de nuestro conjunto de entren
 
 > **Ejemplo**: Supongamos que estás desarrollando un modelo para clasificar correos electrónicos como spam o no spam. Si solo unos pocos correos están cerca del límite entre ambas categorías, estos serán los vectores de soporte. Los correos que están claramente etiquetados (por ejemplo, un mensaje publicitario obvio o un mensaje personal claro) no afectan directamente la frontera de decisión.
 
-
-
 > [!warning]
 >
 > Las SVM ofrecen un enfoque matemáticamente sólido y robusto para problemas de clasificación y regresión. Su capacidad para encontrar un margen óptimo, combinada con su flexibilidad para manejar datos no separables mediante márgenes blandos, las convierte en una herramienta esencial en el repertorio de Machine Learning. Sin embargo, comprender los conceptos de márgenes, hiperplanos y vectores de soporte es fundamental antes de avanzar a temas más avanzados, como el kernel trick.
-
-
 
 ##### Para reflexionar...
 
 > **¿Por qué crees que las SVM maximizan el margen en lugar de simplemente minimizar los errores de clasificación en los datos de entrenamiento?** 
 > **Clave**: Piensa en cómo un margen amplio puede mejorar la capacidad del modelo para generalizar a nuevos datos, evitando el sobreajuste causado por centrarse exclusivamente en los datos de entrenamiento.
-
-
 
 ### El *truco del Kernel* (Kernel trick): SVM para problemas no lineales
 
@@ -182,6 +190,7 @@ K(x_i, x_j) = \phi(x_i)^T \phi(x_j)
 $$
 
 Donde:
+
 - $K(x_i, x_j)$ es el valor del kernel (es decir, la similitud entre $x_i$ y $x_j$).
 - $\phi(x_i)$ y $\phi(x_j)$ son las versiones transformadas de $x_i$ y $x_j$ en el espacio de mayor dimensión.
 - $\phi(x_i)^T \phi(x_j)$ es el producto escalar entre los vectores transformados.
@@ -258,6 +267,7 @@ K(x_i, x_j) = \exp\left(-\frac{\|x_i - x_j\|^2}{2\sigma^2}\right)
 $$
 
 Donde:
+
 - $\|x_i - x_j\|^2$ es la distancia euclidiana al cuadrado entre los puntos $x_i$ y $x_j $.
 - $\sigma$ controla el alcance de la influencia de cada punto.
 
@@ -280,8 +290,6 @@ Donde:
 Este kernel tiene similitudes con una neurona en una red neuronal, por lo que a menudo se utiliza en problemas relacionados con redes neuronales.
 
 > **Ejemplo**: Problemas de clasificación binaria en conjuntos de datos no lineales donde las clases están separadas por una función similar a la sigmoide.
-
-
 
 <img src=".\assets\download-(17)-(1).webp" alt="How to Choose the Best Kernel Function for SVMs - GeeksforGeeks" />
 
@@ -319,19 +327,24 @@ En scikit-learn, la clase `SVC` permite entrenar y evaluar modelos de SVM con gr
 
 - **`C`**: Controla el equilibrio entre maximizar el margen y minimizar los errores de clasificación (regularización).  
   - Un valor grande de $C$ busca minimizar los errores en los datos de entrenamiento, pero puede sobreajustarse.
-  - Un valor pequeño de $C$ prioriza un margen más amplio, mejorando la generalización.  
+  - Un valor pequeño de $C$ prioriza un margen más amplio, mejorando la generalización. 
   - Matemáticamente, el término $C$ aparece en la función objetivo de las SVM:
+
     $$
     \min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N \xi_i
     $$
+    
     Donde $\xi_i$ son las variables de relajación que permiten errores de clasificación en los márgenes blandos.
 
 - **`kernel`**: Define la función kernel que se utilizará para transformar los datos (e.g., lineal, polinómico, RBF).  
   - El kernel más sencillo es el **lineal**, que busca una frontera en el espacio original de los datos:
+
     $$
     K(x_i, x_j) = x_i^T x_j
     $$
+    
   - En problemas no lineales, el **kernel RBF** es una opción popular, pues proyecta los datos a un espacio de dimensión infinita:
+
     $$
     K(x_i, x_j) = \exp\left(-\frac{\|x_i - x_j\|^2}{2\sigma^2}\right)
     $$
@@ -411,6 +424,7 @@ Hemos visto cómo en scikit-learn, existen diferentes implementaciones de SVM de
 ##### `SVC` (Support Vector Classification)
 
 Esta clase se utiliza para resolver problemas de clasificación general. El modelo busca encontrar un hiperplano que maximice el margen entre las clases, permitiendo manejar problemas lineales y no lineales dependiendo del kernel elegido. Los márgenes blandos se introducen para permitir algunos errores de clasificación, y el parámetro $C$ controla el equilibrio entre maximizar el margen y minimizar los errores. Matemáticamente, la frontera de decisión en el caso de un kernel lineal se define como:
+
 $$
 w^T x + b = 0
 $$
@@ -430,20 +444,27 @@ En la regresión tradicional, como la regresión lineal, el objetivo es minimiza
 El concepto de **epsilon-tube** se refiere a una franja (o tubo) alrededor de la función de predicción dentro de la cual los errores no son penalizados. Esto significa que si la predicción de un punto está a una distancia menor o igual a $\epsilon$ del valor real, el modelo lo considera como un ajuste aceptable. Los puntos fuera de esta franja son penalizados, y los vectores de soporte en SVR son los puntos que se encuentran fuera o exactamente en el límite de esta franja.
 
 Matemáticamente, el problema de optimización en SVR se plantea como minimizar la función:
+
 $$
 \frac{1}{2} \|w\|^2 + C \sum_{i=1}^N (\xi_i + \xi_i^*)
 $$
+
 Sujeto a:
+
 $$
 y_i - (w^T x_i + b) \leq \epsilon + \xi_i
 $$
+
 $$
 (w^T x_i + b) - y_i \leq \epsilon + \xi_i^*
 $$
+
 $$
 \xi_i, \xi_i^* \geq 0
 $$
+
 Donde:
+
 - $w$ es el vector de pesos que define la función predicha.
 - $b$ es el sesgo o bias.
 - $\xi_i$ y $\xi_i^*$ son términos de relajación que permiten manejar errores fuera de la franja epsilon-tube.
@@ -618,6 +639,7 @@ Repasemos de nuevo las métricas que evalúan el desempeño de un modelo con dat
 ##### **Precision**
 
 Evalúa la proporción de predicciones correctas para una clase específica. Es especialmente útil cuando los falsos positivos tienen un alto costo.
+
 $$
 \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}
 $$
@@ -625,6 +647,7 @@ $$
 ##### **Recall (Sensibilidad)**
 
 Mide la capacidad del modelo para identificar correctamente los ejemplos de una clase específica. Es crucial cuando los falsos negativos son costosos.
+
 $$
 \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
 $$
@@ -632,6 +655,7 @@ $$
 ##### **F1-score**
 
 Es la media armónica entre la precisión y el recall. Proporciona un balance entre ambos, especialmente útil cuando existe un desbalance significativo.
+
 $$
 \text{F1} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
 $$
