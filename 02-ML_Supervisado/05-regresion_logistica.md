@@ -40,9 +40,11 @@ A lo largo de este tema, exploraremos sus fundamentos matemáticos, métodos de 
 Los fundamentos de la técnica de la **regresión logística** hay que buscarlos en la estadística o la probabilidad, y su desarrollo está estrechamente vinculado a la evolución del análisis matemático en estos campos. Este modelo, que hoy se considera fundamental en machine learning para tareas de clasificación, comenzó como **una herramienta estadística para estudiar y modelar relaciones no lineales en datos categóricos.**
 
 El término "logística" proviene de la **función logística**, que fue introducida por el matemático Pierre François Verhulst en 1838 para modelar el crecimiento poblacional. Verhulst propuso que el crecimiento poblacional sigue un patrón sigmoide debido a la interacción entre el incremento exponencial inicial y la limitación eventual impuesta por recursos finitos. Esta función logística se define como:
+
 $$
 \sigma(z) = \frac{1}{1 + e^{-z}}
 $$
+
 Donde $z$ es una combinación lineal de las variables explicativas,
 
 ![image-20241122082431721](./assets/image-20241122082431721.png)
