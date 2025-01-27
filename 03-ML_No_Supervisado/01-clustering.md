@@ -183,7 +183,7 @@ Las distancias entre A y B serían:
 | Métrica | Distancia A-B|
 | ----------------- | -------------------------------------- |
 | Euclidiana| $\sqrt{(4-1)^2 + (5-1)^2} = 5$ |
-| Manhattan | $|4-1| + |5-1| = 7$ |
+| Manhattan | \|4-1\| + \|5-1\| = 7 |
 | Minkowski ($p=3$) | $(27 + 64)^{\frac{1}{3}} \approx 4.64$ |
 
 Las distancias entre A y C serían:
@@ -191,7 +191,7 @@ Las distancias entre A y C serían:
 | Métrica | Distancia A-C|
 | ----------------- | ---------------------------------- |
 | Euclidiana| $\sqrt{(1-1)^2 + (5-1)^2} = 4$ |
-| Manhattan | $|1-1|+ |5-1|= 6$ |
+| Manhattan | \|1-1\|+ \|5-1\|= 6 |
 | Minkowski ($p=3$) | $(0 + 64)^{\frac{1}{3}} \approx 4$ |
 
 Esto demuestra cómo cada métrica considera la relación entre los puntos de manera diferente, lo que puede influir en los resultados del clustering.
