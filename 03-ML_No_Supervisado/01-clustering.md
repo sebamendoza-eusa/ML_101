@@ -124,6 +124,7 @@ $$
 > $$
 > |5 - 2| + |7 - 3| = 3 + 4 = 7
 > $$
+> 
 > Visualmente, en lugar de tomar la ruta más corta en línea recta (como en la distancia Euclidiana), te moverías primero hacia la derecha y luego hacia arriba siguiendo las calles de la ciudad.  
 >
 
@@ -133,9 +134,9 @@ La distancia Manhattan es útil en situaciones donde las variables representan d
 
 La **distancia de Minkowski** es una generalización de las distancias Euclidiana y Manhattan. Introduce un parámetro $p$ que ajusta la fórmula para comportarse como una u otra.  Su expresión matemática sería:
 
-$\$
+$$
 d(x, y) = \left( \sum_{i=1}^{n} |x_i - y_i|^p \right)^{\frac{1}{p}}
-\$$
+$$
 
 > **Ejemplo:**  
 >
@@ -171,13 +172,13 @@ La distancia de Hamming se emplea en aplicaciones como la detección de errores 
 
 ##### **Comparación práctica de las métricas**  
 
-Para ilustrar la diferencia entre estas métricas, supongamos que queremos comparar tres puntos en un plano:  
+Para ilustrar la diferencia entre estas métricas, supongamos que queremos comparar tres puntos en un plano: 
 
-- Punto A: $(1,1)$  
-- Punto B: $(4,5)$  
-- Punto C: $(1,5)$  
+- Punto A: $(1,1)$ 
+- Punto B: $(4,5)$ 
+- Punto C: $(1,5)$ 
 
-Las distancias entre A y B serían:  
+Las distancias entre A y B serían: 
 
 | Métrica           | Distancia A-B                          |
 | ----------------- | -------------------------------------- |
@@ -197,7 +198,7 @@ Esto demuestra cómo cada métrica considera la relación entre los puntos de ma
 
 ---
 
-###### **Para reflexionar...**  
+###### **Para reflexionar...** 
 > **¿Cómo influiría el uso de la distancia Manhattan en un problema de clustering de clientes basado en sus hábitos de compra?** 
 > **Clave:** Piensa en cómo la estructura del problema influye en la elección de la métrica adecuada.
 
@@ -659,9 +660,11 @@ La **matriz de covarianza**, por su parte, describe la forma del clúster y su o
 Por último, el **peso** de cada componente indica la importancia relativa de ese clúster dentro del conjunto total de datos. En términos simples, refleja la proporción de datos que se espera que pertenezcan a cada grupo.
 
 En conjunto, la combinación de estas distribuciones gaussianas define la probabilidad total de cualquier punto de datos. Matemáticamente, el modelo se expresa como una suma ponderada de todas las distribuciones gaussianas individuales, donde cada una contribuye en función de su peso, media y covarianza:
+
 $$
 p(x) = \sum_{i=1}^{k} \pi_i \mathcal{N}(x \mid \mu_i, \Sigma_i)
 $$
+
 Donde:
 
 - $k$ es el número de clústeres.
