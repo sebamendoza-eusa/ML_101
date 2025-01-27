@@ -67,49 +67,49 @@ Otro caso interesante se encuentra en la **personalización de contenido web**, 
 >
 > **Clave:** Reflexiona sobre la capacidad del clustering para descubrir patrones ocultos que podrían pasar desapercibidos en un análisis superficial.
 
-### **Conceptos clave en clustering**  
+### **Conceptos clave en clustering**
 
 El clustering es una técnica de aprendizaje no supervisado que permite encontrar estructuras ocultas en los datos a partir de su similitud. Para comprender su funcionamiento, es esencial conocer algunos conceptos fundamentales que determinan la calidad del agrupamiento y guían la selección de los algoritmos más adecuados para cada problema. Entre estos conceptos, la **similitud entre datos**, la representación en espacios de distintas dimensiones y la elección de métricas de distancia juegan un papel crucial. Asimismo, la manera en que se define un clúster, considerando elementos como su centroide, baricentro o densidad, son clave para la interpretación y aplicación práctica de los resultados. 
 
-#### **La noción de similitud entre datos**  
+#### **La noción de similitud entre datos**
 
-El éxito del clustering depende de la capacidad de identificar **datos similares**, es decir, aquellos que comparten ciertas características. La similitud entre dos observaciones se evalúa a través de una medida cuantificable que permite determinar qué tan cerca o lejos están en el espacio de representación.  
+El éxito del clustering depende de la capacidad de identificar **datos similares**, es decir, aquellos que comparten ciertas características. La similitud entre dos observaciones se evalúa a través de una medida cuantificable que permite determinar qué tan cerca o lejos están en el espacio de representación.
 
-Esta similitud puede estar basada en distintas propiedades, como la proximidad en términos numéricos o la coincidencia de características en datos categóricos. Por ejemplo, en un conjunto de datos de clientes, la similitud podría evaluarse a partir de atributos como la edad, el nivel de ingresos o los hábitos de compra. Sin embargo, la elección de qué características considerar y cómo medir su similitud es un aspecto crítico que influye en la calidad de los grupos formados.  
+Esta similitud puede estar basada en distintas propiedades, como la proximidad en términos numéricos o la coincidencia de características en datos categóricos. Por ejemplo, en un conjunto de datos de clientes, la similitud podría evaluarse a partir de atributos como la edad, el nivel de ingresos o los hábitos de compra. Sin embargo, la elección de qué características considerar y cómo medir su similitud es un aspecto crítico que influye en la calidad de los grupos formados.
 
-Es importante destacar que en algunos casos, los datos pueden ser similares bajo ciertas condiciones y diferentes bajo otras. Por ejemplo, dos clientes podrían ser similares en sus hábitos de gasto, pero completamente distintos en sus preferencias de productos. Esto resalta la importancia de comprender el contexto del problema antes de aplicar una técnica de clustering.  
+Es importante destacar que en algunos casos, los datos pueden ser similares bajo ciertas condiciones y diferentes bajo otras. Por ejemplo, dos clientes podrían ser similares en sus hábitos de gasto, pero completamente distintos en sus preferencias de productos. Esto resalta la importancia de comprender el contexto del problema antes de aplicar una técnica de clustering.
 
-#### **Espacios de representación y dimensionalidad**  
+#### **Espacios de representación y dimensionalidad**
 
-Los datos con los que trabajamos en clustering se representan en espacios multidimensionales, donde cada dimensión corresponde a una característica o variable. En un espacio bidimensional, es fácil visualizar la relación entre dos variables, pero en problemas del mundo real, los datos suelen tener muchas más dimensiones, lo que dificulta su representación e interpretación.  
+Los datos con los que trabajamos en clustering se representan en espacios multidimensionales, donde cada dimensión corresponde a una característica o variable. En un espacio bidimensional, es fácil visualizar la relación entre dos variables, pero en problemas del mundo real, los datos suelen tener muchas más dimensiones, lo que dificulta su representación e interpretación.
 
-La **alta dimensionalidad** plantea desafíos importantes. A medida que se incrementa el número de dimensiones, las observaciones tienden a dispersarse en el espacio, y la diferencia entre puntos cercanos y lejanos se vuelve menos significativa. Este fenómeno, conocido como la **maldición de la dimensionalidad**, puede afectar la capacidad del algoritmo para encontrar agrupaciones significativas, ya que las distancias entre puntos tienden a homogenizarse y los datos pierden estructura discernible.  
+La **alta dimensionalidad** plantea desafíos importantes. A medida que se incrementa el número de dimensiones, las observaciones tienden a dispersarse en el espacio, y la diferencia entre puntos cercanos y lejanos se vuelve menos significativa. Este fenómeno, conocido como la **maldición de la dimensionalidad**, puede afectar la capacidad del algoritmo para encontrar agrupaciones significativas, ya que las distancias entre puntos tienden a homogenizarse y los datos pierden estructura discernible.
 
-Para hacer frente a estos problemas, a menudo se utilizan técnicas de **reducción de dimensionalidad**, como el Análisis de Componentes Principales (PCA) o t-SNE, que permiten representar los datos en un espacio de menor dimensión conservando la mayor cantidad posible de información relevante. Estas técnicas no solo facilitan la visualización, sino que también pueden mejorar el rendimiento de los algoritmos de clustering al eliminar redundancias y ruido en los datos.  
+Para hacer frente a estos problemas, a menudo se utilizan técnicas de **reducción de dimensionalidad**, como el Análisis de Componentes Principales (PCA) o t-SNE, que permiten representar los datos en un espacio de menor dimensión conservando la mayor cantidad posible de información relevante. Estas técnicas no solo facilitan la visualización, sino que también pueden mejorar el rendimiento de los algoritmos de clustering al eliminar redundancias y ruido en los datos.
 
 #### **Métricas de distancia**
 
 La forma en que medimos la distancia entre puntos es crucial para definir la similitud y, por ende, la agrupación en clústeres. Diferentes algoritmos de clustering utilizan diversas métricas de distancia que influyen en la forma en que se construyen los grupos. Algunas de las más utilizadas se enumeran a continuación
 
-##### **Distancia Euclidiana: "La distancia en línea recta"**  
+##### **Distancia Euclidiana: "La distancia en línea recta"**
 
-La **distancia Euclidiana** es la más intuitiva, ya que mide la separación en línea recta entre dos puntos en el espacio, como si midieras con una regla.  Su expresión matemática es la siguiente
+La **distancia Euclidiana** es la más intuitiva, ya que mide la separación en línea recta entre dos puntos en el espacio, como si midieras con una regla.Su expresión matemática es la siguiente
 
 $$
 d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}
 $$
 
-> **Ejemplo:**  
+> **Ejemplo:**
 >
-> Imagina que dos tiendas están ubicadas en un plano cartesiano. La tienda A está en la coordenada $(2,3)$ y la tienda B en $(5,7)$. La distancia Euclidiana entre ellas sería:  
+> Imagina que dos tiendas están ubicadas en un plano cartesiano. La tienda A está en la coordenada $(2,3)$ y la tienda B en $(5,7)$. La distancia Euclidiana entre ellas sería:
 >
 > $$
 > \sqrt{(5-2)^2 + (7-3)^2} = \sqrt{9 + 16} = \sqrt{25} = 5
 > $$
 
-Si representamos este cálculo en un mapa, la distancia Euclidiana sería la línea recta más corta entre ambas tiendas. Esta métrica es ideal cuando las características tienen la misma escala y no están correlacionadas. Sin embargo, en datos de alta dimensionalidad, la distancia Euclidiana puede volverse poco discriminativa debido a la maldición de la dimensionalidad.  
+Si representamos este cálculo en un mapa, la distancia Euclidiana sería la línea recta más corta entre ambas tiendas. Esta métrica es ideal cuando las características tienen la misma escala y no están correlacionadas. Sin embargo, en datos de alta dimensionalidad, la distancia Euclidiana puede volverse poco discriminativa debido a la maldición de la dimensionalidad.
 
-##### **Distancia Manhattan: "Moverse por una cuadrícula"**  
+##### **Distancia Manhattan: "Moverse por una cuadrícula"**
 
 A diferencia de la distancia Euclidiana, la **distancia Manhattan** mide la suma de las diferencias absolutas entre las coordenadas, desplazándose en líneas rectas paralelas a los ejes, como si te movieras por las calles de una ciudad en forma de cuadrícula. Su expresión es:
 
@@ -117,60 +117,60 @@ $$
 d(x, y) = \sum_{i=1}^{n} |x_i - y_i|
 $$
 
-> **Ejemplo:**  
+> **Ejemplo:**
 >
-> Supongamos que quieres caminar de un punto a otro en una ciudad con calles en cuadrícula. Si el punto A está en $(2,3)$ y el punto B en $(5,7)$, la distancia Manhattan sería:  
+> Supongamos que quieres caminar de un punto a otro en una ciudad con calles en cuadrícula. Si el punto A está en $(2,3)$ y el punto B en $(5,7)$, la distancia Manhattan sería:
 >
 > $$
 > |5 - 2| + |7 - 3| = 3 + 4 = 7
 > $$
 > 
-> Visualmente, en lugar de tomar la ruta más corta en línea recta (como en la distancia Euclidiana), te moverías primero hacia la derecha y luego hacia arriba siguiendo las calles de la ciudad.  
+> Visualmente, en lugar de tomar la ruta más corta en línea recta (como en la distancia Euclidiana), te moverías primero hacia la derecha y luego hacia arriba siguiendo las calles de la ciudad.
 >
 
 La distancia Manhattan es útil en situaciones donde las variables representan dimensiones separadas, como en la logística y el procesamiento de imágenes. 
 
-##### **Distancia de Minkowski: "Una métrica generalizada"**  
+##### **Distancia de Minkowski: "Una métrica generalizada"**
 
-La **distancia de Minkowski** es una generalización de las distancias Euclidiana y Manhattan. Introduce un parámetro $p$ que ajusta la fórmula para comportarse como una u otra.  Su expresión matemática sería:
+La **distancia de Minkowski** es una generalización de las distancias Euclidiana y Manhattan. Introduce un parámetro $p$ que ajusta la fórmula para comportarse como una u otra.Su expresión matemática sería:
 
 $$
 d(x, y) = \left( \sum_{i=1}^{n} |x_i - y_i|^p \right)^{\frac{1}{p}}
 $$
 
-> **Ejemplo:**  
+> **Ejemplo:**
 >
-> Si establecemos $p = 2$, la fórmula se convierte en la distancia Euclidiana, mientras que si usamos $p = 1$, obtenemos la distancia Manhattan.  
+> Si establecemos $p = 2$, la fórmula se convierte en la distancia Euclidiana, mientras que si usamos $p = 1$, obtenemos la distancia Manhattan.
 >
-> Imagina un punto A en $(2,3)$ y un punto B en $(5,7)$. Si usamos Minkowski con $p = 3$:  
+> Imagina un punto A en $(2,3)$ y un punto B en $(5,7)$. Si usamos Minkowski con $p = 3$:
 >
 > $$
 > \left( |5 - 2|^3 + |7 - 3|^3 \right)^{\frac{1}{3}} = (27 + 64)^{\frac{1}{3}} = 91^{\frac{1}{3}} \approx 4.49
 > $$
 
-Esta métrica permite ajustar el valor de $p$ según las características de los datos, proporcionando flexibilidad en problemas donde no está claro qué tipo de distancia es más adecuada.  
+Esta métrica permite ajustar el valor de $p$ según las características de los datos, proporcionando flexibilidad en problemas donde no está claro qué tipo de distancia es más adecuada.
 
-##### **Distancia de Hamming: "Contando diferencias"**  
+##### **Distancia de Hamming: "Contando diferencias"**
 
-Cuando se trabaja con datos categóricos, la **distancia de Hamming** resulta particularmente útil. Esta métrica cuenta la cantidad de posiciones en las que dos secuencias de caracteres difieren, lo que la hace ideal para comparar cadenas de texto, secuencias de ADN o códigos binarios.  Su expresión es:
+Cuando se trabaja con datos categóricos, la **distancia de Hamming** resulta particularmente útil. Esta métrica cuenta la cantidad de posiciones en las que dos secuencias de caracteres difieren, lo que la hace ideal para comparar cadenas de texto, secuencias de ADN o códigos binarios.Su expresión es:
 
 $$
 d(x, y) = \sum_{i=1}^{n} \mathbb{1}(x_i \neq y_i)
 $$
 
-> **Ejemplo:**  
+> **Ejemplo:**
 >
-> Supongamos que tenemos dos códigos de producto representados como cadenas binarias:  
+> Supongamos que tenemos dos códigos de producto representados como cadenas binarias:
 >
-> - Producto A: `101110`  
-> - Producto B: `100100`  
+> - Producto A: `101110`
+> - Producto B: `100100`
 >
-> Comparando posición por posición, observamos diferencias en las posiciones 2 y 5, lo que da una distancia de Hamming de 2.  
+> Comparando posición por posición, observamos diferencias en las posiciones 2 y 5, lo que da una distancia de Hamming de 2.
 >
 
-La distancia de Hamming se emplea en aplicaciones como la detección de errores en transmisión de datos y en el análisis de similitud en secuencias biológicas.  
+La distancia de Hamming se emplea en aplicaciones como la detección de errores en transmisión de datos y en el análisis de similitud en secuencias biológicas.
 
-##### **Comparación práctica de las métricas**  
+##### **Comparación práctica de las métricas**
 
 Para ilustrar la diferencia entre estas métricas, supongamos que queremos comparar tres puntos en un plano: 
 
@@ -180,21 +180,21 @@ Para ilustrar la diferencia entre estas métricas, supongamos que queremos compa
 
 Las distancias entre A y B serían: 
 
-| Métrica           | Distancia A-B                          |
+| Métrica | Distancia A-B|
 | ----------------- | -------------------------------------- |
-| Euclidiana        | $\sqrt{(4-1)^2 + (5-1)^2} = 5$         |
-| Manhattan         | $|4-1| + |5-1| = 7$                    |
+| Euclidiana| $\sqrt{(4-1)^2 + (5-1)^2} = 5$ |
+| Manhattan | $|4-1| + |5-1| = 7$ |
 | Minkowski ($p=3$) | $(27 + 64)^{\frac{1}{3}} \approx 4.64$ |
 
-Las distancias entre A y C serían:  
+Las distancias entre A y C serían:
 
-| Métrica           | Distancia A-C                      |
+| Métrica | Distancia A-C|
 | ----------------- | ---------------------------------- |
-| Euclidiana        | $\sqrt{(1-1)^2 + (5-1)^2} = 4$     |
-| Manhattan         | $|1-1|+ |5-1|= 6$                  |
+| Euclidiana| $\sqrt{(1-1)^2 + (5-1)^2} = 4$ |
+| Manhattan | $|1-1|+ |5-1|= 6$ |
 | Minkowski ($p=3$) | $(0 + 64)^{\frac{1}{3}} \approx 4$ |
 
-Esto demuestra cómo cada métrica considera la relación entre los puntos de manera diferente, lo que puede influir en los resultados del clustering.  
+Esto demuestra cómo cada métrica considera la relación entre los puntos de manera diferente, lo que puede influir en los resultados del clustering.
 
 ---
 
@@ -206,49 +206,49 @@ Esto demuestra cómo cada métrica considera la relación entre los puntos de ma
 
 > [!warning]
 >
-> Elegir la métrica de distancia correcta es crucial para el éxito del clustering. Mientras que la distancia Euclidiana es adecuada para datos numéricos homogéneos, la distancia Manhattan resulta útil cuando las variables representan dimensiones independientes. Por otro lado, la distancia de Hamming es imprescindible en problemas con datos categóricos, y la distancia de Minkowski ofrece flexibilidad para adaptar el análisis a las características de los datos.  
+> Elegir la métrica de distancia correcta es crucial para el éxito del clustering. Mientras que la distancia Euclidiana es adecuada para datos numéricos homogéneos, la distancia Manhattan resulta útil cuando las variables representan dimensiones independientes. Por otro lado, la distancia de Hamming es imprescindible en problemas con datos categóricos, y la distancia de Minkowski ofrece flexibilidad para adaptar el análisis a las características de los datos.
 >
-> Cada métrica tiene sus ventajas y desventajas, y su elección debe basarse en una comprensión profunda del dominio del problema y la naturaleza de los datos.  
+> Cada métrica tiene sus ventajas y desventajas, y su elección debe basarse en una comprensión profunda del dominio del problema y la naturaleza de los datos.
 
-#### **Centroide, baricentro y densidad: elementos clave en la formación de clústeres**  
+#### **Centroide, baricentro y densidad: elementos clave en la formación de clústeres**
 
-Los algoritmos de clustering suelen basarse en la idea de que cada clúster puede representarse mediante un **punto central**, que resume la información del grupo. Este punto puede adoptar distintas definiciones según el método utilizado.  
+Los algoritmos de clustering suelen basarse en la idea de que cada clúster puede representarse mediante un **punto central**, que resume la información del grupo. Este punto puede adoptar distintas definiciones según el método utilizado.
 
-El **centroide** de un clúster es el punto promedio de todas las observaciones contenidas en él y se utiliza en algoritmos como K-Means para representar el centro geométrico del grupo. Se calcula como la media aritmética de las coordenadas de todos los puntos en el clúster, proporcionando una representación eficaz cuando la **distancia Euclidiana** es una métrica adecuada para medir similitudes. Matemáticamente, el centroide de un conjunto de $n$ puntos $x_1, x_2, \dots, x_n$ en un espacio de dimensión $d$ se define como:  
+El **centroide** de un clúster es el punto promedio de todas las observaciones contenidas en él y se utiliza en algoritmos como K-Means para representar el centro geométrico del grupo. Se calcula como la media aritmética de las coordenadas de todos los puntos en el clúster, proporcionando una representación eficaz cuando la **distancia Euclidiana** es una métrica adecuada para medir similitudes. Matemáticamente, el centroide de un conjunto de $n$ puntos $x_1, x_2, \dots, x_n$ en un espacio de dimensión $d$ se define como:
 
 $$
 \mu = \frac{1}{n} \sum_{i=1}^{n} x_i
 $$
 
-donde:  
-- $\mu$ representa el centroide del clúster,  
-- $n$ es el número total de puntos en el clúster,  
-- $x_i$ es el vector de características de cada punto de datos.  
+donde:
+- $\mu$ representa el centroide del clúster,
+- $n$ es el número total de puntos en el clúster,
+- $x_i$ es el vector de características de cada punto de datos.
 
-Por otro lado, el **baricentro** es una extensión del concepto de centroide que incorpora ponderaciones asignadas a cada observación, reflejando con mayor precisión la estructura del grupo cuando ciertas observaciones tienen una mayor importancia relativa. En este caso, cada punto $x_i$ se multiplica por un peso asociado $w_i$, y el baricentro se obtiene calculando la media ponderada de los puntos del clúster:  
+Por otro lado, el **baricentro** es una extensión del concepto de centroide que incorpora ponderaciones asignadas a cada observación, reflejando con mayor precisión la estructura del grupo cuando ciertas observaciones tienen una mayor importancia relativa. En este caso, cada punto $x_i$ se multiplica por un peso asociado $w_i$, y el baricentro se obtiene calculando la media ponderada de los puntos del clúster:
 
 $$
 \mu_{\text{ponderado}} = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i}
 $$
 
-donde:  
-- $w_i$ representa el peso asignado a cada punto,  
-- $\sum_{i=1}^{n} w_i$ es la suma total de los pesos,  
-- $\mu_{\text{ponderado}}$ es el baricentro del clúster.  
+donde:
+- $w_i$ representa el peso asignado a cada punto,
+- $\sum_{i=1}^{n} w_i$ es la suma total de los pesos,
+- $\mu_{\text{ponderado}}$ es el baricentro del clúster.
 
-El uso del baricentro es especialmente útil en situaciones donde las observaciones tienen diferentes niveles de importancia, como en el análisis de clientes donde se asigna un peso mayor a aquellos con mayor valor de compra o en aplicaciones donde se desea minimizar la influencia de valores atípicos asignándoles un peso menor.  
+El uso del baricentro es especialmente útil en situaciones donde las observaciones tienen diferentes niveles de importancia, como en el análisis de clientes donde se asigna un peso mayor a aquellos con mayor valor de compra o en aplicaciones donde se desea minimizar la influencia de valores atípicos asignándoles un peso menor.
 
 En conclusión, mientras que el centroide ofrece una visión equitativa de todos los puntos de un clúster, el baricentro permite una representación más ajustada cuando se requieren consideraciones ponderadas, lo que lo convierte en una herramienta poderosa para escenarios en los que no todos los datos tienen la misma relevancia.
 
-Otro enfoque en la formación de clústeres se basa en la **densidad**, concepto utilizado por algoritmos como DBSCAN, que definen un clúster como una región del espacio donde los puntos están densamente agrupados. Esta técnica permite descubrir estructuras más complejas y detectar datos atípicos, pero puede ser más sensible a la elección de los parámetros de densidad.  
+Otro enfoque en la formación de clústeres se basa en la **densidad**, concepto utilizado por algoritmos como DBSCAN, que definen un clúster como una región del espacio donde los puntos están densamente agrupados. Esta técnica permite descubrir estructuras más complejas y detectar datos atípicos, pero puede ser más sensible a la elección de los parámetros de densidad.
 
-#### **Características de un buen clustering**  
+#### **Características de un buen clustering**
 
-Para que el clustering proporcione resultados útiles, es importante que los grupos obtenidos cumplan con ciertas características deseables. Un clúster debe ser **compacto**, lo que significa que sus puntos deben estar lo más cerca posible del centroide o baricentro, asegurando la homogeneidad dentro del grupo. Además, los clústeres deben estar **bien separados**, evitando solapamientos que dificulten la interpretación y el uso práctico de los resultados.  
+Para que el clustering proporcione resultados útiles, es importante que los grupos obtenidos cumplan con ciertas características deseables. Un clúster debe ser **compacto**, lo que significa que sus puntos deben estar lo más cerca posible del centroide o baricentro, asegurando la homogeneidad dentro del grupo. Además, los clústeres deben estar **bien separados**, evitando solapamientos que dificulten la interpretación y el uso práctico de los resultados.
 
 El tamaño del clúster es otro aspecto fundamental; grupos demasiado pequeños pueden no representar patrones generales, mientras que grupos excesivamente grandes pueden carecer de especificidad. Finalmente, un buen clustering debe ser **relevante para el contexto del problema**, es decir, debe proporcionar información significativa que permita la toma de decisiones informadas en el ámbito de aplicación, ya sea en marketing, biología, finanzas o cualquier otro campo. 
 
-###### **Para reflexionar...**  
+###### **Para reflexionar...**
 > **¿Cómo influye la elección de la métrica de distancia en la formación de clústeres?** 
 > **Clave:** Piensa en cómo diferentes métricas afectan la percepción de la similitud entre los puntos.
 
@@ -301,13 +301,13 @@ Una ventaja clave de los modelos probabilísticos es su capacidad para manejar i
 ##### Para reflexionar...
 
 > **¿Cuál de los enfoques de clustering consideras más adecuado para un conjunto de datos geoespaciales con estructuras complejas y ruido?**
->  **Clave:** Reflexiona sobre la capacidad de los métodos basados en densidad para identificar agrupaciones de forma arbitraria y detectar valores atípicos de manera natural.
+>**Clave:** Reflexiona sobre la capacidad de los métodos basados en densidad para identificar agrupaciones de forma arbitraria y detectar valores atípicos de manera natural.
 
 ### **Clustering basado en particiones: Algoritmo K-Means**
 
-El **clustering basado en particiones** tiene como objetivo dividir un conjunto de datos en **grupos disjuntos**, de modo que cada observación pertenezca a un único clúster. La idea principal de estos algoritmos es iterativamente asignar y reajustar las observaciones en función de su similitud con un centroide representativo del clúster.  
+El **clustering basado en particiones** tiene como objetivo dividir un conjunto de datos en **grupos disjuntos**, de modo que cada observación pertenezca a un único clúster. La idea principal de estos algoritmos es iterativamente asignar y reajustar las observaciones en función de su similitud con un centroide representativo del clúster.
 
-Este enfoque busca encontrar una **partición óptima**, minimizando la variabilidad interna dentro de los clústeres y maximizando la separación entre ellos. Para lograr esto, se definen criterios de optimización basados en métricas de distancia, como la **Euclidiana**, aunque pueden utilizarse otras según el tipo de datos.  
+Este enfoque busca encontrar una **partición óptima**, minimizando la variabilidad interna dentro de los clústeres y maximizando la separación entre ellos. Para lograr esto, se definen criterios de optimización basados en métricas de distancia, como la **Euclidiana**, aunque pueden utilizarse otras según el tipo de datos.
 
 Los algoritmos de clustering basados en particiones siguen un enfoque iterativo que busca dividir un conjunto de datos en grupos exclusivos, optimizando un criterio de similitud para garantizar que las observaciones dentro de un mismo clúster sean lo más homogéneas posible, mientras que las pertenecientes a diferentes clústeres sean lo más disímiles entre sí.
 
@@ -320,7 +320,7 @@ Una vez que todos los puntos han sido asignados a sus respectivos clústeres, el
 El proceso de asignación y reajuste no se realiza una sola vez, sino que se repite de manera iterativa en la etapa de **convergencia**, hasta que los centroides alcanzan una posición estable. La convergencia se define cuando los centroides dejan de cambiar significativamente entre iteraciones sucesivas o cuando se cumple un criterio de optimización específico, como la minimización de la suma de las distancias cuadradas dentro de cada clúster. En algunos casos, se puede establecer un número máximo de iteraciones para evitar un sobreprocesamiento innecesario, especialmente en conjuntos de datos grandes donde la convergencia puede llevar tiempo.
 
 > **Ejemplo:**
->  Imaginemos un conjunto de datos que contiene información sobre pacientes de un hospital, incluyendo variables como la edad, el índice de masa corporal (IMC) y la presión arterial. Si aplicamos un algoritmo de clustering basado en particiones para agrupar a los pacientes en diferentes categorías de riesgo, primero se seleccionarán centroides iniciales que representen grupos hipotéticos de pacientes con distintos niveles de salud. Luego, cada paciente se asignará al grupo más cercano según sus características de salud, y en cada iteración los centroides se recalcularán hasta estabilizarse, ofreciendo una segmentación útil para los médicos.
+>Imaginemos un conjunto de datos que contiene información sobre pacientes de un hospital, incluyendo variables como la edad, el índice de masa corporal (IMC) y la presión arterial. Si aplicamos un algoritmo de clustering basado en particiones para agrupar a los pacientes en diferentes categorías de riesgo, primero se seleccionarán centroides iniciales que representen grupos hipotéticos de pacientes con distintos niveles de salud. Luego, cada paciente se asignará al grupo más cercano según sus características de salud, y en cada iteración los centroides se recalcularán hasta estabilizarse, ofreciendo una segmentación útil para los médicos.
 
 Este enfoque de clustering presenta ventajas significativas, como su rapidez y eficiencia en la segmentación de grandes volúmenes de datos. Sin embargo, también presenta desafíos, como la necesidad de definir de antemano el número de clústeres, lo cual no siempre es evidente en contextos donde la estructura de los datos no es conocida de antemano.
 
@@ -328,84 +328,84 @@ El algoritmo más representativo del clustering basado en particiones es **K-Mea
 
 <img src="https://miro.medium.com/v2/resize:fit:709/1*JsfEdbXKwJw_Euprvx17KA.png" alt="Fully Explained K-means" />
 
-Matemáticamente, el objetivo de K-Means es minimizar la siguiente función de costo:  
+Matemáticamente, el objetivo de K-Means es minimizar la siguiente función de costo:
 
 $$
 J = \sum_{i=1}^{k} \sum_{x_j \in C_i} \| x_j - \mu_i \|^2
 $$
 
-Donde:  
-- $x_j$ representa un punto de datos,  
-- $\mu_i$ es el centroide del clúster $C_i$,  
-- $k$ es el número total de clústeres,  
-- La métrica $\| x_j - \mu_i \|^2$ representa la distancia Euclidiana entre cada punto y su centroide asignado.  
+Donde:
+- $x_j$ representa un punto de datos,
+- $\mu_i$ es el centroide del clúster $C_i$,
+- $k$ es el número total de clústeres,
+- La métrica $\| x_j - \mu_i \|^2$ representa la distancia Euclidiana entre cada punto y su centroide asignado.
 
-#### **Elección del número de clústeres en K-Means**  
+#### **Elección del número de clústeres en K-Means**
 
-Uno de los aspectos más desafiantes en el clustering basado en particiones es la **elección del número adecuado de clústeres**, representado por el parámetro $k$ en algoritmos como K-Means. Determinar el valor óptimo de $k$ es crucial para obtener una segmentación significativa de los datos, ya que un número inadecuado de clústeres puede llevar a agrupaciones demasiado generales o excesivamente específicas, afectando la interpretabilidad y utilidad del modelo.  
+Uno de los aspectos más desafiantes en el clustering basado en particiones es la **elección del número adecuado de clústeres**, representado por el parámetro $k$ en algoritmos como K-Means. Determinar el valor óptimo de $k$ es crucial para obtener una segmentación significativa de los datos, ya que un número inadecuado de clústeres puede llevar a agrupaciones demasiado generales o excesivamente específicas, afectando la interpretabilidad y utilidad del modelo.
 
-Si se elige un número de clústeres demasiado bajo, se corre el riesgo de agrupar puntos de datos muy disímiles dentro de la misma categoría, perdiendo información valiosa sobre patrones específicos en los datos. Por otro lado, un valor de $k$ demasiado alto puede generar clústeres artificialmente pequeños y fragmentados, lo que resulta en una segmentación excesivamente detallada y difícil de interpretar.  
+Si se elige un número de clústeres demasiado bajo, se corre el riesgo de agrupar puntos de datos muy disímiles dentro de la misma categoría, perdiendo información valiosa sobre patrones específicos en los datos. Por otro lado, un valor de $k$ demasiado alto puede generar clústeres artificialmente pequeños y fragmentados, lo que resulta en una segmentación excesivamente detallada y difícil de interpretar.
 
-Para abordar este problema, se han desarrollado varias estrategias que permiten estimar el número óptimo de clústeres de manera sistemática. Entre las técnicas más utilizadas se encuentran el **método del codo (Elbow Method)** y el **coeficiente de silueta**, las cuales proporcionan información clave para tomar decisiones informadas sobre la cantidad de clústeres a utilizar.  
+Para abordar este problema, se han desarrollado varias estrategias que permiten estimar el número óptimo de clústeres de manera sistemática. Entre las técnicas más utilizadas se encuentran el **método del codo (Elbow Method)** y el **coeficiente de silueta**, las cuales proporcionan información clave para tomar decisiones informadas sobre la cantidad de clústeres a utilizar.
 
 ##### Método del codo (Elbow Method)
 
-El **método del codo** es una técnica visual ampliamente utilizada para determinar el número óptimo de clústeres en un conjunto de datos. Su principio se basa en analizar la **suma de los errores cuadrados internos** (WCSS, por sus siglas en inglés *Within-Cluster Sum of Squares*), que mide la compactación de los puntos dentro de cada clúster.  
+El **método del codo** es una técnica visual ampliamente utilizada para determinar el número óptimo de clústeres en un conjunto de datos. Su principio se basa en analizar la **suma de los errores cuadrados internos** (WCSS, por sus siglas en inglés *Within-Cluster Sum of Squares*), que mide la compactación de los puntos dentro de cada clúster.
 
-El WCSS se calcula como la suma de las distancias cuadradas entre cada punto de un clúster y su centroide:  
+El WCSS se calcula como la suma de las distancias cuadradas entre cada punto de un clúster y su centroide:
 
 $$
 WCSS = \sum_{i=1}^{k} \sum_{x_j \in C_i} \| x_j - \mu_i \|^2
 $$
 
-Donde:  
-- $x_j$ representa cada punto de datos,  
-- $\mu_i$ es el centroide del clúster $C_i$,  
-- $k$ es el número total de clústeres.  
+Donde:
+- $x_j$ representa cada punto de datos,
+- $\mu_i$ es el centroide del clúster $C_i$,
+- $k$ es el número total de clústeres.
 
-El procedimiento para aplicar el método del codo consiste en entrenar el modelo de clustering con diferentes valores de $k$ y graficar el valor de WCSS en función de la cantidad de clústeres. Inicialmente, la reducción de WCSS es rápida, ya que agregar más clústeres ayuda a minimizar la distancia entre los puntos y sus centroides. Sin embargo, a partir de cierto punto, el beneficio marginal de agregar más clústeres disminuye y la curva comienza a aplanarse, formando una forma de "codo".  
+El procedimiento para aplicar el método del codo consiste en entrenar el modelo de clustering con diferentes valores de $k$ y graficar el valor de WCSS en función de la cantidad de clústeres. Inicialmente, la reducción de WCSS es rápida, ya que agregar más clústeres ayuda a minimizar la distancia entre los puntos y sus centroides. Sin embargo, a partir de cierto punto, el beneficio marginal de agregar más clústeres disminuye y la curva comienza a aplanarse, formando una forma de "codo".
 
-El punto donde se produce este cambio de pendiente se considera el valor óptimo de $k$, ya que representa un equilibrio entre la compactación de los clústeres y la simplicidad del modelo.  
+El punto donde se produce este cambio de pendiente se considera el valor óptimo de $k$, ya que representa un equilibrio entre la compactación de los clústeres y la simplicidad del modelo.
 
-> **Ejemplo:**  
+> **Ejemplo:**
 >
-> Imaginemos que una empresa quiere segmentar a sus clientes en función de sus patrones de compra. Al aplicar K-Means con valores de $k$ entre 1 y 10 y graficar el WCSS, observamos que la curva se aplana a partir de $k = 4$. Esto sugiere que cuatro clústeres representan un equilibrio razonable entre precisión y simplicidad en la segmentación de los clientes.  
+> Imaginemos que una empresa quiere segmentar a sus clientes en función de sus patrones de compra. Al aplicar K-Means con valores de $k$ entre 1 y 10 y graficar el WCSS, observamos que la curva se aplana a partir de $k = 4$. Esto sugiere que cuatro clústeres representan un equilibrio razonable entre precisión y simplicidad en la segmentación de los clientes.
 >
 
 > [!warning]
 >
-> El método del codo es simple y efectivo, pero su interpretación puede ser subjetiva, ya que la "curvatura" no siempre es fácilmente identificable. Es recomendable complementar este método con otras métricas para garantizar una elección más robusta del número de clústeres.  
+> El método del codo es simple y efectivo, pero su interpretación puede ser subjetiva, ya que la "curvatura" no siempre es fácilmente identificable. Es recomendable complementar este método con otras métricas para garantizar una elección más robusta del número de clústeres.
 
 ##### Coeficiente de silueta
 
-Por otro lado, el **coeficiente de silueta** es una métrica que evalúa la **calidad del clustering** considerando simultáneamente la **cohesión interna** (qué tan bien agrupados están los puntos dentro de un clúster) y la **separación externa** (qué tan alejados están los clústeres entre sí).  
+Por otro lado, el **coeficiente de silueta** es una métrica que evalúa la **calidad del clustering** considerando simultáneamente la **cohesión interna** (qué tan bien agrupados están los puntos dentro de un clúster) y la **separación externa** (qué tan alejados están los clústeres entre sí).
 
-Para cada punto de datos $x_i$, el coeficiente de silueta se define como:  
+Para cada punto de datos $x_i$, el coeficiente de silueta se define como:
 
 $$
 s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}
 $$
 
-Donde:  
-- $a(i)$ es la distancia promedio de $x_i$ a los demás puntos dentro de su propio clúster.  
-- $b(i)$ es la distancia promedio de $x_i$ a los puntos del clúster más cercano (el clúster vecino).  
+Donde:
+- $a(i)$ es la distancia promedio de $x_i$ a los demás puntos dentro de su propio clúster.
+- $b(i)$ es la distancia promedio de $x_i$ a los puntos del clúster más cercano (el clúster vecino).
 
-El coeficiente de silueta toma valores entre -1 y 1:  
+El coeficiente de silueta toma valores entre -1 y 1:
 
-- Valores cercanos a 1 indican que los puntos están bien agrupados dentro de su clúster y alejados de los demás clústeres.  
-- Valores cercanos a 0 sugieren que los puntos están cerca de la frontera entre clústeres, lo que indica posibles solapamientos.  
-- Valores negativos indican una asignación incorrecta del punto al clúster, sugiriendo que debería pertenecer a otro clúster.  
+- Valores cercanos a 1 indican que los puntos están bien agrupados dentro de su clúster y alejados de los demás clústeres.
+- Valores cercanos a 0 sugieren que los puntos están cerca de la frontera entre clústeres, lo que indica posibles solapamientos.
+- Valores negativos indican una asignación incorrecta del punto al clúster, sugiriendo que debería pertenecer a otro clúster.
 
-El coeficiente de silueta promedio para todo el conjunto de datos se puede utilizar como un criterio para seleccionar el valor óptimo de $k$. Un valor más alto sugiere una mejor calidad de clustering.  
+El coeficiente de silueta promedio para todo el conjunto de datos se puede utilizar como un criterio para seleccionar el valor óptimo de $k$. Un valor más alto sugiere una mejor calidad de clustering.
 
-> **Ejemplo:**  
+> **Ejemplo:**
 >
-> Supongamos que en un análisis de segmentación de clientes probamos diferentes valores de $k$. Para $k=3$ obtenemos un coeficiente de silueta promedio de 0.62, mientras que para $k=4$ el coeficiente baja a 0.45. Esto sugiere que la solución con $k=3$ proporciona clústeres más compactos y mejor separados.  
+> Supongamos que en un análisis de segmentación de clientes probamos diferentes valores de $k$. Para $k=3$ obtenemos un coeficiente de silueta promedio de 0.62, mientras que para $k=4$ el coeficiente baja a 0.45. Esto sugiere que la solución con $k=3$ proporciona clústeres más compactos y mejor separados.
 >
 
 > [!warning]
 >
-> El coeficiente de silueta ofrece una forma cuantitativa de evaluar el clustering, eliminando parte de la subjetividad presente en el método del codo, sin embargo, su cálculo es más costoso computacionalmente, ya que requiere medir distancias entre todos los puntos.  
+> El coeficiente de silueta ofrece una forma cuantitativa de evaluar el clustering, eliminando parte de la subjetividad presente en el método del codo, sin embargo, su cálculo es más costoso computacionalmente, ya que requiere medir distancias entre todos los puntos.
 
 > [!tip]
 >
@@ -510,24 +510,24 @@ En el ámbito del **marketing**, esta técnica se emplea para segmentar clientes
 Otra aplicación importante se encuentra en el **procesamiento de textos**, donde el clustering jerárquico se utiliza para organizar documentos o términos según su similitud semántica, facilitando la gestión de grandes volúmenes de información textual.
 
 > **Ejemplo:**
->  En un análisis de mercado, una empresa desea segmentar a sus clientes en función de su historial de compras. Utilizando clustering jerárquico, se obtiene un dendrograma que muestra cómo los clientes se agrupan en función de su gasto promedio y la frecuencia de compra. Al aplicar un punto de corte adecuado, se identifican tres segmentos de clientes claramente diferenciados: compradores frecuentes, compradores esporádicos y clientes potenciales.
+>En un análisis de mercado, una empresa desea segmentar a sus clientes en función de su historial de compras. Utilizando clustering jerárquico, se obtiene un dendrograma que muestra cómo los clientes se agrupan en función de su gasto promedio y la frecuencia de compra. Al aplicar un punto de corte adecuado, se identifican tres segmentos de clientes claramente diferenciados: compradores frecuentes, compradores esporádicos y clientes potenciales.
 
 ##### Para reflexionar...
 
 > **¿Por qué la elección del criterio de enlace es crucial en el clustering jerárquico?**
->  **Clave:** Considera cómo diferentes criterios de enlace afectan la forma y cohesión de los clústeres, y piensa en escenarios donde un criterio podría ser más adecuado que otro.
+>**Clave:** Considera cómo diferentes criterios de enlace afectan la forma y cohesión de los clústeres, y piensa en escenarios donde un criterio podría ser más adecuado que otro.
 
-### Clustering basado en densidad: DBSCAN  
+### Clustering basado en densidad: DBSCAN
 
 #### Introducción
 
-El clustering basado en densidad es un enfoque poderoso dentro del aprendizaje no supervisado que se fundamenta en la agrupación de puntos de datos en función de su concentración en el espacio. A diferencia de otros métodos, como K-Means o el clustering jerárquico, que dependen de supuestos sobre la forma o el número de clústeres, el algoritmo **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)** identifica agrupaciones en regiones densamente pobladas, permitiendo la detección automática de estructuras de formas arbitrarias y la identificación de valores atípicos.  
+El clustering basado en densidad es un enfoque poderoso dentro del aprendizaje no supervisado que se fundamenta en la agrupación de puntos de datos en función de su concentración en el espacio. A diferencia de otros métodos, como K-Means o el clustering jerárquico, que dependen de supuestos sobre la forma o el número de clústeres, el algoritmo **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)** identifica agrupaciones en regiones densamente pobladas, permitiendo la detección automática de estructuras de formas arbitrarias y la identificación de valores atípicos.
 
 Este enfoque es especialmente útil en escenarios donde los datos contienen regiones de diferente densidad o están afectados por ruido. En lugar de asignar cada punto a un clúster específico, DBSCAN diferencia entre puntos **centrales**, **de borde** y **ruidosos**, proporcionando una mayor flexibilidad en comparación con métodos más tradicionales. 
 
-#### Funcionamiento del algoritmo DBSCAN  
+#### Funcionamiento del algoritmo DBSCAN
 
-El algoritmo DBSCAN se basa en dos conceptos fundamentales: la **densidad** de los puntos de datos y la **conectividad** entre ellos. Su funcionamiento se estructura en torno a los siguientes principios:  
+El algoritmo DBSCAN se basa en dos conceptos fundamentales: la **densidad** de los puntos de datos y la **conectividad** entre ellos. Su funcionamiento se estructura en torno a los siguientes principios:
 
 ##### Definición de la vecindad
 
@@ -555,7 +555,7 @@ Durante la ejecución del algoritmo, algunos puntos no logran ser incorporados e
 
 La capacidad de DBSCAN para identificar estos puntos ruidosos es una de sus principales fortalezas, ya que permite distinguir entre patrones significativos y observaciones que no siguen ninguna estructura clara. En aplicaciones como la detección de anomalías o el análisis de datos geoespaciales, la capacidad de DBSCAN para detectar ruido es fundamental para obtener una visión más precisa de la estructura de los datos.
 
-#### Parámetros clave de DBSCAN  
+#### Parámetros clave de DBSCAN
 
 El rendimiento de DBSCAN está estrechamente ligado a la elección adecuada de sus hiperparámetros principales, los cuales definen la forma en que el algoritmo identifica regiones densas y, en consecuencia, los clústeres dentro de los datos. La correcta configuración de estos parámetros es esencial para obtener resultados significativos y evitar problemas como la sobre-segmentación o la agrupación inadecuada de puntos.
 
@@ -568,11 +568,11 @@ Otro hiperparámetro crucial es $MinPts$, que define el **número mínimo de pun
 La configuración de $MinPts$ suele depender de la dimensionalidad del conjunto de datos, siguiendo una regla empírica común que sugiere establecerlo como el doble de la dimensión del espacio de características. Por ejemplo, para un conjunto de datos con 5 características, una elección inicial razonable sería MinPts=10MinPts = 10. Sin embargo, este valor puede ajustarse dependiendo de la cantidad de ruido presente en los datos y del nivel de granularidad deseado en la detección de clústeres.
 
 > **Ejemplo:**
->  Supongamos que estamos analizando datos de sensores ambientales en una ciudad, donde cada punto representa una estación de monitoreo con variables como temperatura, humedad y calidad del aire. Si configuramos un valor de $\varepsilon$ demasiado bajo, los sensores que registran patrones similares podrían no ser agrupados, dificultando la identificación de zonas con condiciones atmosféricas homogéneas. Por el contrario, un valor de $MinPts$ demasiado alto podría omitir estaciones aisladas que detectan eventos climáticos relevantes.
+>Supongamos que estamos analizando datos de sensores ambientales en una ciudad, donde cada punto representa una estación de monitoreo con variables como temperatura, humedad y calidad del aire. Si configuramos un valor de $\varepsilon$ demasiado bajo, los sensores que registran patrones similares podrían no ser agrupados, dificultando la identificación de zonas con condiciones atmosféricas homogéneas. Por el contrario, un valor de $MinPts$ demasiado alto podría omitir estaciones aisladas que detectan eventos climáticos relevantes.
 
 La combinación adecuada de $\varepsilon$ y $MinPts$ es fundamental para garantizar que DBSCAN detecte clústeres significativos, evitando tanto la sobresegmentación como la inclusión de puntos no relevantes en los grupos.
 
-#### Ventajas y limitaciones de DBSCAN  
+#### Ventajas y limitaciones de DBSCAN
 
 DBSCAN es un algoritmo de clustering altamente versátil que ofrece múltiples ventajas, haciéndolo especialmente útil en situaciones donde los datos presentan estructuras complejas o cuando se requiere la detección automática de anomalías. Su capacidad para adaptarse a la forma natural de los datos sin imponer suposiciones rígidas lo convierte en una opción atractiva para una amplia variedad de aplicaciones.
 
@@ -593,13 +593,13 @@ La **selección de los hiperparámetros ε\varepsilon y MinPtsMinPts** es otro a
 Además, DBSCAN **no se adapta bien a conjuntos de datos con densidades muy variables**, ya que un único valor de ε\varepsilon puede no ser suficiente para capturar agrupaciones de diferentes escalas. En casos donde los datos presentan regiones con densidades significativamente distintas, el algoritmo puede agrupar incorrectamente puntos pertenecientes a diferentes clústeres o ignorar algunos clústeres más dispersos.
 
 > **Ejemplo:**
->  Supongamos que se está utilizando DBSCAN para analizar datos de transacciones bancarias. Si los parámetros ε\varepsilon y MinPtsMinPts no se eligen correctamente, el algoritmo podría etiquetar transacciones legítimas como fraude debido a una mala configuración de los límites de densidad, afectando la precisión del sistema de detección de anomalías.
+>Supongamos que se está utilizando DBSCAN para analizar datos de transacciones bancarias. Si los parámetros ε\varepsilon y MinPtsMinPts no se eligen correctamente, el algoritmo podría etiquetar transacciones legítimas como fraude debido a una mala configuración de los límites de densidad, afectando la precisión del sistema de detección de anomalías.
 
 > [!warning]
 >
 > En resumen, DBSCAN es una herramienta poderosa para la agrupación de datos en entornos complejos y con ruido, pero su aplicación efectiva requiere un conocimiento detallado de los datos y un ajuste cuidadoso de los parámetros para obtener los mejores resultados.
 
-#### Aplicaciones prácticas de DBSCAN  
+#### Aplicaciones prácticas de DBSCAN
 
 DBSCAN se ha convertido en una herramienta clave en diversos ámbitos donde la estructura de los datos es compleja y no se ajusta fácilmente a formas geométricas predefinidas. Su capacidad para detectar patrones en datos densamente agrupados, junto con su habilidad para identificar valores atípicos, lo hace especialmente útil en escenarios donde la flexibilidad y la adaptabilidad son fundamentales.
 
@@ -612,11 +612,11 @@ Otro campo donde DBSCAN es ampliamente utilizado es el **procesamiento de imáge
 El **análisis geoespacial** es otra de las áreas donde DBSCAN resulta particularmente útil. Al trabajar con datos de ubicación geográfica, el algoritmo permite identificar patrones de concentración de recursos o actividad humana. Por ejemplo, en el sector del transporte y la logística, DBSCAN se emplea para detectar zonas de alta demanda de transporte en una ciudad, ayudando a optimizar rutas de autobuses o servicios de transporte compartido. De igual manera, en el ámbito de la seguridad pública, puede ser utilizado para identificar zonas con alta concentración de incidentes delictivos y mejorar la distribución de recursos policiales.
 
 > **Ejemplo:**
->  Imagina un proyecto de movilidad urbana que analiza datos de geolocalización de teléfonos móviles en una gran ciudad. Utilizando DBSCAN, es posible detectar zonas de alto tráfico en horarios pico, agrupando puntos donde la densidad de desplazamientos es elevada y clasificando áreas con menor actividad como ruido. Esta información permite a los planificadores urbanos optimizar la infraestructura vial y los servicios de transporte público.
+>Imagina un proyecto de movilidad urbana que analiza datos de geolocalización de teléfonos móviles en una gran ciudad. Utilizando DBSCAN, es posible detectar zonas de alto tráfico en horarios pico, agrupando puntos donde la densidad de desplazamientos es elevada y clasificando áreas con menor actividad como ruido. Esta información permite a los planificadores urbanos optimizar la infraestructura vial y los servicios de transporte público.
 
 Gracias a su capacidad para adaptarse a una variedad de estructuras de datos y su flexibilidad en la detección de patrones complejos, DBSCAN se ha convertido en una herramienta valiosa en múltiples disciplinas. Sin embargo, su aplicación efectiva requiere una comprensión adecuada de los datos y una selección cuidadosa de los parámetros para garantizar resultados precisos y útiles.
 
-#### Evaluación de la calidad del clustering con DBSCAN  
+#### Evaluación de la calidad del clustering con DBSCAN
 
 Dado que DBSCAN no genera una partición rígida de los datos, su evaluación requiere un enfoque diferente al de otros algoritmos de clustering más tradicionales como K-Means. En métodos como K-Means, donde cada punto se asigna a un único clúster, es común utilizar métricas como la precisión o la exactitud cuando se dispone de etiquetas de referencia. Sin embargo, en DBSCAN, donde algunos puntos se etiquetan como ruido y los clústeres pueden tener formas irregulares, se necesitan métricas especializadas que reflejen la calidad de las agrupaciones detectadas.
 
@@ -627,7 +627,7 @@ Una de las métricas más utilizadas es el **coeficiente de silueta**. Ya hemos 
 Otra métrica relevante es el **índice de Davies-Bouldin**, que mide la compacidad y separación de los clústeres generados. Este índice se basa en la relación entre la dispersión dentro de los clústeres y la distancia entre ellos. Un valor más bajo del índice de Davies-Bouldin indica clústeres más compactos y mejor separados, lo que sugiere una segmentación más precisa de los datos.
 
 > **Ejemplo:**
->  Supongamos que se aplica DBSCAN para segmentar clientes de un supermercado en función de su comportamiento de compra. Si el coeficiente de silueta es alto y el índice de Davies-Bouldin es bajo, significa que los clientes con hábitos de compra similares han sido agrupados de manera efectiva, mientras que aquellos con patrones diferentes han sido separados adecuadamente.
+>Supongamos que se aplica DBSCAN para segmentar clientes de un supermercado en función de su comportamiento de compra. Si el coeficiente de silueta es alto y el índice de Davies-Bouldin es bajo, significa que los clientes con hábitos de compra similares han sido agrupados de manera efectiva, mientras que aquellos con patrones diferentes han sido separados adecuadamente.
 
 Además de estas métricas tradicionales, una consideración importante en DBSCAN es el **número de puntos ruidosos** detectados por el algoritmo. Una alta cantidad de puntos clasificados como ruido podría indicar que los parámetros ε\varepsilon y MinPtsMinPts no se han ajustado correctamente. Si se elige un valor de ε\varepsilon demasiado pequeño, es posible que muchos puntos no sean considerados parte de ningún clúster y se clasifiquen erróneamente como ruido. Por el contrario, un valor de ε\varepsilon demasiado grande podría hacer que los clústeres se expandan en exceso, reduciendo la capacidad del algoritmo para detectar patrones significativos en los datos.
 
@@ -696,7 +696,7 @@ Otro aspecto crítico es la **estructura de la matriz de covarianza**, que deter
 - **Completa:** Se permite cualquier forma y orientación, capturando relaciones complejas entre dimensiones.
 
 > **Ejemplo:**
->  Supongamos que se desea segmentar a los clientes de una tienda en función de su comportamiento de compra. Aplicando GMM con una estructura de covarianza completa, el modelo podría identificar clústeres con patrones de compra correlacionados, como clientes que gastan más en productos electrónicos también tienden a comprar artículos de hogar de alta gama.
+>Supongamos que se desea segmentar a los clientes de una tienda en función de su comportamiento de compra. Aplicando GMM con una estructura de covarianza completa, el modelo podría identificar clústeres con patrones de compra correlacionados, como clientes que gastan más en productos electrónicos también tienden a comprar artículos de hogar de alta gama.
 
 #### Ventajas y limitaciones de GMM
 
@@ -721,7 +721,7 @@ En el área de **reconocimiento de voz**, GMM es un pilar fundamental para la id
 En el ámbito financiero, GMM es una herramienta poderosa para el **análisis de comportamiento de clientes**, donde se busca agrupar a los consumidores según sus patrones de compra, frecuencia de uso de servicios o niveles de riesgo crediticio. Dado que los hábitos de los clientes no siempre se dividen en categorías bien definidas, GMM permite una segmentación más matizada, asignando probabilidades de pertenencia a diferentes perfiles de usuario. Esto permite a las instituciones financieras desarrollar estrategias más personalizadas, como ofertas de productos adaptadas a cada segmento o la detección temprana de posibles impagos. Además, en la **detección de fraudes**, GMM es capaz de identificar patrones de comportamiento anómalos al modelar el comportamiento típico de los usuarios y detectar transacciones que se desvían significativamente de las distribuciones normales esperadas.
 
 > **Ejemplo:**
->  Imagina una empresa de comercio electrónico que utiliza GMM para analizar los hábitos de compra de sus clientes. A través del modelo, la empresa identifica que algunos clientes tienden a comprar productos de lujo ocasionalmente, mientras que otros prefieren compras frecuentes de bajo costo. GMM permite asignar probabilidades a cada cliente, reflejando su pertenencia a múltiples segmentos a la vez y permitiendo diseñar estrategias de marketing más efectivas.
+>Imagina una empresa de comercio electrónico que utiliza GMM para analizar los hábitos de compra de sus clientes. A través del modelo, la empresa identifica que algunos clientes tienden a comprar productos de lujo ocasionalmente, mientras que otros prefieren compras frecuentes de bajo costo. GMM permite asignar probabilidades a cada cliente, reflejando su pertenencia a múltiples segmentos a la vez y permitiendo diseñar estrategias de marketing más efectivas.
 
 > [!tip]
 >
@@ -730,7 +730,7 @@ En el ámbito financiero, GMM es una herramienta poderosa para el **análisis de
 ###### Para reflexionar...
 
 > **¿En qué situaciones consideras que GMM sería más adecuado que K-Means para un problema de clustering?**
->  **Clave:** Piensa en la capacidad de GMM para capturar distribuciones no esféricas y la importancia de modelar la incertidumbre en la clasificación.
+>**Clave:** Piensa en la capacidad de GMM para capturar distribuciones no esféricas y la importancia de modelar la incertidumbre en la clasificación.
 
 ### Implementación práctica de clustering con python
 
@@ -745,53 +745,53 @@ K-Means se implementa a través del módulo `sklearn.cluster`, que ofrece la cla
 Al inicializar un modelo de clustering con la clase `KMeans`, es posible configurar distintos parámetros que afectan el proceso de agrupación. Algunos de los más relevantes incluyen:
 
 - **`n_clusters`** *(int, por defecto=8)*
-   Define el número de clústeres en los que se dividirán los datos. Es un parámetro obligatorio que debe seleccionarse cuidadosamente, ya que influye directamente en la calidad de la segmentación.
-  - *Claves:* Si se elige un número demasiado bajo, se perderá información relevante; si es demasiado alto, se pueden generar clústeres redundantes.
-  - *Ejemplo:* `KMeans(n_clusters=3)` agrupará los datos en tres clústeres.
+ Define el número de clústeres en los que se dividirán los datos. Es un parámetro obligatorio que debe seleccionarse cuidadosamente, ya que influye directamente en la calidad de la segmentación.
+- *Claves:* Si se elige un número demasiado bajo, se perderá información relevante; si es demasiado alto, se pueden generar clústeres redundantes.
+- *Ejemplo:* `KMeans(n_clusters=3)` agrupará los datos en tres clústeres.
 - **`init`** *(‘k-means++’ por defecto, 'random' o matriz personalizada)*
-   Determina cómo se inicializan los centroides antes de iniciar el proceso iterativo de clustering. La opción recomendada es `'k-means++'`, que selecciona los centroides de manera inteligente para acelerar la convergencia y mejorar los resultados. La opción `'random'` elige centroides de forma aleatoria, lo cual puede llevar a resultados inconsistentes.
-  - *Claves:* La inicialización adecuada puede reducir la cantidad de iteraciones necesarias para la convergencia y mejorar la estabilidad del resultado.
-  - *Ejemplo:* `KMeans(init='random')` seleccionará los centroides de forma aleatoria.
+ Determina cómo se inicializan los centroides antes de iniciar el proceso iterativo de clustering. La opción recomendada es `'k-means++'`, que selecciona los centroides de manera inteligente para acelerar la convergencia y mejorar los resultados. La opción `'random'` elige centroides de forma aleatoria, lo cual puede llevar a resultados inconsistentes.
+- *Claves:* La inicialización adecuada puede reducir la cantidad de iteraciones necesarias para la convergencia y mejorar la estabilidad del resultado.
+- *Ejemplo:* `KMeans(init='random')` seleccionará los centroides de forma aleatoria.
 - **`n_init`** *(int, por defecto=1)*
-   Especifica el número de veces que se ejecutará el algoritmo K-Means con diferentes inicializaciones de centroides. El mejor resultado, en términos de inercia (suma de distancias dentro de los clústeres), se conservará como solución final.
-  - *Claves:* Un valor mayor mejora la probabilidad de encontrar una mejor configuración, pero aumenta el tiempo de cómputo.
-  - *Ejemplo:* `KMeans(n_init=20)` ejecutará el algoritmo 20 veces con diferentes inicializaciones.
+ Especifica el número de veces que se ejecutará el algoritmo K-Means con diferentes inicializaciones de centroides. El mejor resultado, en términos de inercia (suma de distancias dentro de los clústeres), se conservará como solución final.
+- *Claves:* Un valor mayor mejora la probabilidad de encontrar una mejor configuración, pero aumenta el tiempo de cómputo.
+- *Ejemplo:* `KMeans(n_init=20)` ejecutará el algoritmo 20 veces con diferentes inicializaciones.
 - **`max_iter`** *(int, por defecto=300)*
-   Define el número máximo de iteraciones que el algoritmo realizará para intentar encontrar la solución óptima. Si los centroides dejan de cambiar antes de alcanzar este número, el algoritmo finalizará antes.
-  - *Claves:* Un número bajo puede llevar a una convergencia incompleta; un número demasiado alto puede hacer que el algoritmo consuma más recursos de los necesarios.
-  - *Ejemplo:* `KMeans(max_iter=500)` permite realizar hasta 500 iteraciones antes de detenerse.
+ Define el número máximo de iteraciones que el algoritmo realizará para intentar encontrar la solución óptima. Si los centroides dejan de cambiar antes de alcanzar este número, el algoritmo finalizará antes.
+- *Claves:* Un número bajo puede llevar a una convergencia incompleta; un número demasiado alto puede hacer que el algoritmo consuma más recursos de los necesarios.
+- *Ejemplo:* `KMeans(max_iter=500)` permite realizar hasta 500 iteraciones antes de detenerse.
 - **`tol`** *(float, por defecto=1e-4)*
-   Representa el criterio de tolerancia para la convergencia. Si el cambio en la suma de las distancias cuadradas dentro de los clústeres entre iteraciones consecutivas es menor que este valor, el algoritmo detendrá su ejecución.
-  - *Claves:* Un valor más pequeño hará que el algoritmo continúe buscando una mejor solución, mientras que un valor más grande puede detenerlo antes de tiempo.
-  - *Ejemplo:* `KMeans(tol=1e-3)` hará que el algoritmo termine si la mejora es menor a 0.001.
+ Representa el criterio de tolerancia para la convergencia. Si el cambio en la suma de las distancias cuadradas dentro de los clústeres entre iteraciones consecutivas es menor que este valor, el algoritmo detendrá su ejecución.
+- *Claves:* Un valor más pequeño hará que el algoritmo continúe buscando una mejor solución, mientras que un valor más grande puede detenerlo antes de tiempo.
+- *Ejemplo:* `KMeans(tol=1e-3)` hará que el algoritmo termine si la mejora es menor a 0.001.
 
 Una vez que el modelo ha sido ajustado a los datos, se pueden consultar **diversos atributos** que proporcionan información sobre el resultado del clustering. Los más importantes son:
 
 - **`labels_`**
-   Contiene las etiquetas asignadas a cada punto de datos, indicando a qué clúster pertenece cada observación.
-  - *Ejemplo:* `kmeans.labels_` devuelve un array con valores `[0, 1, 2, ...]`, donde cada número representa un clúster asignado.
+ Contiene las etiquetas asignadas a cada punto de datos, indicando a qué clúster pertenece cada observación.
+- *Ejemplo:* `kmeans.labels_` devuelve un array con valores `[0, 1, 2, ...]`, donde cada número representa un clúster asignado.
 - **`cluster_centers_`**
-   Proporciona las coordenadas de los centroides finales de cada clúster, lo que permite analizar las características centrales de cada grupo.
-  - *Ejemplo:* `kmeans.cluster_centers_` devuelve una matriz con las posiciones de los centroides en el espacio de características.
+ Proporciona las coordenadas de los centroides finales de cada clúster, lo que permite analizar las características centrales de cada grupo.
+- *Ejemplo:* `kmeans.cluster_centers_` devuelve una matriz con las posiciones de los centroides en el espacio de características.
 - **`inertia_`**
-   Muestra la suma de las distancias cuadradas de cada punto a su centroide más cercano, lo que sirve como una medida de la compacidad de los clústeres formados.
-  - *Claves:* Un valor bajo de inercia indica que los clústeres están bien definidos y los puntos están cerca de sus centroides.
-  - *Ejemplo:* `kmeans.inertia_` devuelve un valor numérico que representa la calidad del clustering.
+ Muestra la suma de las distancias cuadradas de cada punto a su centroide más cercano, lo que sirve como una medida de la compacidad de los clústeres formados.
+- *Claves:* Un valor bajo de inercia indica que los clústeres están bien definidos y los puntos están cerca de sus centroides.
+- *Ejemplo:* `kmeans.inertia_` devuelve un valor numérico que representa la calidad del clustering.
 - **`n_iter_`**
-   Indica el número de iteraciones que el algoritmo realizó hasta alcanzar la convergencia.
-  - *Ejemplo:* `kmeans.n_iter_` devuelve un entero indicando cuántas iteraciones se realizaron antes de la convergencia.
+ Indica el número de iteraciones que el algoritmo realizó hasta alcanzar la convergencia.
+- *Ejemplo:* `kmeans.n_iter_` devuelve un entero indicando cuántas iteraciones se realizaron antes de la convergencia.
 
 La clase `KMeans` también proporciona **métodos esenciales** que permiten entrenar el modelo, predecir nuevas agrupaciones y optimizar el proceso de clustering:
 
 - **`fit(X)`**
-   Ajusta el modelo K-Means a los datos proporcionados. Durante este proceso, el algoritmo encuentra los centroides óptimos para los clústeres.
-  - *Ejemplo:* `kmeans.fit(X)` entrenará el modelo con los datos `X`.
+ Ajusta el modelo K-Means a los datos proporcionados. Durante este proceso, el algoritmo encuentra los centroides óptimos para los clústeres.
+- *Ejemplo:* `kmeans.fit(X)` entrenará el modelo con los datos `X`.
 - **`predict(X)`**
-   Asigna etiquetas de clúster a nuevas observaciones basadas en la ubicación de los centroides aprendidos previamente.
-  - *Ejemplo:* `kmeans.predict(nuevos_datos)` asignará clústeres a nuevos puntos.
+ Asigna etiquetas de clúster a nuevas observaciones basadas en la ubicación de los centroides aprendidos previamente.
+- *Ejemplo:* `kmeans.predict(nuevos_datos)` asignará clústeres a nuevos puntos.
 - **`fit_predict(X)`**
-   Combina el ajuste del modelo y la predicción de etiquetas en una sola llamada, útil cuando se desea obtener rápidamente la clasificación de los datos.
-  - *Ejemplo:* `kmeans.fit_predict(X)` entrenará el modelo y devolverá las etiquetas de los clústeres para los datos `X`.
+ Combina el ajuste del modelo y la predicción de etiquetas en una sola llamada, útil cuando se desea obtener rápidamente la clasificación de los datos.
+- *Ejemplo:* `kmeans.fit_predict(X)` entrenará el modelo y devolverá las etiquetas de los clústeres para los datos `X`.
 
 ##### **Implementación paso a paso de K-Means**
 
@@ -883,42 +883,42 @@ Python ofrece una implementación eficiente del clustering jerárquico a través
 El algoritmo de clustering jerárquico aglomerativo, implementado en la clase `AgglomerativeClustering`, permite construir clústeres fusionando observaciones de manera iterativa hasta formar una estructura jerárquica completa. Algunos de sus parámetros clave son:
 
 - **`n_clusters`** *(int, por defecto=2)*
-   Especifica el número de clústeres finales en los que se desea dividir los datos. A diferencia de otros métodos, en el clustering jerárquico es posible analizar la estructura completa antes de tomar una decisión sobre este valor.
-  - *Claves:* Si no se especifica, el modelo genera una estructura jerárquica sin un número fijo de clústeres.
-  - *Ejemplo:* `AgglomerativeClustering(n_clusters=3)` agrupará los datos en tres clústeres.
+ Especifica el número de clústeres finales en los que se desea dividir los datos. A diferencia de otros métodos, en el clustering jerárquico es posible analizar la estructura completa antes de tomar una decisión sobre este valor.
+- *Claves:* Si no se especifica, el modelo genera una estructura jerárquica sin un número fijo de clústeres.
+- *Ejemplo:* `AgglomerativeClustering(n_clusters=3)` agrupará los datos en tres clústeres.
 - **`affinity`** *(str, por defecto='euclidean')*
-   Define la métrica de distancia utilizada para calcular la similitud entre las observaciones. Las opciones más comunes incluyen:
-  - `'euclidean'` (distancia euclidiana)
-  - `'manhattan'` (distancia de Manhattan)
-  - `'cosine'` (similitud de coseno)
-  - *Ejemplo:* `AgglomerativeClustering(affinity='manhattan')` utilizará la distancia de Manhattan para medir la similitud.
+ Define la métrica de distancia utilizada para calcular la similitud entre las observaciones. Las opciones más comunes incluyen:
+- `'euclidean'` (distancia euclidiana)
+- `'manhattan'` (distancia de Manhattan)
+- `'cosine'` (similitud de coseno)
+- *Ejemplo:* `AgglomerativeClustering(affinity='manhattan')` utilizará la distancia de Manhattan para medir la similitud.
 - **`linkage`** *(str, por defecto='ward')*
-   Especifica el criterio de enlace, es decir, la forma en que se calcula la distancia entre clústeres durante la fusión. Las opciones disponibles son:
-  - `'ward'` (minimiza la varianza dentro de los clústeres)
-  - `'complete'` (distancia máxima entre puntos de los clústeres)
-  - `'average'` (promedio de las distancias entre todos los puntos)
-  - `'single'` (mínima distancia entre puntos de los clústeres)
-  - *Ejemplo:* `AgglomerativeClustering(linkage='complete')` usará la distancia máxima entre puntos al fusionar clústeres.
+ Especifica el criterio de enlace, es decir, la forma en que se calcula la distancia entre clústeres durante la fusión. Las opciones disponibles son:
+- `'ward'` (minimiza la varianza dentro de los clústeres)
+- `'complete'` (distancia máxima entre puntos de los clústeres)
+- `'average'` (promedio de las distancias entre todos los puntos)
+- `'single'` (mínima distancia entre puntos de los clústeres)
+- *Ejemplo:* `AgglomerativeClustering(linkage='complete')` usará la distancia máxima entre puntos al fusionar clústeres.
 - **`distance_threshold`** *(float, por defecto=None)*
-   Si se especifica, el proceso de agrupación continúa hasta alcanzar este umbral de distancia, permitiendo crear una estructura jerárquica sin necesidad de definir el número de clústeres de antemano.
+ Si se especifica, el proceso de agrupación continúa hasta alcanzar este umbral de distancia, permitiendo crear una estructura jerárquica sin necesidad de definir el número de clústeres de antemano.
 - **`compute_full_tree`** *(bool, por defecto='auto')*
-   Indica si se debe construir todo el árbol jerárquico o solo una parte relevante para formar los clústeres solicitados.
+ Indica si se debe construir todo el árbol jerárquico o solo una parte relevante para formar los clústeres solicitados.
 
 Una vez entrenado el modelo, la clase proporciona varios **atributos** útiles para analizar los resultados del clustering:
 
 - **`labels_`**
-   Contiene las etiquetas asignadas a cada punto, indicando el clúster al que pertenece cada observación.
-  - *Ejemplo:* `clustering.labels_` devolverá un array con los números de clústeres asignados a cada observación.
+ Contiene las etiquetas asignadas a cada punto, indicando el clúster al que pertenece cada observación.
+- *Ejemplo:* `clustering.labels_` devolverá un array con los números de clústeres asignados a cada observación.
 - **`n_clusters_`**
-   Muestra el número de clústeres formados en la ejecución del modelo.
+ Muestra el número de clústeres formados en la ejecución del modelo.
 
 El clustering jerárquico en Scikit-learn se centra principalmente en el **método** `fit()`, que ajusta el modelo a los datos y permite analizar la estructura jerárquica.
 
 - `fit(X)`
 
-  Ajusta el modelo a los datos de entrada y genera la jerarquía de clústeres.
+Ajusta el modelo a los datos de entrada y genera la jerarquía de clústeres.
 
-  - *Ejemplo:* `clustering.fit(X)` entrenará el modelo con los datos `X`.
+- *Ejemplo:* `clustering.fit(X)` entrenará el modelo con los datos `X`.
 
 ##### Implementación paso a paso de clustering jerárquico
 
@@ -988,50 +988,50 @@ Al configurar un modelo de clustering con DBSCAN, es fundamental comprender sus 
 Al crear una instancia de `DBSCAN`, se pueden ajustar varios **parámetros** que afectan el proceso de agrupación:
 
 - **`eps`** *(float, por defecto=0.5)*
-   Define el radio de vecindad dentro del cual un punto es considerado vecino de otro.
-  - *Claves:* Un valor muy pequeño puede fragmentar los clústeres, mientras que uno demasiado grande puede agrupar puntos no relacionados.
-  - *Ejemplo:* `DBSCAN(eps=0.7)` establecerá un radio de vecindad más amplio, lo que permitirá la formación de clústeres más grandes.
+ Define el radio de vecindad dentro del cual un punto es considerado vecino de otro.
+- *Claves:* Un valor muy pequeño puede fragmentar los clústeres, mientras que uno demasiado grande puede agrupar puntos no relacionados.
+- *Ejemplo:* `DBSCAN(eps=0.7)` establecerá un radio de vecindad más amplio, lo que permitirá la formación de clústeres más grandes.
 - **`min_samples`** *(int, por defecto=5)*
-   Especifica el número mínimo de puntos que deben estar dentro del radio `eps` para considerar que un punto es un **núcleo** de un clúster.
-  - *Claves:* Valores pequeños pueden generar clústeres espurios, mientras que valores muy grandes pueden no identificar clústeres pequeños.
-  - *Ejemplo:* `DBSCAN(min_samples=10)` exigirá al menos 10 vecinos para formar un clúster.
+ Especifica el número mínimo de puntos que deben estar dentro del radio `eps` para considerar que un punto es un **núcleo** de un clúster.
+- *Claves:* Valores pequeños pueden generar clústeres espurios, mientras que valores muy grandes pueden no identificar clústeres pequeños.
+- *Ejemplo:* `DBSCAN(min_samples=10)` exigirá al menos 10 vecinos para formar un clúster.
 - **`metric`** *(str o callable, por defecto='euclidean')*
-   Determina la métrica de distancia utilizada para calcular la proximidad entre puntos. Se pueden usar métricas como `'euclidean'`, `'manhattan'`, `'cosine'` o definir una métrica personalizada.
-  - *Ejemplo:* `DBSCAN(metric='manhattan')` usará la distancia de Manhattan en lugar de la euclidiana.
+ Determina la métrica de distancia utilizada para calcular la proximidad entre puntos. Se pueden usar métricas como `'euclidean'`, `'manhattan'`, `'cosine'` o definir una métrica personalizada.
+- *Ejemplo:* `DBSCAN(metric='manhattan')` usará la distancia de Manhattan en lugar de la euclidiana.
 - **`algorithm`** *(str, por defecto='auto')*
-   Define el método utilizado para calcular las vecindades, con opciones como `'auto'`, `'ball_tree'`, `'kd_tree'` o `'brute'`.
-  - *Claves:* La elección del algoritmo afecta la velocidad de ejecución en grandes conjuntos de datos.
-  - *Ejemplo:* `DBSCAN(algorithm='ball_tree')` utilizará estructuras de árbol para una búsqueda más eficiente.
+ Define el método utilizado para calcular las vecindades, con opciones como `'auto'`, `'ball_tree'`, `'kd_tree'` o `'brute'`.
+- *Claves:* La elección del algoritmo afecta la velocidad de ejecución en grandes conjuntos de datos.
+- *Ejemplo:* `DBSCAN(algorithm='ball_tree')` utilizará estructuras de árbol para una búsqueda más eficiente.
 - **`leaf_size`** *(int, por defecto=30)*
-   Influye en el rendimiento del cálculo de vecindades al usar estructuras de árbol. Un valor más pequeño puede mejorar la precisión, pero aumentar el tiempo de cómputo.
-  - *Ejemplo:* `DBSCAN(leaf_size=50)` ajustará el tamaño de los nodos de los árboles de búsqueda.
+ Influye en el rendimiento del cálculo de vecindades al usar estructuras de árbol. Un valor más pequeño puede mejorar la precisión, pero aumentar el tiempo de cómputo.
+- *Ejemplo:* `DBSCAN(leaf_size=50)` ajustará el tamaño de los nodos de los árboles de búsqueda.
 - **`n_jobs`** *(int, por defecto=None)*
-   Controla la cantidad de núcleos de CPU utilizados para el cálculo. Un valor de `-1` utilizará todos los núcleos disponibles.
-  - *Ejemplo:* `DBSCAN(n_jobs=-1)` utilizará todos los núcleos disponibles para acelerar el proceso.
+ Controla la cantidad de núcleos de CPU utilizados para el cálculo. Un valor de `-1` utilizará todos los núcleos disponibles.
+- *Ejemplo:* `DBSCAN(n_jobs=-1)` utilizará todos los núcleos disponibles para acelerar el proceso.
 
 Una vez entrenado el modelo, la clase proporciona diversos **atributos** que permiten analizar los resultados del clustering:
 
 - **`labels_`**
-   Contiene las etiquetas de clúster asignadas a cada punto de datos. Los puntos considerados ruido son etiquetados con `-1`.
-  - *Ejemplo:* `dbscan.labels_` devolverá un array como `[0, 1, 1, -1, 2, 0]`, indicando clústeres y puntos de ruido.
+ Contiene las etiquetas de clúster asignadas a cada punto de datos. Los puntos considerados ruido son etiquetados con `-1`.
+- *Ejemplo:* `dbscan.labels_` devolverá un array como `[0, 1, 1, -1, 2, 0]`, indicando clústeres y puntos de ruido.
 - **`core_sample_indices_`**
-   Indica los índices de las muestras que fueron identificadas como **puntos centrales**, es decir, aquellos que cumplen con la densidad mínima requerida.
-  - *Ejemplo:* `dbscan.core_sample_indices_` devolverá los índices de los puntos centrales en el conjunto de datos.
+ Indica los índices de las muestras que fueron identificadas como **puntos centrales**, es decir, aquellos que cumplen con la densidad mínima requerida.
+- *Ejemplo:* `dbscan.core_sample_indices_` devolverá los índices de los puntos centrales en el conjunto de datos.
 - **`components_`**
-   Contiene las coordenadas de los puntos centrales, representando el núcleo de cada clúster identificado.
-  - *Ejemplo:* `dbscan.components_` devuelve un array con las coordenadas de los puntos centrales.
+ Contiene las coordenadas de los puntos centrales, representando el núcleo de cada clúster identificado.
+- *Ejemplo:* `dbscan.components_` devuelve un array con las coordenadas de los puntos centrales.
 - **`eps`**
-   Muestra el valor del radio de vecindad utilizado en el modelo.
-  - *Ejemplo:* `dbscan.eps` devolverá el valor configurado para `eps`.
+ Muestra el valor del radio de vecindad utilizado en el modelo.
+- *Ejemplo:* `dbscan.eps` devolverá el valor configurado para `eps`.
 
 La clase `DBSCAN` proporciona **métodos esenciales** para entrenar y analizar los resultados del modelo de clustering:
 
 - **`fit(X)`**
-   Ajusta el modelo a los datos de entrada, detectando los clústeres en función de la densidad especificada.
-  - *Ejemplo:* `dbscan.fit(X)` entrenará el modelo con los datos de entrada `X`.
+ Ajusta el modelo a los datos de entrada, detectando los clústeres en función de la densidad especificada.
+- *Ejemplo:* `dbscan.fit(X)` entrenará el modelo con los datos de entrada `X`.
 - **`fit_predict(X)`**
-   Ajusta el modelo y devuelve las etiquetas de clúster asignadas a cada observación. Es útil para obtener las agrupaciones de manera directa.
-  - *Ejemplo:* `labels = dbscan.fit_predict(X)` devolverá las etiquetas de clúster y ruido.
+ Ajusta el modelo y devuelve las etiquetas de clúster asignadas a cada observación. Es útil para obtener las agrupaciones de manera directa.
+- *Ejemplo:* `labels = dbscan.fit_predict(X)` devolverá las etiquetas de clúster y ruido.
 
 ##### Implementación paso a paso de DBSCAN
 
@@ -1064,7 +1064,7 @@ df['Cluster'] = dbscan.fit_predict(X_scaled)
 # Visualización de los resultados
 plt.figure(figsize=(8, 6))
 sns.scatterplot(x=df['Annual Income (k$)'], y=df['Spending Score (1-100)'], 
-                hue=df['Cluster'], palette='viridis', legend='full')
+hue=df['Cluster'], palette='viridis', legend='full')
 plt.title('Clustering de clientes con DBSCAN')
 plt.xlabel('Ingresos anuales (k$)')
 plt.ylabel('Puntaje de gasto (1-100)')
@@ -1111,55 +1111,55 @@ La clase `GaussianMixture` ofrece una serie de parámetros clave que permiten co
 ##### **Parámetros clave de `GaussianMixture`**
 
 - **`n_components`** *(int, por defecto=1)*
-   Especifica el número de distribuciones gaussianas que compondrán el modelo, es decir, el número de clústeres a detectar.
-  - *Ejemplo:* `GaussianMixture(n_components=3)` agrupará los datos en tres clústeres.
+ Especifica el número de distribuciones gaussianas que compondrán el modelo, es decir, el número de clústeres a detectar.
+- *Ejemplo:* `GaussianMixture(n_components=3)` agrupará los datos en tres clústeres.
 - **`covariance_type`** *(str, por defecto='full')*
-   Define la estructura de la matriz de covarianza para cada componente. Las opciones incluyen:
-  - `'full'`: Permite matrices de covarianza completas (formas elípticas).
-  - `'tied'`: Una única matriz de covarianza compartida por todos los clústeres.
-  - `'diag'`: Covarianzas diagonales (independencia entre características).
-  - `'spherical'`: Covarianza isotrópica en todas las direcciones.
-  - *Ejemplo:* `GaussianMixture(covariance_type='diag')` utilizará covarianzas diagonales.
+ Define la estructura de la matriz de covarianza para cada componente. Las opciones incluyen:
+- `'full'`: Permite matrices de covarianza completas (formas elípticas).
+- `'tied'`: Una única matriz de covarianza compartida por todos los clústeres.
+- `'diag'`: Covarianzas diagonales (independencia entre características).
+- `'spherical'`: Covarianza isotrópica en todas las direcciones.
+- *Ejemplo:* `GaussianMixture(covariance_type='diag')` utilizará covarianzas diagonales.
 - **`max_iter`** *(int, por defecto=100)*
-   Especifica el número máximo de iteraciones que se realizarán durante el ajuste del modelo.
-  - *Ejemplo:* `GaussianMixture(max_iter=200)` permite realizar hasta 200 iteraciones.
+ Especifica el número máximo de iteraciones que se realizarán durante el ajuste del modelo.
+- *Ejemplo:* `GaussianMixture(max_iter=200)` permite realizar hasta 200 iteraciones.
 - **`init_params`** *(str, por defecto='kmeans')*
-   Método de inicialización de los parámetros del modelo, con opciones como:
-  - `'kmeans'`: Inicializa los centroides usando K-Means.
-  - `'random'`: Inicializa los parámetros aleatoriamente.
-  - *Ejemplo:* `GaussianMixture(init_params='random')` usará inicialización aleatoria.
+ Método de inicialización de los parámetros del modelo, con opciones como:
+- `'kmeans'`: Inicializa los centroides usando K-Means.
+- `'random'`: Inicializa los parámetros aleatoriamente.
+- *Ejemplo:* `GaussianMixture(init_params='random')` usará inicialización aleatoria.
 - **`random_state`** *(int, por defecto=None)*
-   Controla la reproducibilidad de los resultados al fijar una semilla aleatoria.
-  - *Ejemplo:* `GaussianMixture(random_state=42)` asegurará la reproducibilidad de los resultados.
+ Controla la reproducibilidad de los resultados al fijar una semilla aleatoria.
+- *Ejemplo:* `GaussianMixture(random_state=42)` asegurará la reproducibilidad de los resultados.
 
 ##### **Atributos clave de `GaussianMixture`**
 
 Una vez entrenado el modelo, se pueden consultar diversos atributos para interpretar los resultados obtenidos:
 
 - **`weights_`**
-   Muestra los pesos de cada componente gaussiana, reflejando la proporción de datos que pertenecen a cada clúster.
-  - *Ejemplo:* `gmm.weights_` devolverá un array con valores como `[0.3, 0.5, 0.2]`.
+ Muestra los pesos de cada componente gaussiana, reflejando la proporción de datos que pertenecen a cada clúster.
+- *Ejemplo:* `gmm.weights_` devolverá un array con valores como `[0.3, 0.5, 0.2]`.
 - **`means_`**
-   Contiene las medias de cada componente gaussiana, indicando la posición de los centroides en el espacio de características.
-  - *Ejemplo:* `gmm.means_` devolverá un array con las coordenadas de los centroides.
+ Contiene las medias de cada componente gaussiana, indicando la posición de los centroides en el espacio de características.
+- *Ejemplo:* `gmm.means_` devolverá un array con las coordenadas de los centroides.
 - **`covariances_`**
-   Muestra las matrices de covarianza asociadas a cada componente, describiendo la forma y orientación de los clústeres.
-  - *Ejemplo:* `gmm.covariances_` devolverá una lista de matrices de covarianza.
+ Muestra las matrices de covarianza asociadas a cada componente, describiendo la forma y orientación de los clústeres.
+- *Ejemplo:* `gmm.covariances_` devolverá una lista de matrices de covarianza.
 - **`converged_`**
-   Indica si el algoritmo ha convergido dentro del número máximo de iteraciones.
-  - *Ejemplo:* `gmm.converged_` devolverá `True` si el modelo ha alcanzado la convergencia.
+ Indica si el algoritmo ha convergido dentro del número máximo de iteraciones.
+- *Ejemplo:* `gmm.converged_` devolverá `True` si el modelo ha alcanzado la convergencia.
 
 ##### **Métodos principales de `GaussianMixture`**
 
 - **`fit(X)`**
-   Ajusta el modelo a los datos de entrada.
-  - *Ejemplo:* `gmm.fit(X)` entrenará el modelo con los datos `X`.
+ Ajusta el modelo a los datos de entrada.
+- *Ejemplo:* `gmm.fit(X)` entrenará el modelo con los datos `X`.
 - **`predict(X)`**
-   Asigna cada punto de datos a la distribución gaussiana más probable.
-  - *Ejemplo:* `gmm.predict(X)` devolverá las etiquetas de clústeres para cada muestra en `X`.
+ Asigna cada punto de datos a la distribución gaussiana más probable.
+- *Ejemplo:* `gmm.predict(X)` devolverá las etiquetas de clústeres para cada muestra en `X`.
 - **`predict_proba(X)`**
-   Devuelve las probabilidades de pertenencia de cada punto a cada clúster.
-  - *Ejemplo:* `gmm.predict_proba(X)` mostrará la probabilidad de cada muestra para cada componente.
+ Devuelve las probabilidades de pertenencia de cada punto a cada clúster.
+- *Ejemplo:* `gmm.predict_proba(X)` mostrará la probabilidad de cada muestra para cada componente.
 
 ##### Implementación paso a paso de GMM
 
