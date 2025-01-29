@@ -319,12 +319,12 @@ Una vez que todos los puntos han sido asignados a sus respectivos clústeres, el
 
 El proceso de asignación y reajuste no se realiza una sola vez, sino que se repite de manera iterativa en la etapa de **convergencia**, hasta que los centroides alcanzan una posición estable. La convergencia se define cuando los centroides dejan de cambiar significativamente entre iteraciones sucesivas o cuando se cumple un criterio de optimización específico, como la minimización de la suma de las distancias cuadradas dentro de cada clúster. En algunos casos, se puede establecer un número máximo de iteraciones para evitar un sobreprocesamiento innecesario, especialmente en conjuntos de datos grandes donde la convergencia puede llevar tiempo.
 
+<img src=".\assets\617px-K-means_convergence.gif" alt="img" />
+
 > **Ejemplo:**
 >Imaginemos un conjunto de datos que contiene información sobre pacientes de un hospital, incluyendo variables como la edad, el índice de masa corporal (IMC) y la presión arterial. Si aplicamos un algoritmo de clustering basado en particiones para agrupar a los pacientes en diferentes categorías de riesgo, primero se seleccionarán centroides iniciales que representen grupos hipotéticos de pacientes con distintos niveles de salud. Luego, cada paciente se asignará al grupo más cercano según sus características de salud, y en cada iteración los centroides se recalcularán hasta estabilizarse, ofreciendo una segmentación útil para los médicos.
 
 Este enfoque de clustering presenta ventajas significativas, como su rapidez y eficiencia en la segmentación de grandes volúmenes de datos. Sin embargo, también presenta desafíos, como la necesidad de definir de antemano el número de clústeres, lo cual no siempre es evidente en contextos donde la estructura de los datos no es conocida de antemano.
-
-El algoritmo más representativo del clustering basado en particiones es **K-Means**, ampliamente utilizado por su rapidez y simplicidad. K-Means busca particionar el espacio de datos en $k$ clústeres mediante un proceso iterativo basado en la minimización de la **varianza intra-clúster**, es decir, minimiza la suma de las distancias cuadradas de cada punto a su centroide más cercano. 
 
 <img src="https://miro.medium.com/v2/resize:fit:709/1*JsfEdbXKwJw_Euprvx17KA.png" alt="Fully Explained K-means" />
 
