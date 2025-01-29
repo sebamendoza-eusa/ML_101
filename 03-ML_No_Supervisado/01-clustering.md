@@ -679,6 +679,8 @@ Donde:
 
 En esta ecuación, cada distribución gaussiana contribuye de manera diferente a la probabilidad total de un punto de datos, reflejando la naturaleza probabilística del modelo.
 
+<img src=".\assets\1lTv7e4Cdlp738X_WFZyZHA.png" alt="Gaussian Mixture Models Explained | by Oscar Contreras Carrasco | Towards  Data Science" />
+
 ##### Método de **Expectación-Maximización (EM)**
 
 El proceso de modelado en GMM consiste en encontrar la mejor combinación de estas distribuciones gaussianas para describir los datos de la manera más precisa posible. Para lograrlo, el algoritmo emplea un enfoque iterativo basado en el método de **Expectación-Maximización (EM)**, diseñado para estimar los parámetros desconocidos del modelo de manera eficiente.
