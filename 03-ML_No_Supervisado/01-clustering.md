@@ -280,7 +280,7 @@ Una de las ventajas del clustering jerárquico es su capacidad para proporcionar
 
 El clustering basado en densidad adopta una perspectiva distinta, identificando agrupaciones de puntos en función de su concentración en ciertas regiones del espacio. En lugar de basarse en distancias globales, estos métodos detectan regiones densas de puntos separadas por áreas de baja densidad, permitiendo descubrir estructuras de formas complejas sin la necesidad de definir el número de clústeres previamente.
 
-El algoritmo más representativo de esta categoría es **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)**, el cual clasifica los puntos de datos en función de su vecindad, definida por un radio de búsqueda (ε\varepsilon) y un número mínimo de puntos dentro de esa vecindad (MinPtsMinPts). DBSCAN permite identificar clústeres de formas arbitrarias y detectar valores atípicos, lo que lo hace especialmente útil en escenarios donde los datos contienen ruido o regiones de diferentes densidades.
+El algoritmo más representativo de esta categoría es **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)**, el cual clasifica los puntos de datos en función de su vecindad, definida por un radio de búsqueda ($\varepsilon$) y un número mínimo de puntos dentro de esa vecindad ($MinPts$). DBSCAN permite identificar clústeres de formas arbitrarias y detectar valores atípicos, lo que lo hace especialmente útil en escenarios donde los datos contienen ruido o regiones de diferentes densidades.
 
 A pesar de sus ventajas, la efectividad de los algoritmos basados en densidad depende en gran medida de la correcta elección de los parámetros, lo que puede ser un desafío en conjuntos de datos con densidades variables. Sin embargo, su capacidad para adaptarse a estructuras de datos complejas lo convierte en una herramienta poderosa en aplicaciones como el análisis geoespacial, la detección de fraudes y la segmentación de imágenes.
 
@@ -487,11 +487,15 @@ Otra alternativa es el **enlace promedio**, que calcula la distancia media entre
 
 Finalmente, el **enlace de Ward** es uno de los más utilizados en la práctica, ya que minimiza la varianza intra-clúster, generando agrupaciones homogéneas y bien separadas. Este criterio es particularmente útil en situaciones donde se desea obtener clústeres de tamaño similar y estructuras compactas.
 
+<img src=".\assets\15-Hierarchical-Clustering-Linkages.png" alt="How the Hierarchical Clustering Algorithm Works" />
+
 #### Interpretación del dendrograma
 
 Uno de los aspectos más valiosos del clustering jerárquico es la posibilidad de visualizar los resultados mediante un **dendrograma**, que representa gráficamente el proceso de agrupamiento de los datos. Cada nodo del dendrograma indica una fusión entre clústeres, y la altura a la que ocurre refleja la distancia o disimilitud entre ellos.
 
 Interpretar un dendrograma implica identificar un punto de corte adecuado para seleccionar el número óptimo de clústeres. Este punto de corte se determina visualmente trazando una línea horizontal en el nivel donde las uniones entre clústeres son más grandes, lo que sugiere que los grupos son significativamente distintos entre sí.
+
+<img src=".\assets\1VvOVxdBb74IOxxF2RmthCQ.png" alt="Hierarchical clustering explained | by Prasad Pai | Towards Data Science" />
 
 #### Ventajas y limitaciones del clustering jerárquico
 
@@ -524,6 +528,8 @@ Otra aplicación importante se encuentra en el **procesamiento de textos**, dond
 El clustering basado en densidad es un enfoque poderoso dentro del aprendizaje no supervisado que se fundamenta en la agrupación de puntos de datos en función de su concentración en el espacio. A diferencia de otros métodos, como K-Means o el clustering jerárquico, que dependen de supuestos sobre la forma o el número de clústeres, el algoritmo **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)** identifica agrupaciones en regiones densamente pobladas, permitiendo la detección automática de estructuras de formas arbitrarias y la identificación de valores atípicos.
 
 Este enfoque es especialmente útil en escenarios donde los datos contienen regiones de diferente densidad o están afectados por ruido. En lugar de asignar cada punto a un clúster específico, DBSCAN diferencia entre puntos **centrales**, **de borde** y **ruidosos**, proporcionando una mayor flexibilidad en comparación con métodos más tradicionales. 
+
+<img src="https://camo.githubusercontent.com/a52b9d7ae4427470ba5b7559455e0ce6cb9ef0e03b6b2feac9131b7d47f0a118/68747470733a2f2f64313768323774366835313561352e636c6f756466726f6e742e6e65742f746f706865722f323031372f4a756c792f35393631366261645f73637265656e2d73686f742d323031372d30372d30382d61742d342e33322e32322d706d2f73637265656e2d73686f742d323031372d30372d30382d61742d342e33322e32322d706d2e706e67" alt="GitHub." />
 
 #### Funcionamiento del algoritmo DBSCAN
 
@@ -565,7 +571,7 @@ La elección adecuada de $\varepsilon$ depende de la escala y distribución de l
 
 Otro hiperparámetro crucial es $MinPts$, que define el **número mínimo de puntos** necesarios dentro de la distancia $\varepsilon$ para que una región sea considerada densa. Este valor determina si un punto es clasificado como central y, en consecuencia, si puede iniciar la formación de un clúster.
 
-La configuración de $MinPts$ suele depender de la dimensionalidad del conjunto de datos, siguiendo una regla empírica común que sugiere establecerlo como el doble de la dimensión del espacio de características. Por ejemplo, para un conjunto de datos con 5 características, una elección inicial razonable sería MinPts=10MinPts = 10. Sin embargo, este valor puede ajustarse dependiendo de la cantidad de ruido presente en los datos y del nivel de granularidad deseado en la detección de clústeres.
+La configuración de $MinPts$ suele depender de la dimensionalidad del conjunto de datos, siguiendo una regla empírica común que sugiere establecerlo como el doble de la dimensión del espacio de características. Por ejemplo, para un conjunto de datos con 5 características, una elección inicial razonable sería $MinPts=10$. Sin embargo, este valor puede ajustarse dependiendo de la cantidad de ruido presente en los datos y del nivel de granularidad deseado en la detección de clústeres.
 
 > **Ejemplo:**
 >Supongamos que estamos analizando datos de sensores ambientales en una ciudad, donde cada punto representa una estación de monitoreo con variables como temperatura, humedad y calidad del aire. Si configuramos un valor de $\varepsilon$ demasiado bajo, los sensores que registran patrones similares podrían no ser agrupados, dificultando la identificación de zonas con condiciones atmosféricas homogéneas. Por el contrario, un valor de $MinPts$ demasiado alto podría omitir estaciones aisladas que detectan eventos climáticos relevantes.
@@ -588,12 +594,12 @@ A pesar de estas ventajas, DBSCAN presenta **algunas limitaciones** que deben se
 
 Uno de los principales desafíos es su **desempeño en conjuntos de datos de alta dimensionalidad**. A medida que la cantidad de dimensiones aumenta, la noción de densidad pierde significado debido al fenómeno conocido como la "maldición de la dimensionalidad". En estas situaciones, las distancias entre los puntos tienden a volverse más uniformes, lo que dificulta la identificación de regiones densas y hace que la elección de los parámetros sea más compleja.
 
-La **selección de los hiperparámetros ε\varepsilon y MinPtsMinPts** es otro aspecto crítico en la aplicación de DBSCAN. Una mala elección de estos valores puede generar clústeres que no reflejan la estructura real de los datos, lo que lleva a una segmentación deficiente. Por esta razón, suele ser necesario realizar pruebas iterativas o utilizar herramientas como la curva *k-distance* para determinar valores óptimos, lo que puede requerir un esfuerzo adicional de ajuste.
+La **selección de los hiperparámetros $\varepsilon$ y $MinPts$** es otro aspecto crítico en la aplicación de DBSCAN. Una mala elección de estos valores puede generar clústeres que no reflejan la estructura real de los datos, lo que lleva a una segmentación deficiente. Por esta razón, suele ser necesario realizar pruebas iterativas o utilizar herramientas como la curva *k-distance* para determinar valores óptimos, lo que puede requerir un esfuerzo adicional de ajuste.
 
-Además, DBSCAN **no se adapta bien a conjuntos de datos con densidades muy variables**, ya que un único valor de ε\varepsilon puede no ser suficiente para capturar agrupaciones de diferentes escalas. En casos donde los datos presentan regiones con densidades significativamente distintas, el algoritmo puede agrupar incorrectamente puntos pertenecientes a diferentes clústeres o ignorar algunos clústeres más dispersos.
+Además, DBSCAN **no se adapta bien a conjuntos de datos con densidades muy variables**, ya que un único valor de $\varepsilon$ puede no ser suficiente para capturar agrupaciones de diferentes escalas. En casos donde los datos presentan regiones con densidades significativamente distintas, el algoritmo puede agrupar incorrectamente puntos pertenecientes a diferentes clústeres o ignorar algunos clústeres más dispersos.
 
 > **Ejemplo:**
->Supongamos que se está utilizando DBSCAN para analizar datos de transacciones bancarias. Si los parámetros ε\varepsilon y MinPtsMinPts no se eligen correctamente, el algoritmo podría etiquetar transacciones legítimas como fraude debido a una mala configuración de los límites de densidad, afectando la precisión del sistema de detección de anomalías.
+>Supongamos que se está utilizando DBSCAN para analizar datos de transacciones bancarias. Si los parámetros $\varepsilon$ y $MinPts$ no se eligen correctamente, el algoritmo podría etiquetar transacciones legítimas como fraude debido a una mala configuración de los límites de densidad, afectando la precisión del sistema de detección de anomalías.
 
 > [!warning]
 >
@@ -629,7 +635,7 @@ Otra métrica relevante es el **índice de Davies-Bouldin**, que mide la compaci
 > **Ejemplo:**
 >Supongamos que se aplica DBSCAN para segmentar clientes de un supermercado en función de su comportamiento de compra. Si el coeficiente de silueta es alto y el índice de Davies-Bouldin es bajo, significa que los clientes con hábitos de compra similares han sido agrupados de manera efectiva, mientras que aquellos con patrones diferentes han sido separados adecuadamente.
 
-Además de estas métricas tradicionales, una consideración importante en DBSCAN es el **número de puntos ruidosos** detectados por el algoritmo. Una alta cantidad de puntos clasificados como ruido podría indicar que los parámetros ε\varepsilon y MinPtsMinPts no se han ajustado correctamente. Si se elige un valor de ε\varepsilon demasiado pequeño, es posible que muchos puntos no sean considerados parte de ningún clúster y se clasifiquen erróneamente como ruido. Por el contrario, un valor de ε\varepsilon demasiado grande podría hacer que los clústeres se expandan en exceso, reduciendo la capacidad del algoritmo para detectar patrones significativos en los datos.
+Además de estas métricas tradicionales, una consideración importante en DBSCAN es el **número de puntos ruidosos** detectados por el algoritmo. Una alta cantidad de puntos clasificados como ruido podría indicar que los parámetros $\varepsilon$ y $MinPts$ no se han ajustado correctamente. Si se elige un valor de $\varepsilon$ demasiado pequeño, es posible que muchos puntos no sean considerados parte de ningún clúster y se clasifiquen erróneamente como ruido. Por el contrario, un valor de $\varepsilon$ demasiado grande podría hacer que los clústeres se expandan en exceso, reduciendo la capacidad del algoritmo para detectar patrones significativos en los datos.
 
 En algunos casos, es útil analizar la **distribución de los tamaños de clústeres**, ya que la presencia de clústeres muy pequeños o excesivamente grandes puede indicar problemas en la configuración de los parámetros. Para entender mejor la estructura de los datos, se pueden utilizar técnicas de visualización, como gráficos de dispersión coloreados por clústeres y mapas de calor de densidad, que permiten evaluar visualmente la efectividad de la agrupación.
 
@@ -662,13 +668,13 @@ Por último, el **peso** de cada componente indica la importancia relativa de es
 En conjunto, la combinación de estas distribuciones gaussianas define la probabilidad total de cualquier punto de datos. Matemáticamente, el modelo se expresa como una suma ponderada de todas las distribuciones gaussianas individuales, donde cada una contribuye en función de su peso, media y covarianza:
 
 $$
-p(x) = \sum_{i=1}^{k} \pi_i \mathcal{N}(x \mid \mu_i, \Sigma_i)
+p(x) = \sum_{i=1}^{k} \pi_i \mathcal{N}(x \mid \mu_i, \sigma_i)
 $$
 
 Donde:
 
 - $k$ es el número de clústeres.
-- $\mathcal{N}(x \mid \mu_i, \Sigma_i)$ representa la función de densidad de probabilidad de una distribución gaussiana multivariante.
+- $\mathcal{N}(x \mid \mu_i, \sigma_i)$ representa la función de densidad de probabilidad de una distribución gaussiana multivariante.
 - $\pi_i$ es el peso correspondiente a la $i$-ésima distribución gaussiana.
 
 En esta ecuación, cada distribución gaussiana contribuye de manera diferente a la probabilidad total de un punto de datos, reflejando la naturaleza probabilística del modelo.
@@ -979,7 +985,7 @@ Al aplicar el clustering jerárquico, es importante considerar los siguientes as
 - **Interpretación del dendrograma**: La selección del número de clústeres se realiza cortando el dendrograma en un nivel adecuado.
 - **Escalabilidad**: El clustering jerárquico no es adecuado para grandes volúmenes de datos debido a su alta complejidad computacional.
 
-### Implementación práctica del clustering DBSCAN
+#### Implementación práctica del clustering DBSCAN
 
 La clase `DBSCAN` en Scikit-learn proporciona una implementación flexible del algoritmo de clustering basado en densidad. Su funcionamiento se basa en la identificación de regiones densas en el espacio de características, lo que permite detectar agrupaciones de formas arbitrarias y detectar puntos de ruido.
 
@@ -1096,7 +1102,7 @@ Finalmente, se evalúa la calidad del clustering utilizando el **coeficiente de 
 
 Al trabajar con DBSCAN, es importante tener en cuenta ciertos aspectos que influyen en su desempeño:
 
-- **Selección de los parámetros $\varepsilon$ y `min_samples`**: La elección de estos valores es crucial para obtener buenos resultados. Un valor de ε\varepsilon demasiado pequeño puede fragmentar los clústeres, mientras que un valor demasiado grande puede agrupar puntos que no deberían estar juntos.
+- **Selección de los parámetros $\varepsilon$ y `min_samples`**: La elección de estos valores es crucial para obtener buenos resultados. Un valor de $\varepsilon$ demasiado pequeño puede fragmentar los clústeres, mientras que un valor demasiado grande puede agrupar puntos que no deberían estar juntos.
 - **Sensibilidad a la densidad de los datos**: Si los clústeres tienen densidades muy variables, DBSCAN puede no identificar correctamente algunas agrupaciones.
 - **Capacidad para detectar valores atípicos**: Una de las principales ventajas de DBSCAN es su habilidad para detectar puntos de datos que no pertenecen a ninguna agrupación, lo que puede ser útil en tareas de detección de anomalías.
 
