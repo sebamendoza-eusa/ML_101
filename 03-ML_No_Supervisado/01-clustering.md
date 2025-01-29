@@ -703,6 +703,8 @@ Otro aspecto crítico es la **estructura de la matriz de covarianza**, que deter
 - **Diagonal:** Los clústeres tienen diferentes varianzas en cada dimensión, pero sin correlación entre ellas.
 - **Completa:** Se permite cualquier forma y orientación, capturando relaciones complejas entre dimensiones.
 
+<img src="https://camo.githubusercontent.com/b8dd91fb2baea404fa90aa46f5fa55c3146a90a40ea9d33d22b9f35695d0ea8b/68747470733a2f2f74682e62696e672e636f6d2f74682f69642f522e32313033363733656231386466336361356432346666313639373063333662663f72696b3d754676554e425664594c747a7741267269753d687474702533612532662532667363696b69742d6c6561726e2e736f75726365666f7267652e6e6574253266302e362532665f696d61676573253266706c6f745f676d6d5f636c6173736966696572312e706e672665686b3d747532467338325963656746724f654569736d735138654542666e516373354542726e3946346962613645253364267269736c3d267069643d496d6752617726723d30" alt="GitHub - DandiMahendris" />
+
 > **Ejemplo:**
 >Supongamos que se desea segmentar a los clientes de una tienda en función de su comportamiento de compra. Aplicando GMM con una estructura de covarianza completa, el modelo podría identificar clústeres con patrones de compra correlacionados, como clientes que gastan más en productos electrónicos también tienden a comprar artículos de hogar de alta gama.
 
