@@ -668,13 +668,13 @@ Por último, el **peso** de cada componente indica la importancia relativa de es
 En conjunto, la combinación de estas distribuciones gaussianas define la probabilidad total de cualquier punto de datos. Matemáticamente, el modelo se expresa como una suma ponderada de todas las distribuciones gaussianas individuales, donde cada una contribuye en función de su peso, media y covarianza:
 
 $$
-p(x) = \sum_{i=1}^{k} \pi_i \mathcal{N}(x \mid \mu_i, \sigma_i)
+p(x) = \sum_{i=1}^{k} \pi_i \mathcal{N}(x \mid \mu_i, \Sigma_i)
 $$
 
 Donde:
 
 - $k$ es el número de clústeres.
-- $\mathcal{N}(x \mid \mu_i, \sigma_i)$ representa la función de densidad de probabilidad de una distribución gaussiana multivariante.
+- $\mathcal{N}(x \mid \mu_i, \Sigma_i)$ representa la función de densidad de probabilidad de una distribución gaussiana multivariante.
 - $\pi_i$ es el peso correspondiente a la $i$-ésima distribución gaussiana.
 
 En esta ecuación, cada distribución gaussiana contribuye de manera diferente a la probabilidad total de un punto de datos, reflejando la naturaleza probabilística del modelo.
