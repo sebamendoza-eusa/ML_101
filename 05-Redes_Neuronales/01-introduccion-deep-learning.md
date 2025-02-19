@@ -118,8 +118,6 @@ A pesar de esta diferencia, en muchas aplicaciones el **rendimiento superior del
 > **¿En qué situaciones los modelos tradicionales de aprendizaje supervisado siguen siendo preferibles al Deep Learning?**
 >  **Clave**: Analiza casos donde la interpretabilidad, el bajo costo computacional o la escasez de datos pueden hacer que los métodos clásicos sean una mejor opción.
 
-
-
 #### **Aplicaciones prácticas en visión por computadora, NLP y otros campos**
 
 El Deep Learning ha trascendido la teoría para convertirse en una herramienta fundamental en múltiples disciplinas. Su capacidad para **aprender representaciones complejas a partir de los datos** ha permitido resolver problemas que antes eran intratables con los métodos tradicionales de Machine Learning. Dentro de sus aplicaciones más destacadas se encuentran la **visión por computadora**, el **procesamiento de lenguaje natural (NLP)** y otros campos donde la interpretación de datos no estructurados es fundamental.
@@ -176,7 +174,9 @@ donde:
 - $b$ es un término de sesgo o bias, que ajusta el umbral de activación.
 - $z$ es la combinación ponderada de las entradas antes de pasar por una función de activación.  
 
-Para decidir si la neurona se activa o no, se aplica una **función de activación** sobre $z$, que introduce no linealidad y permite que el modelo aprenda relaciones más complejas en los datos. En su forma más simple, esta función puede ser un **escalón**, activando la neurona solo si la suma ponderada de las entradas supera un umbral.
+Hasta aquí la neurona realiza una transformación **lineal** de los datos de entrada, aplicando unos pesos $w_i$ y un sesgo $b$
+
+Sin embargo, para decidir si la neurona se activa o no, se aplica una **función de activación** sobre $z$, que introduce **no linealidad** y permite que el modelo aprenda relaciones más complejas en los datos. En su forma más simple, esta función puede ser un **escalón**, activando la neurona solo si la suma ponderada de las entradas supera un umbral.
 
 ##### **Modelo del Perceptrón: función de activación escalón y regla de actualización de pesos**
 
@@ -202,6 +202,126 @@ donde:
 
 El Perceptrón ajusta los pesos tras cada observación, de modo que si una muestra se clasifica incorrectamente, los pesos se actualizan en la dirección que reduciría el error en futuras iteraciones.
 
+> **Ejemplo:**
+>
+> Veamos el ejemplo de un perceptrón que aprende la función **OR** en el que se muestra explícitamente el **cálculo manual de los pesos** en cada iteración. Queremos que el perceptrón aprenda la mencionada función lógica **OR** a partir de los siguientes datos de entrenamiento:
+>
+> | $x_1$ | $x_2$ | OR($x_1, x_2$) |
+> | ----- | ----- | -------------- |
+> | 0     | 0     | 0              |
+> | 0     | 1     | 1              |
+> | 1     | 0     | 1              |
+> | 1     | 1     | 1              |
+>
+> El **modelo del perceptrón** tiene una función de activación:
+>
+> $$
+> y = \text{step}(w_1 x_1 + w_2 x_2 + b)
+> $$
+> Donde la **función escalón (step function)** se define como:
+>
+> $$
+> \text{step}(z) =
+> \begin{cases} 
+> 1, & \text{si } z \geq 0 \\
+> 0, & \text{si } z < 0
+> \end{cases}
+> $$
+> Según la propuesta inicial del perceptrón de Rosenblatt, el **algoritmo de aprendizaje** sigue la regla de actualización:
+>
+> $$
+> w_j \leftarrow w_j + \eta \cdot (y_{\text{real}} - y_{\text{pred}}) \cdot x_j
+> $$
+>
+> $$
+> b \leftarrow b + \eta \cdot (y_{\text{real}} - y_{\text{pred}})
+> $$
+> Donde:
+> - $w_j$ son los pesos de la neurona.
+> - $b$ es el sesgo.
+> - $\eta$ es la tasa de aprendizaje (usaremos $\eta = 0.1$).
+> - $y_{\text{real}}$ es la etiqueta real.
+> - $y_{\text{pred}}$ es la predicción del perceptrón.
+>
+> **Iteración 0: Datos de incio**
+>
+> - Supongamos que los pesos y el sesgo inician en $w_1 = 0$, $w_2 = 0$, $b = 0$.
+> - $\eta = 0.1$
+>
+> **Iteración 1 (con los datos de entrenamiento uno por uno):**
+>
+> - Entrada: $(x_1 = 0, x_2 = 0)$
+> - Salida esperada: $y = 0$
+> - Cálculo de salida:  
+>   $$
+>   z = (0 \cdot 0) + (0 \cdot 0) + 0 = 0
+>   $$
+>   $$
+>   \text{step}(0) = 1
+>   $$
+> - Error: $y_{\text{real}} - y_{\text{pred}} = 0 - 1 = -1$
+> - Actualización:
+>   $$
+>   w_1 = 0 + (0.1 \times -1 \times 0) = 0
+>   $$
+>   $$
+>   w_2 = 0 + (0.1 \times -1 \times 0) = 0
+>   $$
+>   $$
+>   b = 0 + (0.1 \times -1) = -0.1
+>   $$
+>
+> El estado de los pesos será entonces:
+> $$
+> w_1 = 0; w_2 = 0; b = -0.1
+> $$
+> Pasamos ahora la siguiente observación:
+>
+> - Entrada: $(x_1 = 0, x_2 = 1)$
+> - Salida esperada: $y = 1$
+> - Cálculo de salida:  
+>   $$
+>   z = (0 \cdot 0) + (0 \cdot 1) + (-0.1) = -0.1
+>   $$
+>   $$
+>   \text{step}(-0.1) = 0
+>   $$
+> - Error: $1 - 0 = 1$
+> - Actualización:
+>   $$
+>   w_1 = 0 + (0.1 \times 1 \times 0) = 0
+>   $$
+>   $$
+>   w_2 = 0 + (0.1 \times 1 \times 1) = 0.1
+>   $$
+>   $$
+>   b = -0.1 + (0.1 \times 1) = 0
+>   $$
+>
+> Ahora los pesos serían:
+> $$
+> w_1 = 0; w_2 = 0.1; b = 0
+> $$
+> Igualmente podemos hacer para las siguientes observaciones, obteniendo los siguientes pesos en ambos casos
+> $$
+> w_1 = 0; w_2 = 0.1; b = 0
+> $$
+> Después de una sola **época de entrenamiento**, los pesos han convergido a:
+> - **$w_1 = 0$**
+> - **$w_2 = 0.1$**
+> - **$b = 0$**
+>
+> La función aprendida es:
+>
+> $$
+> y = \text{step}(0 \cdot x_1 + 0.1 \cdot x_2 + 0)
+> $$
+>
+> Si bien en este caso la solución no es ideal, si entrenamos durante más épocas, los pesos se ajustarán mejor para representar la función OR.
+>
+> Este ejemplo muestra cómo el perceptrón ajusta sus pesos iterativamente **solo cuando comete errores**, siguiendo una regla de actualización basada en los ejemplos de entrenamiento.  
+>
+
 ##### **Limitaciones del Perceptrón y el problema de la separación lineal**
 
 A pesar de su éxito inicial, el Perceptrón tiene limitaciones fundamentales. Su principal restricción es que **solo puede resolver problemas linealmente separables**, es decir, aquellos en los que las clases pueden dividirse con una línea recta en dos dimensiones o con un hiperplano en espacios de mayor dimensión.  
@@ -212,18 +332,18 @@ Para superar esta limitación, fue necesario extender el concepto del Perceptró
 
 ##### **Para reflexionar...**
 
-> **¿Por qué el Perceptrón no puede resolver problemas como la función XOR?**  
+> **¿Por qué el Perceptrón no puede resolver problemas como la función XOR?** 
 > **Clave**: Reflexiona sobre cómo la separación lineal limita la capacidad de este modelo y por qué la introducción de múltiples capas permite superar esta restricción.  
 
 #### **Evolución a redes neuronales multicapa (MLP)**
 
 El Perceptrón, a pesar de haber sido un hito en la historia de la inteligencia artificial, demostró ser limitado al enfrentarse a problemas donde las clases no podían separarse con una simple línea recta. Esta restricción, conocida como el problema de la **separación lineal**, llevó a la necesidad de arquitecturas más flexibles que permitieran capturar relaciones más complejas en los datos. La solución vino con la introducción de las **redes neuronales multicapa (MLP, Multi-Layer Perceptron)**, modelos que incorporan múltiples niveles de procesamiento para aprender representaciones progresivamente más abstractas.
 
-El concepto clave detrás de una **MLP** es la introducción de **capas ocultas**, es decir, neuronas intermedias que transforman la información antes de llegar a la capa de salida. A diferencia del Perceptrón, que toma una decisión inmediata basada en una combinación lineal de las entradas, una red multicapa es capaz de construir **representaciones jerárquicas que permiten resolver problemas más complejos**. Esta capacidad de abstracción es lo que ha permitido que las redes neuronales sean aplicadas con éxito en tareas como el reconocimiento de imágenes, el procesamiento de lenguaje natural y la predicción de series temporales.
+El concepto clave detrás de una **MLP** es la introducción de **capas ocultas**, es decir, neuronas intermedias que transforman la información antes de llegar a la capa de salida. A diferencia del perceptrón, que toma una decisión inmediata basada en una combinación lineal de las entradas, una red multicapa es capaz de construir **representaciones jerárquicas que permiten resolver problemas más complejos**. Esta capacidad de abstracción es lo que ha permitido que las redes neuronales sean aplicadas con éxito en tareas de predicción de lo más diverso.
 
 ##### **Capas de entrada, ocultas y salida**
 
-El funcionamiento de una **MLP** se puede entender como un flujo de información a través de diferentes niveles de procesamiento. Todo comienza con la **capa de entrada**, donde se reciben los datos en su forma original. Cada neurona en esta capa representa una característica del problema; por ejemplo, en una imagen en escala de grises de 28×28 píxeles, la capa de entrada tendría **784 neuronas**, una por cada píxel. Su único propósito es transmitir la información sin alteraciones hacia la siguiente capa.
+El funcionamiento de una **MLP** se puede entender como un flujo de información a través de diferentes niveles de procesamiento. Todo comienza con la **capa de entrada**, donde se reciben los datos en su forma original. Su único propósito es transmitir la información sin alteraciones hacia la siguiente capa.
 
 El verdadero procesamiento ocurre en las **capas ocultas**, que son las responsables de transformar los datos. Cada neurona en estas capas recibe la información de las neuronas de la capa anterior, la procesa aplicando una transformación matemática y la pasa a la siguiente capa. Cuantas más capas tenga una red, más complejas pueden ser las representaciones que aprende. Esta capacidad de construir representaciones progresivas es lo que distingue a las redes neuronales profundas de otros modelos de aprendizaje automático.
 
@@ -233,13 +353,39 @@ Finalmente, la **capa de salida** produce el resultado final. Su número de neur
 
 ##### **El papel de la función de activación**
 
-Para que una red neuronal pueda modelar relaciones no lineales, es fundamental que las neuronas no se limiten a realizar simples combinaciones lineales de las entradas. Esta transformación se logra mediante las **funciones de activación**, que introducen no linealidad en la red y permiten que aprenda patrones más complejos.
+Ya vimos con el perceptrón que para que una red neuronal pueda modelar relaciones no lineales, es fundamental que las neuronas no se limiten a realizar simples combinaciones lineales de las entradas. Esta transformación se logra mediante las **funciones de activación**, que introducen no linealidad en la red y permiten que aprenda patrones más complejos. Analicemos un poco mas detenidamente el papel de la función de activación
 
-Uno de los primeros enfoques fue el uso de la **función sigmoide**, que convierte cualquier valor de entrada en un número entre 0 y 1. Esto permite interpretar la salida como una probabilidad, aunque presenta el inconveniente de que, en redes profundas, los gradientes pueden volverse demasiado pequeños y dificultar el entrenamiento. Para solucionar este problema, se introdujo la **tangente hiperbólica (Tanh)**, que funciona de manera similar, pero está centrada en 0, facilitando la propagación de los valores.
+Cuando los primeros modelos de redes neuronales comenzaron a tomar forma, uno de los desafíos fundamentales era encontrar una manera efectiva de transformar las salidas de las neuronas en valores interpretables. La **función sigmoide** fue una de las primeras respuestas a este problema, ya que permitía convertir cualquier entrada en un número entre 0 y 1, lo que facilitaba la interpretación de los resultados como probabilidades. Su suavidad y comportamiento gradual parecían ideales para permitir que las redes aprendieran de manera controlada, evitando cambios bruscos en la salida ante pequeñas modificaciones en los datos de entrada.
+$$
+\sigma(x) = \frac{1}{1 + e^{-x}}
+$$
+![image-20250217230246496](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230246496.png)
 
-En la actualidad, la función de activación más utilizada es **ReLU (Rectified Linear Unit)**, que simplemente devuelve el valor de entrada si es positivo y lo convierte en cero si es negativo. Su simplicidad matemática ha demostrado ser altamente eficiente en la práctica, permitiendo que los modelos converjan más rápido en el entrenamiento. En problemas específicos, existen variantes de ReLU, como **Leaky ReLU**, que permite valores negativos pequeños, y **ELU**, que suaviza la transición en torno al cero.
+Sin embargo, a medida que empezó a investigar el funcionamiento de redes más profundas, surgieron problemas inesperados. Durante la fase de entrenamiento, en la que los pesos de la red se ajustan para minimizar el error, la sigmoide comenzó a mostrar una gran limitación: su derivada se vuelve extremadamente pequeña para valores de entrada muy grandes o muy pequeños. Esto significa que, cuando la red intenta aprender, las capas profundas reciben gradientes casi nulos, lo que hace que sus pesos apenas se actualicen. Conocido como el **problema del desvanecimiento del gradiente**, este fenómeno limitaba la capacidad de las redes para capturar patrones complejos en los datos.
 
-La elección de la función de activación en cada capa de la red es un factor clave en el diseño de una MLP. Mientras que en las capas ocultas suelen usarse funciones como ReLU para facilitar el aprendizaje, en la capa de salida la elección depende del tipo de problema. En clasificación binaria, se utiliza la sigmoide para producir probabilidades; en clasificación multiclase, la **softmax**, que asigna una distribución de probabilidades sobre las categorías.
+Para abordar este problema, se exploraron alternativas y una de las primeras soluciones fue la **función tangente hiperbólica (Tanh)**. A diferencia de la sigmoide, la Tanh también es una función en forma de S, pero tiene la ventaja de que su salida oscila entre -1 y 1, en lugar de entre 0 y 1.
+$$
+\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
+$$
+
+
+![image-20250217230325803](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230325803.png)
+
+Esto significaba que los valores podían estar centrados en torno a cero, lo que ayudaba a mejorar la estabilidad del aprendizaje al proporcionar una salida simétrica. Con esta modificación, los modelos podían aprender de manera más eficiente, ya que los gradientes tendían a ser más grandes que los de la sigmoide en la mayoría de las regiones de la función. Sin embargo, el problema no desapareció por completo. Cuando los valores de entrada a la función eran muy grandes o muy pequeños, la Tanh también sufría el desvanecimiento del gradiente, limitando el aprendizaje en redes profundas.
+
+Con el auge de modelos más complejos y profundos, se hizo evidente que era necesario un cambio más radical en la forma en que las neuronas procesaban la información. Fue entonces cuando se popularizó la **función de activación ReLU (Rectified Linear Unit)**, que marcó un antes y un después en la evolución del deep learning. A diferencia de las funciones anteriores, ReLU no tiene una forma sigmoidal, sino que simplemente devuelve el valor de entrada si es positivo y 0 si es negativo.
+$$
+\text{ReLU}(x) = \max(0, x)
+$$
+
+
+![image-20250217230530677](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230530677.png)
+
+
+
+Esto le da una propiedad clave: evita el problema del desvanecimiento del gradiente en la mayoría de los casos, ya que su derivada es 1 para valores positivos. Gracias a esto, los modelos pueden aprender con mayor rapidez y eficacia, permitiendo entrenar redes neuronales con muchas más capas sin los obstáculos que habían limitado el progreso del campo durante años.
+
+Lo acontecido con las funciones de activación refleja en cierto modo la evolución del deep learning en su búsqueda de soluciones cada vez más eficientes. La elección de la función de activación en cada capa de la red es un factor clave en el diseño de una MLP. Mientras que en las capas ocultas suelen usarse funciones como ReLU para facilitar el aprendizaje, en la capa de salida la elección depende del tipo de problema. En clasificación binaria, se utiliza la sigmoide para producir probabilidades; en clasificación multiclase, la **softmax**, que asigna una distribución de probabilidades sobre las categorías.
 
 > [!tip]
 >
@@ -426,8 +572,6 @@ Por otro lado, la **convergencia del modelo** también es un factor crítico en 
 >
 > Las redes neuronales multicapa han demostrado ser modelos extremadamente versátiles, capaces de resolver problemas no lineales con un rendimiento superior al de los métodos tradicionales de Machine Learning. Sin embargo, su aplicación requiere un equilibrio cuidadoso entre capacidad de representación y generalización, evitando problemas como el sobreajuste y las dificultades en la convergencia. A medida que se introducen arquitecturas más profundas y técnicas de entrenamiento más avanzadas, las MLP han evolucionado hasta convertirse en la base del **Deep Learning moderno**, sentando las bases para arquitecturas más sofisticadas como las redes convolucionales y los Transformers.
 
-
-
 ##### **Para reflexionar...**
 
 > **¿En qué situaciones podría ser preferible utilizar un modelo de Machine Learning tradicional en lugar de una MLP?**
@@ -437,23 +581,15 @@ Por otro lado, la **convergencia del modelo** también es un factor crítico en 
 
 ### **Implementación práctica de redes neuronales simples**
 
-Hasta ahora hemos explorado la teoría detrás de las **redes neuronales multicapa (MLP)** y su mecanismo de aprendizaje mediante **retropropagación del error**. Ahora es momento de trasladar estos conceptos a la práctica, construyendo y entrenando una **MLP desde cero** en dos de los frameworks más utilizados en la actualidad: **TensorFlow** y **PyTorch**.
+Hasta ahora hemos explorado la teoría detrás de las **redes neuronales multicapa (MLP)** y su mecanismo de aprendizaje mediante **retropropagación del error**. Ahora es momento de trasladar estos conceptos a la práctica, construyendo y entrenando una **MLP desde cero** en uno de los frameworks más utilizados en la actualidad: **TensorFlow**.
 
 En los siguientes ejemplos trabajaremos con el dataset **MNIST**, un conjunto de imágenes de dígitos escritos a mano ampliamente utilizado como punto de partida en aprendizaje automático. Nuestro objetivo será diseñar una red capaz de reconocer estos dígitos y ajustar su desempeño a través de hiperparámetros básicos.
 
-#### Implementación de una red neuronal simple
+#### **Construcción de una MLP en TensorFlow**
 
-##### **Construcción de una MLP en TensorFlow y PyTorch**
+**TensorFlow** es una de las bibliotecas más utilizadas en Deep Learning. Desarrollada por Google, proporciona una infraestructura optimizada para el entrenamiento y despliegue de modelos de redes neuronales. Su integración con la API **Keras** simplifica la construcción de arquitecturas al ofrecer una interfaz de alto nivel que permite definir modelos de manera intuitiva. Su enfoque basado en gráficos computacionales permite optimizar la ejecución en dispositivos como GPUs y TPUs, lo que ha contribuido a su popularidad en aplicaciones industriales.
 
-Antes de comenzar a escribir código, es importante comprender las herramientas que se utilizarán para la implementación. **TensorFlow** y **PyTorch** son dos de las bibliotecas más utilizadas en Deep Learning, cada una con características particulares que influyen en su adopción.
-
-**TensorFlow**, desarrollado por Google, proporciona una infraestructura optimizada para el entrenamiento y despliegue de modelos de redes neuronales. Su integración con la API **Keras** simplifica la construcción de arquitecturas al ofrecer una interfaz de alto nivel que permite definir modelos de manera intuitiva. Su enfoque basado en gráficos computacionales permite optimizar la ejecución en dispositivos como GPUs y TPUs, lo que ha contribuido a su popularidad en aplicaciones industriales.
-
-**PyTorch**, creado por Facebook, adopta un paradigma más dinámico y flexible. Su enfoque basado en la ejecución imperativa facilita la depuración y experimentación, lo que lo convierte en una opción preferida en investigación. La estructura basada en tensores y su capacidad de realizar cálculos automáticos de gradientes lo hacen especialmente útil para la implementación de arquitecturas personalizadas.
-
-A pesar de sus diferencias, ambos frameworks comparten una estructura similar en la construcción de redes neuronales. La implementación de una **MLP** en estos entornos sigue los mismos principios fundamentales: definir una arquitectura con capas totalmente conectadas, aplicar funciones de activación para introducir no linealidad y entrenar el modelo utilizando retropropagación del error. En las siguientes secciones, veremos cómo construir una **red neuronal multicapa** en cada uno de estos frameworks y analizar su desempeño en el dataset **MNIST**.
-
-##### **Implementación en TensorFlow/Keras**
+La implementación de una **MLP** en Keras sigue unos principios fundamentales: definir una arquitectura con capas totalmente conectadas, aplicar funciones de activación para introducir no linealidad y entrenar el modelo utilizando retropropagación del error. En las siguientes secciones, veremos cómo construir una **red neuronal multicapa** en este framework, analizando su desempeño en el dataset **MNIST**.
 
 La construcción de una red neuronal en **TensorFlow** se realiza utilizando la API de **Keras**, lo que permite definir el modelo de forma sencilla mediante la clase `Sequential`.
 
@@ -488,8 +624,6 @@ test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
 print(f"\nPrecisión en el conjunto de prueba: {test_acc:.4f}")
 ```
 
-###### **Explicación del código**
-
 Este código comienza cargando el dataset **MNIST**, que contiene imágenes de dígitos escritos a mano en escala de grises de **28x28 píxeles**. Como las redes neuronales trabajan mejor con valores normalizados, dividimos los datos entre 255 para llevar los valores de los píxeles al rango **[0,1]**.
 
 El modelo se define con tres capas:
@@ -500,91 +634,9 @@ El modelo se define con tres capas:
 
 El modelo se **compila** usando el optimizador **Adam**, que ajusta los pesos de manera eficiente, y la función de pérdida **sparse_categorical_crossentropy**, adecuada para clasificación multiclase. Finalmente, se **entrena** con cinco épocas y se evalúa en el conjunto de prueba.
 
-##### **Implementación en PyTorch**
-
-Ahora implementaremos la misma MLP en **PyTorch**. A diferencia de TensorFlow, donde el modelo se define de manera declarativa, en PyTorch se estructura como una clase basada en `torch.nn.Module`.
-
-```python
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torchvision import datasets, transforms
-from torch.utils.data import DataLoader
-
-# Transformación de los datos: normalización y conversión a tensores
-transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
-
-# Carga del dataset MNIST
-train_dataset = datasets.MNIST(root='./data', train=True, transform=transform, download=True)
-test_dataset = datasets.MNIST(root='./data', train=False, transform=transform, download=True)
-
-# Creación de dataloaders
-train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
-
-# Definición de la MLP en PyTorch
-class MLP(nn.Module):
-    def __init__(self):
-        super(MLP, self).__init__()
-        self.flatten = nn.Flatten()
-        self.fc1 = nn.Linear(28*28, 128)
-        self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(128, 10)
-        self.softmax = nn.Softmax(dim=1)
-
-    def forward(self, x):
-        x = self.flatten(x)
-        x = self.fc1(x)
-        x = self.relu(x)
-        x = self.fc2(x)
-        return self.softmax(x)
-
-# Creación del modelo y definición de la función de pérdida y optimizador
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = MLP().to(device)
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-# Entrenamiento del modelo
-for epoch in range(5):
-    for images, labels in train_loader:
-        images, labels = images.to(device), labels.to(device)
-        optimizer.zero_grad()
-        output = model(images)
-        loss = criterion(output, labels)
-        loss.backward()
-        optimizer.step()
-    print(f"Época {epoch+1}, Pérdida: {loss.item():.4f}")
-
-# Evaluación del modelo
-correct = 0
-total = 0
-with torch.no_grad():
-    for images, labels in test_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
-        _, predicted = torch.max(outputs, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
-
-print(f"\nPrecisión en el conjunto de prueba: {100 * correct / total:.2f}%")
-```
-
-###### **Explicación del código**
-
-En **PyTorch**, el modelo se define dentro de una clase que hereda de `nn.Module`. La red neuronal sigue la misma estructura que la implementada en TensorFlow:
-
-- **`nn.Linear(28\*28, 128)`** representa la capa oculta con 128 neuronas.
-- **`nn.ReLU()`** introduce la activación no lineal.
-- **`nn.Linear(128, 10)`** representa la capa de salida con 10 neuronas para la clasificación de los dígitos.
-
-Durante el entrenamiento, los datos son procesados en lotes mediante `DataLoader`, y la optimización se realiza con el algoritmo **Adam**. La función de pérdida utilizada es `CrossEntropyLoss()`, que es adecuada para problemas de clasificación multiclase.
-
 #### Visualización de pesos y activaciones
 
 Uno de los aspectos clave en el entrenamiento de redes neuronales es la interpretación de lo que el modelo está aprendiendo. Aunque las redes profundas pueden ser vistas como una "caja negra", existen métodos que permiten inspeccionar sus parámetros internos. Cada conexión en una MLP tiene un **peso** asociado, el cual se ajusta durante el entrenamiento para minimizar la función de pérdida. Inspeccionar estos pesos puede revelar información interesante sobre cómo la red procesa la información.
-
-##### **Visualización de pesos en TensorFlow**
 
 Para analizar los pesos de la primera capa oculta de nuestro modelo en TensorFlow, podemos acceder a ellos directamente y representarlos gráficamente.
 
@@ -607,38 +659,13 @@ plt.suptitle("Visualización de los filtros de la primera capa")
 plt.show()
 ```
 
-**Explicación**
-
 En este código, accedemos a los pesos de la primera capa densa con `model.layers[1].get_weights()`. Luego, transponemos la matriz para poder visualizar cada fila como una imagen de 28x28, lo que nos permite observar qué patrones está capturando cada neurona de la primera capa.
 
 Si el modelo está correctamente entrenado, los filtros deberían parecerse a patrones de bordes o curvas, ya que la red está aprendiendo representaciones básicas de los dígitos.
 
-###### **Visualización de pesos en PyTorch**
-
-En PyTorch, el procedimiento es similar. Podemos acceder a los pesos del modelo y visualizarlos con Matplotlib.
-
-```python
-# Extraer los pesos de la primera capa oculta
-pesos_capa1 = model.fc1.weight.data.cpu().numpy()
-
-# Graficar los pesos como imágenes
-fig, axes = plt.subplots(4, 4, figsize=(6, 6))
-for i, ax in enumerate(axes.flat):
-    if i < pesos_capa1.shape[0]:
-        ax.imshow(pesos_capa1[i].reshape(28, 28), cmap='gray')
-        ax.axis('off')
-
-plt.suptitle("Visualización de los filtros de la primera capa")
-plt.show()
-```
-
-El procedimiento es el mismo: extraemos los pesos de la primera capa (`fc1` en nuestro modelo), los convertimos en una matriz interpretable y los visualizamos como imágenes.
-
 ##### **Visualización de activaciones de distintas capas**
 
 Además de los pesos, es interesante analizar cómo se activan las neuronas al recibir una entrada. Esto nos permite ver qué características de la imagen están siendo enfatizadas en cada nivel de la red.
-
-###### **Visualización de activaciones en TensorFlow**
 
 Para capturar las activaciones de una capa intermedia, utilizamos el modelo de Keras de la siguiente manera:
 
@@ -664,36 +691,7 @@ plt.suptitle("Activaciones de la primera capa oculta")
 plt.show()
 ```
 
-**Explicación**
-
 En este caso, creamos un **modelo intermedio** que toma la misma entrada que la MLP original, pero en lugar de devolver la predicción final, extrae la salida de la primera capa oculta. Al pasar una imagen de prueba por este modelo, obtenemos las activaciones de las neuronas, las cuales pueden visualizarse en forma de mapa de activaciones.
-
-###### **Visualización de activaciones en PyTorch**
-
-Para lograr lo mismo en PyTorch, podemos modificar la estructura del modelo para extraer las salidas de capas intermedias.
-
-```python
-# Seleccionar una imagen de prueba
-imagen = test_dataset[0][0].unsqueeze(0).to(device)  # Añadir dimensión de batch
-
-# Pasar la imagen por la primera capa oculta
-activaciones = model.fc1(imagen.view(1, 28*28))
-activaciones = activaciones.detach().cpu().numpy()
-
-# Graficar las activaciones
-fig, axes = plt.subplots(4, 4, figsize=(6, 6))
-for i, ax in enumerate(axes.flat):
-    if i < activaciones.shape[1]:
-        ax.imshow(activaciones[0, i].reshape(8, 16), cmap='gray')
-        ax.axis('off')
-
-plt.suptitle("Activaciones de la primera capa oculta")
-plt.show()
-```
-
-El procedimiento es similar al de TensorFlow: tomamos una imagen de prueba, la pasamos por la primera capa de la red y visualizamos las activaciones de las neuronas en esa capa.
-
-
 
 > [!note]
 >
