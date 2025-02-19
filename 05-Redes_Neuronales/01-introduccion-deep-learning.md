@@ -435,7 +435,7 @@ El **forward pass** es el primer paso en la ejecución de una red neuronal. Su o
 Cada neurona recibe señales desde la capa anterior. Estas señales se combinan en una suma ponderada mediante los pesos sinápticos del modelo:
 
 $$
-z^{(l)}_i = \sum_j {w^{(l)}_{ij} a^{(l-1)}_j + b^{(l)}_i}
+z^{(l)}_i = \sum{w^{(l)}_{ij} a^{(l-1)}_j + b^{(l)}_i}
 $$
 
 donde:
