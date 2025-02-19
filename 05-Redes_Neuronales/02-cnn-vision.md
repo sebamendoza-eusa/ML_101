@@ -66,74 +66,74 @@ Con el tiempo, las redes convolucionales han seguido evolucionando, incorporando
 
 Antes de la aparición de las redes convolucionales, el procesamiento de imágenes dependía en gran medida de **técnicas de ingeniería manual de características**. Estos métodos se basaban en el diseño de algoritmos específicos para extraer información relevante de las imágenes, utilizando transformaciones matemáticas y filtros predefinidos. Sin embargo, estos enfoques presentaban limitaciones significativas cuando se enfrentaban a problemas más complejos y diversos.
 
-> **Cómo se almacena una imagen en un computador**  
+> **Cómo se almacena una imagen en un computador**
 >
-> Las imágenes digitales son representaciones de escenas visuales almacenadas en la memoria de un computador en forma de matrices de números. Cada imagen está compuesta por pequeñas unidades llamadas **píxeles**, que contienen información sobre el color o la intensidad de luz en cada punto.  
+> Las imágenes digitales son representaciones de escenas visuales almacenadas en la memoria de un computador en forma de matrices de números. Cada imagen está compuesta por pequeñas unidades llamadas **píxeles**, que contienen información sobre el color o la intensidad de luz en cada punto.
 >
-> En una imagen en **escala de grises**, cada píxel tiene un único valor numérico que representa su nivel de intensidad, generalmente en un rango de **0 a 255**. El valor **0** representa el negro absoluto, el **255** representa el blanco y los valores intermedios corresponden a distintos niveles de gris.  
+> En una imagen en **escala de grises**, cada píxel tiene un único valor numérico que representa su nivel de intensidad, generalmente en un rango de **0 a 255**. El valor **0** representa el negro absoluto, el **255** representa el blanco y los valores intermedios corresponden a distintos niveles de gris.
 >
-> Por ejemplo, una imagen de **5 × 5 píxeles** se almacena en el computador como una matriz numérica:  
+> Por ejemplo, una imagen de **5 × 5 píxeles** se almacena en el computador como una matriz numérica:
 >
 > $$
 > \begin{bmatrix}
->   0 &  50 &  100 & 150 & 200 \\
->   25 & 75 & 125 & 175 & 225 \\
->   50 & 100 & 150 & 200 & 250 \\
->   75 & 125 & 175 & 225 & 255 \\
->   100 & 150 & 200 & 250 & 255
+> 0 &50 &100 & 150 & 200 \\
+> 25 & 75 & 125 & 175 & 225 \\
+> 50 & 100 & 150 & 200 & 250 \\
+> 75 & 125 & 175 & 225 & 255 \\
+> 100 & 150 & 200 & 250 & 255
 > \end{bmatrix}
 > $$
 >
 > Cada celda en esta matriz corresponde a un píxel de la imagen, donde los valores más bajos representan áreas oscuras y los más altos representan áreas más brillantes.
 >
-> Las imágenes en color se almacenan mediante la combinación de tres canales de color: **Rojo (R), Verde (G) y Azul (B)**. En este caso, cada píxel no tiene un único valor, sino tres valores, uno por cada canal de color.  
+> Las imágenes en color se almacenan mediante la combinación de tres canales de color: **Rojo (R), Verde (G) y Azul (B)**. En este caso, cada píxel no tiene un único valor, sino tres valores, uno por cada canal de color.
 >
-> Por ejemplo, un píxel de una imagen en color puede estar definido por la siguiente combinación:  
+> Por ejemplo, un píxel de una imagen en color puede estar definido por la siguiente combinación:
 >
 > $$
 > \text{(R, G, B)} = (120, 200, 50)
 > $$
 >
-> Esto significa que la intensidad del rojo es **120**, la del verde es **200** y la del azul es **50**, lo que en conjunto genera un tono específico.  
+> Esto significa que la intensidad del rojo es **120**, la del verde es **200** y la del azul es **50**, lo que en conjunto genera un tono específico.
 >
 > Cuando se almacena una imagen en color, el computador guarda tres matrices separadas, una para cada canal:
 >
 > $$
 > R =
 > \begin{bmatrix}
->   255 & 200 & 150 & 100 & 50 \\
->   255 & 200 & 150 & 100 & 50 \\
->   255 & 200 & 150 & 100 & 50 \\
->   255 & 200 & 150 & 100 & 50 \\
->   255 & 200 & 150 & 100 & 50
+> 255 & 200 & 150 & 100 & 50 \\
+> 255 & 200 & 150 & 100 & 50 \\
+> 255 & 200 & 150 & 100 & 50 \\
+> 255 & 200 & 150 & 100 & 50 \\
+> 255 & 200 & 150 & 100 & 50
 > \end{bmatrix}
 > $$
 >
 > $$
 > G =
 > \begin{bmatrix}
->   50 & 100 & 150 & 200 & 255 \\
->   50 & 100 & 150 & 200 & 255 \\
->   50 & 100 & 150 & 200 & 255 \\
->   50 & 100 & 150 & 200 & 255 \\
->   50 & 100 & 150 & 200 & 255
+> 50 & 100 & 150 & 200 & 255 \\
+> 50 & 100 & 150 & 200 & 255 \\
+> 50 & 100 & 150 & 200 & 255 \\
+> 50 & 100 & 150 & 200 & 255 \\
+> 50 & 100 & 150 & 200 & 255
 > \end{bmatrix}
 > $$
 >
 > $$
 > B =
 > \begin{bmatrix}
->   0 & 50 & 100 & 150 & 200 \\
->   0 & 50 & 100 & 150 & 200 \\
->   0 & 50 & 100 & 150 & 200 \\
->   0 & 50 & 100 & 150 & 200 \\
->   0 & 50 & 100 & 150 & 200
+> 0 & 50 & 100 & 150 & 200 \\
+> 0 & 50 & 100 & 150 & 200 \\
+> 0 & 50 & 100 & 150 & 200 \\
+> 0 & 50 & 100 & 150 & 200 \\
+> 0 & 50 & 100 & 150 & 200
 > \end{bmatrix}
 > $$
 >
 > Cada píxel de la imagen se forma combinando los valores correspondientes en estas tres matrices.
 >
-> Las imágenes digitales pueden guardarse en diferentes formatos, como **JPEG, PNG o BMP**, dependiendo de cómo se comprimen y organizan los datos. Algunos formatos, como **BMP**, almacenan la imagen sin compresión, conservando todos los detalles pero ocupando más espacio. Otros, como **JPEG**, aplican algoritmos de compresión para reducir el tamaño del archivo a costa de una pequeña pérdida de calidad.  
+> Las imágenes digitales pueden guardarse en diferentes formatos, como **JPEG, PNG o BMP**, dependiendo de cómo se comprimen y organizan los datos. Algunos formatos, como **BMP**, almacenan la imagen sin compresión, conservando todos los detalles pero ocupando más espacio. Otros, como **JPEG**, aplican algoritmos de compresión para reducir el tamaño del archivo a costa de una pequeña pérdida de calidad.
 >
 > Independientemente del formato, todas las imágenes se representan internamente como matrices de números, permitiendo que los computadores puedan procesarlas, analizarlas o modificarlas según sea necesario.
 >
@@ -150,7 +150,8 @@ Uno de los mayores desafíos de estos métodos era su **falta de adaptabilidad**
 >
 > El funcionamiento del filtro de Sobel puede resumirse de la siguiente manera. Imaginemos una imagen en escala de grises donde queremos detectar los bordes de un objeto. Aplicamos dos filtros matemáticos en forma de matriz sobre la imagen, conocidos como **máscaras de Sobel**:
 >
-> Para detectar bordes horizontales, se podría usar una matriz como esta:  
+> Para detectar bordes horizontales, se podría usar una matriz como esta: 
+> 
 > $$
 > G_x =
 > \begin{bmatrix}
@@ -159,18 +160,22 @@ Uno de los mayores desafíos de estos métodos era su **falta de adaptabilidad**
 > -1 & 0 & 1
 > \end{bmatrix}
 > $$
-> Y para detectar bordes verticales, una como esta:  
+> 
+> Y para detectar bordes verticales, una como esta: 
+> 
 > $$
 > G_y =
 > \begin{bmatrix}
 > -1 & -2 & -1 \\
->  0 &  0 &  0 \\
->  1 &  2 &  1
+>0 &0 &0 \\
+>1 &2 &1
 > \end{bmatrix}
 > $$
-> Cada una de estas matrices se desplaza sobre la imagen, calculando un nuevo valor en cada posición mediante la suma ponderada de los píxeles cercanos. La magnitud del gradiente se obtiene combinando ambas matrices:  
+> 
+> Cada una de estas matrices se desplaza sobre la imagen, calculando un nuevo valor en cada posición mediante la suma ponderada de los píxeles cercanos. La magnitud del gradiente se obtiene combinando ambas matrices: 
+> 
 > $$
->   G = \sqrt{G_x^2 + G_y^2}
+> G = \sqrt{G_x^2 + G_y^2}
 > $$
 >
 > El resultado es una imagen en la que los bordes aparecen resaltados, mientras que las regiones con cambios suaves de intensidad quedan oscurecidas.
@@ -185,8 +190,8 @@ Uno de los mayores desafíos de estos métodos era su **falta de adaptabilidad**
 >
 > **Dificultad con rotaciones y traslaciones**: Si un objeto cambia de orientación o posición dentro de la imagen, los filtros tradicionales pueden no detectar sus bordes de la misma manera, lo que limita su capacidad de generalización.
 
-#### **Comparación con las CNN**  
-A diferencia de los filtros tradicionales, una **red convolucional aprende sus propios filtros durante el entrenamiento**, ajustando automáticamente los valores óptimos para detectar bordes, texturas y formas más complejas. Además, las CNN pueden captar relaciones jerárquicas en las imágenes, combinando características simples en capas profundas para identificar objetos completos, sin necesidad de un ajuste manual de parámetros.  
+#### **Comparación con las CNN**
+A diferencia de los filtros tradicionales, una **red convolucional aprende sus propios filtros durante el entrenamiento**, ajustando automáticamente los valores óptimos para detectar bordes, texturas y formas más complejas. Además, las CNN pueden captar relaciones jerárquicas en las imágenes, combinando características simples en capas profundas para identificar objetos completos, sin necesidad de un ajuste manual de parámetros.
 
 Mientras que el filtro de Sobel requiere ser diseñado y ajustado manualmente para cada tipo de imagen, una red convolucional se adapta dinámicamente al problema, logrando mejores resultados en tareas como el reconocimiento de objetos o la segmentación de imágenes.
 
@@ -212,7 +217,7 @@ El procesamiento tradicional de imágenes, aunque sigue siendo útil en algunos 
 
 ### Fundamentos técnicos de las redes CNN
 
-#### Limitaciones de las redes MLP en el procesamiento de imágenes  
+#### Limitaciones de las redes MLP en el procesamiento de imágenes
 
 Las **redes neuronales multicapa (MLP)** fueron uno de los primeros enfoques utilizados para la clasificación de imágenes. Su estructura completamente conectada, en la que cada neurona de una capa recibe información de todas las neuronas de la capa anterior, permite modelar relaciones complejas entre las entradas. Sin embargo, cuando se aplican a imágenes, estas redes presentan **limitaciones estructurales y computacionales** que dificultan su uso eficiente.
 
@@ -254,91 +259,93 @@ El uso de kernels en el procesamiento de imágenes ha sido un método tradiciona
 
 A continuación, exploraremos la operación de convolución, que es el mecanismo mediante el cual se aplican los kernels a una imagen y se obtienen transformaciones que permiten extraer información útil.
 
-#### **La operación de convolución**  
+#### **La operación de convolución**
 
-La **convolución** es una operación matemática utilizada en el procesamiento de imágenes para aplicar filtros o **kernels** sobre una imagen y extraer características relevantes. Es el mecanismo fundamental en el que se basan las **redes neuronales convolucionales (CNN)** para capturar patrones espaciales en una imagen.  
+La **convolución** es una operación matemática utilizada en el procesamiento de imágenes para aplicar filtros o **kernels** sobre una imagen y extraer características relevantes. Es el mecanismo fundamental en el que se basan las **redes neuronales convolucionales (CNN)** para capturar patrones espaciales en una imagen.
 
-El proceso de convolución consiste en **desplazar un kernel** sobre la imagen de entrada y calcular una nueva matriz llamada **mapa de características** (**feature map**), que representa la respuesta del filtro en cada posición. En cada paso, los valores del kernel se multiplican por los valores correspondientes de la imagen, y el resultado se suma para obtener un nuevo valor en la salida.  
+El proceso de convolución consiste en **desplazar un kernel** sobre la imagen de entrada y calcular una nueva matriz llamada **mapa de características** (**feature map**), que representa la respuesta del filtro en cada posición. En cada paso, los valores del kernel se multiplican por los valores correspondientes de la imagen, y el resultado se suma para obtener un nuevo valor en la salida.
 
-> **Ejemplo de operación de convolución**  
+> **Ejemplo de operación de convolución**
 >
-> Imaginemos una imagen en escala de grises de **5 × 5 píxeles** y un kernel de **3 × 3** diseñado para detectar bordes. La imagen y el kernel se representan de la siguiente manera:  
+> Imaginemos una imagen en escala de grises de **5 × 5 píxeles** y un kernel de **3 × 3** diseñado para detectar bordes. La imagen y el kernel se representan de la siguiente manera:
 >
 > ##### **Imagen original**
+> 
 > $$
 > \begin{bmatrix}
->   10 & 20 & 30 & 40 & 50 \\
->   20 & 30 & 40 & 50 & 60 \\
->   30 & 40 & 50 & 60 & 70 \\
->   40 & 50 & 60 & 70 & 80 \\
->   50 & 60 & 70 & 80 & 90
+> 10 & 20 & 30 & 40 & 50 \\
+> 20 & 30 & 40 & 50 & 60 \\
+> 30 & 40 & 50 & 60 & 70 \\
+> 40 & 50 & 60 & 70 & 80 \\
+> 50 & 60 & 70 & 80 & 90
 > \end{bmatrix}
 > $$
 >
-> ##### **Kernel de detección de bordes**  
+> ##### **Kernel de detección de bordes**
+> 
 > $$
 > \begin{bmatrix}
->   -1 & -1 & -1 \\
->    0 &  0 &  0 \\
->    1 &  1 &  1
+> -1 & -1 & -1 \\
+>0 &0 &0 \\
+>1 &1 &1
 > \end{bmatrix}
 > $$
 >
-> El kernel se superpone sobre la parte superior izquierda de la imagen, y en cada posición se realiza el producto elemento a elemento seguido de la suma. Por ejemplo, en la primera posición:  
+> El kernel se superpone sobre la parte superior izquierda de la imagen, y en cada posición se realiza el producto elemento a elemento seguido de la suma. Por ejemplo, en la primera posición: 
 >
 > $$
 > (-1 \times 10) + (-1 \times 20) + (-1 \times 30) + (0 \times 20) + (0 \times 30) + (0 \times 40) + (1 \times 30) + (1 \times 40) + (1 \times 50) = 0
 > $$
 >
-> Este cálculo se repite desplazando el kernel sobre toda la imagen, generando el **mapa de características** resultante. El mapa de características representa las respuestas del filtro a los distintos patrones detectados en la imagen.  
+> Este cálculo se repite desplazando el kernel sobre toda la imagen, generando el **mapa de características** resultante. El mapa de características representa las respuestas del filtro a los distintos patrones detectados en la imagen.
 >
 
-##### **Cálculo del tamaño de salida tras la convolución**  
+##### **Cálculo del tamaño de salida tras la convolución**
 
-Cuando se aplica una convolución sobre una imagen, el tamaño del resultado final, conocido como **mapa de características**, depende del tamaño de la imagen de entrada y del tamaño del kernel utilizado. Para determinar cuántas veces puede encajar el kernel dentro de la imagen sin salirse de los límites, se emplea la siguiente fórmula:  
+Cuando se aplica una convolución sobre una imagen, el tamaño del resultado final, conocido como **mapa de características**, depende del tamaño de la imagen de entrada y del tamaño del kernel utilizado. Para determinar cuántas veces puede encajar el kernel dentro de la imagen sin salirse de los límites, se emplea la siguiente fórmula:
 
 $$
 O = (I - K) + 1
 $$
 
-donde:  
-- $O$ es el tamaño del **mapa de características** obtenido tras la convolución.  
-- $I$ es el tamaño de la **imagen de entrada** (número de filas o columnas).  
-- $K$ es el tamaño del **kernel** (número de filas o columnas).  
+donde: 
+- $O$ es el tamaño del **mapa de características** obtenido tras la convolución.
+- $I$ es el tamaño de la **imagen de entrada** (número de filas o columnas).
+- $K$ es el tamaño del **kernel** (número de filas o columnas).
 
-Por ejemplo, si se tiene una imagen de **5 × 5 píxeles** y se aplica un kernel de **3 × 3**, el tamaño de la salida será:  
+Por ejemplo, si se tiene una imagen de **5 × 5 píxeles** y se aplica un kernel de **3 × 3**, el tamaño de la salida será:
 
 $$
 O = (5 - 3) + 1 = 3
 $$
 
-Esto significa que el **mapa de características** tendrá un tamaño de **3 × 3 píxeles**.  
+Esto significa que el **mapa de características** tendrá un tamaño de **3 × 3 píxeles**.
 
 Este cálculo es el resultado natural de cómo el kernel se desplaza sobre la imagen. Al comenzar en la esquina superior izquierda y moverse una posición a la vez hasta alcanzar el borde, se obtiene un área de salida más pequeña que la imagen original. A medida que se utilicen diferentes tamaños de kernel o estrategias adicionales para manejar los bordes, este tamaño podrá ajustarse según las necesidades del modelo.
 
 #### El concepto de padding.
 
-En la operación de convolución, el padding es una técnica que permite añadir píxeles adicionales alrededor de la imagen antes de aplicar el kernel. Su propósito es evitar la reducción progresiva del tamaño de la imagen tras múltiples convoluciones y asegurar que los bordes sean procesados de manera adecuada. Sin padding, cada aplicación del kernel sobre la imagen disminuye sus dimensiones, lo que se traduce en una pérdida significativa de información a medida que se avanza en la arquitectura de la red.  
+En la operación de convolución, el padding es una técnica que permite añadir píxeles adicionales alrededor de la imagen antes de aplicar el kernel. Su propósito es evitar la reducción progresiva del tamaño de la imagen tras múltiples convoluciones y asegurar que los bordes sean procesados de manera adecuada. Sin padding, cada aplicación del kernel sobre la imagen disminuye sus dimensiones, lo que se traduce en una pérdida significativa de información a medida que se avanza en la arquitectura de la red.
 
-El problema fundamental que motiva el uso de padding radica en la forma en que se desplaza el kernel sobre la imagen. Dado que la convolución solo puede aplicarse dentro de los límites definidos por la imagen, los píxeles ubicados en los bordes contribuyen menos veces al resultado final en comparación con los píxeles centrales. Esta desigualdad en la participación de los datos provoca que las regiones periféricas pierdan relevancia en el proceso de extracción de características, lo que puede afectar negativamente el rendimiento del modelo en tareas como la detección de contornos o la clasificación de objetos.  
+El problema fundamental que motiva el uso de padding radica en la forma en que se desplaza el kernel sobre la imagen. Dado que la convolución solo puede aplicarse dentro de los límites definidos por la imagen, los píxeles ubicados en los bordes contribuyen menos veces al resultado final en comparación con los píxeles centrales. Esta desigualdad en la participación de los datos provoca que las regiones periféricas pierdan relevancia en el proceso de extracción de características, lo que puede afectar negativamente el rendimiento del modelo en tareas como la detección de contornos o la clasificación de objetos.
 
-Para mitigar estos efectos, se pueden utilizar diferentes estrategias de padding. Una de las más comunes es el **zero-padding**, donde se agregan filas y columnas compuestas exclusivamente por ceros en los bordes de la imagen. Este método facilita la aplicación del kernel sin introducir información adicional y permite mantener la estructura del proceso de convolución sin afectar la distribución de valores en la imagen original. Otra variante es el padding basado en replicación, en el que los valores de los píxeles del borde se extienden hacia las nuevas filas y columnas añadidas, conservando así cierta coherencia en la distribución espacial de la imagen.  
+Para mitigar estos efectos, se pueden utilizar diferentes estrategias de padding. Una de las más comunes es el **zero-padding**, donde se agregan filas y columnas compuestas exclusivamente por ceros en los bordes de la imagen. Este método facilita la aplicación del kernel sin introducir información adicional y permite mantener la estructura del proceso de convolución sin afectar la distribución de valores en la imagen original. Otra variante es el padding basado en replicación, en el que los valores de los píxeles del borde se extienden hacia las nuevas filas y columnas añadidas, conservando así cierta coherencia en la distribución espacial de la imagen.
 
-El impacto del padding sobre el tamaño final del mapa de características puede analizarse matemáticamente. Si se considera una imagen de entrada de $5 \times 5$ píxeles y un kernel de $3 \times 3$, sin aplicar padding, la salida resultante tendrá un tamaño de $3 \times 3$. Sin embargo, si se añade un borde de un píxel alrededor de la imagen, esta se expande a $7 \times 7$ píxeles, permitiendo que la convolución genere una salida con dimensiones de $5 \times 5$, es decir, manteniendo el tamaño original de la imagen de entrada.  
+El impacto del padding sobre el tamaño final del mapa de características puede analizarse matemáticamente. Si se considera una imagen de entrada de $5 \times 5$ píxeles y un kernel de $3 \times 3$, sin aplicar padding, la salida resultante tendrá un tamaño de $3 \times 3$. Sin embargo, si se añade un borde de un píxel alrededor de la imagen, esta se expande a $7 \times 7$ píxeles, permitiendo que la convolución genere una salida con dimensiones de $5 \times 5$, es decir, manteniendo el tamaño original de la imagen de entrada.
 
-Para calcular el tamaño de salida en presencia de padding, la fórmula se modifica de la siguiente manera:  
+Para calcular el tamaño de salida en presencia de padding, la fórmula se modifica de la siguiente manera:
 
 $$
 O = (I - K) + 2P + 1
 $$
 
-Donde:  
+Donde:
 - $O$ es el tamaño del mapa de características resultante.
 - $I$ es el tamaño de la imagen de entrada.
 - $K$ es el tamaño del kernel.
-- $P$ es el tamaño del padding aplicado en los bordes.  
+- $P$ es el tamaño del padding aplicado en los bordes.
 
-Si se considera nuevamente una imagen de entrada de $5 \times 5$ píxeles, un kernel de $3 \times 3$ y un padding de $1$ píxel, el cálculo del tamaño de salida se realiza como sigue:  
+Si se considera nuevamente una imagen de entrada de $5 \times 5$ píxeles, un kernel de $3 \times 3$ y un padding de $1$ píxel, el cálculo del tamaño de salida se realiza como sigue:
 
 $$
 O = (5 - 3) + 2(1) + 1 = 5
@@ -346,57 +353,55 @@ $$
 
 Esta capacidad de preservar la estructura espacial de los datos hace que el padding sea una herramienta fundamental en el diseño de modelos convolucionales. Su empleo adecuado no solo permite que las imágenes se mantengan en un tamaño controlado a lo largo de múltiples capas, sino que también garantiza que los patrones en los bordes de la imagen sean considerados en el proceso de extracción de características.
 
-#### **El concepto de stride en la convolución**  
+#### **El concepto de stride en la convolución**
 
-En la operación de convolución, el **stride** es el parámetro que define el número de píxeles en los que se desplaza el kernel a medida que recorre la imagen. En una convolución estándar, el stride es igual a **1**, lo que significa que el kernel se mueve un píxel a la vez en ambas direcciones (horizontal y vertical). Sin embargo, se puede aumentar el stride para que el kernel avance en pasos mayores, reduciendo así el tamaño del mapa de características resultante.  
+En la operación de convolución, el **stride** es el parámetro que define el número de píxeles en los que se desplaza el kernel a medida que recorre la imagen. En una convolución estándar, el stride es igual a **1**, lo que significa que el kernel se mueve un píxel a la vez en ambas direcciones (horizontal y vertical). Sin embargo, se puede aumentar el stride para que el kernel avance en pasos mayores, reduciendo así el tamaño del mapa de características resultante.
 
-El uso de un stride mayor tiene un impacto directo en la cantidad de información retenida después de la convolución. Cuando el kernel se mueve de un píxel en un píxel, la salida mantiene una resolución relativamente alta. En cambio, cuando el stride es mayor, la imagen resultante es más pequeña porque se omiten ciertas posiciones en el proceso de filtrado.  
+El uso de un stride mayor tiene un impacto directo en la cantidad de información retenida después de la convolución. Cuando el kernel se mueve de un píxel en un píxel, la salida mantiene una resolución relativamente alta. En cambio, cuando el stride es mayor, la imagen resultante es más pequeña porque se omiten ciertas posiciones en el proceso de filtrado.
 
-Esta reducción del tamaño de salida es útil en arquitecturas profundas, ya que disminuye la cantidad de parámetros y el costo computacional. Sin embargo, un stride demasiado grande puede hacer que se pierdan detalles importantes de la imagen, afectando la capacidad de la red para capturar estructuras relevantes.  
+Esta reducción del tamaño de salida es útil en arquitecturas profundas, ya que disminuye la cantidad de parámetros y el costo computacional. Sin embargo, un stride demasiado grande puede hacer que se pierdan detalles importantes de la imagen, afectando la capacidad de la red para capturar estructuras relevantes.
 
-##### **Cálculo del tamaño de salida con stride y padding**  
+##### **Cálculo del tamaño de salida con stride y padding**
 
-Cuando se combinan **stride** y **padding**, el tamaño del mapa de características se calcula con la siguiente fórmula:  
+Cuando se combinan **stride** y **padding**, el tamaño del mapa de características se calcula con la siguiente fórmula:
 
 $$
 O = \frac{(I - K) + 2P}{S} + 1
 $$
 
-donde:  
-- $O$ es el tamaño del mapa de características de salida.  
-- $I$ es el tamaño de la imagen de entrada.  
-- $K$ es el tamaño del kernel.  
-- $P$ es el padding aplicado.  
-- $S$ es el stride, es decir, el número de píxeles que el kernel se desplaza en cada paso.  
+donde:
+- $O$ es el tamaño del mapa de características de salida.
+- $I$ es el tamaño de la imagen de entrada.
+- $K$ es el tamaño del kernel.
+- $P$ es el padding aplicado.
+- $S$ es el stride, es decir, el número de píxeles que el kernel se desplaza en cada paso.
 
-Si se considera una imagen de entrada de $5 \times 5$ píxeles, con un kernel de $3 \times 3$, un padding de $1$ y un stride de $2$, se obtiene:  
+Si se considera una imagen de entrada de $5 \times 5$ píxeles, con un kernel de $3 \times 3$, un padding de $1$ y un stride de $2$, se obtiene:
 
 $$
 O = \frac{(5 - 3) + 2(1)}{2} + 1 = 3
 $$
 
-Esto indica que el mapa de características final tendrá un tamaño de $3 \times 3$ píxeles, en lugar de los $5 \times 5$ originales.  
+Esto indica que el mapa de características final tendrá un tamaño de $3 \times 3$ píxeles, en lugar de los $5 \times 5$ originales.
 
 El stride es un parámetro esencial en redes convolucionales, ya que permite controlar la resolución de salida y ajustar el número de parámetros de la red. Su uso debe equilibrarse para evitar la pérdida excesiva de información y garantizar que se conserven las características más relevantes de la imagen. 
 
-#### **El concepto de pooling en redes convolucionales**  
+#### **El concepto de pooling en redes convolucionales**
 
-El **pooling** es una operación utilizada en redes convolucionales para reducir la dimensión espacial de los mapas de características generados tras la convolución. A diferencia de la convolución, que aplica un conjunto de pesos entrenables para extraer patrones, el pooling no implica aprendizaje, sino que actúa como un filtro de reducción que conserva la información más relevante de cada región de la imagen.  
+El **pooling** es una operación utilizada en redes convolucionales para reducir la dimensión espacial de los mapas de características generados tras la convolución. A diferencia de la convolución, que aplica un conjunto de pesos entrenables para extraer patrones, el pooling no implica aprendizaje, sino que actúa como un filtro de reducción que conserva la información más relevante de cada región de la imagen.
 
-La operación de pooling se lleva a cabo dividiendo la imagen en regiones no superpuestas y aplicando una función de agregación sobre cada una de ellas. Generalmente, se utiliza un tamaño de ventana de $2 \times 2$ con un desplazamiento de 2 píxeles, lo que reduce las dimensiones de la imagen a la mitad en cada dirección. Existen diferentes tipos de pooling, entre los cuales los más comunes son:  
+La operación de pooling se lleva a cabo dividiendo la imagen en regiones no superpuestas y aplicando una función de agregación sobre cada una de ellas. Generalmente, se utiliza un tamaño de ventana de $2 \times 2$ con un desplazamiento de 2 píxeles, lo que reduce las dimensiones de la imagen a la mitad en cada dirección. Existen diferentes tipos de pooling, entre los cuales los más comunes son:
 
-- **Max pooling**: selecciona el valor máximo dentro de cada región, lo que permite conservar las características más prominentes de la imagen, como los bordes o los puntos de alto contraste.  
-- **Average pooling**: calcula el valor promedio de cada región, generando una versión más suavizada del mapa de características.  
+- **Max pooling**: selecciona el valor máximo dentro de cada región, lo que permite conservar las características más prominentes de la imagen, como los bordes o los puntos de alto contraste.
+- **Average pooling**: calcula el valor promedio de cada región, generando una versión más suavizada del mapa de características.
 
-A diferencia de la convolución, que transforma la imagen extrayendo nuevas características, el pooling solo reduce su tamaño manteniendo las características más representativas. Mientras que la convolución genera una representación jerárquica de los patrones presentes en la imagen, el pooling tiene un efecto más estructural, asegurando que las características detectadas sean más compactas y manejables para las capas posteriores de la red.  
+A diferencia de la convolución, que transforma la imagen extrayendo nuevas características, el pooling solo reduce su tamaño manteniendo las características más representativas. Mientras que la convolución genera una representación jerárquica de los patrones presentes en la imagen, el pooling tiene un efecto más estructural, asegurando que las características detectadas sean más compactas y manejables para las capas posteriores de la red.
 
-El objetivo fundamental del pooling es proporcionar **reducción de dimensionalidad** y **control de sobreajuste**. Al disminuir la cantidad de información sin perder las características clave, se logra un procesamiento más eficiente y se evitan problemas como la redundancia en la información. Además, el pooling introduce un nivel de **invarianza a pequeñas traslaciones**, ya que pequeños desplazamientos en la imagen no afectan significativamente la activación de los filtros.  
+El objetivo fundamental del pooling es proporcionar **reducción de dimensionalidad** y **control de sobreajuste**. Al disminuir la cantidad de información sin perder las características clave, se logra un procesamiento más eficiente y se evitan problemas como la redundancia en la información. Además, el pooling introduce un nivel de **invarianza a pequeñas traslaciones**, ya que pequeños desplazamientos en la imagen no afectan significativamente la activación de los filtros.
 
-
-
-> **Ejemplo de pooling**  
+> **Ejemplo de pooling**
 >
-> Para ilustrar el proceso de pooling, consideremos una imagen representada por la siguiente matriz de **4 × 4** píxeles:  
+> Para ilustrar el proceso de pooling, consideremos una imagen representada por la siguiente matriz de **4 × 4** píxeles:
 >
 > $$
 > \begin{bmatrix}
@@ -409,12 +414,12 @@ El objetivo fundamental del pooling es proporcionar **reducción de dimensionali
 >
 > Si aplicamos **max pooling** con una ventana de $2 \times 2$ y desplazamiento de 2 píxeles, tomamos el valor máximo de cada bloque **no superpuesto**:
 >
-> 1. De la región $\begin{bmatrix} 1 & 3 \\ 5 & 6 \end{bmatrix}$ se toma el **6**.  
-> 2. De la región $\begin{bmatrix} 2 & 4 \\ 7 & 8 \end{bmatrix}$ se toma el **8**.  
-> 3. De la región $\begin{bmatrix} 9 & 2 \\ 1 & 0 \end{bmatrix}$ se toma el **9**.  
-> 4. De la región $\begin{bmatrix} 4 & 3 \\ 6 & 5 \end{bmatrix}$ se toma el **6**.  
+> 1. De la región $\begin{bmatrix} 1 & 3 \\ 5 & 6 \end{bmatrix}$ se toma el **6**.
+> 2. De la región $\begin{bmatrix} 2 & 4 \\ 7 & 8 \end{bmatrix}$ se toma el **8**.
+> 3. De la región $\begin{bmatrix} 9 & 2 \\ 1 & 0 \end{bmatrix}$ se toma el **9**.
+> 4. De la región $\begin{bmatrix} 4 & 3 \\ 6 & 5 \end{bmatrix}$ se toma el **6**.
 >
-> El resultado del **mapa de características tras max pooling** es:  
+> El resultado del **mapa de características tras max pooling** es:
 >
 > $$
 > \begin{bmatrix}
@@ -423,149 +428,150 @@ El objetivo fundamental del pooling es proporcionar **reducción de dimensionali
 > \end{bmatrix}
 > $$
 >
-> Esto demuestra cómo el pooling reduce la dimensionalidad de la imagen original, pasando de **4 × 4** a **2 × 2**, pero manteniendo las características más representativas.  
+> Esto demuestra cómo el pooling reduce la dimensionalidad de la imagen original, pasando de **4 × 4** a **2 × 2**, pero manteniendo las características más representativas.
 >
 > El pooling, por lo tanto, juega un papel crucial en la reducción del tamaño de los mapas de características sin eliminar información esencial, permitiendo que las redes convolucionales sean más eficientes y generalicen mejor en tareas de visión por computadora.
 
-#### **Generalización del proceso de convolución: casos de uso**  
+#### **Generalización del proceso de convolución: casos de uso**
 
-El proceso de convolución puede extenderse a distintos escenarios más complejos, donde es necesario considerar factores adicionales en el cálculo de las dimensiones de los mapas de características. Dos casos fundamentales de generalización son la aplicación de convoluciones sobre imágenes en color (**RGB**) y el uso de múltiples filtros sobre una misma imagen. En cada uno de estos casos, es posible calcular la dimensión de salida utilizando las reglas establecidas para la convolución con padding y stride.  
+El proceso de convolución puede extenderse a distintos escenarios más complejos, donde es necesario considerar factores adicionales en el cálculo de las dimensiones de los mapas de características. Dos casos fundamentales de generalización son la aplicación de convoluciones sobre imágenes en color (**RGB**) y el uso de múltiples filtros sobre una misma imagen. En cada uno de estos casos, es posible calcular la dimensión de salida utilizando las reglas establecidas para la convolución con padding y stride.
 
-##### **Caso 1: Convolución sobre imágenes RGB**  
+##### **Caso 1: Convolución sobre imágenes RGB**
 
-Las imágenes en color no se representan mediante una única matriz de valores de intensidad, como en el caso de imágenes en escala de grises, sino mediante tres canales independientes correspondientes a los colores **Rojo (R), Verde (G) y Azul (B)**. Cada uno de estos canales puede considerarse como una imagen en escala de grises y, por lo tanto, cada convolución se aplica individualmente sobre cada canal.  
+Las imágenes en color no se representan mediante una única matriz de valores de intensidad, como en el caso de imágenes en escala de grises, sino mediante tres canales independientes correspondientes a los colores **Rojo (R), Verde (G) y Azul (B)**. Cada uno de estos canales puede considerarse como una imagen en escala de grises y, por lo tanto, cada convolución se aplica individualmente sobre cada canal.
 
-Si se tiene una imagen de entrada de tamaño $I \times I \times 3$ (donde el último valor indica que hay tres canales de color), se utiliza un kernel tridimensional de tamaño $K \times K \times 3$. Es importante notar que el kernel debe tener el mismo número de canales que la imagen para que la operación de convolución sea válida.  
+Si se tiene una imagen de entrada de tamaño $I \times I \times 3$ (donde el último valor indica que hay tres canales de color), se utiliza un kernel tridimensional de tamaño $K \times K \times 3$. Es importante notar que el kernel debe tener el mismo número de canales que la imagen para que la operación de convolución sea válida.
 
-El cálculo del tamaño de salida se realiza aplicando la fórmula:  
+El cálculo del tamaño de salida se realiza aplicando la fórmula:
 
 $$
 O = \frac{(I - K) + 2P}{S} + 1
 $$
 
-Sin embargo, dado que la convolución se aplica de manera independiente a cada canal y se combinan los resultados en un solo mapa de características, la salida tendrá dimensiones $O \times O \times 1$.  
+Sin embargo, dado que la convolución se aplica de manera independiente a cada canal y se combinan los resultados en un solo mapa de características, la salida tendrá dimensiones $O \times O \times 1$.
 
 > **Ejemplo**
 >
-> Si se tiene una imagen **RGB** de tamaño **128 × 128 × 3** y se aplica un **kernel de 5 × 5 × 3**, con un padding de **2** y un stride de **1**, se obtiene:  
+> Si se tiene una imagen **RGB** de tamaño **128 × 128 × 3** y se aplica un **kernel de 5 × 5 × 3**, con un padding de **2** y un stride de **1**, se obtiene: 
+> 
 > $$
 > O = \frac{(128 - 5) + 2(2)}{1} + 1 = 128
 > $$
 >
-> Por lo tanto, el mapa de características resultante tendrá dimensiones **128 × 128 × 1**. Si se aplican múltiples filtros, la salida puede extenderse a más mapas de características, como veremos en el siguiente caso.  
+> Por lo tanto, el mapa de características resultante tendrá dimensiones **128 × 128 × 1**. Si se aplican múltiples filtros, la salida puede extenderse a más mapas de características, como veremos en el siguiente caso.
 >
 
-##### **Caso 2: Convolución con múltiples filtros**  
+##### **Caso 2: Convolución con múltiples filtros**
 
-En redes convolucionales, es común aplicar múltiples filtros a una misma imagen para extraer diferentes tipos de características. En este caso, en lugar de producir un único mapa de características como salida, se obtiene un conjunto de mapas, uno por cada filtro utilizado.  
+En redes convolucionales, es común aplicar múltiples filtros a una misma imagen para extraer diferentes tipos de características. En este caso, en lugar de producir un único mapa de características como salida, se obtiene un conjunto de mapas, uno por cada filtro utilizado.
 
-Si se tiene una imagen de entrada con tamaño $I \times I \times C$, donde $C$ es el número de canales de la imagen (como en el caso RGB donde $C=3$), y se aplica un conjunto de $F$ filtros de tamaño $K \times K \times C$, la salida tendrá dimensiones:  
+Si se tiene una imagen de entrada con tamaño $I \times I \times C$, donde $C$ es el número de canales de la imagen (como en el caso RGB donde $C=3$), y se aplica un conjunto de $F$ filtros de tamaño $K \times K \times C$, la salida tendrá dimensiones:
 
 $$
 O = \frac{(I - K) + 2P}{S} + 1
 $$
 
-pero ahora la profundidad de la salida será igual al número de filtros utilizados, es decir, tendrá dimensiones **$O \times O \times F$**.  
+pero ahora la profundidad de la salida será igual al número de filtros utilizados, es decir, tendrá dimensiones **$O \times O \times F$**.
 
-> **Ejemplo**  
+> **Ejemplo**
 >
-> Si se tiene una imagen **RGB** de tamaño **128 × 128 × 3** y se aplican **32 filtros** de tamaño **5 × 5 × 3**, con un padding de **2** y un stride de **1**, se obtiene el mismo tamaño de salida en términos espaciales que en el caso anterior:  
+> Si se tiene una imagen **RGB** de tamaño **128 × 128 × 3** y se aplican **32 filtros** de tamaño **5 × 5 × 3**, con un padding de **2** y un stride de **1**, se obtiene el mismo tamaño de salida en términos espaciales que en el caso anterior: 
 >
 > $$
 > O = \frac{(128 - 5) + 2(2)}{1} + 1 = 128
 > $$
 >
-> Pero dado que ahora hay **32 filtros**, la salida tendrá dimensiones **128 × 128 × 32**.  
+> Pero dado que ahora hay **32 filtros**, la salida tendrá dimensiones **128 × 128 × 32**.
 >
-> Este caso muestra cómo las redes convolucionales pueden aprender múltiples representaciones de una misma imagen al aplicar distintos filtros en paralelo. Cada filtro detectará patrones diferentes en la imagen, como bordes, texturas o estructuras más complejas, enriqueciendo la información extraída en cada capa convolucional.  
+> Este caso muestra cómo las redes convolucionales pueden aprender múltiples representaciones de una misma imagen al aplicar distintos filtros en paralelo. Cada filtro detectará patrones diferentes en la imagen, como bordes, texturas o estructuras más complejas, enriqueciendo la información extraída en cada capa convolucional.
 >
 
 Estos ejemplos ilustran cómo la convolución puede extenderse a distintos escenarios, manteniendo un esquema de cálculo sistemático que permite controlar la dimensionalidad de las representaciones en cada etapa del modelo.
 
-### **Arquitectura de una red convolucional**  
+### **Arquitectura de una red convolucional**
 
-Las redes neuronales convolucionales no solo aplican operaciones de convolución para extraer características de las imágenes, sino que integran estos procesos dentro de una arquitectura más extensa con el objetivo de realizar tareas diversas como clasificación, segmentación o detección de objetos. En el caso más general, una CNN combina varias capas convolucionales con mecanismos de reducción de dimensionalidad y finalmente conecta estas representaciones con una red neuronal completamente conectada que toma decisiones en función de las características extraídas.  
+Las redes neuronales convolucionales no solo aplican operaciones de convolución para extraer características de las imágenes, sino que integran estos procesos dentro de una arquitectura más extensa con el objetivo de realizar tareas diversas como clasificación, segmentación o detección de objetos. En el caso más general, una CNN combina varias capas convolucionales con mecanismos de reducción de dimensionalidad y finalmente conecta estas representaciones con una red neuronal completamente conectada que toma decisiones en función de las características extraídas.
 
-El flujo de procesamiento en una **CNN para clasificación** puede dividirse en tres fases principales:  
+El flujo de procesamiento en una **CNN para clasificación** puede dividirse en tres fases principales: 
 
 **Extracción de características mediante capas convolucionales** 
-La primera etapa de la red consiste en aplicar convoluciones a la imagen de entrada. Cada capa convolucional utiliza un conjunto de filtros que detectan patrones específicos como bordes, texturas o estructuras más complejas. En esta etapa, la imagen es transformada en una serie de mapas de características que resaltan la información relevante para la tarea de clasificación.  
+La primera etapa de la red consiste en aplicar convoluciones a la imagen de entrada. Cada capa convolucional utiliza un conjunto de filtros que detectan patrones específicos como bordes, texturas o estructuras más complejas. En esta etapa, la imagen es transformada en una serie de mapas de características que resaltan la información relevante para la tarea de clasificación. 
 
 **Reducción de dimensionalidad mediante pooling**
-Dado que los mapas de características pueden ser de gran tamaño, se aplican operaciones de **pooling** para reducir la resolución espacial sin perder información clave. Esto permite disminuir la carga computacional y hacer la red más robusta a pequeñas variaciones en la imagen, como cambios de posición o escala.  
+Dado que los mapas de características pueden ser de gran tamaño, se aplican operaciones de **pooling** para reducir la resolución espacial sin perder información clave. Esto permite disminuir la carga computacional y hacer la red más robusta a pequeñas variaciones en la imagen, como cambios de posición o escala. 
 
 **Clasificación con capas completamente conectadas** 
-Una vez que la imagen ha sido transformada en una representación compacta mediante convoluciones y pooling, la información es pasada a una red completamente conectada (**fully connected layer**). Esta parte de la red se comporta como un clasificador tradicional, donde cada neurona recibe información de todas las unidades de la capa anterior y aprende a asociar los patrones detectados con las categorías de salida.  
+Una vez que la imagen ha sido transformada en una representación compacta mediante convoluciones y pooling, la información es pasada a una red completamente conectada (**fully connected layer**). Esta parte de la red se comporta como un clasificador tradicional, donde cada neurona recibe información de todas las unidades de la capa anterior y aprende a asociar los patrones detectados con las categorías de salida.
 
-> **Ejemplo: Flujo de una imagen a través de una CNN**  
+> **Ejemplo: Flujo de una imagen a través de una CNN**
 >
-> Para ilustrar este proceso, consideremos una imagen de entrada de **128 × 128 × 3** píxeles que pasa por una CNN diseñada para clasificación. La arquitectura típica de esta red puede estructurarse de la siguiente manera:  
+> Para ilustrar este proceso, consideremos una imagen de entrada de **128 × 128 × 3** píxeles que pasa por una CNN diseñada para clasificación. La arquitectura típica de esta red puede estructurarse de la siguiente manera:
 >
-> **Primera convolución**  
+> **Primera convolución**
 >
-> - Se aplican **32 filtros de 3 × 3 × 3** con un stride de 1 y padding de 1, generando una salida de **128 × 128 × 32**.  
-> - Se aplica una función de activación no lineal, generalmente **ReLU**, para introducir no linealidad en el modelo.  
+> - Se aplican **32 filtros de 3 × 3 × 3** con un stride de 1 y padding de 1, generando una salida de **128 × 128 × 32**.
+> - Se aplica una función de activación no lineal, generalmente **ReLU**, para introducir no linealidad en el modelo.
 >
-> **Max pooling**  
+> **Max pooling**
 >
-> - Se reduce la resolución aplicando **max pooling de 2 × 2** con stride 2, obteniendo un mapa de características de **64 × 64 × 32**.  
+> - Se reduce la resolución aplicando **max pooling de 2 × 2** con stride 2, obteniendo un mapa de características de **64 × 64 × 32**.
 >
-> **Segunda convolución**  
+> **Segunda convolución**
 >
-> - Se aplican **64 filtros de 3 × 3 × 32** con stride 1 y padding 1, obteniendo un nuevo conjunto de mapas de **64 × 64 × 64**.  
-> - Se aplica ReLU para conservar las características más significativas.  
+> - Se aplican **64 filtros de 3 × 3 × 32** con stride 1 y padding 1, obteniendo un nuevo conjunto de mapas de **64 × 64 × 64**.
+> - Se aplica ReLU para conservar las características más significativas.
 >
-> **Max pooling**  
+> **Max pooling**
 >
-> - Se aplica nuevamente max pooling de **2 × 2**, reduciendo la resolución a **32 × 32 × 64**.  
+> - Se aplica nuevamente max pooling de **2 × 2**, reduciendo la resolución a **32 × 32 × 64**.
 >
-> **Tercera convolución**  
+> **Tercera convolución**
 >
-> - Se utilizan **128 filtros de 3 × 3 × 64**, generando una salida de **32 × 32 × 128**.  
-> - Se aplica ReLU para mantener la no linealidad.  
+> - Se utilizan **128 filtros de 3 × 3 × 64**, generando una salida de **32 × 32 × 128**.
+> - Se aplica ReLU para mantener la no linealidad.
 >
-> **Flattening y conexión con la red completamente conectada**  
+> **Flattening y conexión con la red completamente conectada**
 >
-> - Los mapas de características de **32 × 32 × 128** se "aplanan" en un vector de **131.072 valores**.  
-> - Se conecta con una capa **densa de 512 neuronas** con activación ReLU.  
-> - Se añade una capa de salida con activación **softmax** para producir una probabilidad asociada a cada clase.  
+> - Los mapas de características de **32 × 32 × 128** se "aplanan" en un vector de **131.072 valores**.
+> - Se conecta con una capa **densa de 512 neuronas** con activación ReLU.
+> - Se añade una capa de salida con activación **softmax** para producir una probabilidad asociada a cada clase.
 >
-> En esta arquitectura, las capas convolucionales extraen información estructurada de la imagen, el pooling reduce la dimensionalidad manteniendo los patrones clave, y la red densa final se encarga de tomar una decisión en base a las características aprendidas.  
+> En esta arquitectura, las capas convolucionales extraen información estructurada de la imagen, el pooling reduce la dimensionalidad manteniendo los patrones clave, y la red densa final se encarga de tomar una decisión en base a las características aprendidas.
 >
 
 Esta combinación de operaciones permite a las redes convolucionales no solo reconocer imágenes, sino generalizar a nuevos ejemplos con gran precisión.
 
 > [!important]
 >
-> **Por qué los mapas de características tienen más profundidad pero menor dimensión espacial**  
+> **Por qué los mapas de características tienen más profundidad pero menor dimensión espacial**
 >
-> A medida que una imagen atraviesa las capas de una red convolucional, su representación cambia de manera significativa. En particular, los mapas de características que emergen tras cada convolución tienden a **ganar profundidad** mientras que su **dimensión espacial se reduce**. Este fenómeno no es un efecto colateral, sino una propiedad clave del diseño de las CNN que permite extraer información relevante de forma eficiente y optimizada para tareas como la clasificación.  
+> A medida que una imagen atraviesa las capas de una red convolucional, su representación cambia de manera significativa. En particular, los mapas de características que emergen tras cada convolución tienden a **ganar profundidad** mientras que su **dimensión espacial se reduce**. Este fenómeno no es un efecto colateral, sino una propiedad clave del diseño de las CNN que permite extraer información relevante de forma eficiente y optimizada para tareas como la clasificación.
 >
-> El aumento en la profundidad se debe a la aplicación de múltiples filtros en cada capa convolucional. Cada filtro opera sobre todos los canales de la imagen de entrada y responde a patrones específicos, generando un mapa de características independiente. Si la imagen de entrada posee tres canales (correspondientes a los valores de color en RGB) y se aplican treinta y dos filtros, la salida de esa capa será un conjunto de **treinta y dos mapas de características**, cada uno resaltando distintas estructuras dentro de la imagen original. Esta creciente profundidad permite que la red descomponga la imagen en representaciones cada vez más abstractas, capturando desde bordes y texturas en las primeras capas hasta patrones más complejos en niveles más profundos.  
+> El aumento en la profundidad se debe a la aplicación de múltiples filtros en cada capa convolucional. Cada filtro opera sobre todos los canales de la imagen de entrada y responde a patrones específicos, generando un mapa de características independiente. Si la imagen de entrada posee tres canales (correspondientes a los valores de color en RGB) y se aplican treinta y dos filtros, la salida de esa capa será un conjunto de **treinta y dos mapas de características**, cada uno resaltando distintas estructuras dentro de la imagen original. Esta creciente profundidad permite que la red descomponga la imagen en representaciones cada vez más abstractas, capturando desde bordes y texturas en las primeras capas hasta patrones más complejos en niveles más profundos.
 >
-> Por otro lado, la reducción en la resolución espacial se produce debido a la manera en que la convolución opera sobre la imagen. Cada filtro actúa sobre una región local de la imagen en lugar de tratar cada píxel de forma individual, lo que disminuye el tamaño del mapa de características resultante. Además, la utilización de **stride** introduce un desplazamiento mayor en la aplicación del filtro, lo que acentúa esta reducción. A medida que la red profundiza, la incorporación de **operaciones de pooling** refuerza aún más este efecto, seleccionando únicamente los valores más representativos dentro de cada región procesada.  
+> Por otro lado, la reducción en la resolución espacial se produce debido a la manera en que la convolución opera sobre la imagen. Cada filtro actúa sobre una región local de la imagen en lugar de tratar cada píxel de forma individual, lo que disminuye el tamaño del mapa de características resultante. Además, la utilización de **stride** introduce un desplazamiento mayor en la aplicación del filtro, lo que acentúa esta reducción. A medida que la red profundiza, la incorporación de **operaciones de pooling** refuerza aún más este efecto, seleccionando únicamente los valores más representativos dentro de cada región procesada.
 >
 > Este comportamiento es fundamental para el funcionamiento de las redes convolucionales. El incremento en la profundidad permite que la red capture características más abstractas y representaciones de alto nivel, mientras que la reducción en el tamaño espacial optimiza el procesamiento y disminuye la redundancia en la información. En última instancia, esta transformación facilita la conexión con las capas completamente conectadas que se encargan de la clasificación, permitiendo que el modelo tome decisiones sobre una representación compacta pero altamente informativa de la imagen original.
 
-#### **Ventajas de la arquitectura convolucional frente a la tradicional MLP**  
+#### **Ventajas de la arquitectura convolucional frente a la tradicional MLP**
 
-Las redes neuronales convolucionales (CNN) han demostrado ser significativamente más eficaces que las redes neuronales completamente conectadas (MLP) cuando se trata de procesar imágenes. La diferencia fundamental entre ambas arquitecturas radica en la manera en que manejan la información espacial y en la eficiencia con la que aprenden patrones relevantes. Mientras que una MLP trata cada píxel como una entrada independiente, ignorando la estructura de la imagen, una CNN aprovecha las relaciones espaciales entre los píxeles, lo que le otorga múltiples ventajas en términos de eficiencia computacional, generalización y extracción de características.  
+Las redes neuronales convolucionales (CNN) han demostrado ser significativamente más eficaces que las redes neuronales completamente conectadas (MLP) cuando se trata de procesar imágenes. La diferencia fundamental entre ambas arquitecturas radica en la manera en que manejan la información espacial y en la eficiencia con la que aprenden patrones relevantes. Mientras que una MLP trata cada píxel como una entrada independiente, ignorando la estructura de la imagen, una CNN aprovecha las relaciones espaciales entre los píxeles, lo que le otorga múltiples ventajas en términos de eficiencia computacional, generalización y extracción de características.
 
-Uno de los aspectos más evidentes en los que la arquitectura convolucional supera a la MLP es la **reducción en el número de parámetros**. En una red completamente conectada, cada neurona de una capa está enlazada con todas las neuronas de la capa anterior, lo que significa que una imagen de tamaño moderado genera una cantidad masiva de pesos que deben aprenderse. Si se tomara una imagen de entrada de $128 \times 128$ píxeles con tres canales de color, la primera capa de una MLP requeriría aproximadamente $49.152$ pesos por cada neurona en la capa oculta, sin contar los sesgos. En contraste, una CNN procesa la imagen mediante filtros que comparten parámetros a lo largo de toda la imagen, reduciendo drásticamente la cantidad de pesos ajustables y permitiendo que el modelo sea más eficiente sin perder capacidad de representación.  
+Uno de los aspectos más evidentes en los que la arquitectura convolucional supera a la MLP es la **reducción en el número de parámetros**. En una red completamente conectada, cada neurona de una capa está enlazada con todas las neuronas de la capa anterior, lo que significa que una imagen de tamaño moderado genera una cantidad masiva de pesos que deben aprenderse. Si se tomara una imagen de entrada de $128 \times 128$ píxeles con tres canales de color, la primera capa de una MLP requeriría aproximadamente $49.152$ pesos por cada neurona en la capa oculta, sin contar los sesgos. En contraste, una CNN procesa la imagen mediante filtros que comparten parámetros a lo largo de toda la imagen, reduciendo drásticamente la cantidad de pesos ajustables y permitiendo que el modelo sea más eficiente sin perder capacidad de representación.
 
-Además de reducir la cantidad de parámetros, las redes convolucionales conservan la **estructura espacial de la imagen**. En una MLP, la imagen de entrada se aplana en un vector, eliminando por completo la relación entre píxeles vecinos. Como resultado, la red pierde información sobre patrones locales como bordes, texturas o formas. En cambio, una CNN mantiene la organización bidimensional de la imagen en cada capa convolucional, lo que le permite detectar características significativas en distintos niveles de abstracción. Las primeras capas suelen capturar detalles básicos como líneas y contornos, mientras que las capas más profundas identifican estructuras más complejas, como partes de objetos y combinaciones de texturas.  
+Además de reducir la cantidad de parámetros, las redes convolucionales conservan la **estructura espacial de la imagen**. En una MLP, la imagen de entrada se aplana en un vector, eliminando por completo la relación entre píxeles vecinos. Como resultado, la red pierde información sobre patrones locales como bordes, texturas o formas. En cambio, una CNN mantiene la organización bidimensional de la imagen en cada capa convolucional, lo que le permite detectar características significativas en distintos niveles de abstracción. Las primeras capas suelen capturar detalles básicos como líneas y contornos, mientras que las capas más profundas identifican estructuras más complejas, como partes de objetos y combinaciones de texturas.
 
-Otro beneficio clave es la **invarianza a traslaciones**, que permite que una CNN reconozca un objeto sin importar su posición exacta dentro de la imagen. En una MLP, si un objeto aparece en una ubicación distinta de la imagen respecto a los datos de entrenamiento, la red no tiene forma de reconocerlo sin haber visto ejemplos específicos en esa misma posición. En cambio, debido a que los filtros convolucionales se aplican sobre toda la imagen de manera uniforme, una CNN puede identificar características independientemente de su ubicación, mejorando así su capacidad de generalización.  
+Otro beneficio clave es la **invarianza a traslaciones**, que permite que una CNN reconozca un objeto sin importar su posición exacta dentro de la imagen. En una MLP, si un objeto aparece en una ubicación distinta de la imagen respecto a los datos de entrenamiento, la red no tiene forma de reconocerlo sin haber visto ejemplos específicos en esa misma posición. En cambio, debido a que los filtros convolucionales se aplican sobre toda la imagen de manera uniforme, una CNN puede identificar características independientemente de su ubicación, mejorando así su capacidad de generalización.
 
-La **robustez ante variaciones** en la entrada es otra ventaja significativa. Mientras que una MLP es altamente sensible a cambios pequeños en los valores de los píxeles, una CNN puede lidiar mejor con variaciones en la escala, orientación e iluminación de los objetos. Esto se debe a la forma en que combina múltiples filtros y aplica operaciones como el pooling, que ayuda a preservar información clave mientras reduce la resolución espacial de los mapas de características. Gracias a esta propiedad, las CNN son más resistentes a imágenes ruidosas y pueden reconocer patrones con mayor consistencia.  
+La **robustez ante variaciones** en la entrada es otra ventaja significativa. Mientras que una MLP es altamente sensible a cambios pequeños en los valores de los píxeles, una CNN puede lidiar mejor con variaciones en la escala, orientación e iluminación de los objetos. Esto se debe a la forma en que combina múltiples filtros y aplica operaciones como el pooling, que ayuda a preservar información clave mientras reduce la resolución espacial de los mapas de características. Gracias a esta propiedad, las CNN son más resistentes a imágenes ruidosas y pueden reconocer patrones con mayor consistencia.
 
-Desde una perspectiva computacional, la arquitectura convolucional es mucho más eficiente en términos de memoria y procesamiento. Mientras que una MLP requiere una gran cantidad de conexiones que deben ser almacenadas y calculadas en cada paso, una CNN reutiliza sus filtros en toda la imagen, permitiendo que el cálculo sea distribuido de manera óptima en unidades de procesamiento paralelas, como las GPU. Esto hace posible entrenar redes profundas con millones de parámetros en tiempos razonables, algo impracticable con una MLP de tamaño equivalente.  
+Desde una perspectiva computacional, la arquitectura convolucional es mucho más eficiente en términos de memoria y procesamiento. Mientras que una MLP requiere una gran cantidad de conexiones que deben ser almacenadas y calculadas en cada paso, una CNN reutiliza sus filtros en toda la imagen, permitiendo que el cálculo sea distribuido de manera óptima en unidades de procesamiento paralelas, como las GPU. Esto hace posible entrenar redes profundas con millones de parámetros en tiempos razonables, algo impracticable con una MLP de tamaño equivalente.
 
 En última instancia, la combinación de eficiencia en el uso de parámetros, preservación de la información espacial, invarianza a traslaciones y robustez ante variaciones hace que las redes convolucionales sean la arquitectura más adecuada para tareas de visión por computadora. Mientras que las MLP pueden ser útiles en problemas con entradas de baja dimensionalidad y poca estructura espacial, las CNN han demostrado ser la solución más efectiva para el reconocimiento de patrones visuales complejos, siendo la base de modelos modernos en clasificación de imágenes, detección de objetos y segmentación semántica.
 
-#### **Arquitectura LeNet: origen, diseño e impacto en la visión por computadora**  
+#### **Arquitectura LeNet: origen, diseño e impacto en la visión por computadora**
 
-A finales de la década de 1980, el procesamiento de imágenes mediante redes neuronales se encontraba limitado por el alto costo computacional de los modelos tradicionales. Las redes completamente conectadas (MLP) requerían un número prohibitivo de parámetros al trabajar con imágenes de tamaño moderado, lo que dificultaba su uso en aplicaciones prácticas. En este contexto, Yann LeCun y sus colaboradores desarrollaron **LeNet-5**, una arquitectura diseñada específicamente para el reconocimiento de patrones visuales mediante convoluciones, reduciendo significativamente la cantidad de parámetros entrenables y permitiendo el procesamiento eficiente de imágenes.  
+A finales de la década de 1980, el procesamiento de imágenes mediante redes neuronales se encontraba limitado por el alto costo computacional de los modelos tradicionales. Las redes completamente conectadas (MLP) requerían un número prohibitivo de parámetros al trabajar con imágenes de tamaño moderado, lo que dificultaba su uso en aplicaciones prácticas. En este contexto, Yann LeCun y sus colaboradores desarrollaron **LeNet-5**, una arquitectura diseñada específicamente para el reconocimiento de patrones visuales mediante convoluciones, reduciendo significativamente la cantidad de parámetros entrenables y permitiendo el procesamiento eficiente de imágenes.
 
 El diseño de LeNet-5 representó un cambio de paradigma en la inteligencia artificial aplicada a visión por computadora. Su estructura introdujo el concepto de **capas convolucionales intercaladas con capas de pooling**, estableciendo un modelo jerárquico donde las características simples se combinaban progresivamente en representaciones más complejas. Esta organización permitió el desarrollo de redes profundas capaces de detectar estructuras visuales sin la necesidad de una ingeniería manual de características, lo que facilitó la generalización del modelo a distintos conjuntos de datos. 
 
@@ -579,9 +585,9 @@ El diseño de LeNet-5 representó un cambio de paradigma en la inteligencia arti
 >
 > Desde 2013, ha liderado la investigación en inteligencia artificial en **Meta (Facebook AI Research)** y es profesor en la Universidad de Nueva York. En 2018, recibió el **Premio Turing**, junto con Geoffrey Hinton y Yoshua Bengio, por sus contribuciones al aprendizaje profundo. Su trabajo ha sido clave en la evolución de la visión por computadora, el procesamiento de imágenes y el avance de la inteligencia artificial moderna.
 
-La arquitectura de LeNet-5 sigue un esquema modular que integra convoluciones, reducción de dimensionalidad y capas completamente conectadas para la clasificación. La imagen de entrada, típicamente de **28 × 28 píxeles en escala de grises**, es procesada por una primera capa convolucional con **seis filtros de 5 × 5**, generando mapas de características de **24 × 24 × 6**. La reducción en la resolución se debe a la aplicación del kernel sin padding, lo que permite que el modelo detecte bordes y texturas en las primeras etapas.  
+La arquitectura de LeNet-5 sigue un esquema modular que integra convoluciones, reducción de dimensionalidad y capas completamente conectadas para la clasificación. La imagen de entrada, típicamente de **28 × 28 píxeles en escala de grises**, es procesada por una primera capa convolucional con **seis filtros de 5 × 5**, generando mapas de características de **24 × 24 × 6**. La reducción en la resolución se debe a la aplicación del kernel sin padding, lo que permite que el modelo detecte bordes y texturas en las primeras etapas.
 
-Tras esta primera extracción de características, la red incorpora una capa de **submuestreo (pooling)** que reduce la resolución de cada mapa de características a **12 × 12 × 6**. Esta operación se realiza mediante una estrategia de **promediado**, que en lugar de tomar el valor máximo en cada región, calcula el promedio, lo que suaviza las respuestas del modelo y reduce la sensibilidad a pequeñas variaciones en la imagen.  
+Tras esta primera extracción de características, la red incorpora una capa de **submuestreo (pooling)** que reduce la resolución de cada mapa de características a **12 × 12 × 6**. Esta operación se realiza mediante una estrategia de **promediado**, que en lugar de tomar el valor máximo en cada región, calcula el promedio, lo que suaviza las respuestas del modelo y reduce la sensibilidad a pequeñas variaciones en la imagen.
 
 El siguiente bloque de convolución aplica **dieciséis filtros de 5 × 5** sobre la salida del pooling anterior, generando un conjunto de mapas de características de **8 × 8 × 16**. Como en la capa anterior, se aplica nuevamente una operación de **submuestreo**, reduciendo la salida a **4 × 4 × 16**, compactando la información relevante mientras se mantiene la estructura jerárquica de la imagen.
 
@@ -589,11 +595,11 @@ Esta segunda convolución permite que la red extraiga representaciones más abst
 
 Una vez extraídas las representaciones de alto nivel, la arquitectura de LeNet-5 convierte los mapas de características en un vector unidimensional mediante una operación de **aplanado (flattening)**. Este vector es alimentado a una red neuronal completamente conectada con **120 neuronas**, seguida de una segunda capa densa con **84 unidades** y una capa de salida con activación **softmax**, encargada de asignar probabilidades a cada una de las clases del problema de clasificación. 
 
-![LeNet-5 - A Classic CNN Architecture - DataScienceCentral.com](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\1lvvWF48t7cyRWqct13eU0w.jpeg)
+![LeNet-5 - A Classic CNN Architecture - DataScienceCentral.com](.\assets\1lvvWF48t7cyRWqct13eU0w.jpeg)
 
-El impacto de LeNet-5 en la inteligencia artificial y la visión por computadora ha sido profundo. Su diseño introdujo principios fundamentales que han sido adoptados por modelos más avanzados, como el uso de **pesos compartidos en las convoluciones**, la reducción progresiva de la dimensionalidad mediante pooling y la combinación de representaciones espaciales con redes completamente conectadas para la clasificación final.  
+El impacto de LeNet-5 en la inteligencia artificial y la visión por computadora ha sido profundo. Su diseño introdujo principios fundamentales que han sido adoptados por modelos más avanzados, como el uso de **pesos compartidos en las convoluciones**, la reducción progresiva de la dimensionalidad mediante pooling y la combinación de representaciones espaciales con redes completamente conectadas para la clasificación final.
 
-Uno de los primeros usos prácticos de LeNet-5 fue en el reconocimiento automático de caracteres escritos a mano, aplicado a la lectura de cheques bancarios en sistemas comerciales. Gracias a su capacidad para identificar patrones con alta precisión y eficiencia computacional, la arquitectura se convirtió en la base de múltiples aplicaciones posteriores en reconocimiento de texto, detección de objetos y análisis de imágenes biomédicas.  
+Uno de los primeros usos prácticos de LeNet-5 fue en el reconocimiento automático de caracteres escritos a mano, aplicado a la lectura de cheques bancarios en sistemas comerciales. Gracias a su capacidad para identificar patrones con alta precisión y eficiencia computacional, la arquitectura se convirtió en la base de múltiples aplicaciones posteriores en reconocimiento de texto, detección de objetos y análisis de imágenes biomédicas.
 
 A pesar de su antigüedad, la arquitectura de LeNet-5 sigue siendo utilizada en la actualidad como un punto de partida en la enseñanza de redes convolucionales y en experimentos de visión artificial donde se requiere una arquitectura ligera. Su diseño modular y eficiente ha demostrado que las redes convolucionales pueden ser escalables y adaptarse a problemas más complejos, sentando las bases para desarrollos posteriores como AlexNet, VGG y ResNet.
 
@@ -601,23 +607,23 @@ A pesar de su antigüedad, la arquitectura de LeNet-5 sigue siendo utilizada en 
 
 ##### Arquitectura AlexNet
 
-El desarrollo de **AlexNet** en 2012 marcó un punto de inflexión en el avance de las redes convolucionales modernas. Diseñada por **Alex Krizhevsky, Ilya Sutskever y Geoffrey Hinton**, esta arquitectura revolucionó el campo de la visión por computadora al ganar el desafío **ImageNet Large Scale Visual Recognition Challenge (ILSVRC-2012)** con una precisión significativamente superior a la de los modelos previos. Su éxito validó la utilidad del **aprendizaje profundo** en tareas de reconocimiento de imágenes y consolidó el uso de redes convolucionales como el estándar en clasificación visual.  
+El desarrollo de **AlexNet** en 2012 marcó un punto de inflexión en el avance de las redes convolucionales modernas. Diseñada por **Alex Krizhevsky, Ilya Sutskever y Geoffrey Hinton**, esta arquitectura revolucionó el campo de la visión por computadora al ganar el desafío **ImageNet Large Scale Visual Recognition Challenge (ILSVRC-2012)** con una precisión significativamente superior a la de los modelos previos. Su éxito validó la utilidad del **aprendizaje profundo** en tareas de reconocimiento de imágenes y consolidó el uso de redes convolucionales como el estándar en clasificación visual.
 
 > [!note]
 >
-> El **ILSVRC (ImageNet Large Scale Visual Recognition Challenge)** fue una competición anual de visión por computadora organizada entre **2010 y 2017** basada en el conjunto de datos **ImageNet**, que contiene millones de imágenes etiquetadas en **1.000 categorías**. Su objetivo era evaluar y comparar algoritmos de reconocimiento de imágenes en tareas como **clasificación, detección y segmentación de objetos**.  Este desafío se convirtió en un punto de referencia para el avance del **aprendizaje profundo**, ya que permitió demostrar el impacto de las **redes convolucionales (CNN)**. Modelos como **AlexNet (2012), GoogleNet (2014) y ResNet (2015)** lograron reducciones significativas en la tasa de error, estableciendo las bases para el desarrollo de arquitecturas modernas en visión por computadora.
+> El **ILSVRC (ImageNet Large Scale Visual Recognition Challenge)** fue una competición anual de visión por computadora organizada entre **2010 y 2017** basada en el conjunto de datos **ImageNet**, que contiene millones de imágenes etiquetadas en **1.000 categorías**. Su objetivo era evaluar y comparar algoritmos de reconocimiento de imágenes en tareas como **clasificación, detección y segmentación de objetos**.Este desafío se convirtió en un punto de referencia para el avance del **aprendizaje profundo**, ya que permitió demostrar el impacto de las **redes convolucionales (CNN)**. Modelos como **AlexNet (2012), GoogleNet (2014) y ResNet (2015)** lograron reducciones significativas en la tasa de error, estableciendo las bases para el desarrollo de arquitecturas modernas en visión por computadora.
 
-En términos estructurales, **AlexNet** mantiene los principios fundamentales introducidos por **LeNet-5**, pero introduce modificaciones cruciales que mejoran su rendimiento. La red trabaja con imágenes de **224 × 224 × 3**, lo que representa una diferencia significativa con respecto a las arquitecturas anteriores, diseñadas para imágenes de menor resolución. Para manejar esta escala, la red incorpora **más capas convolucionales** y un mayor número de filtros, lo que le permite extraer características más complejas de los datos de entrada.  
+En términos estructurales, **AlexNet** mantiene los principios fundamentales introducidos por **LeNet-5**, pero introduce modificaciones cruciales que mejoran su rendimiento. La red trabaja con imágenes de **224 × 224 × 3**, lo que representa una diferencia significativa con respecto a las arquitecturas anteriores, diseñadas para imágenes de menor resolución. Para manejar esta escala, la red incorpora **más capas convolucionales** y un mayor número de filtros, lo que le permite extraer características más complejas de los datos de entrada.
 
-Una de sus principales innovaciones es la introducción de **ReLU (Rectified Linear Unit)** como función de activación en lugar de **sigmoide o tanh**, lo que acelera considerablemente el entrenamiento y mitiga el problema del **desvanecimiento del gradiente**. Además, AlexNet incorpora **dropout** en las capas completamente conectadas para reducir el sobreajuste, una técnica que se volvió esencial en redes profundas.  
+Una de sus principales innovaciones es la introducción de **ReLU (Rectified Linear Unit)** como función de activación en lugar de **sigmoide o tanh**, lo que acelera considerablemente el entrenamiento y mitiga el problema del **desvanecimiento del gradiente**. Además, AlexNet incorpora **dropout** en las capas completamente conectadas para reducir el sobreajuste, una técnica que se volvió esencial en redes profundas.
 
-La arquitectura de AlexNet sigue un diseño en **ocho capas**, con cinco capas convolucionales seguidas de tres capas completamente conectadas. La primera convolución aplica **96 filtros de 11 × 11** con un stride de 4, lo que reduce drásticamente la dimensionalidad en la primera etapa. Posteriormente, se aplican convoluciones con **kernels más pequeños** (de 5 × 5 y 3 × 3), lo que permite refinar la extracción de características antes de conectar la representación con las capas densas finales.  
+La arquitectura de AlexNet sigue un diseño en **ocho capas**, con cinco capas convolucionales seguidas de tres capas completamente conectadas. La primera convolución aplica **96 filtros de 11 × 11** con un stride de 4, lo que reduce drásticamente la dimensionalidad en la primera etapa. Posteriormente, se aplican convoluciones con **kernels más pequeños** (de 5 × 5 y 3 × 3), lo que permite refinar la extracción de características antes de conectar la representación con las capas densas finales.
 
-Otro aspecto clave de AlexNet es su uso de **normalización por lotes (Local Response Normalization, LRN)**, un mecanismo que regula las activaciones dentro de la red para estabilizar el aprendizaje. Si bien esta técnica no se mantuvo en arquitecturas posteriores, en su momento resultó fundamental para mejorar la convergencia del modelo.  
+Otro aspecto clave de AlexNet es su uso de **normalización por lotes (Local Response Normalization, LRN)**, un mecanismo que regula las activaciones dentro de la red para estabilizar el aprendizaje. Si bien esta técnica no se mantuvo en arquitecturas posteriores, en su momento resultó fundamental para mejorar la convergencia del modelo.
 
 El impacto de AlexNet en la comunidad de visión por computadora fue inmediato. Su desempeño en **ImageNet** demostró que redes más profundas y con mayor capacidad de cómputo podían superar ampliamente los enfoques tradicionales en clasificación de imágenes. Esto abrió la puerta a arquitecturas aún más complejas, como **VGGNet**, que refinaron la estructura propuesta por AlexNet.
 
-##### **Arquitectura VGGNet: refinamiento de la convolución profunda**  
+##### **Arquitectura VGGNet: refinamiento de la convolución profunda**
 
 Desarrollada por el **Visual Geometry Group (VGG) de la Universidad de Oxford**, **VGGNet** introdujo una mejora clave en la arquitectura convolucional al simplificar el diseño de las redes profundas y optimizar la extracción jerárquica de características. Presentada en 2014, VGGNet se destacó en el **desafío ImageNet**, logrando un rendimiento sobresaliente con una estructura más ordenada y eficiente. 
 
@@ -625,82 +631,82 @@ Desarrollada por el **Visual Geometry Group (VGG) de la Universidad de Oxford**,
 >
 > **ImageNet** es una base de datos masiva de imágenes etiquetadas, diseñada para entrenar y evaluar algoritmos de visión por computadora. Contiene **más de 14 millones de imágenes**, organizadas en **más de 20.000 categorías**, con una subdivisión estándar de **1.000 clases** utilizada en el desafío **ILSVRC**. Fue creada en **2009** por **Fei-Fei Li y su equipo en la Universidad de Stanford**, con el propósito de proporcionar un conjunto de datos extenso y diverso que permitiera a los modelos de inteligencia artificial aprender representaciones ricas y generalizables. Su impacto ha sido fundamental en el desarrollo del **aprendizaje profundo**, ya que permitió demostrar el poder de las redes convolucionales (CNN), impulsando avances significativos en tareas de **clasificación, detección y segmentación de objetos**.
 
-A diferencia de AlexNet, que combinaba filtros de distintos tamaños en diferentes capas, VGGNet se basa en una arquitectura homogénea en la que todas las convoluciones utilizan **kernels de 3 × 3 con stride 1** y **padding de 1**. Este enfoque permite que la red capture patrones más complejos mediante la acumulación de múltiples capas convolucionales en lugar de depender de kernels grandes en las primeras etapas.  
+A diferencia de AlexNet, que combinaba filtros de distintos tamaños en diferentes capas, VGGNet se basa en una arquitectura homogénea en la que todas las convoluciones utilizan **kernels de 3 × 3 con stride 1** y **padding de 1**. Este enfoque permite que la red capture patrones más complejos mediante la acumulación de múltiples capas convolucionales en lugar de depender de kernels grandes en las primeras etapas.
 
-El diseño de VGGNet introduce el concepto de **profundidad creciente**, con modelos que van desde **VGG-11 hasta VGG-19**, dependiendo del número de capas convolucionales. En su versión más utilizada, **VGG-16**, la red consta de **13 capas convolucionales** seguidas de **tres capas completamente conectadas**, con pooling intercalado para reducir la dimensionalidad. Esta mayor profundidad permite que la red aprenda representaciones más ricas y abstractas en comparación con arquitecturas anteriores.  
+El diseño de VGGNet introduce el concepto de **profundidad creciente**, con modelos que van desde **VGG-11 hasta VGG-19**, dependiendo del número de capas convolucionales. En su versión más utilizada, **VGG-16**, la red consta de **13 capas convolucionales** seguidas de **tres capas completamente conectadas**, con pooling intercalado para reducir la dimensionalidad. Esta mayor profundidad permite que la red aprenda representaciones más ricas y abstractas en comparación con arquitecturas anteriores.
 
-El uso de **múltiples capas de convolución pequeñas en lugar de una única capa con filtros más grandes** aporta ventajas clave. Por un lado, permite modelar características más detalladas y mejora la capacidad de generalización. Por otro lado, el menor número de parámetros por filtro facilita el entrenamiento y reduce la carga computacional en comparación con AlexNet.  
+El uso de **múltiples capas de convolución pequeñas en lugar de una única capa con filtros más grandes** aporta ventajas clave. Por un lado, permite modelar características más detalladas y mejora la capacidad de generalización. Por otro lado, el menor número de parámetros por filtro facilita el entrenamiento y reduce la carga computacional en comparación con AlexNet.
 
-VGGNet mantiene **ReLU** como función de activación y utiliza **max pooling de 2 × 2** con stride de 2 para reducir la resolución de los mapas de características. Sin embargo, una de sus desventajas es su alto consumo de memoria y tiempo de cómputo, ya que su profundidad incrementa la cantidad de operaciones requeridas para el entrenamiento.  
+VGGNet mantiene **ReLU** como función de activación y utiliza **max pooling de 2 × 2** con stride de 2 para reducir la resolución de los mapas de características. Sin embargo, una de sus desventajas es su alto consumo de memoria y tiempo de cómputo, ya que su profundidad incrementa la cantidad de operaciones requeridas para el entrenamiento.
 
 A pesar de su elevado costo computacional, VGGNet tuvo un impacto significativo en la evolución de las CNN, ya que estableció un diseño modular que inspiró arquitecturas posteriores. Su estructura homogénea y su capacidad para modelar características complejas sentaron las bases para modelos más eficientes como **ResNet**, que introdujeron mecanismos avanzados de aprendizaje profundo. 
 
-##### **Contribución de AlexNet y VGGNet a la evolución de las CNN**  
+##### **Contribución de AlexNet y VGGNet a la evolución de las CNN**
 
-Tanto **AlexNet como VGGNet** marcaron hitos en el desarrollo de redes convolucionales modernas. AlexNet demostró que redes profundas podían superar ampliamente los enfoques tradicionales, incorporando innovaciones como **ReLU, dropout y normalización por lotes** para mejorar la estabilidad y eficiencia del entrenamiento. VGGNet, por su parte, refinó la estructura convolucional con una **arquitectura homogénea y más profunda**, demostrando que múltiples capas pequeñas eran más efectivas que pocas capas con filtros grandes.  
+Tanto **AlexNet como VGGNet** marcaron hitos en el desarrollo de redes convolucionales modernas. AlexNet demostró que redes profundas podían superar ampliamente los enfoques tradicionales, incorporando innovaciones como **ReLU, dropout y normalización por lotes** para mejorar la estabilidad y eficiencia del entrenamiento. VGGNet, por su parte, refinó la estructura convolucional con una **arquitectura homogénea y más profunda**, demostrando que múltiples capas pequeñas eran más efectivas que pocas capas con filtros grandes.
 
 Ambos modelos allanaron el camino para arquitecturas posteriores como **ResNet**, que abordaron problemas como la degradación del gradiente en redes muy profundas, permitiendo la construcción de modelos aún más escalables y eficientes. La evolución de estas arquitecturas permitió que las CNN alcanzaran niveles de rendimiento comparables al reconocimiento humano en tareas de visión por computadora, consolidando el aprendizaje profundo como la base de la inteligencia artificial moderna.
 
 #### Arquitecturas GoogleNet y ResNet
 
-##### **Arquitectura GoogleNet: la introducción de módulos Inception**  
+##### **Arquitectura GoogleNet: la introducción de módulos Inception**
 
-La arquitectura **GoogleNet**, presentada por el equipo de Google en 2014, representó un cambio de paradigma en el diseño de redes convolucionales al introducir el concepto de **módulos Inception**. Este enfoque buscaba mejorar la eficiencia y profundidad de las redes sin incrementar de manera descontrolada el número de parámetros, un problema que afectaba a modelos previos como **AlexNet y VGGNet**.  
+La arquitectura **GoogleNet**, presentada por el equipo de Google en 2014, representó un cambio de paradigma en el diseño de redes convolucionales al introducir el concepto de **módulos Inception**. Este enfoque buscaba mejorar la eficiencia y profundidad de las redes sin incrementar de manera descontrolada el número de parámetros, un problema que afectaba a modelos previos como **AlexNet y VGGNet**.
 
-GoogleNet fue el modelo ganador del desafío **ILSVRC-2014**, destacándose por alcanzar una precisión superior con un número de parámetros significativamente menor. Mientras que **VGG-16** tenía alrededor de **138 millones de parámetros**, GoogleNet logró superar su rendimiento con apenas **4 millones**, gracias a su diseño optimizado.  
+GoogleNet fue el modelo ganador del desafío **ILSVRC-2014**, destacándose por alcanzar una precisión superior con un número de parámetros significativamente menor. Mientras que **VGG-16** tenía alrededor de **138 millones de parámetros**, GoogleNet logró superar su rendimiento con apenas **4 millones**, gracias a su diseño optimizado.
 
-La clave de esta arquitectura radica en la utilización de **módulos Inception**, que permiten a la red capturar simultáneamente características a diferentes escalas sin aumentar desmesuradamente la complejidad computacional. A diferencia de las redes convencionales, donde cada capa aplica un único tipo de filtro a toda la imagen, los módulos Inception combinan convoluciones de **1 × 1, 3 × 3 y 5 × 5** en paralelo, junto con una operación de **pooling**. De esta manera, cada nivel de la red aprende múltiples representaciones de la imagen en distintos niveles de abstracción, mejorando la capacidad del modelo para detectar patrones complejos.  
+La clave de esta arquitectura radica en la utilización de **módulos Inception**, que permiten a la red capturar simultáneamente características a diferentes escalas sin aumentar desmesuradamente la complejidad computacional. A diferencia de las redes convencionales, donde cada capa aplica un único tipo de filtro a toda la imagen, los módulos Inception combinan convoluciones de **1 × 1, 3 × 3 y 5 × 5** en paralelo, junto con una operación de **pooling**. De esta manera, cada nivel de la red aprende múltiples representaciones de la imagen en distintos niveles de abstracción, mejorando la capacidad del modelo para detectar patrones complejos.
 
 > [!note]
 >
-> El nombre **Inception** de los módulos utilizados en GoogleNet hace referencia indirecta a la película *Inception* (2010) de Christopher Nolan. En la película, el concepto central gira en torno a la idea de sueños dentro de sueños, lo que refleja la naturaleza jerárquica y anidada de los módulos Inception en la red neuronal.  
+> El nombre **Inception** de los módulos utilizados en GoogleNet hace referencia indirecta a la película *Inception* (2010) de Christopher Nolan. En la película, el concepto central gira en torno a la idea de sueños dentro de sueños, lo que refleja la naturaleza jerárquica y anidada de los módulos Inception en la red neuronal.
 >
-> En el contexto de las CNN, los **módulos Inception** permiten que una misma capa procese la imagen a diferentes escalas simultáneamente, aplicando múltiples filtros de distintos tamaños en paralelo (por ejemplo, **1 × 1, 3 × 3 y 5 × 5**). Esto crea una estructura donde se capturan múltiples niveles de detalle en una sola capa, análoga a la idea de *niveles dentro de niveles* en la película.  
+> En el contexto de las CNN, los **módulos Inception** permiten que una misma capa procese la imagen a diferentes escalas simultáneamente, aplicando múltiples filtros de distintos tamaños en paralelo (por ejemplo, **1 × 1, 3 × 3 y 5 × 5**). Esto crea una estructura donde se capturan múltiples niveles de detalle en una sola capa, análoga a la idea de *niveles dentro de niveles* en la película.
 >
-> Además, los desarrolladores del modelo jugaron con esta referencia en la implementación, ya que en el código original de GoogleNet se incluía la línea de comentario:  
+> Además, los desarrolladores del modelo jugaron con esta referencia en la implementación, ya que en el código original de GoogleNet se incluía la línea de comentario:
 >
-> > **"We need to go deeper"**  
+> > **"We need to go deeper"**
 >
 > Esta frase es una cita directa de la película y hace alusión a la capacidad de las redes profundas para extraer representaciones de alto nivel en cada capa.
 
-Otra innovación crucial de GoogleNet es el uso extensivo de **convoluciones de 1 × 1**, que funcionan como mecanismos de reducción de dimensionalidad. Antes de aplicar convoluciones más grandes, la red usa estos filtros más pequeños para disminuir la cantidad de mapas de características, lo que reduce la carga computacional y permite profundizar el modelo sin que el costo en memoria se vuelva prohibitivo.  
+Otra innovación crucial de GoogleNet es el uso extensivo de **convoluciones de 1 × 1**, que funcionan como mecanismos de reducción de dimensionalidad. Antes de aplicar convoluciones más grandes, la red usa estos filtros más pequeños para disminuir la cantidad de mapas de características, lo que reduce la carga computacional y permite profundizar el modelo sin que el costo en memoria se vuelva prohibitivo.
 
-Además, GoogleNet introduce **cabezas auxiliares**, que son pequeñas redes de clasificación insertadas en capas intermedias. Estas cabezas ayudan a mejorar el flujo del gradiente durante el entrenamiento, mitigando problemas de **desvanecimiento del gradiente** en redes profundas. Al proporcionar señales de aprendizaje adicionales, estas estructuras permiten que las capas más tempranas en la red se entrenen de manera más efectiva.  
+Además, GoogleNet introduce **cabezas auxiliares**, que son pequeñas redes de clasificación insertadas en capas intermedias. Estas cabezas ayudan a mejorar el flujo del gradiente durante el entrenamiento, mitigando problemas de **desvanecimiento del gradiente** en redes profundas. Al proporcionar señales de aprendizaje adicionales, estas estructuras permiten que las capas más tempranas en la red se entrenen de manera más efectiva.
 
-La arquitectura completa de GoogleNet cuenta con **22 capas profundas**, organizadas de manera que la red pueda extraer características con una gran eficiencia computacional. Su éxito demostró que **profundizar una red no siempre significa aumentar exponencialmente la cantidad de parámetros**, y que un diseño modular inteligente puede mejorar el rendimiento sin comprometer la viabilidad del entrenamiento.  
+La arquitectura completa de GoogleNet cuenta con **22 capas profundas**, organizadas de manera que la red pueda extraer características con una gran eficiencia computacional. Su éxito demostró que **profundizar una red no siempre significa aumentar exponencialmente la cantidad de parámetros**, y que un diseño modular inteligente puede mejorar el rendimiento sin comprometer la viabilidad del entrenamiento.
 
-##### **Arquitectura ResNet: solucionando el problema del gradiente en redes profundas**  
+##### **Arquitectura ResNet: solucionando el problema del gradiente en redes profundas**
 
-Si bien modelos como **GoogleNet** lograron profundizar las redes sin aumentar drásticamente los parámetros, todavía existía un problema fundamental: **a medida que las redes se volvían más profundas, su entrenamiento se volvía más difícil**. Redes con más de **30 o 40 capas** comenzaban a sufrir problemas de **degradación del gradiente**, lo que impedía que capas más profundas aprendieran de manera efectiva.  
+Si bien modelos como **GoogleNet** lograron profundizar las redes sin aumentar drásticamente los parámetros, todavía existía un problema fundamental: **a medida que las redes se volvían más profundas, su entrenamiento se volvía más difícil**. Redes con más de **30 o 40 capas** comenzaban a sufrir problemas de **degradación del gradiente**, lo que impedía que capas más profundas aprendieran de manera efectiva.
 
-Para abordar este problema, **Microsoft Research** presentó en 2015 la **Red Residual (ResNet)**, una arquitectura que introdujo el concepto de **conexiones residuales**. Este modelo ganó el desafío **ILSVRC-2015**, superando a GoogleNet y estableciendo un nuevo estándar en el diseño de redes profundas.  
+Para abordar este problema, **Microsoft Research** presentó en 2015 la **Red Residual (ResNet)**, una arquitectura que introdujo el concepto de **conexiones residuales**. Este modelo ganó el desafío **ILSVRC-2015**, superando a GoogleNet y estableciendo un nuevo estándar en el diseño de redes profundas.
 
-La idea central de ResNet es que en lugar de aprender una transformación directa entre la entrada y la salida de una capa, la red aprende una **diferencia residual**. Esto se implementa mediante **atajos o conexiones directas** que permiten que la información fluya sin modificaciones entre ciertas capas.  
+La idea central de ResNet es que en lugar de aprender una transformación directa entre la entrada y la salida de una capa, la red aprende una **diferencia residual**. Esto se implementa mediante **atajos o conexiones directas** que permiten que la información fluya sin modificaciones entre ciertas capas.
 
-Matemáticamente, en una red tradicional, una capa aprende una transformación $H(x)$ sobre la entrada $x$. ResNet, en cambio, aprende una función residual:  
+Matemáticamente, en una red tradicional, una capa aprende una transformación $H(x)$ sobre la entrada $x$. ResNet, en cambio, aprende una función residual:
 
 $$
 F(x) = H(x) - x
 $$
 
-Por lo tanto, la salida final se expresa como:  
+Por lo tanto, la salida final se expresa como:
 
 $$
 H(x) = F(x) + x
 $$
 
-Esta reformulación tiene una ventaja clave: si las capas profundas no logran aprender una transformación útil, la red puede simplemente aprender la identidad, lo que permite que los gradientes fluyan de manera más efectiva sin desvanecerse. Gracias a esta estructura, **ResNet permitió la construcción de redes de cientos de capas sin sufrir problemas de degradación del gradiente**.  
+Esta reformulación tiene una ventaja clave: si las capas profundas no logran aprender una transformación útil, la red puede simplemente aprender la identidad, lo que permite que los gradientes fluyan de manera más efectiva sin desvanecerse. Gracias a esta estructura, **ResNet permitió la construcción de redes de cientos de capas sin sufrir problemas de degradación del gradiente**.
 
-ResNet se presentó en varias versiones, desde **ResNet-18** hasta **ResNet-152**, donde el número indica la cantidad de capas. Su implementación estándar reemplazó las capas convolucionales tradicionales por **bloques residuales**, compuestos por combinaciones de convoluciones **3 × 3** y conexiones de salto.  
+ResNet se presentó en varias versiones, desde **ResNet-18** hasta **ResNet-152**, donde el número indica la cantidad de capas. Su implementación estándar reemplazó las capas convolucionales tradicionales por **bloques residuales**, compuestos por combinaciones de convoluciones **3 × 3** y conexiones de salto.
 
 Otra mejora clave de ResNet es que mantiene un **uso eficiente de los parámetros**. En lugar de incrementar masivamente el número de filtros en cada capa, como en VGGNet, ResNet optimiza la profundidad mediante la reutilización de información. Esta característica ha hecho que las redes residuales sean la base de modelos aún más avanzados, como **ResNeXt** o **DenseNet**, que refinan aún más el flujo de información dentro de redes profundas. 
 
-##### **Impacto de GoogleNet y ResNet en la evolución de las redes convolucionales**  
+##### **Impacto de GoogleNet y ResNet en la evolución de las redes convolucionales**
 
-Tanto **GoogleNet** como **ResNet** introdujeron avances fundamentales que transformaron el diseño de redes neuronales convolucionales.  
+Tanto **GoogleNet** como **ResNet** introdujeron avances fundamentales que transformaron el diseño de redes neuronales convolucionales.
 
-GoogleNet demostró que el uso de **múltiples tamaños de filtro en paralelo** permitía capturar características más ricas sin necesidad de incrementar la cantidad de parámetros. Su enfoque basado en **módulos Inception** estableció una arquitectura eficiente y escalable, que se convirtió en la base de modelos más recientes como **Inception-v3 y v4**.  
+GoogleNet demostró que el uso de **múltiples tamaños de filtro en paralelo** permitía capturar características más ricas sin necesidad de incrementar la cantidad de parámetros. Su enfoque basado en **módulos Inception** estableció una arquitectura eficiente y escalable, que se convirtió en la base de modelos más recientes como **Inception-v3 y v4**.
 
-Por otro lado, ResNet resolvió el problema de **entrenar redes extremadamente profundas** gracias a su mecanismo de **conexiones residuales**, permitiendo que modelos de más de **100 capas** fueran entrenables de manera efectiva. Su diseño se convirtió en un estándar para el desarrollo de arquitecturas profundas, siendo utilizado en diversas aplicaciones más allá de la visión por computadora, como el procesamiento de lenguaje natural y el reconocimiento de voz.  
+Por otro lado, ResNet resolvió el problema de **entrenar redes extremadamente profundas** gracias a su mecanismo de **conexiones residuales**, permitiendo que modelos de más de **100 capas** fueran entrenables de manera efectiva. Su diseño se convirtió en un estándar para el desarrollo de arquitecturas profundas, siendo utilizado en diversas aplicaciones más allá de la visión por computadora, como el procesamiento de lenguaje natural y el reconocimiento de voz.
 
 Ambas arquitecturas marcaron un antes y un después en la inteligencia artificial, consolidando el uso de redes convolucionales profundas y abriendo el camino a modelos más avanzados que hoy dominan el estado del arte en visión artificial.
