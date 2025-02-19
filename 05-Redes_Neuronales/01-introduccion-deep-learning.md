@@ -163,16 +163,17 @@ Además, en climatología y modelado ambiental, los algoritmos de Deep Learning 
 
 Desde un punto de vista biológico, el **cerebro humano** es una red altamente interconectada de neuronas que procesan información de manera distribuida. Cada neurona recibe señales eléctricas a través de sus **dendritas**, procesa esta información y, si la señal es suficientemente fuerte, genera una respuesta a través del **axón**, transmitiéndola a otras neuronas. Este modelo ha servido como inspiración para el desarrollo de las **neuronas artificiales**, unidades fundamentales en las redes neuronales artificiales.  
 
-El concepto de **neurona artificial** surge como una simplificación matemática de las neuronas biológicas. Formalmente, una neurona artificial recibe una serie de entradas, cada una con un peso asociado, y realiza una operación matemática para calcular su salida. Este cálculo puede representarse como:  
+El concepto de **neurona artificial** surge como una simplificación matemática de las neuronas biológicas. Formalmente, una neurona artificial recibe una serie de entradas, cada una con un peso asociado, y realiza una operación matemática para calcular su salida. Este cálculo puede representarse como: 
 
 $$
 z = w_1 x_1 + w_2 x_2 + \dots + w_n x_n + b
 $$
+
 donde:
 - $x_i$ representa las entradas del modelo.
 - $w_i$ son los pesos que determinan la importancia de cada entrada.
 - $b$ es un término de sesgo o bias, que ajusta el umbral de activación.
-- $z$ es la combinación ponderada de las entradas antes de pasar por una función de activación.  
+- $z$ es la combinación ponderada de las entradas antes de pasar por una función de activación. 
 
 Hasta aquí la neurona realiza una transformación **lineal** de los datos de entrada, aplicando unos pesos $w_i$ y un sesgo $b$
 
@@ -189,11 +190,13 @@ y = f(z) =
 0, & \text{si } z < 0
 \end{cases}
 $$
+
 Esta función de activación **escalón** es la más simple y permite modelar problemas de clasificación binaria. El entrenamiento del Perceptrón consiste en **ajustar los pesos** de forma iterativa para minimizar los errores de clasificación. La regla de actualización de pesos se basa en la siguiente ecuación:
 
 $$
 w_i \leftarrow w_i + \eta (y_{\text{real}} - y_{\text{predicho}}) x_i
 $$
+
 donde:
 - $\eta$ es la tasa de aprendizaje, que controla la magnitud del ajuste.
 - $y_{\text{real}}$ es la etiqueta real de la muestra.
@@ -356,14 +359,17 @@ Finalmente, la **capa de salida** produce el resultado final. Su número de neur
 Ya vimos con el perceptrón que para que una red neuronal pueda modelar relaciones no lineales, es fundamental que las neuronas no se limiten a realizar simples combinaciones lineales de las entradas. Esta transformación se logra mediante las **funciones de activación**, que introducen no linealidad en la red y permiten que aprenda patrones más complejos. Analicemos un poco mas detenidamente el papel de la función de activación
 
 Cuando los primeros modelos de redes neuronales comenzaron a tomar forma, uno de los desafíos fundamentales era encontrar una manera efectiva de transformar las salidas de las neuronas en valores interpretables. La **función sigmoide** fue una de las primeras respuestas a este problema, ya que permitía convertir cualquier entrada en un número entre 0 y 1, lo que facilitaba la interpretación de los resultados como probabilidades. Su suavidad y comportamiento gradual parecían ideales para permitir que las redes aprendieran de manera controlada, evitando cambios bruscos en la salida ante pequeñas modificaciones en los datos de entrada.
+
 $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
 $$
+
 ![image-20250217230246496](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230246496.png)
 
 Sin embargo, a medida que empezó a investigar el funcionamiento de redes más profundas, surgieron problemas inesperados. Durante la fase de entrenamiento, en la que los pesos de la red se ajustan para minimizar el error, la sigmoide comenzó a mostrar una gran limitación: su derivada se vuelve extremadamente pequeña para valores de entrada muy grandes o muy pequeños. Esto significa que, cuando la red intenta aprender, las capas profundas reciben gradientes casi nulos, lo que hace que sus pesos apenas se actualicen. Conocido como el **problema del desvanecimiento del gradiente**, este fenómeno limitaba la capacidad de las redes para capturar patrones complejos en los datos.
 
 Para abordar este problema, se exploraron alternativas y una de las primeras soluciones fue la **función tangente hiperbólica (Tanh)**. A diferencia de la sigmoide, la Tanh también es una función en forma de S, pero tiene la ventaja de que su salida oscila entre -1 y 1, en lugar de entre 0 y 1.
+
 $$
 \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
 $$
@@ -374,6 +380,7 @@ $$
 Esto significaba que los valores podían estar centrados en torno a cero, lo que ayudaba a mejorar la estabilidad del aprendizaje al proporcionar una salida simétrica. Con esta modificación, los modelos podían aprender de manera más eficiente, ya que los gradientes tendían a ser más grandes que los de la sigmoide en la mayoría de las regiones de la función. Sin embargo, el problema no desapareció por completo. Cuando los valores de entrada a la función eran muy grandes o muy pequeños, la Tanh también sufría el desvanecimiento del gradiente, limitando el aprendizaje en redes profundas.
 
 Con el auge de modelos más complejos y profundos, se hizo evidente que era necesario un cambio más radical en la forma en que las neuronas procesaban la información. Fue entonces cuando se popularizó la **función de activación ReLU (Rectified Linear Unit)**, que marcó un antes y un después en la evolución del deep learning. A diferencia de las funciones anteriores, ReLU no tiene una forma sigmoidal, sino que simplemente devuelve el valor de entrada si es positivo y 0 si es negativo.
+
 $$
 \text{ReLU}(x) = \max(0, x)
 $$
