@@ -595,7 +595,7 @@ Esta segunda convolución permite que la red extraiga representaciones más abst
 
 Una vez extraídas las representaciones de alto nivel, la arquitectura de LeNet-5 convierte los mapas de características en un vector unidimensional mediante una operación de **aplanado (flattening)**. Este vector es alimentado a una red neuronal completamente conectada con **120 neuronas**, seguida de una segunda capa densa con **84 unidades** y una capa de salida con activación **softmax**, encargada de asignar probabilidades a cada una de las clases del problema de clasificación. 
 
-![LeNet-5 - A Classic CNN Architecture - DataScienceCentral.com](.\assets\1lvvWF48t7cyRWqct13eU0w.jpeg)
+<img src=".\assets\1lvvWF48t7cyRWqct13eU0w.jpeg" alt="LeNet-5" />
 
 El impacto de LeNet-5 en la inteligencia artificial y la visión por computadora ha sido profundo. Su diseño introdujo principios fundamentales que han sido adoptados por modelos más avanzados, como el uso de **pesos compartidos en las convoluciones**, la reducción progresiva de la dimensionalidad mediante pooling y la combinación de representaciones espaciales con redes completamente conectadas para la clasificación final.
 
