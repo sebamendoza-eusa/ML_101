@@ -271,17 +271,17 @@ El Perceptrón ajusta los pesos tras cada observación, de modo que si una muest
 > - Error: $y_{\text{real}} - y_{\text{pred}} = 0 - 1 = -1$
 > - Actualización:
 > 
->   $$
->   w_1 = 0 + (0.1 \times -1 \times 0) = 0
->   $$
+> $$
+> w_1 = 0 + (0.1 \times -1 \times 0) = 0
+> $$
 >   
->   $$
->   w_2 = 0 + (0.1 \times -1 \times 0) = 0
->   $$
+> $$
+> w_2 = 0 + (0.1 \times -1 \times 0) = 0
+> $$
 >   
->   $$
->   b = 0 + (0.1 \times -1) = -0.1
->   $$
+> $$
+> b = 0 + (0.1 \times -1) = -0.1
+> $$
 >
 > El estado de los pesos será entonces:
 > $$
@@ -293,28 +293,28 @@ El Perceptrón ajusta los pesos tras cada observación, de modo que si una muest
 > - Salida esperada: $y = 1$
 > - Cálculo de salida: 
 > 
->   $$
->   z = (0 \cdot 0) + (0 \cdot 1) + (-0.1) = -0.1
->   $$
+> $$
+> z = (0 \cdot 0) + (0 \cdot 1) + (-0.1) = -0.1
+> $$
 >   
->   $$
->   \text{step}(-0.1) = 0
->   $$
+> $$
+> \text{step}(-0.1) = 0
+> $$
 >   
 > - Error: $1 - 0 = 1$
 > - Actualización:
 > 
->   $$
->   w_1 = 0 + (0.1 \times 1 \times 0) = 0
->   $$
+> $$
+> w_1 = 0 + (0.1 \times 1 \times 0) = 0
+> $$
 >   
->   $$
->   w_2 = 0 + (0.1 \times 1 \times 1) = 0.1
->   $$
+> $$
+> w_2 = 0 + (0.1 \times 1 \times 1) = 0.1
+> $$
 >   
->   $$
->   b = -0.1 + (0.1 \times 1) = 0
->   $$
+> $$
+> b = -0.1 + (0.1 \times 1) = 0
+> $$
 >
 > Ahora los pesos serían:
 > 
@@ -383,7 +383,7 @@ $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
 $$
 
-<img src="H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230246496.png" alt="image-20250217230246496" />
+<img src=".\assets\image-20250217230246496.png" alt="image-20250217230246496" />
 
 Sin embargo, a medida que empezó a investigar el funcionamiento de redes más profundas, surgieron problemas inesperados. Durante la fase de entrenamiento, en la que los pesos de la red se ajustan para minimizar el error, la sigmoide comenzó a mostrar una gran limitación: su derivada se vuelve extremadamente pequeña para valores de entrada muy grandes o muy pequeños. Esto significa que, cuando la red intenta aprender, las capas profundas reciben gradientes casi nulos, lo que hace que sus pesos apenas se actualicen. Conocido como el **problema del desvanecimiento del gradiente**, este fenómeno limitaba la capacidad de las redes para capturar patrones complejos en los datos.
 
@@ -393,7 +393,7 @@ $$
 \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
 $$
 
-<img src="H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230325803.png" alt="image-20250217230325803" />
+<img src=".\assets\image-20250217230325803.png" alt="image-20250217230325803" />
 
 Esto significaba que los valores podían estar centrados en torno a cero, lo que ayudaba a mejorar la estabilidad del aprendizaje al proporcionar una salida simétrica. Con esta modificación, los modelos podían aprender de manera más eficiente, ya que los gradientes tendían a ser más grandes que los de la sigmoide en la mayoría de las regiones de la función. Sin embargo, el problema no desapareció por completo. Cuando los valores de entrada a la función eran muy grandes o muy pequeños, la Tanh también sufría el desvanecimiento del gradiente, limitando el aprendizaje en redes profundas.
 
@@ -403,7 +403,7 @@ $$
 \text{ReLU}(x) = \max(0, x)
 $$
 
-<img src="H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230530677.png" alt="image-20250217230530677" />
+<img src=".\assets\image-20250217230530677.png" alt="image-20250217230530677" />
 
 
 
@@ -433,7 +433,7 @@ El **forward pass** es el primer paso en la ejecución de una red neuronal. Su o
 Cada neurona recibe señales desde la capa anterior. Estas señales se combinan en una suma ponderada mediante los pesos sinápticos del modelo:
 
 $$
-z^{l}_i = \sum_{j} w^{l}_{ij} a^{l-1}_j + b^{l}_i
+z^{(l)}_i = \sum_j w^{(l)}_{ij} a^{(l-1)}_j + b^{(l)}_i
 $$
 
 donde:
@@ -471,7 +471,7 @@ donde $y_i$ es el valor real y $\hat{y}_i$ la predicción del modelo.
 En **clasificación binaria**, se emplea la **entropía cruzada binaria**:
 
 $$
-L = - \frac{1}{N} \sum_{i=1}^{N} \left[ y_i \log \hat{y}_i + (1 - y_i) \log (1 - \hat{y}_i) \right]
+L = - \frac{1}{N} \sum_{i=1}^{N} \left[ y_i \log( \hat{y}_i) + (1 - y_i) \log (1 - \hat{y}_i) \right]
 $$
 
 que mide la diferencia entre la distribución de probabilidades predicha y la real.
@@ -479,7 +479,7 @@ que mide la diferencia entre la distribución de probabilidades predicha y la re
 En **clasificación multiclase**, se utiliza la **entropía cruzada categórica**, una extensión de la versión binaria:
 
 $$
-L = - \sum_{i} y_i \log \hat{y}_i
+L = - \sum_{i} y_i \log (\hat{y}_i)
 $$
 
 Una función de pérdida bien elegida permite que el modelo aprenda de manera eficiente y mejore sus predicciones en cada iteración de entrenamiento.
