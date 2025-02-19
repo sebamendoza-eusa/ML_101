@@ -221,6 +221,7 @@ El Perceptrón ajusta los pesos tras cada observación, de modo que si una muest
 > $$
 > y = \text{step}(w_1 x_1 + w_2 x_2 + b)
 > $$
+> 
 > Donde la **función escalón (step function)** se define como:
 >
 > $$
@@ -230,6 +231,7 @@ El Perceptrón ajusta los pesos tras cada observación, de modo que si una muest
 > 0, & \text{si } z < 0
 > \end{cases}
 > $$
+> 
 > Según la propuesta inicial del perceptrón de Rosenblatt, el **algoritmo de aprendizaje** sigue la regla de actualización:
 >
 > $$
@@ -239,6 +241,7 @@ El Perceptrón ajusta los pesos tras cada observación, de modo que si una muest
 > $$
 > b \leftarrow b + \eta \cdot (y_{\text{real}} - y_{\text{pred}})
 > $$
+> 
 > Donde:
 > - $w_j$ son los pesos de la neurona.
 > - $b$ es el sesgo.
@@ -256,20 +259,26 @@ El Perceptrón ajusta los pesos tras cada observación, de modo que si una muest
 > - Entrada: $(x_1 = 0, x_2 = 0)$
 > - Salida esperada: $y = 0$
 > - Cálculo de salida:  
->   $$
->   z = (0 \cdot 0) + (0 \cdot 0) + 0 = 0
->   $$
->   $$
->   \text{step}(0) = 1
->   $$
+> 
+> $$
+>  z = (0 \cdot 0) + (0 \cdot 0) + 0 = 0
+> $$
+>  
+> $$
+>  \text{step}(0) = 1
+> $$
+>  
 > - Error: $y_{\text{real}} - y_{\text{pred}} = 0 - 1 = -1$
 > - Actualización:
+> 
 >   $$
 >   w_1 = 0 + (0.1 \times -1 \times 0) = 0
 >   $$
+>   
 >   $$
 >   w_2 = 0 + (0.1 \times -1 \times 0) = 0
 >   $$
+>   
 >   $$
 >   b = 0 + (0.1 \times -1) = -0.1
 >   $$
@@ -282,33 +291,43 @@ El Perceptrón ajusta los pesos tras cada observación, de modo que si una muest
 >
 > - Entrada: $(x_1 = 0, x_2 = 1)$
 > - Salida esperada: $y = 1$
-> - Cálculo de salida:  
+> - Cálculo de salida: 
+> 
 >   $$
 >   z = (0 \cdot 0) + (0 \cdot 1) + (-0.1) = -0.1
 >   $$
+>   
 >   $$
 >   \text{step}(-0.1) = 0
 >   $$
+>   
 > - Error: $1 - 0 = 1$
 > - Actualización:
+> 
 >   $$
 >   w_1 = 0 + (0.1 \times 1 \times 0) = 0
 >   $$
+>   
 >   $$
 >   w_2 = 0 + (0.1 \times 1 \times 1) = 0.1
 >   $$
+>   
 >   $$
 >   b = -0.1 + (0.1 \times 1) = 0
 >   $$
 >
 > Ahora los pesos serían:
+> 
 > $$
 > w_1 = 0; w_2 = 0.1; b = 0
 > $$
+> 
 > Igualmente podemos hacer para las siguientes observaciones, obteniendo los siguientes pesos en ambos casos
+> 
 > $$
 > w_1 = 0; w_2 = 0.1; b = 0
 > $$
+> 
 > Después de una sola **época de entrenamiento**, los pesos han convergido a:
 > - **$w_1 = 0$**
 > - **$w_2 = 0.1$**
@@ -364,7 +383,7 @@ $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
 $$
 
-![image-20250217230246496](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230246496.png)
+<img src="H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230246496.png" alt="image-20250217230246496" />
 
 Sin embargo, a medida que empezó a investigar el funcionamiento de redes más profundas, surgieron problemas inesperados. Durante la fase de entrenamiento, en la que los pesos de la red se ajustan para minimizar el error, la sigmoide comenzó a mostrar una gran limitación: su derivada se vuelve extremadamente pequeña para valores de entrada muy grandes o muy pequeños. Esto significa que, cuando la red intenta aprender, las capas profundas reciben gradientes casi nulos, lo que hace que sus pesos apenas se actualicen. Conocido como el **problema del desvanecimiento del gradiente**, este fenómeno limitaba la capacidad de las redes para capturar patrones complejos en los datos.
 
@@ -374,8 +393,7 @@ $$
 \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
 $$
 
-
-![image-20250217230325803](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230325803.png)
+<img src="H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230325803.png" alt="image-20250217230325803" />
 
 Esto significaba que los valores podían estar centrados en torno a cero, lo que ayudaba a mejorar la estabilidad del aprendizaje al proporcionar una salida simétrica. Con esta modificación, los modelos podían aprender de manera más eficiente, ya que los gradientes tendían a ser más grandes que los de la sigmoide en la mayoría de las regiones de la función. Sin embargo, el problema no desapareció por completo. Cuando los valores de entrada a la función eran muy grandes o muy pequeños, la Tanh también sufría el desvanecimiento del gradiente, limitando el aprendizaje en redes profundas.
 
@@ -385,8 +403,7 @@ $$
 \text{ReLU}(x) = \max(0, x)
 $$
 
-
-![image-20250217230530677](H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230530677.png)
+<img src="H:\Mi unidad\Classroom\Master_IA_BIG_DATA\5072-IA-ML\repositorio_git\05-Redes_Neuronales\assets\image-20250217230530677.png" alt="image-20250217230530677" />
 
 
 
@@ -416,7 +433,7 @@ El **forward pass** es el primer paso en la ejecución de una red neuronal. Su o
 Cada neurona recibe señales desde la capa anterior. Estas señales se combinan en una suma ponderada mediante los pesos sinápticos del modelo:
 
 $$
-z^{(l)}_i = \sum_{j} w^{(l)}_{ij} a^{(l-1)}_j + b^{(l)}_i
+z^{l}_i = \sum_{j} w^{l}_{ij} a^{l-1}_j + b^{l}_i
 $$
 
 donde:
@@ -448,6 +465,7 @@ En **regresión**, se usa el **error cuadrático medio (MSE)**:
 $$
 L = \frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2
 $$
+
 donde $y_i$ es el valor real y $\hat{y}_i$ la predicción del modelo.
 
 En **clasificación binaria**, se emplea la **entropía cruzada binaria**:
@@ -455,6 +473,7 @@ En **clasificación binaria**, se emplea la **entropía cruzada binaria**:
 $$
 L = - \frac{1}{N} \sum_{i=1}^{N} \left[ y_i \log \hat{y}_i + (1 - y_i) \log (1 - \hat{y}_i) \right]
 $$
+
 que mide la diferencia entre la distribución de probabilidades predicha y la real.
 
 En **clasificación multiclase**, se utiliza la **entropía cruzada categórica**, una extensión de la versión binaria:
@@ -513,6 +532,7 @@ Dado que cada neurona recibe información de la capa anterior y transmite su act
 $$
 \frac{\partial L}{\partial w_{ij}^{(l)}} = \frac{\partial L}{\partial a_i^{(l)}} \cdot \frac{\partial a_i^{(l)}}{\partial z_i^{(l)}} \cdot \frac{\partial z_i^{(l)}}{\partial w_{ij}^{(l)}}
 $$
+
 donde:
 - $\frac{\partial L}{\partial a_i^{(l)}}$ mide el impacto de la activación de la neurona en la pérdida total.
 - $\frac{\partial a_i^{(l)}}{\partial z_i^{(l)}}$ representa la derivada de la función de activación.
@@ -573,8 +593,6 @@ El **sobreajuste** ocurre cuando la red memoriza los datos de entrenamiento en l
 
 Por otro lado, la **convergencia del modelo** también es un factor crítico en el entrenamiento de MLP. Dado que la función de pérdida no es convexa, la optimización mediante **descenso de gradiente estocástico (SGD)** puede quedar atrapada en mínimos locales o sufrir problemas de **desvanecimiento del gradiente**, especialmente cuando la red tiene muchas capas. El uso de funciones de activación como **ReLU**, junto con técnicas avanzadas de optimización como **Adam o RMSprop**, ha permitido abordar estos problemas y mejorar la estabilidad del entrenamiento.
 
-
-
 > [!tip]
 >
 > Las redes neuronales multicapa han demostrado ser modelos extremadamente versátiles, capaces de resolver problemas no lineales con un rendimiento superior al de los métodos tradicionales de Machine Learning. Sin embargo, su aplicación requiere un equilibrio cuidadoso entre capacidad de representación y generalización, evitando problemas como el sobreajuste y las dificultades en la convergencia. A medida que se introducen arquitecturas más profundas y técnicas de entrenamiento más avanzadas, las MLP han evolucionado hasta convertirse en la base del **Deep Learning moderno**, sentando las bases para arquitecturas más sofisticadas como las redes convolucionales y los Transformers.
@@ -583,8 +601,6 @@ Por otro lado, la **convergencia del modelo** también es un factor crítico en 
 
 > **¿En qué situaciones podría ser preferible utilizar un modelo de Machine Learning tradicional en lugar de una MLP?**
 >  **Clave**: Considera factores como el tamaño del conjunto de datos, la interpretabilidad del modelo y la eficiencia computacional en distintas aplicaciones.
-
-
 
 ### **Implementación práctica de redes neuronales simples**
 
