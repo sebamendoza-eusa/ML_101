@@ -284,9 +284,11 @@ El Perceptrón ajusta los pesos tras cada observación, de modo que si una muest
 > $$
 >
 > El estado de los pesos será entonces:
+> 
 > $$
 > w_1 = 0; w_2 = 0; b = -0.1
 > $$
+> 
 > Pasamos ahora la siguiente observación:
 >
 > - Entrada: $(x_1 = 0, x_2 = 1)$
@@ -433,7 +435,7 @@ El **forward pass** es el primer paso en la ejecución de una red neuronal. Su o
 Cada neurona recibe señales desde la capa anterior. Estas señales se combinan en una suma ponderada mediante los pesos sinápticos del modelo:
 
 $$
-z^{(l)}_i = \sum_j w^{(l)}_{ij} a^{(l-1)}_j + b^{(l)}_i
+z^{(l)}_i = \sum_j {w^{(l)}_{ij} a^{(l-1)}_j + b^{(l)}_i}
 $$
 
 donde:
