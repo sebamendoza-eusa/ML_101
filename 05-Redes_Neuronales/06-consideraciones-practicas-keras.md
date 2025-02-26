@@ -1,10 +1,10 @@
 # Tema 4. Procesamiento de lenguaje natural y LLM (Large Language Models)
 
-## Consideraciones prácticas el tareas de Deep Learning con Keras y TensorFlow
+## Consideraciones prácticas en tareas de Deep Learning con Keras y TensorFlow
 
 ### Flujo de trabajo en un problema de Deep Learning
 
-El desarrollo de un modelo de Deep Learning sigue una serie de pasos esenciales se pueden resumir a continuación
+El desarrollo de un modelo de Deep Learning sigue una serie de pasos esenciales que se pueden resumir a continuación
 
 #### Definición del problema
 
