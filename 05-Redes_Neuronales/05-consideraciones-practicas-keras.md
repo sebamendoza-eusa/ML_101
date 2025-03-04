@@ -1,4 +1,4 @@
-# Tema 4. Procesamiento de lenguaje natural y LLM (Large Language Models)
+# Tema 5. Aprendizaje profundo y redes neuronales
 
 ## Consideraciones prácticas en tareas de Deep Learning con Keras y TensorFlow
 

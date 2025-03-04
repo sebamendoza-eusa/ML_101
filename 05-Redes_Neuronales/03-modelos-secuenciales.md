@@ -1,6 +1,6 @@
 # Tema 5. Aprendizaje profundo y redes neuronales
 
-## Modelos secuenciales y NLP
+## Modelos secuenciales
 
 ### Objetivos del módulo
 
@@ -8,7 +8,7 @@
 
 ---
 
-### **📌 Sesión 3: Modelos secuenciales y NLP**
+### **📌 Sesión 3: Modelos secuenciales**
 
 #### **Teoría**
 
