@@ -228,7 +228,7 @@ Esta propiedad es lo que convierte al entorno en un **proceso de Markov**, y es 
 > - **Propiedad de Markov**: La evolución del sistema es tal que la probabilidad del siguiente estado solo depende del estado y acción actuales, no del historial completo:
 >
 >$$
->\mathbb{P}(s_{t+1} \mid s_t, a_t, s_{t-1}, a_{t-1}, \dots) = \mathbb{P(s_{t+1} \mid s_t, a_t)}
+>\mathbb{P}(s_{t+1} \mid s_t, a_t, s_{t-1}, a_{t-1}, \dots) = \mathbb{P(s_{t+1} \mid s_t, a_t)}tab
 >$$
 >
 > Estos elementos nos permiten formalizar matemáticamente el entorno del aprendizaje por refuerzo bajo una estructura coherente y tractable. En el siguiente apartado presentaremos esta estructura de forma precisa mediante la definición general de un **Proceso de Decisión de Markov (MDP)**.
@@ -425,11 +425,15 @@ El primer componente que debemos definir en este problema, y formalmente en cual
 
 En este caso, el entorno es un **tablero bidimensional de 4x4**, por lo que el espacio de estados está compuesto por **16 casillas**, numeradas de $0$ a $15$ en orden fila-columna, comenzando desde la parte superior izquierda. Así, podemos definir formalmente:
 
-$\mathcal{S} = \{s_0, s_1, s_2, \dots, s_15\}$
+$$
+\mathcal{S} = \{s_0, s_1, s_2, \dots, s_15\}
+$$
 
 o, de forma equivalente,
 
-$\mathcal{S} = \{s_t, t \in \mathbb{N} \mid 0 \leq t \leq 15\}$
+$$
+\mathcal{S} = \{s_t, t \in \mathbb{N} \mid 0 \leq t \leq 15\}
+$$
 
 Cada estado $s_t \in \mathcal{S}$ identifica una posición específica del agente en el tablero. En este modelo, **el estado codifica únicamente la posición actual del agente**, sin necesidad de almacenar memoria del historial ni otras variables internas. Esto es posible porque el sistema cumple la **propiedad de Markov**, lo que garantiza que la información contenida en el estado actual es suficiente para describir la dinámica futura del entorno.
 
@@ -457,21 +461,27 @@ El segundo componente fundamental en la formulación de un proceso de decisión 
 - $a_3$: moverse **arriba**.
 
 Formalmente, el espacio de acciones es:
+
 $$
 \mathcal{A} = \{a_0, a_1, a_2, a_3\}
 $$
+
 Cada acción corresponde a un desplazamiento potencial en una de las direcciones cardinales, siempre que la geometría del entorno lo permita. Si el agente se encuentra en una casilla situada junto a un borde del tablero y ejecuta una acción que lo llevaría fuera del mismo, se asume que **permanece en su estado actual**.
 
 El conjunto $\mathcal{A}$ tiene **dimensión 1** en el sentido de que sus elementos son **acciones atómicas y mutuamente excluyentes**; el agente selecciona **una sola acción en cada instante de decisión**. La **cardinalidad** de este espacio es:
+
 $$
 |\mathcal{A}| = 4
 $$
+
 Esta dimensionalidad finita y discreta permite representar políticas, funciones de valor o modelos de transición como **tablas bidimensionales indexadas por pares $(s, a)$**. Este enfoque tabular es muy eficiente en entornos de baja dimensión, como el que estamos considerando.
 
 No obstante, en entornos más complejos, el espacio de acciones puede tener **dimensiones más altas** o incluso ser **continuo**. Por ejemplo, en un sistema de control robótico, una acción puede definirse como un vector de fuerzas aplicado en varios ejes:
+
 $$
 \mathcal{A} \subseteq \mathbb{R}^n
 $$
+
 En esos casos, el agente no selecciona una acción de un conjunto finito, sino que elige **parámetros reales continuos**, lo que implica un espacio de acciones de **dimensión $n$**. Esto introduce nuevos desafíos, ya que las técnicas tabulares dejan de ser viables y deben utilizarse métodos basados en aproximación funcional, como redes neuronales o funciones kernel.
 
 De forma análoga, el concepto de **dimensionalidad** se puede aplicar también a los espacios de estados y recompensas:
@@ -708,9 +718,11 @@ Si la política está bien diseñada, y consigue alcanzar el estado $s_{15}$ en 
 Realmente vemos como este valor no refleja una certeza, sino una **esperanza matemática**, calculada como promedio sobre todas las trayectorias posibles inducidas por la política $\pi$ y por la dinámica estocástica del entorno.
 
 Formalmente, la función estado-valor bajo una política $\pi$ se define como:
+
 $$
 V^\pi(s) = \mathbb{E}_\pi \left[ G_t \mid s_t = s \right] = \mathbb{E}_\pi \left[ \sum_{k=0}^{\infty} \gamma^k \, r_{t+k+1} \,\middle|\, s_t = s \right]
 $$
+
 Es decir, es el **valor esperado** del **retorno descontado**, condicionado a que el agente comienza en el estado $s$ y sigue la política $\pi$ a partir de ese instante.
 
 Veamos con más detalle cada uno de los elementos presentes en la fórmula de $V^\pi(s)$:
@@ -744,7 +756,7 @@ Cuando el agente dispone de la función $Q^\pi(s, a)$, no necesita conocer $V^\p
 La definición formal de la función acción-valor bajo una política $\pi$ es la siguiente:
 
 $$
-Q^\pi(s, a) = \mathbb{E}_\pi \left[ \sum_{k=0}^{\infty} \gamma^k \, r_{t+k+1} \,\middle|\, s_t = s, a_t = a \right]
+Q^\pi(s, a) = \mathbb{E}_\pi \left[ \sum_{k}\gamma^k \, r_{t+k+1} \,\middle|\, s_t = s, a_t = a \right]
 $$
 
 Esta expresión cuantifica el **retorno esperado descontado** que el agente obtendrá si se encuentra en el estado $s$, ejecuta la acción $a$ en ese instante y luego sigue la política $\pi$ a partir de $t+1$.
@@ -935,9 +947,9 @@ Ahora sumamos todos los aportes y recordamos que hay que multiplicar por $0{,}25
 
   $$
   \text{Total fijo} = 0{,}25 \cdot \left[
-    (0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 0{,}2) \\
-  + (0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 1) \\
-  + (0{,}33 \cdot 1 + 0{,}33 \cdot 0{,}2) \\
+    (0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 0{,}2)
+  + (0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 1)
+  + (0{,}33 \cdot 1 + 0{,}33 \cdot 0{,}2)
   + (0{,}33 \cdot 0{,}2 + 0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 1)
   \right] = 0{,}25 \cdot (0{,}165 + 0{,}429 + 0{,}396 + 0{,}528) = 0{,}25 \cdot 1{,}518 = 0{,}3795
   $$
