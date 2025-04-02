@@ -150,6 +150,7 @@ En primer lugar el conjunto de **estados** del entorno, denotado como $\mathcal{
 En segundo lugar, el conjunto de **acciones** posibles, $\mathcal{A}$, que contiene todas las decisiones que el agente puede tomar a partir de cualquier estado $s_t$ y que denotaremos por $a_t$
 
 Por último el conjunto de **recompensas** posibles, $\mathcal{R}$, que describe los valores numéricos que el entorno puede entregar al agente como consecuencia de su interacción. Es decir en cada instante de tiempo el agente obtendrá una recompensa $r_t$.
+
 $$
 s_0 
 \xrightarrow{a_0,\, r_1} 
@@ -161,6 +162,7 @@ s_2
 \xrightarrow{a_{n-1},\, r_n} 
 s_n
 $$
+
 Estos conjuntos proporcionan la base para describir la dinámica del sistema, pero no son suficientes por sí solos. Es necesario considerar que, en la mayoría de problemas relevantes, **el entorno es estocástico**: la misma acción tomada en un mismo estado puede conducir a diferentes resultados.
 
 Este comportamiento incierto se representa mediante una función de probabilidad de transición:
@@ -225,9 +227,9 @@ Esta propiedad es lo que convierte al entorno en un **proceso de Markov**, y es 
 >
 > - **Propiedad de Markov**: La evolución del sistema es tal que la probabilidad del siguiente estado solo depende del estado y acción actuales, no del historial completo:
 >
->   $$
->   \mathbb{P}(s_{t+1} \mid s_t, a_t, s_{t-1}, a_{t-1}, \dots) = \mathbb{P}(s_{t+1} \mid s_t, a_t)
->   $$
+>$$
+>\mathbb{P}(s_{t+1} \mid s_t, a_t, s_{t-1}, a_{t-1}, \dots) = \mathbb{P(s_{t+1} \mid s_t, a_t)
+>$$
 >
 > Estos elementos nos permiten formalizar matemáticamente el entorno del aprendizaje por refuerzo bajo una estructura coherente y tractable. En el siguiente apartado presentaremos esta estructura de forma precisa mediante la definición general de un **Proceso de Decisión de Markov (MDP)**.
 >
@@ -260,9 +262,11 @@ Este modelo asume que el proceso satisface la **propiedad de Markov**, lo que ga
 > Una afirmación frecuente al introducir los modelos de decisión secuencial es que los **Procesos de Decisión de Markov (MDP)** "no tienen memoria". Esta expresión, aunque útil como atajo conceptual, requiere una interpretación cuidadosa desde el punto de vista técnico para evitar malentendidos.
 >
 > La clave de esta afirmación radica en la **propiedad de Markov**, que establece que **la probabilidad de transición hacia el siguiente estado depende únicamente del estado actual y de la acción ejecutada**, y no del historial completo del proceso. Formalmente, esta propiedad se expresa como:
+> 
 > $$
-> \mathbb{P}(s{t+1} \mid s_t, a_t, s{t-1}, a{t-1}, \dots, s_0, a_0) = \mathbb{P}(s{t+1} \mid s_t, a_t)
+>\mathbb{P}(s{t+1} \mid s_t, a_t, s{t-1}, a{t-1}, \dots, s_0, a_0) = \mathbb{P}(s{t+1} \mid s_t, a_t)
 > $$
+> 
 > Esto significa que el entorno puede ser descrito completamente por una función de transición $\mathcal{P}(s' \mid s, a)$ sin necesidad de considerar el pasado. En este sentido estricto, **los MDP son modelos sin memoria explícita**: no acumulan ni utilizan el historial de transiciones en su dinámica probabilística.
 >
 > Sin embargo, es importante destacar que esta falta de memoria se refiere **al entorno y a su evolución**, no necesariamente al comportamiento del agente. De hecho, un agente que interactúa con un entorno Markoviano puede disponer de memoria interna para mejorar su comportamiento. Por ejemplo, puede utilizar buffers de experiencias pasadas, estructuras de planificación, o redes recurrentes que mantienen un estado oculto. Lo esencial es que **el entorno no lo exige**: la decisión sobre el siguiente estado es independiente del trayecto seguido hasta llegar al estado actual.
@@ -853,6 +857,7 @@ $$
 Y tomamos $\gamma = 1$ para simplificar la interpretación del resultado.
 
 La idea entonces es aplicar las ecuaciones de Bellman. La primera nos dice que:
+
 $$
 V^\pi(s_{14}) = \sum_{a \in \mathcal{A}} \pi(a \mid s_{14}) \sum_{s'} \mathcal{P}(s' \mid s_{14}, a) \left[ \mathcal{R}(s_{14}, a) + \gamma V^\pi(s') \right]
 $$
@@ -927,6 +932,7 @@ A continuación se presenta una **tabla de ejemplo numérica** para ilustrar el 
 Ahora sumamos todos los aportes y recordamos que hay que multiplicar por $0{,}25$ (peso de cada acción por política uniforme):
 
 - Aportes sin $V^\pi(s_{14})$:
+
   $$
   \text{Total fijo} = 0{,}25 \cdot \left[
     (0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 0{,}2) \\
@@ -1006,6 +1012,7 @@ $$
 $$
 
 ​	La contribución seria:
+
 $$
 0{,}33 \cdot (0 + 0{,}2) = 0{,}066
 $$
@@ -1024,6 +1031,7 @@ $$
 $$
 
 ​	Y la contribución sería:
+
 $$
 0{,}33 \cdot (0 + 0{,}5) = 0{,}165
 $$
