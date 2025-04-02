@@ -720,7 +720,7 @@ Realmente vemos como este valor no refleja una certeza, sino una **esperanza mat
 Formalmente, la función estado-valor bajo una política $\pi$ se define como:
 
 $$
-V^\pi(s) = \mathbb{E}_\pi \left[ G_t \mid s_t = s \right] = \mathbb{E}_\pi \left[ \sum_{k=0}^{\infty} \gamma^k \, r_{t+k+1} \,\middle|\, s_t = s \right]
+V^\pi(s) = \mathbb{E}_\pi \left[ G_t \mid s_t = s \right] = \mathbb{E}_\pi \left[ \sum_{k} \gamma^k \, r_{t+k+1} \,\mid \, s_t = s \right]
 $$
 
 Es decir, es el **valor esperado** del **retorno descontado**, condicionado a que el agente comienza en el estado $s$ y sigue la política $\pi$ a partir de ese instante.
@@ -945,14 +945,9 @@ Ahora sumamos todos los aportes y recordamos que hay que multiplicar por $0{,}25
 
 - Aportes sin $V^\pi(s_{14})$:
 
-  $$
-  \text{Total fijo} = 0{,}25 \cdot \left[
-    (0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 0{,}2)
-  + (0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 1)
-  + (0{,}33 \cdot 1 + 0{,}33 \cdot 0{,}2)
-  + (0{,}33 \cdot 0{,}2 + 0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 1)
-  \right] = 0{,}25 \cdot (0{,}165 + 0{,}429 + 0{,}396 + 0{,}528) = 0{,}25 \cdot 1{,}518 = 0{,}3795
-  $$
+$$
+\text{Total fijo} = 0{,}25 \cdot \left[(0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 0{,}2) + (0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 1) + (0{,}33 \cdot 1 + 0{,}33 \cdot 0{,}2) + (0{,}33 \cdot 0{,}2 + 0{,}33 \cdot 0{,}3 + 0{,}33 \cdot 1) \right] = 0{,}25 \cdot (0{,}165 + 0{,}429 + 0{,}396 + 0{,}528) = 0{,}25 \cdot 1{,}518 = 0{,}3795
+$$
 
 - Aportes con $V^\pi(s_{14})$: 
   Aparecen tres veces con peso $0{,}33$ cada una 
