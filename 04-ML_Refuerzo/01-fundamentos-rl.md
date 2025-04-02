@@ -228,7 +228,7 @@ Esta propiedad es lo que convierte al entorno en un **proceso de Markov**, y es 
 > - **Propiedad de Markov**: La evolución del sistema es tal que la probabilidad del siguiente estado solo depende del estado y acción actuales, no del historial completo:
 >
 >$$
->\mathbb{P}(s_{t+1} \mid s_t, a_t, s_{t-1}, a_{t-1}, \dots) = \mathbb{P(s_{t+1} \mid s_t, a_t)
+>\mathbb{P}(s_{t+1} \mid s_t, a_t, s_{t-1}, a_{t-1}, \dots) = \mathbb{P(s_{t+1} \mid s_t, a_t)}
 >$$
 >
 > Estos elementos nos permiten formalizar matemáticamente el entorno del aprendizaje por refuerzo bajo una estructura coherente y tractable. En el siguiente apartado presentaremos esta estructura de forma precisa mediante la definición general de un **Proceso de Decisión de Markov (MDP)**.
