@@ -787,7 +787,7 @@ Este es precisamente el objetivo de las **ecuaciones de Bellman**: establecer **
 Recordemos las expresiones que definen formalmente las funciones de valor:
 
 $$
-V^\pi(s) = \mathbb{E} \left[ \sum_{k=0}^\infty \gamma^k , r_{t+k+1} | s_t = s \right]
+V^\pi(s) = \mathbb{E}_\pi \left[ \sum_{k=0}^\infty \gamma^k , r_{t+k+1} | s_t = s \right]
 $$
 
 $$
