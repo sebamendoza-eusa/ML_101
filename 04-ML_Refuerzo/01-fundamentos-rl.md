@@ -787,11 +787,11 @@ Este es precisamente el objetivo de las **ecuaciones de Bellman**: establecer **
 Recordemos las expresiones que definen formalmente las funciones de valor:
 
 $$
-V^\pi(s) = \mathbb{E}_\pi \left[ \sum_{k=0}^\infty \gamma^k , r_{t+k+1} | s_t = s \right]
+V^\pi(s) = \mathbb{E}(\pi) \left[ \sum_{k=0}^\infty \gamma^k , r_{t+k+1} | s_t = s \right]
 $$
 
 $$
-Q^\pi(s, a) = \mathbb{E}_\pi \left[ \sum_{k=0}^\infty \gamma^k \, r_{t+k+1} \mid s_t = s, a_t = a \right]
+Q^\pi(s, a) = \mathbb{E}(\pi) \left[ \sum_{k=0}^\infty \gamma^k , r_{t+k+1} | s_t = s, a_t = a \right]
 $$
 
 Ambas funciones miden el **retorno futuro esperado**, pero lo hacen agregando todas las recompensas futuras en una suma infinita. Este tipo de definición no es práctica para el cálculo directo, ya que **depende de toda la trayectoria completa**.
