@@ -720,7 +720,7 @@ Realmente vemos como este valor no refleja una certeza, sino una **esperanza mat
 Formalmente, la función estado-valor bajo una política $\pi$ se define como:
 
 $$
-V^\pi(s) = \mathbb{E}_\pi \left[ G_t \mid s_t = s \right] = \mathbb{E}_\pi \left[ \sum_{k} \gamma^k \, r_{t+k+1} \,\mid \, s_t = s \right]
+V^\pi(s) = \mathbb{E}(\pi) \left[ G_t | s_t = s \right] = \mathbb{E}(\pi) \left[ \sum_{k} \gamma^k \, r_{t+k+1} | s_t = s \right]
 $$
 
 Es decir, es el **valor esperado** del **retorno descontado**, condicionado a que el agente comienza en el estado $s$ y sigue la política $\pi$ a partir de ese instante.
@@ -756,7 +756,7 @@ Cuando el agente dispone de la función $Q^\pi(s, a)$, no necesita conocer $V^\p
 La definición formal de la función acción-valor bajo una política $\pi$ es la siguiente:
 
 $$
-Q^\pi(s, a) = \mathbb{E}_\pi \left[ \sum_{k}\gamma^k \, r_{t+k+1} \,\middle|\, s_t = s, a_t = a \right]
+Q^\pi(s, a) = \mathbb{E}(\pi) \left[ \sum_{k=0}^\infty \gamma^k , r_{t+k+1} | s_t = s, a_t = a \right]
 $$
 
 Esta expresión cuantifica el **retorno esperado descontado** que el agente obtendrá si se encuentra en el estado $s$, ejecuta la acción $a$ en ese instante y luego sigue la política $\pi$ a partir de $t+1$.
