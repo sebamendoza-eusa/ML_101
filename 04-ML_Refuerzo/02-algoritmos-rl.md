@@ -447,7 +447,7 @@ En el estado $s_1$:
 $$
 q(s_1, a_0) = \mathcal{R}(s_1, a_0, s_0) + \gamma \cdot v_\pi(s_0) = 0 + 1 \cdot 0 = 0
 $$
-  
+
 - Si elige $a_1$, llega a $s_2$ y recibe una recompensa:
 
 $$
@@ -529,8 +529,6 @@ Desde una perspectiva didáctica, la iteración de valores representa una **form
 
 Por todo ello, la iteración de valores se convierte en uno de los algoritmos básicos de programación dinámica y constituye el núcleo conceptual de muchas técnicas modernas de aprendizaje por refuerzo.
 
-Perfecto. A continuación te presento la sección **2.6 Discusión y comparativa** redactada en **formato apuntes**, con un enfoque técnico y didáctico, cuidando especialmente la claridad conceptual y sin recurrir a enumeraciones innecesarias. La idea es cerrar el bloque de programación dinámica de forma reflexiva, reforzando lo aprendido y preparando al alumno para los algoritmos *model-free* del siguiente bloque.
-
 #### Programación dinámica: Discusión final y comparativa
 
 La programación dinámica ofrece una solución teóricamente sólida al problema de decisión secuencial en entornos donde el modelo del entorno es completamente conocido. Tanto la **iteración de políticas** como la **iteración de valores** permiten hallar una política óptima, pero lo hacen mediante estrategias distintas, lo que da lugar a diferencias relevantes desde el punto de vista computacional y conceptual.
@@ -584,8 +582,6 @@ A pesar de ello, los métodos Monte Carlo representan un avance decisivo: permit
 >
 > De nuevo, no es necesario saber de antemano cómo transiciona el sistema entre estados ni cómo se calcula la recompensa exacta. Basta con **observar episodios y promediar los resultados**, exactamente como propone Monte Carlo.
 >
-
-Perfecto. A continuación te presento la sección **3.2. Predicción con métodos Monte Carlo** siguiendo tu estructura sugerida, en **formato apuntes** y con el nivel de detalle requerido.
 
 #### Predicción con métodos Monte Carlo
 
@@ -866,7 +862,7 @@ $$
 $$
 \rho = \frac{\pi(a_0 \mid s_1)}{\mu(a_0 \mid s_1)} = \frac{0}{0.5} = 0
 $$
-  
+
 - Episodio 3: de nuevo coincide con $\pi$:
   
 $$
@@ -1438,8 +1434,6 @@ $$
 Con sucesivos episodios, el valor de $Q(s_1, a_1)$ seguirá incrementándose hasta aproximarse a 1, mientras que $Q(s_1, a_0)$ permanecerá en torno a 0. La política greedy asociada a estos valores tenderá a elegir siempre $a_1$ desde $s_1$, es decir, moverse hacia la meta.
 
 Esto ejemplifica cómo Q-learning, incluso actuando de forma exploratoria, **aprende la mejor política posible**, ya que las actualizaciones siempre se hacen respecto a la acción óptima en el siguiente estado.
-
-Perfecto. A continuación te presento los subapartados **4.4** y **4.5** desarrollados como resumen, siguiendo el formato de apuntes y evitando repeticiones innecesarias. El objetivo es **consolidar conceptos clave**, destacar diferencias entre SARSA y Q-learning y cerrar el módulo destacando el papel del aprendizaje incremental en RL.
 
 ##### Comparación entre SARSA y Q-learning
 
