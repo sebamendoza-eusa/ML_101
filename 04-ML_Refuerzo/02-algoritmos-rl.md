@@ -710,7 +710,7 @@ El ciclo completo del algoritmo de *control Monte Carlo* consiste, por tanto, en
 
 Este tipo de aprendizaje se puede llevar a cabo de dos formas principales:
 
-- En el enfoque **on-policy**, el agente estima el valor de la política que realmente ejecuta y mejora progresivamente esa misma política. Es el caso del algoritmo *Monte Carlo control on-policy con $\epsilon$-greedy*, donde se evalúa y mejora una política estocástica a medida que se interactúa con el entorno.
+- En el enfoque **on-policy**, el agente estima el valor de la política que realmente ejecuta y mejora progresivamente esa misma política. Es el caso del algoritmo *Monte Carlo control on-policy* con $\epsilon$-greedy, donde se evalúa y mejora una política estocástica a medida que se interactúa con el entorno.
 - En el enfoque **off-policy**, el agente estima el valor de una política objetivo $\pi$ mientras sigue una política de comportamiento diferente $\mu$, que le permite explorar más ampliamente el entorno. Este enfoque requiere técnicas adicionales como el *importance sampling*, que ajustan las estimaciones para corregir la diferencia entre ambas políticas.
 
 En este módulo nos centraremos principalmente en el enfoque on-policy, por su simplicidad conceptual y por ser una base excelente para introducir ideas más avanzadas.
@@ -1127,7 +1127,7 @@ $$
 Resultado tras un episodio: 
 
 $$
-V(s_0) = 0, V(s_1) = 0{,}5, $V(s_2) = 0
+V(s_0) = 0, V(s_1) = 0{,}5, V(s_2) = 0
 $$
 
 Aunque el valor final es el mismo que en el caso determinista, hay una diferencia importante: bajo una política estocástica, **no todas las trayectorias conducen siempre a $s_2$**. Por tanto, si repetimos muchos episodios generados con $\pi_s$, observaremos que $V(s_0)$ crecerá **más lentamente** que en el caso determinista, ya que no todas las trayectorias propagan recompensa.
