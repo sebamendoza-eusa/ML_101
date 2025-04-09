@@ -990,7 +990,7 @@ $$
 Esta expresión es simplemente una **reescritura recursiva del retorno**. La recompensa total que espera recibir el agente a partir del instante $t$ es la recompensa inmediata $r_{t+1}$ más el retorno futuro desde el estado siguiente, descontado por el factor $\gamma$. A través de una serie de transformaciones puede demostrarse que en este caso la **ecuación de Bellman para $V^\pi$** Sería
 
 $$
-V^\pi(s_t) = \mathbb{E}_\pi \left[ r_{t+1} + \gamma V^\pi(s_{t+1}) \mid s_t \right]
+V^\pi(s_t) = \mathbb{E} \left[ r_{t+1} + \gamma V^\pi(s_{t+1}) \mid s_t \right]
 $$
 
 Pero como en este tipo de problemas en la práctica no conocemos ni la distribución de recompensas ni las probabilidades de transición, **no podemos calcular directamente el valor esperado**. Así, lo que hace lo que hace TD(0) es **usar una sola muestra de la experiencia** para aproximar esta expectativa. Es decir, en lugar de tomar el valor esperado, toma directamente la observación puntual de la transición. Este es el **paso de actualización de TD(0)**. No calcula la expectativa, pero se **apoya en una estimación puntual**, y utiliza una tasa de aprendizaje $\alpha$ para ajustar gradualmente el valor de $s_t$ hacia una mejor aproximación. Este mecanismo es el que se denomina **actualización por diferencias temporales** y constituye el núcleo del algoritmo.
@@ -1074,7 +1074,7 @@ $$
 Después de un episodio: 
 
 $$
-V(s_0) = 0, V(s_1) = 0{,}5, $V(s_2) = 0
+V(s_0) = 0, V(s_1) = 0{,}5, V(s_2) = 0
 $$
 
 El valor de $s_1$ refleja el hecho de que si el agente lo alcanza, el retorno esperado es 1 (porque llega a $s_2$ con recompensa 1). El valor de $s_0$ permanece en cero, pero comenzará a crecer en siguientes episodios, a medida que se propague el valor desde $s_1$.
@@ -1098,7 +1098,8 @@ Simulamos un episodio generado según esta política. Supongamos que en este cas
 2. $s_0 \xrightarrow{\text{avanzar}} s_1$, $r = 0$
 3. $s_1 \xrightarrow{\text{avanzar}} s_2$, $r = 1$
 
-Valores iniciales: 
+Valores iniciales:
+
 $$
 V(s_0) = 0, V(s_1) = 0, V(s_2) = 0
 $$
@@ -1126,7 +1127,7 @@ $$
 Resultado tras un episodio: 
 
 $$
-V(s_0) = 0$, $V(s_1) = 0{,}5$, $V(s_2) = 0
+V(s_0) = 0, V(s_1) = 0{,}5, $V(s_2) = 0
 $$
 
 Aunque el valor final es el mismo que en el caso determinista, hay una diferencia importante: bajo una política estocástica, **no todas las trayectorias conducen siempre a $s_2$**. Por tanto, si repetimos muchos episodios generados con $\pi_s$, observaremos que $V(s_0)$ crecerá **más lentamente** que en el caso determinista, ya que no todas las trayectorias propagan recompensa.
