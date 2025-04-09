@@ -709,8 +709,6 @@ Este tipo de aprendizaje se puede llevar a cabo de dos formas principales:
 - En el enfoque **on-policy**, el agente estima el valor de la política que realmente ejecuta y mejora progresivamente esa misma política. Es el caso del algoritmo *Monte Carlo control on-policy* con $\epsilon$-greedy, donde se evalúa y mejora una política estocástica a medida que se interactúa con el entorno.
 - En el enfoque **off-policy**, el agente estima el valor de una política objetivo $\pi$ mientras sigue una política de comportamiento diferente $\mu$, que le permite explorar más ampliamente el entorno. Este enfoque requiere técnicas adicionales como el *importance sampling*, que ajustan las estimaciones para corregir la diferencia entre ambas políticas.
 
-En este módulo nos centraremos principalmente en el enfoque on-policy, por su simplicidad conceptual y por ser una base excelente para introducir ideas más avanzadas.
-
 A lo largo de los siguientes apartados se mostrará cómo implementar el algoritmo de control Monte Carlo paso a paso, aplicando estimaciones de $Q^\pi(s, a)$, estrategias $\epsilon$-greedy y actualizaciones iterativas de la política. Se analizarán también sus propiedades, limitaciones y se propondrá una práctica completa para su puesta en marcha.
 
 
