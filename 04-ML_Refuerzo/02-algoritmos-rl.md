@@ -717,7 +717,6 @@ En este módulo nos centraremos principalmente en el enfoque on-policy, por su s
 
 A lo largo de los siguientes apartados se mostrará cómo implementar el algoritmo de control Monte Carlo paso a paso, aplicando estimaciones de $Q^\pi(s, a)$, estrategias $\epsilon$-greedy y actualizaciones iterativas de la política. Se analizarán también sus propiedades, limitaciones y se propondrá una práctica completa para su puesta en marcha.
 
-Perfecto. Entonces vamos con la siguiente subsección, dedicada a describir paso a paso el **algoritmo de control Monte Carlo on-policy con política $\epsilon$-greedy**, manteniendo la línea expositiva clara y rigurosa, y adaptada al **formato apuntes**.
 
 ##### Algoritmo de control Monte Carlo (on-policy)
 
@@ -829,7 +828,7 @@ Este factor indica la proporción entre la probabilidad de que la política obje
 Una vez calculado este peso, puede utilizarse para ajustar las estimaciones de retorno. Por ejemplo, si se desea estimar el valor $V^\pi(s)$ mediante first-visit Monte Carlo, se acumulan los retornos $G_t$ ponderados por $\rho(\tau)$, de modo que:
 
 $$
-V^\pi(s) = \frac{\sum_{\tau \in \mathcal{E}_s} \rho(\tau) \cdot G_t(\tau)}{\sum_{\tau \in \mathcal{E}_s} \rho(\tau)}
+V^\pi(s) = \frac{\sum_{\tau \in \mathcal{E}} \rho(\tau) \cdot G_t(\tau)}{\sum_{\tau \in \mathcal{E}} \rho(\tau)}
 $$
 
 donde $\mathcal{E}_s$ es el conjunto de episodios en los que se visitó el estado $s$ por primera vez. De forma análoga, puede calcularse $Q^\pi(s, a)$ ponderando solo aquellos episodios donde se observó el par $(s, a)$.
@@ -977,7 +976,7 @@ Este enfoque se apoya en la **ecuación de Bellman para una política fija**, qu
 Para llegar a una expresión algorítmica que nos permita hacer cálculos no podremos usar la ecuación de Bellman tal y como lo hicimos en la sección correspondiente a la Programación Dinámica. Tendremos que partir de la función estado-valor inicial
 
 $$
-V^\pi(s) = \mathbb{E}_\pi \left[ G_t \mid s_t = s \right] = \mathbb{E}_\pi \left[ \sum_{k=0}^{\infty} \gamma^k r_{t+k+1} \,\bigg|\, s_t = s \right]
+V^\pi(s) = \mathbb{E} \left[ G_t \mid s_t = s \right] = \mathbb{E} \left[ \sum_{k=0}^{\infty} \gamma^k r_{t+k+1} \,\bigg|\, s_t = s \right]
 $$
 
 Que ya sabemos que representa la suma esperada de recompensas futuras descontadas, comenzando desde el estado $s$ en el tiempo $t$, bajo la política $\pi$.
@@ -1075,7 +1074,7 @@ $$
 Después de un episodio: 
 
 $$
-V(s_0) = 0$, $V(s_1) = 0{,}5$, $V(s_2) = 0
+V(s_0) = 0, V(s_1) = 0{,}5, $V(s_2) = 0
 $$
 
 El valor de $s_1$ refleja el hecho de que si el agente lo alcanza, el retorno esperado es 1 (porque llega a $s_2$ con recompensa 1). El valor de $s_0$ permanece en cero, pero comenzará a crecer en siguientes episodios, a medida que se propague el valor desde $s_1$.
@@ -1087,10 +1086,10 @@ El valor de $s_1$ refleja el hecho de que si el agente lo alcanza, el retorno es
 Definimos ahora una política estocástica $\pi_s$ como:
 
 - En $s_0$: 
-  - $\pi_s(\text{avanzar} \mid s_0) = 0{,}7$  
+  - $\pi_s(\text{avanzar} \mid s_0) = 0{,}7$ 
   - $\pi_s(\text{quedarse} \mid s_0) = 0{,}3$
 - En $s_1$: 
-  - $\pi_s(\text{avanzar} \mid s_1) = 0{,}5$  
+  - $\pi_s(\text{avanzar} \mid s_1) = 0{,}5$ 
   - $\pi_s(\text{quedarse} \mid s_1) = 0{,}5$
 
 Simulamos un episodio generado según esta política. Supongamos que en este caso se producen las siguientes transiciones:
@@ -1101,7 +1100,7 @@ Simulamos un episodio generado según esta política. Supongamos que en este cas
 
 Valores iniciales: 
 $$
-V(s_0) = 0$, $V(s_1) = 0$, $V(s_2) = 0
+V(s_0) = 0, V(s_1) = 0, V(s_2) = 0
 $$
 
 **Actualizaciones**:
@@ -1186,7 +1185,7 @@ Este valor se ajusta con base en el retorno observado al seguir la política vig
 Desde un punto de vista formal, SARSA se basa en la ecuación de Bellman para políticas fijas, aplicada a funciones acción-valor:
 
 $$
-Q^\pi(s_t, a_t) = \mathbb{E}_\pi \left[ r_{t+1} + \gamma Q^\pi(s_{t+1}, a_{t+1}) \mid s_t, a_t \right]
+Q^\pi(s_t, a_t) = \mathbb{E} \left[ r_{t+1} + \gamma Q^\pi(s_{t+1}, a_{t+1}) \mid s_t, a_t \right]
 $$
 
 Esta ecuación establece que el valor de una acción es igual a la recompensa inmediata más el valor esperado de las acciones futuras, suponiendo que se sigue la misma política $\pi$.
