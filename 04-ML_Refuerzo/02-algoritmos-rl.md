@@ -291,13 +291,13 @@ Desglosando cada término:
 Sustituyendo:
 
 $$
-v^{(1)}_\pi(14) = 0{,}33 \cdot (1 + v_\pi(15)) + 0{,}33 \cdot v_\pi(10) + 0{,}33 \cdot v^{(0)}_\pi(14)
+v^{(1)}_{\pi}(14) = 0{,}33 \cdot (1 + v_\pi(15)) + 0{,}33 \cdot v_\pi(10) + 0{,}33 \cdot v^{(0)}_\pi(14)
 $$
 
 En la primera configuración de estados todos los valores están a cero, así que:
 
 $$
-v^{(0)}_\pi(10) = v^{(0)}_\pi(14) = v^{(0)}_\pi(15) = 0
+v^{(0)}_{\pi}(10) = v^{(0)}_{\pi}(14) = v^{(0)}_{\pi}(15) = 0
 $$
 
 Por tanto:
