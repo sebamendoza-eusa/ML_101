@@ -291,19 +291,19 @@ Desglosando cada término:
 Sustituyendo:
 
 $$
-v^{(1)}_{\pi}(14) = 0{,}33 \cdot (1 + v_\pi(15)) + 0{,}33 \cdot v_\pi(10) + 0{,}33 \cdot v^{(0)}_\pi(14)
+v^{(1)}(14) = 0{,}33 \cdot (1 + v_\pi(15)) + 0{,}33 \cdot v_\pi(10) + 0{,}33 \cdot v^{(0)}_\pi(14)
 $$
 
 En la primera configuración de estados todos los valores están a cero, así que:
 
 $$
-v^{(0)}_{\pi}(10) = v^{(0)}_{\pi}(14) = v^{(0)}_{\pi}(15) = 0
+v^{(0)}(10) = v^{(0)}(14) = v^{(0)}(15) = 0
 $$
 
 Por tanto:
 
 $$
-v^{(1)}_\pi(14) = 0{,}33 + 0 + 0 = 0,33
+v^{(1)}(14) = 0{,}33 + 0 + 0 = 0,33
 $$
 
 En esta iteración ($k=1$), podemos intentar el calculo para otros estados, aunque debido a los valores nulos el resultado será cero.
@@ -311,13 +311,13 @@ En esta iteración ($k=1$), podemos intentar el calculo para otros estados, aunq
 Vamos a hora con la siguiente iteración ($k=2$). Volvemos a hacer el cálculo para $s_{14}$ y $s_{10}$. Si planteamos la ecuación de Bellman para $s_{14}$ y sustituimos valores nos quedaría que:
 
 $$
-v^{(2)}_\pi(14) = 0{,}33 \cdot (1 + 0) + 0{,}33 \cdot 0 + 0{,}33 \cdot 0,33 = 0,42
+v^{(2)}(14) = 0{,}33 \cdot (1 + 0) + 0{,}33 \cdot 0 + 0{,}33 \cdot 0,33 = 0,42
 $$
 
 Y para $s_{10}$ tendremos que:
 
 $$
-v^{(1)}_\pi(10) = 0{,}33 \cdot 0 + 0{,}33 \cdot 0 + 0{,}33 \cdot 0,33 = 0,1089
+v^{(1)}(10) = 0{,}33 \cdot 0 + 0{,}33 \cdot 0 + 0{,}33 \cdot 0,33 = 0,1089
 $$
 
 Del mismo modo podríamos seguir calculando valores e iterando.
