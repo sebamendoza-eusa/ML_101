@@ -267,6 +267,7 @@ Donde:
 Proponemos una política **determinista** que elige moverse **siempre a la derecha**.
 
 Para evaluar el valor de los estados usaremos la ecuación de Bellman:
+
 $$
 v_\pi(s) = \sum_{s'} \mathcal{P}(s' \mid s, \pi(s)) \left[ \mathcal{R}(s, \pi(s), s') + \gamma \cdot v_\pi(s') \right]
 $$
@@ -276,6 +277,7 @@ Podemos trabajar con $\gamma = 1$ para simplificar algo más. También supondrem
 La ecuación de Bellman así planteada nos permite usar un método iterativo para calcular los valores de los estados. Empezaremos con todos los valores a cero e iremos iterando para todo el tablero hasta los valores converjan en relación a un parámetro $\theta$ previamente definido. En este caso, por ejemplo, vamos a suponer que $\theta=10^{-4}$  
 
 Ahora vamos a calcular el valor de la ecuación para el estado 14. Para ello tendremos en cuenta que desde ese estado puede se puede transicionar al estado 15, al 9 o quedarse en el mismo estado 14. El sumatorio anterior tendrá tres sumandos y quedará como sigue:
+
 $$
 v_\pi(14) = \sum_{a' \in \{\text{right, up, down}\}} \mathcal{P}(s' \mid 14, a') \left[ \mathcal{R}(14, a', s') + \gamma \cdot v_\pi(s') \right]
 $$
@@ -299,26 +301,33 @@ v^{(0)}_\pi(10) = v^{(0)}_\pi(14) = v^{(0)}_\pi(15) = 0
 $$
 
 Por tanto:
+
 $$
 v^{(1)}_\pi(14) = 0{,}33 + 0 + 0 = 0,33
 $$
+
 En esta iteración ($k=1$), podemos intentar el calculo para otros estados, aunque debido a los valores nulos el resultado será cero.
 
 Vamos a hora con la siguiente iteración ($k=2$). Volvemos a hacer el cálculo para $s_{14}$ y $s_{10}$. Si planteamos la ecuación de Bellman para $s_{14}$ y sustituimos valores nos quedaría que:
+
 $$
 v^{(2)}_\pi(14) = 0{,}33 \cdot (1 + 0) + 0{,}33 \cdot 0 + 0{,}33 \cdot 0,33 = 0,42
 $$
 
 Y para $s_{10}$ tendremos que:
+
 $$
 v^{(1)}_\pi(10) = 0{,}33 \cdot 0 + 0{,}33 \cdot 0 + 0{,}33 \cdot 0,33 = 0,1089
 $$
+
 Del mismo modo podríamos seguir calculando valores e iterando.
 
 Una cuestión importante es cuándo parar de iterar. Para ello tendremos que calcular tras cada iteración, para cada estado la cantidad
+
 $$
 |v^{(k+1)}(s) - v^{(k)}(s)|
 $$
+
 Calcularemos el máximo de esa diferencia en todo el espacio de estados. Si ese valor es menor que la tolerancia elegida al principio del algoritmo ($\theta$) ya habremos llegado al final del algorimo y la política $v_\pi$ estará evaluada.
 
 > [!important]
@@ -336,6 +345,7 @@ Explorar, en cambio, implica tomar acciones que no necesariamente parecen las me
 El equilibrio entre ambas estrategias es especialmente delicado durante la fase de aprendizaje. Si el agente explota demasiado pronto, puede converger a una política subóptima basada en información incompleta. Si explora en exceso, puede dilatar innecesariamente el proceso de aprendizaje, desperdiciando episodios sin consolidar decisiones útiles. Por esto es por lo que el diseño de mecanismos que regulen este compromiso resulta fundamental en el desarrollo de algoritmos de refuerzo efectivos.
 
 En este contexto pueden diferenciarse distintos tipos de políticas en RL. La primera de ellas, y de las más intuitivas, es la que se denomina una ***política greedy.*** decimos que una política es **greedy** cuando, en cada estado $s$, selecciona la acción $a$ que maximiza el valor estimado:
+
 $$
 \pi(s) = \arg\max_a q(s, a)
 $$
@@ -400,20 +410,20 @@ Este proceso también refleja el principio de explotación mencionado anteriorme
 
 Consideramos un entorno muy simple con tres estados dispuestos en línea: $s_0$, $s_1$ y $s_2$.
 
-- $s_0$ representa un hueco.  
-- $s_1$ es el estado inicial.  
-- $s_2$ es la meta.  
+- $s_0$ representa un hueco. 
+- $s_1$ es el estado inicial. 
+- $s_2$ es la meta. 
 
 Las acciones disponibles en todos los estados son:
 
-- $a_0$: moverse a la izquierda.  
+- $a_0$: moverse a la izquierda. 
 - $a_1$: moverse a la derecha.
 
 La dinámica del entorno es determinista. Las transiciones posibles son:
 
-- Desde $s_1$, la acción $a_0$ lleva a $s_0$ (sin recompensa).  
-- Desde $s_1$, la acción $a_1$ lleva a $s_2$ (con recompensa $1$).  
-- Desde $s_0$ o $s_2$, cualquier acción deja al agente en el mismo estado, sin recompensa.  
+- Desde $s_1$, la acción $a_0$ lleva a $s_0$ (sin recompensa). 
+- Desde $s_1$, la acción $a_1$ lleva a $s_2$ (con recompensa $1$). 
+- Desde $s_0$ o $s_2$, cualquier acción deja al agente en el mismo estado, sin recompensa. 
 - Consideramos $\gamma = 1$.
 
 Supongamos que el agente parte de una **política inicial** $\pi$ que no alcanza la meta:
@@ -432,14 +442,17 @@ A continuación, aplicamos un **paso de mejora de la política**, usando el mode
 
 En el estado $s_1$:
 
-- Si el agente elige $a_0$, llega a $s_0$:  
-  $$
-  q(s_1, a_0) = \mathcal{R}(s_1, a_0, s_0) + \gamma \cdot v_\pi(s_0) = 0 + 1 \cdot 0 = 0
-  $$
-- Si elige $a_1$, llega a $s_2$ y recibe una recompensa:  
-  $$
-  q(s_1, a_1) = \mathcal{R}(s_1, a_1, s_2) + \gamma \cdot v_\pi(s_2) = 1 + 1 \cdot 0 = 1
-  $$
+- Si el agente elige $a_0$, llega a $s_0$: 
+- 
+$$
+q(s_1, a_0) = \mathcal{R}(s_1, a_0, s_0) + \gamma \cdot v_\pi(s_0) = 0 + 1 \cdot 0 = 0
+$$
+  
+- Si elige $a_1$, llega a $s_2$ y recibe una recompensa:
+
+$$
+q(s_1, a_1) = \mathcal{R}(s_1, a_1, s_2) + \gamma \cdot v_\pi(s_2) = 1 + 1 \cdot 0 = 1
+$$
 
 Por tanto, la acción $a_1$ es mejor, y se mejora la política en $s_1$:
 
@@ -447,8 +460,8 @@ Por tanto, la acción $a_1$ es mejor, y se mejora la política en $s_1$:
 
 En los estados $s_0$ y $s_2$ no hay recompensas ni cambios de estado, por lo que las acciones tienen valor cero:
 
-- $q(s_0, a_0) = q(s_0, a_1) = 0$  
-- $q(s_2, a_0) = q(s_2, a_1) = 0$  
+- $q(s_0, a_0) = q(s_0, a_1) = 0$ 
+- $q(s_2, a_0) = q(s_2, a_1) = 0$ 
 
 Por tanto, no hay necesidad de cambiar la política en esos estados.
 
@@ -539,6 +552,7 @@ Por tanto, más allá de su aplicabilidad directa, los métodos de programación
 En los apartados anteriores hemos estudiado cómo resolver un problema de decisión secuencial mediante técnicas de programación dinámica. Estos métodos, como la iteración de políticas o la iteración de valores, parten de una hipótesis muy fuerte: **el conocimiento completo del entorno**, es decir, el acceso explícito a la función de transición $\mathcal{P}(s' \mid s, a)$ y a la función de recompensa $\mathcal{R}(s, a, s')$.
 
 En muchos problemas del mundo real, esta suposición es irrealizable. El agente no conoce la dinámica del entorno ni cómo se generan las recompensas. Lo único que puede hacer es **interactuar con el entorno, registrar lo que ocurre, y aprender a partir de esa experiencia**. Es decir, el aprendizaje ya no se basa en planificación sobre un modelo, sino en **observación directa de episodios** completos: secuencias del tipo 
+
 $$
 (s_0, a_0, r_1, s_1, a_1, r_2, \dots, s_T)
 $$
@@ -681,8 +695,6 @@ Este análisis justifica que ambas estrategias formen parte del conjunto de herr
 >
 > Este ejemplo permite visualizar que **ambos enfoques promedian retornos**, pero difieren en **cuántos datos** utilizan por episodio para cada estado. En situaciones reales, la elección entre uno u otro depende del balance deseado entre **eficiencia de muestra** y **robustez estadística**.
 >
-
-
 
 #### Control con métodos de Monte Carlo
 
@@ -845,17 +857,22 @@ Queremos estimar $V^\pi(s_1)$ mediante first-visit Monte Carlo off-policy. Solo 
 Veamos los factores de importancia para cada episodio:
 
 - Episodio 1: la acción tomada coincide con $\pi$, luego:
-  $$
-  \rho = \frac{\pi(a_1 \mid s_1)}{\mu(a_1 \mid s_1)} = \frac{1}{0.5} = 2
-  $$
+
+$$
+\rho = \frac{\pi(a_1 \mid s_1)}{\mu(a_1 \mid s_1)} = \frac{1}{0.5} = 2
+$$
+
 - Episodio 2: la acción tomada no coincide con $\pi$, entonces:
-  $$
-  \rho = \frac{\pi(a_0 \mid s_1)}{\mu(a_0 \mid s_1)} = \frac{0}{0.5} = 0
-  $$
+
+$$
+\rho = \frac{\pi(a_0 \mid s_1)}{\mu(a_0 \mid s_1)} = \frac{0}{0.5} = 0
+$$
+  
 - Episodio 3: de nuevo coincide con $\pi$:
-  $$
-  \rho = \frac{1}{0.5} = 2
-  $$
+  
+$$
+\rho = \frac{1}{0.5} = 2
+$$
 
 Aplicamos ahora la estimación de $V^\pi(s_1)$ como promedio ponderado:
 
@@ -1044,17 +1061,22 @@ $V(s_0) = 0$, $V(s_1) = 0$, $V(s_2) = 0$
 **Actualizaciones**:
 
 Paso 1: $s_0 \to s_1$ 
+
 $$
 V(s_0) \leftarrow 0 + 0{,}5 \cdot (0 + 0 - 0) = 0
 $$
 
 Paso 2: $s_1 \to s_2$ 
+
 $$
 V(s_1) \leftarrow 0 + 0{,}5 \cdot (1 + 0 - 0) = 0{,}5
 $$
 
 Después de un episodio: 
-$V(s_0) = 0$, $V(s_1) = 0{,}5$, $V(s_2) = 0$
+
+$$
+V(s_0) = 0$, $V(s_1) = 0{,}5$, $V(s_2) = 0
+$$
 
 El valor de $s_1$ refleja el hecho de que si el agente lo alcanza, el retorno esperado es 1 (porque llega a $s_2$ con recompensa 1). El valor de $s_0$ permanece en cero, pero comenzará a crecer en siguientes episodios, a medida que se propague el valor desde $s_1$.
 
@@ -1064,10 +1086,10 @@ El valor de $s_1$ refleja el hecho de que si el agente lo alcanza, el retorno es
 
 Definimos ahora una política estocástica $\pi_s$ como:
 
-- En $s_0$:  
+- En $s_0$: 
   - $\pi_s(\text{avanzar} \mid s_0) = 0{,}7$  
   - $\pi_s(\text{quedarse} \mid s_0) = 0{,}3$
-- En $s_1$:  
+- En $s_1$: 
   - $\pi_s(\text{avanzar} \mid s_1) = 0{,}5$  
   - $\pi_s(\text{quedarse} \mid s_1) = 0{,}5$
 
@@ -1078,31 +1100,37 @@ Simulamos un episodio generado según esta política. Supongamos que en este cas
 3. $s_1 \xrightarrow{\text{avanzar}} s_2$, $r = 1$
 
 Valores iniciales: 
-$V(s_0) = 0$, $V(s_1) = 0$, $V(s_2) = 0$
+$$
+V(s_0) = 0$, $V(s_1) = 0$, $V(s_2) = 0
+$$
 
 **Actualizaciones**:
 
-Paso 1: $s_0 \to s_0$  
+Paso 1: $s_0 \to s_0$ 
+
 $$
 V(s_0) \leftarrow 0 + 0{,}5 \cdot (0 + 0 - 0) = 0
 $$
 
-Paso 2: $s_0 \to s_1$  
+Paso 2: $s_0 \to s_1$ 
+
 $$
 V(s_0) \leftarrow 0 + 0{,}5 \cdot (0 + 0 - 0) = 0
 $$
 
-Paso 3: $s_1 \to s_2$  
+Paso 3: $s_1 \to s_2$ 
+
 $$
 V(s_1) \leftarrow 0 + 0{,}5 \cdot (1 + 0 - 0) = 0{,}5
 $$
 
 Resultado tras un episodio: 
-$V(s_0) = 0$, $V(s_1) = 0{,}5$, $V(s_2) = 0$
+
+$$
+V(s_0) = 0$, $V(s_1) = 0{,}5$, $V(s_2) = 0
+$$
 
 Aunque el valor final es el mismo que en el caso determinista, hay una diferencia importante: bajo una política estocástica, **no todas las trayectorias conducen siempre a $s_2$**. Por tanto, si repetimos muchos episodios generados con $\pi_s$, observaremos que $V(s_0)$ crecerá **más lentamente** que en el caso determinista, ya que no todas las trayectorias propagan recompensa.
-
-
 
 Este ejemplo permite comparar claramente dos situaciones:
 
