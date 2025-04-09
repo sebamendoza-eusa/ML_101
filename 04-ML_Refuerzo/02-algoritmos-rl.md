@@ -229,7 +229,7 @@ La noción clave aquí es la de **función de valor**, que mide el retorno esper
 Formalmente, se desea calcular la función $v_\pi(s)$, que representa el valor esperado del retorno cuando el agente comienza en el estado $s$ y sigue la política $\pi$:
 
 $$
-v_{\pi}(s) = \mathbb{E}_{\pi} \left[ G_t \mid s_t = s \right] = \mathbb{E}_{\pi} \left[ \sum_{k=0}^\infty \gamma^k r_{t+k+1} \mid s_t = s \right]
+v_{\pi}(s) = \mathbb{E} \left[ G_t \mid s_t = s \right] = \mathbb{E} \left[ \sum_{k=0}^\infty \gamma^k r_{t+k+1} \mid s_t = s \right]
 $$
 
 Esta expectativa se toma sobre las posibles trayectorias generadas por la política $\pi$, incluyendo la estocasticidad del entorno y de la propia política si no es determinista. Para calcular esta función de valor, no es necesario simular episodios ni observar interacciones: basta con **resolver el sistema de ecuaciones que se deriva de la ecuación de Bellman para $v_\pi$**, aprovechando que se dispone del modelo completo del entorno.
